@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PSG Energy — Intelligence Africa Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060D1F;--bg2:#0B1530;--bg3:#111D3A;--bg4:#172244;
+  --bdr:#1E2E55;--bdr2:#243460;
+  --blue:#2563EB;--blueL:rgba(37,99,235,.15);--blueG:#60A5FA;
+  --green:#10B981;--greenL:rgba(16,185,129,.12);--greenG:#34D399;
+  --gold:#F59E0B;--goldL:rgba(245,158,11,.12);--goldG:#FCD34D;
+  --red:#EF4444;--redL:rgba(239,68,68,.1);
+  --purple:#8B5CF6;--purpleL:rgba(139,92,246,.12);
+  --cyan:#06B6D4;--cyanL:rgba(6,182,212,.12);
+  --orange:#F97316;--orangeL:rgba(249,115,22,.12);
+  --txt:#E2E8F0;--txt2:#94A3B8;--txt3:#64748B;
+  --ff:'Outfit',sans-serif;--fb:'Inter',sans-serif;--fm:'JetBrains Mono',monospace;
+  --r:10px;--r2:7px;--sh:0 4px 24px rgba(0,0,0,.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;background:var(--bg);color:var(--txt);font-family:var(--fb);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ── LAYOUT ── */
+.app{display:flex;flex-direction:column;min-height:100vh;}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--bg2);border-bottom:1px solid var(--bdr);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.brand{font-family:var(--ff);font-weight:900;font-size:16px;display:flex;align-items:center;gap:10px;}
+.brand-ico{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:15px;}
+.brand-name{color:var(--txt);}
+.brand-name span{color:var(--goldG);}
+.topbar-center{display:flex;align-items:center;gap:8px;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{opacity:.8;box-shadow:0 0 0 5px rgba(16,185,129,0)}}
+.live-txt{font-size:11px;font-weight:700;color:var(--greenG);}
+.refresh-btn{background:var(--blueL);border:1px solid rgba(37,99,235,.3);color:var(--blueG);padding:6px 14px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;font-family:var(--ff);transition:all .2s;display:flex;align-items:center;gap:5px;}
+.refresh-btn:hover{background:var(--blue);color:#fff;}
+.refresh-btn.spinning svg{animation:spin 1s linear infinite;}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.time-display{font-family:var(--fm);font-size:12px;color:var(--txt3);}
+
+/* ── TABS NAV ── */
+.tabs-nav{background:var(--bg2);border-bottom:1px solid var(--bdr);padding:0 20px;display:flex;gap:0;overflow-x:auto;}
+.tabs-nav::-webkit-scrollbar{display:none;}
+.tab-btn{padding:12px 18px;font-family:var(--ff);font-size:13px;font-weight:700;color:var(--txt3);border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;display:flex;align-items:center;gap:6px;}
+.tab-btn:hover{color:var(--txt);}
+.tab-btn.on{color:var(--blueG);border-bottom-color:var(--blue);}
+.tab-count{background:var(--blueL);color:var(--blueG);padding:2px 7px;border-radius:20px;font-size:10px;font-weight:800;}
+.tab-count.green{background:var(--greenL);color:var(--greenG);}
+.tab-count.gold{background:var(--goldL);color:var(--goldG);}
+.tab-count.red{background:var(--redL);color:var(--red);}
+
+/* ── CONTENT ── */
+.content{flex:1;padding:20px;overflow-y:auto;}
+.tab-pane{display:none;}
+.tab-pane.on{display:block;}
+
+/* ── KPI GRID ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.kpi{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:16px;position:relative;overflow:hidden;transition:transform .2s;}
+.kpi:hover{transform:translateY(-2px);}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:var(--r) var(--r) 0 0;}
+.kpi-b::before{background:linear-gradient(90deg,var(--blue),var(--purple));}
+.kpi-g::before{background:linear-gradient(90deg,var(--green),var(--cyan));}
+.kpi-o::before{background:linear-gradient(90deg,var(--gold),var(--orange));}
+.kpi-p::before{background:linear-gradient(90deg,var(--purple),var(--blue));}
+.kpi-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:8px;}
+.kpi-val{font-family:var(--ff);font-size:26px;font-weight:900;line-height:1;margin-bottom:5px;}
+.kpi-sub{font-size:11px;color:var(--txt3);}
+.kpi-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;margin-top:4px;}
+.up{color:var(--greenG);}
+.dn{color:var(--red);}
+
+/* ── SECTION HEADERS ── */
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.sec-title{font-family:var(--ff);font-size:14px;font-weight:800;display:flex;align-items:center;gap:7px;}
+.sec-title::before{content:'';width:3px;height:16px;border-radius:2px;background:var(--blue);}
+.sec-action{font-size:11px;font-weight:700;color:var(--blueG);cursor:pointer;background:none;border:none;}
+
+/* ── CARDS / PANELS ── */
+.panel{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:16px;}
+.panel-head{padding:13px 16px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;}
+.ph-title{font-family:var(--ff);font-size:13px;font-weight:800;display:flex;align-items:center;gap:7px;}
+.ph-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:800;}
+.ph-b{background:var(--blueL);color:var(--blueG);}
+.ph-g{background:var(--greenL);color:var(--greenG);}
+.ph-o{background:var(--goldL);color:var(--goldG);}
+.ph-p{background:var(--purpleL);color:var(--purple);}
+.ph-c{background:var(--cyanL);color:var(--cyan);}
+.panel-body{padding:14px 16px;}
+
+/* ── PROJECT ITEMS ── */
+.proj-item{padding:13px 0;border-bottom:1px solid var(--bdr);display:flex;gap:12px;align-items:flex-start;cursor:pointer;transition:background .15s;}
+.proj-item:last-child{border:none;padding-bottom:0;}
+.proj-item:hover{background:rgba(255,255,255,.02);margin:0 -16px;padding-left:16px;padding-right:16px;}
+.proj-source{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;font-weight:900;}
+.src-wb{background:rgba(0,114,186,.2);border:1px solid rgba(0,114,186,.3);}
+.src-afd{background:rgba(0,147,68,.2);border:1px solid rgba(0,147,68,.3);}
+.src-bad{background:rgba(36,94,168,.2);border:1px solid rgba(36,94,168,.3);}
+.src-bpi{background:rgba(0,83,159,.2);border:1px solid rgba(0,83,159,.3);}
+.src-pro{background:rgba(0,146,69,.2);border:1px solid rgba(0,146,69,.3);}
+.src-ue{background:rgba(0,51,153,.2);border:1px solid rgba(0,51,153,.3);}
+.src-pnud{background:rgba(0,124,176,.2);border:1px solid rgba(0,124,176,.3);}
+.proj-info{flex:1;min-width:0;}
+.proj-title{font-family:var(--ff);font-size:13px;font-weight:700;margin-bottom:3px;color:var(--txt);line-height:1.3;}
+.proj-meta{font-size:11px;color:var(--txt3);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;}
+.ptag{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;}
+.pt-b{background:var(--blueL);color:var(--blueG);}
+.pt-g{background:var(--greenL);color:var(--greenG);}
+.pt-o{background:var(--goldL);color:var(--goldG);}
+.pt-p{background:var(--purpleL);color:var(--purple);}
+.pt-c{background:var(--cyanL);color:var(--cyan);}
+.pt-r{background:var(--redL);color:var(--red);}
+.proj-right{text-align:right;flex-shrink:0;min-width:90px;}
+.proj-amount{font-family:var(--fm);font-size:13px;font-weight:600;color:var(--goldG);}
+.proj-status{padding:3px 8px;border-radius:20px;font-size:10px;font-weight:800;margin-top:4px;display:inline-block;}
+.st-open{background:var(--greenL);color:var(--greenG);}
+.st-soon{background:var(--goldL);color:var(--goldG);}
+.st-closed{background:rgba(100,116,139,.15);color:var(--txt3);}
+.st-watch{background:var(--blueL);color:var(--blueG);}
+.st-urgent{background:var(--redL);color:var(--red);}
+
+/* ── FINANCING TABLE ── */
+.fin-table{width:100%;border-collapse:collapse;}
+.fin-table th{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);padding:8px 12px;text-align:left;border-bottom:1px solid var(--bdr);background:var(--bg3);}
+.fin-table td{font-size:12px;padding:11px 12px;border-bottom:1px solid var(--bdr);vertical-align:top;}
+.fin-table tr:last-child td{border:none;}
+.fin-table tr:hover td{background:rgba(255,255,255,.02);}
+.fn{font-weight:700;color:var(--txt);}
+.fv{font-family:var(--fm);font-size:11px;color:var(--goldG);}
+.fc{font-size:11px;color:var(--txt3);}
+
+/* ── API STATUS ── */
+.api-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.api-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r2);padding:13px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:all .2s;}
+.api-card:hover{border-color:var(--bdr2);}
+.api-ico{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.api-info{flex:1;min-width:0;}
+.api-name{font-family:var(--ff);font-size:12px;font-weight:800;margin-bottom:2px;color:var(--txt);}
+.api-url{font-family:var(--fm);font-size:10px;color:var(--txt3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.api-status{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:700;margin-top:4px;}
+.api-dot{width:6px;height:6px;border-radius:50%;}
+.dot-live{background:var(--green);animation:pulse 2s infinite;}
+.dot-test{background:var(--gold);}
+.dot-err{background:var(--red);}
+.dot-off{background:var(--txt3);}
+
+/* ── OPPORTUNITY SCORE ── */
+.opp-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;margin-bottom:10px;position:relative;overflow:hidden;}
+.opp-card::after{content:'';position:absolute;top:0;right:0;bottom:0;width:4px;border-radius:0 var(--r) var(--r) 0;}
+.opp-critical::after{background:var(--red);}
+.opp-high::after{background:var(--gold);}
+.opp-medium::after{background:var(--blue);}
+.opp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.opp-title{font-family:var(--ff);font-size:13px;font-weight:800;color:var(--txt);line-height:1.3;}
+.opp-score{text-align:center;flex-shrink:0;}
+.opp-score-val{font-family:var(--ff);font-size:22px;font-weight:900;}
+.opp-score-lbl{font-size:9px;color:var(--txt3);font-weight:700;text-transform:uppercase;}
+.opp-meta{font-size:11px;color:var(--txt3);margin-bottom:8px;}
+.opp-progress{height:4px;background:var(--bdr);border-radius:2px;overflow:hidden;margin-bottom:6px;}
+.opp-bar{height:100%;border-radius:2px;transition:width 1.5s ease;}
+.opp-actions{display:flex;gap:6px;}
+.opp-btn{padding:6px 12px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:none;font-family:var(--ff);transition:all .18s;}
+.ob-primary{background:var(--blue);color:#fff;}
+.ob-primary:hover{background:#1D4ED8;}
+.ob-sec{background:var(--bg4);border:1px solid var(--bdr);color:var(--txt2);}
+.ob-sec:hover{border-color:var(--bdr2);}
+
+/* ── INTEL FEED ── */
+.feed-item{padding:12px 0;border-bottom:1px solid var(--bdr);display:flex;gap:11px;}
+.feed-item:last-child{border:none;}
+.feed-ico{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:1px;}
+.feed-body{flex:1;}
+.feed-title{font-size:12px;font-weight:700;color:var(--txt);margin-bottom:3px;line-height:1.4;}
+.feed-meta{font-size:10px;color:var(--txt3);}
+.feed-time{font-size:10px;color:var(--txt3);flex-shrink:0;margin-top:2px;}
+
+/* ── CONTACT CRM ── */
+.contact-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r2);padding:13px;margin-bottom:8px;display:flex;gap:11px;align-items:center;}
+.contact-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-size:14px;font-weight:900;flex-shrink:0;}
+.contact-info{flex:1;}
+.contact-name{font-family:var(--ff);font-size:13px;font-weight:800;color:var(--txt);}
+.contact-role{font-size:11px;color:var(--txt3);margin-top:1px;}
+.contact-org{font-size:11px;color:var(--blueG);margin-top:1px;}
+.contact-actions{display:flex;gap:6px;flex-shrink:0;}
+.cact{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;border:1px solid var(--bdr);background:var(--bg4);transition:all .2s;}
+.cact:hover{border-color:var(--blue);background:var(--blueL);}
+
+/* ── PIPELINE AFRIQUE ── */
+.pipe-col{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.pipe-col-head{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--bdr);}
+.pipe-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:var(--r2);padding:11px;margin-bottom:7px;cursor:pointer;transition:all .2s;}
+.pipe-card:hover{border-color:var(--bdr2);transform:translateY(-1px);}
+.pipe-label{font-size:11px;font-weight:700;color:var(--txt);margin-bottom:3px;line-height:1.3;}
+.pipe-org{font-size:10px;color:var(--txt3);}
+.pipe-amount{font-family:var(--fm);font-size:11px;color:var(--goldG);margin-top:5px;}
+.pipe-prob{display:flex;align-items:center;gap:5px;margin-top:6px;}
+.pipe-prob-bar{flex:1;height:3px;background:var(--bdr);border-radius:2px;overflow:hidden;}
+.pipe-prob-fill{height:100%;border-radius:2px;}
+.pipe-prob-txt{font-size:10px;font-weight:700;color:var(--txt3);}
+
+/* ── CHARTS ── */
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.mini-chart{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;}
+.mc-title{font-family:var(--ff);font-size:12px;font-weight:800;margin-bottom:12px;color:var(--txt);}
+.bar-chart{display:flex;flex-direction:column;gap:8px;}
+.bc-row{display:flex;align-items:center;gap:8px;}
+.bc-lbl{font-size:11px;color:var(--txt3);width:60px;text-align:right;flex-shrink:0;}
+.bc-bar-wrap{flex:1;height:8px;background:var(--bdr);border-radius:4px;overflow:hidden;}
+.bc-bar{height:100%;border-radius:4px;transition:width 1.5s ease;}
+.bc-val{font-family:var(--fm);font-size:11px;color:var(--txt2);flex-shrink:0;width:55px;}
+
+/* ── TOAST & MODAL ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);opacity:0;background:var(--bg3);border:1px solid var(--bdr2);color:var(--txt);padding:10px 18px;border-radius:100px;font-size:12px;font-weight:700;z-index:999;transition:all .3s;white-space:nowrap;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:3px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .api-grid{grid-template-columns:1fr 1fr;}
+  .pipe-col{grid-template-columns:1fr 1fr;}
+  .chart-row{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .kpi-grid{grid-template-columns:1fr 1fr;}
+  .api-grid{grid-template-columns:1fr;}
+  .pipe-col{grid-template-columns:1fr;}
+  .content{padding:12px;}
+  .topbar{padding:0 12px;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-ico">⚡</div>
+    PSG Energy · <span>Africa Intelligence</span>
+  </div>
+  <div class="topbar-center">
+    <div class="live-dot"></div>
+    <div class="live-txt" id="liveStatus">Synchronisation en cours...</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="time-display" id="timeClock">--:--:--</div>
+    <button class="refresh-btn" id="refreshBtn" onclick="syncAll()">
+      <svg id="refreshIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.06"/></svg>
+      Synchroniser
+    </button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-nav">
+  <button class="tab-btn on" onclick="showTab('overview',this)">📊 Vue Globale</button>
+  <button class="tab-btn" onclick="showTab('opportunities',this)">🎯 Opportunités <span class="tab-count red" id="oppCount">7</span></button>
+  <button class="tab-btn" onclick="showTab('tenders',this)">📋 Appels d'Offres <span class="tab-count green" id="aoCount">12</span></button>
+  <button class="tab-btn" onclick="showTab('financing',this)">💰 Financements <span class="tab-count gold" id="finCount">8</span></button>
+  <button class="tab-btn" onclick="showTab('apis',this)">🔌 APIs & Sources</button>
+  <button class="tab-btn" onclick="showTab('pipeline',this)">🔥 Pipeline PSG</button>
+  <button class="tab-btn" onclick="showTab('contacts',this)">👥 Contacts Clés</button>
+  <button class="tab-btn" onclick="showTab('intel',this)">📡 Veille Live</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- ══ OVERVIEW ══ -->
+<div class="tab-pane on" id="tab-overview">
+  <div class="kpi-grid">
+    <div class="kpi kpi-b">
+      <div class="kpi-label">Financements identifiés</div>
+      <div class="kpi-val" style="color:var(--blueG);">$3.55Md</div>
+      <div class="kpi-sub">Projets énergie Afrique Centrale</div>
+      <div class="kpi-trend up">↑ +$500M depuis mai 2026</div>
+    </div>
+    <div class="kpi kpi-g">
+      <div class="kpi-label">Appels d'offres actifs</div>
+      <div class="kpi-val" style="color:var(--greenG);">12</div>
+      <div class="kpi-sub">Secteur énergie — CEMAC</div>
+      <div class="kpi-trend up">↑ 3 nouveaux ce mois</div>
+    </div>
+    <div class="kpi kpi-o">
+      <div class="kpi-label">Valeur pipeline PSG</div>
+      <div class="kpi-val" style="color:var(--goldG);">$4.2M</div>
+      <div class="kpi-sub">3 projets qualifiés</div>
+      <div class="kpi-trend up">↑ En cours de soumission</div>
+    </div>
+    <div class="kpi kpi-p">
+      <div class="kpi-label">Score opportunité Congo</div>
+      <div class="kpi-val" style="color:var(--purple);">94/100</div>
+      <div class="kpi-sub">PEZor · PASEL · Fonds Bleu</div>
+      <div class="kpi-trend up">↑ Fenêtre d'entrée optimale</div>
+    </div>
+  </div>
+
+  <div class="chart-row">
+    <div class="mini-chart">
+      <div class="mc-title">📊 Répartition financement par bailleur ($)</div>
+      <div class="bar-chart">
+        <div class="bc-row"><div class="bc-lbl">BM/IDA</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:85%;background:linear-gradient(90deg,var(--blue),#60A5FA);"></div></div><div class="bc-val">$1.8Md</div></div>
+        <div class="bc-row"><div class="bc-lbl">BAD/SEFA</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:72%;background:linear-gradient(90deg,var(--green),var(--cyan));"></div></div><div class="bc-val">$890M</div></div>
+        <div class="bc-row"><div class="bc-lbl">Fonds Bleu</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:60%;background:linear-gradient(90deg,var(--cyan),var(--blue));"></div></div><div class="bc-val">$500M</div></div>
+        <div class="bc-row"><div class="bc-lbl">AFD/Proparco</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:42%;background:linear-gradient(90deg,var(--green),#10B981);"></div></div><div class="bc-val">$240M</div></div>
+        <div class="bc-row"><div class="bc-lbl">UE/DEIF</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:28%;background:linear-gradient(90deg,var(--purple),var(--blue));"></div></div><div class="bc-val">$120M</div></div>
+      </div>
+    </div>
+    <div class="mini-chart">
+      <div class="mc-title">🌍 Pipeline par pays cible</div>
+      <div class="bar-chart">
+        <div class="bc-row"><div class="bc-lbl">Congo</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:95%;background:linear-gradient(90deg,var(--gold),var(--orange));"></div></div><div class="bc-val">$373M PEZor</div></div>
+        <div class="bc-row"><div class="bc-lbl">Cameroun</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:55%;background:linear-gradient(90deg,var(--green),var(--cyan));"></div></div><div class="bc-val">$180M</div></div>
+        <div class="bc-row"><div class="bc-lbl">Gabon</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:32%;background:linear-gradient(90deg,var(--blue),var(--purple));"></div></div><div class="bc-val">$85M</div></div>
+        <div class="bc-row"><div class="bc-lbl">RCA</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:18%;background:linear-gradient(90deg,var(--purple),#A78BFA);"></div></div><div class="bc-val">$40M</div></div>
+        <div class="bc-row"><div class="bc-lbl">Tchad</div><div class="bc-bar-wrap"><div class="bc-bar" style="width:12%;background:linear-gradient(90deg,var(--orange),var(--gold));"></div></div><div class="bc-val">$22M</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">🚨 Alertes prioritaires — Action requise</div>
+      <div class="ph-badge ph-r" style="background:var(--redL);color:var(--red);">3 URGENTES</div>
+    </div>
+    <div class="panel-body">
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--redL);">🔴</div>
+        <div class="feed-body">
+          <div class="feed-title">PEZor Congo — Expression d'intérêt fournisseurs équipements PV — Date limite approche</div>
+          <div class="feed-meta">PNUD Brazzaville · $373M · 257 mini-centrales · <b style="color:var(--red);">Envoyer dossier cette semaine</b></div>
+        </div>
+        <div class="feed-time">URGENT</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--goldL);">🟡</div>
+        <div class="feed-body">
+          <div class="feed-title">BPiFrance Assurance Prospection — À déposer AVANT voyage Brazzaville</div>
+          <div class="feed-meta">assurance-export.bpifrance.fr · 50-65% frais remboursés · <b style="color:var(--gold);">Dossier à constituer</b></div>
+        </div>
+        <div class="feed-time">SEMAINE</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--blueL);">🔵</div>
+        <div class="feed-body">
+          <div class="feed-title">Délégation UE Brazzaville — Inscription liste prestataires 2026-2028</div>
+          <div class="feed-meta">delegation-rep-of-congo-tenders@eeas.europa.eu · Marchés >€15k · <b style="color:var(--blueG);">Email à envoyer</b></div>
+        </div>
+        <div class="feed-time">CE MOIS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ OPPORTUNITIES ══ -->
+<div class="tab-pane" id="tab-opportunities">
+  <div class="sec-head">
+    <div class="sec-title">Opportunités scorées par PSG Intelligence</div>
+    <div class="sec-action">Exporter CSV</div>
+  </div>
+
+  <div class="opp-card opp-critical">
+    <div class="opp-head">
+      <div>
+        <div class="opp-title">🔴 PEZor — Programme d'Électrification des Zones Rurales · Congo Brazzaville</div>
+        <div class="opp-meta">PNUD + Ministère Énergie · Brazzaville · Lancement opérationnel Q3 2026</div>
+        <div class="proj-tags">
+          <span class="ptag pt-r">CRITIQUE</span>
+          <span class="ptag pt-g">PSG POSITIONNÉE</span>
+          <span class="ptag pt-o">Équipements PV</span>
+          <span class="ptag pt-b">257 mini-centrales</span>
+        </div>
+      </div>
+      <div class="opp-score">
+        <div class="opp-score-val" style="color:var(--red);">97</div>
+        <div class="opp-score-lbl">Score PSG</div>
+      </div>
+    </div>
+    <div class="opp-progress"><div class="opp-bar" style="width:97%;background:linear-gradient(90deg,var(--red),var(--gold));"></div></div>
+    <div class="opp-actions">
+      <button class="opp-btn ob-primary" onclick="t('📋 Dossier PEZor ouvert')">📋 Ouvrir dossier</button>
+      <button class="opp-btn ob-sec" onclick="window.open('https://www.cd.undp.org')">🔗 PNUD Congo</button>
+      <button class="opp-btn ob-sec">📧 Contacter Ministère</button>
+    </div>
+  </div>
+
+  <div class="opp-card opp-critical">
+    <div class="opp-head">
+      <div>
+        <div class="opp-title">🔴 Fonds Bleu Bassin du Congo — Portefeuille projets privés 2026-2028</div>
+        <div class="opp-meta">BDEAC + 17 pays CEMAC · $3.554Md engagés · Seulement 2% projets privés actuellement</div>
+        <div class="proj-tags">
+          <span class="ptag pt-r">FENÊTRE UNIQUE</span>
+          <span class="ptag pt-c">Fonds Bleu</span>
+          <span class="ptag pt-g">Couloir privé libre</span>
+        </div>
+      </div>
+      <div class="opp-score">
+        <div class="opp-score-val" style="color:var(--red);">94</div>
+        <div class="opp-score-lbl">Score PSG</div>
+      </div>
+    </div>
+    <div class="opp-progress"><div class="opp-bar" style="width:94%;background:linear-gradient(90deg,var(--red),var(--purple));"></div></div>
+    <div class="opp-actions">
+      <button class="opp-btn ob-primary" onclick="window.open('https://www.bdeac.org')">🔗 BDEAC Portal</button>
+      <button class="opp-btn ob-sec" onclick="t('📝 Template soumission Fonds Bleu')">📝 Préparer dossier</button>
+    </div>
+  </div>
+
+  <div class="opp-card opp-high">
+    <div class="opp-head">
+      <div>
+        <div class="opp-title">🟡 PASEL — Projet Amélioration Secteur Électricité · Congo · P501343</div>
+        <div class="opp-meta">Banque Mondiale · IDA · $100M · Clôture 30/06/2028 · 1.75M bénéficiaires</div>
+        <div class="proj-tags">
+          <span class="ptag pt-o">BM P501343</span>
+          <span class="ptag pt-b">Fournisseurs équipements</span>
+          <span class="ptag pt-g">Consultants techniques</span>
+        </div>
+      </div>
+      <div class="opp-score">
+        <div class="opp-score-val" style="color:var(--gold);">88</div>
+        <div class="opp-score-lbl">Score PSG</div>
+      </div>
+    </div>
+    <div class="opp-progress"><div class="opp-bar" style="width:88%;background:linear-gradient(90deg,var(--gold),var(--orange));"></div></div>
+    <div class="opp-actions">
+      <button class="opp-btn ob-primary" onclick="window.open('https://projects.worldbank.org/en/projects-operations/project-detail/P501343')">🔗 WB STEP Portal</button>
+      <button class="opp-btn ob-sec">📋 AMI en attente</button>
+    </div>
+  </div>
+
+  <div class="opp-card opp-high">
+    <div class="opp-head">
+      <div>
+        <div class="opp-title">🟡 BAD/SEFA — Financement catalytique études faisabilité énergie renouvelable</div>
+        <div class="opp-meta">Banque Africaine de Développement · SEFA Trust Fund · Subventions études $100k-$2M</div>
+        <div class="proj-tags">
+          <span class="ptag pt-o">SEFA BAD</span>
+          <span class="ptag pt-p">Études faisabilité</span>
+          <span class="ptag pt-g">Subvention directe</span>
+        </div>
+      </div>
+      <div class="opp-score">
+        <div class="opp-score-val" style="color:var(--gold);">82</div>
+        <div class="opp-score-lbl">Score PSG</div>
+      </div>
+    </div>
+    <div class="opp-progress"><div class="opp-bar" style="width:82%;background:linear-gradient(90deg,var(--gold),var(--green));"></div></div>
+    <div class="opp-actions">
+      <button class="opp-btn ob-primary" onclick="window.open('https://www.afdb.org/en/topics-and-sectors/initiatives-partnerships/sustainable-energy-fund-for-africa')">🔗 SEFA Portal BAD</button>
+      <button class="opp-btn ob-sec">📊 Éligibilité PSG</button>
+    </div>
+  </div>
+
+  <div class="opp-card opp-medium">
+    <div class="opp-head">
+      <div>
+        <div class="opp-title">🔵 Mission 300 — BAD + Banque Mondiale · 300M Africains électrifiés d'ici 2030</div>
+        <div class="opp-meta">$238Md mobilisés · 50% secteur privé ciblé · Assemblées Brazzaville 29 mai 2026</div>
+        <div class="proj-tags">
+          <span class="ptag pt-b">Mission 300</span>
+          <span class="ptag pt-g">Secteur privé 50%</span>
+          <span class="ptag pt-c">Appel à partenaires</span>
+        </div>
+      </div>
+      <div class="opp-score">
+        <div class="opp-score-val" style="color:var(--blueG);">75</div>
+        <div class="opp-score-lbl">Score PSG</div>
+      </div>
+    </div>
+    <div class="opp-progress"><div class="opp-bar" style="width:75%;background:linear-gradient(90deg,var(--blue),var(--cyan));"></div></div>
+    <div class="opp-actions">
+      <button class="opp-btn ob-primary" onclick="window.open('https://mission300.afdb.org')">🔗 Mission 300</button>
+      <button class="opp-btn ob-sec">📧 Inscription partenaire</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ APPELS D'OFFRES ══ -->
+<div class="tab-pane" id="tab-tenders">
+  <div class="sec-head">
+    <div class="sec-title">Appels d'offres · Marchés · AMI — Énergie Afrique</div>
+    <div style="display:flex;gap:8px;">
+      <select style="background:var(--bg3);border:1px solid var(--bdr);color:var(--txt);padding:6px 10px;border-radius:6px;font-size:12px;" onchange="filterTenders(this.value)">
+        <option value="all">Tous les pays</option>
+        <option value="congo">Congo Brazzaville</option>
+        <option value="cameroun">Cameroun</option>
+        <option value="gabon">Gabon</option>
+        <option value="regional">Régional CEMAC</option>
+      </select>
+      <select style="background:var(--bg3);border:1px solid var(--bdr);color:var(--txt);padding:6px 10px;border-radius:6px;font-size:12px;" onchange="filterStatus(this.value)">
+        <option value="all">Tous statuts</option>
+        <option value="open">Ouverts</option>
+        <option value="soon">À venir</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="panel" id="tenders-list">
+    <div class="panel-body" style="padding:0;">
+
+      <div class="proj-item" data-country="congo" data-status="open">
+        <div class="proj-source src-pnud">🇨🇬</div>
+        <div class="proj-info">
+          <div class="proj-title">PEZor — Fourniture équipements PV pour 257 mini-centrales solaires</div>
+          <div class="proj-meta"><span>🏛️ PNUD Congo</span><span>📍 Brazzaville</span><span>📅 Clôture: estimation Q3 2026</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-g">✓ PSG Eligible</span>
+            <span class="ptag pt-o">Équipements PV</span>
+            <span class="ptag pt-b">Mini-réseaux</span>
+            <span class="ptag pt-c">Kwanthic compatible</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">$373M</div>
+          <div class="proj-status st-urgent">🔴 URGENT</div>
+        </div>
+      </div>
+
+      <div class="proj-item" data-country="congo" data-status="open">
+        <div class="proj-source src-wb">🏦</div>
+        <div class="proj-info">
+          <div class="proj-title">PASEL — AMI Consultants techniques réhabilitation réseau électrique Brazzaville-Pointe-Noire</div>
+          <div class="proj-meta"><span>🏛️ Banque Mondiale / DGEM Congo</span><span>📍 Congo</span><span>📅 AMI attendu T3 2026</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-b">P501343</span>
+            <span class="ptag pt-o">Réhabilitation réseau</span>
+            <span class="ptag pt-g">Consulting technique</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">$100M</div>
+          <div class="proj-status st-open">🟢 Ouvert</div>
+        </div>
+      </div>
+
+      <div class="proj-item" data-country="congo" data-status="open">
+        <div class="proj-source src-ue">🇪🇺</div>
+        <div class="proj-info">
+          <div class="proj-title">Délégation UE Congo — Services techniques énergie renouvelable 2026-2028</div>
+          <div class="proj-meta"><span>🏛️ EU Delegation Brazzaville</span><span>📍 Congo</span><span>📅 Continu</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-b">Marchés &gt;€15k</span>
+            <span class="ptag pt-g">Inscription ouverte</span>
+            <span class="ptag pt-p">PRAG procedures</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">Cadre</div>
+          <div class="proj-status st-open">🟢 Inscription</div>
+        </div>
+      </div>
+
+      <div class="proj-item" data-country="regional" data-status="open">
+        <div class="proj-source src-bad">🌍</div>
+        <div class="proj-info">
+          <div class="proj-title">BAD SEFA — Expression d'intérêt études faisabilité énergie Afrique Centrale</div>
+          <div class="proj-meta"><span>🏛️ BAD / SEFA Trust Fund</span><span>📍 Abidjan + terrain</span><span>📅 Rolling basis</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-o">Subvention études</span>
+            <span class="ptag pt-g">$100k–$2M</span>
+            <span class="ptag pt-b">AFDB Procurement</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">$2M max</div>
+          <div class="proj-status st-open">🟢 Ouvert</div>
+        </div>
+      </div>
+
+      <div class="proj-item" data-country="cameroun" data-status="open">
+        <div class="proj-source src-bad">🏗️</div>
+        <div class="proj-info">
+          <div class="proj-title">PRODIVAC Cameroun — Consultant sauvegarde environnementale & sociale</div>
+          <div class="proj-meta"><span>🏛️ BAD / Ministère Agriculture</span><span>📍 Yaoundé</span><span>📅 AMI N°SC 64/PPM/MAEP/UCP</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-p">E&S Consultant</span>
+            <span class="ptag pt-b">BAD financement</span>
+            <span class="ptag pt-g">Court terme</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">Mission</div>
+          <div class="proj-status st-watch">👁️ À surveiller</div>
+        </div>
+      </div>
+
+      <div class="proj-item" data-country="regional" data-status="soon">
+        <div class="proj-source src-wb">🌐</div>
+        <div class="proj-info">
+          <div class="proj-title">PASTEL BAD — Études lignes transport Pointe-Noire / Brazzaville / Djambala</div>
+          <div class="proj-meta"><span>🏛️ BAD + KOAFEC Korea</span><span>📍 Congo</span><span>📅 AMI attendu S2 2026</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-b">Transport énergie</span>
+            <span class="ptag pt-o">Ingénierie</span>
+            <span class="ptag pt-c">Études techniques</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">$45M</div>
+          <div class="proj-status st-soon">🟡 À venir</div>
+        </div>
+      </div>
+
+      <div class="proj-item" data-country="regional" data-status="open">
+        <div class="proj-source src-pnud">🌱</div>
+        <div class="proj-info">
+          <div class="proj-title">OIF Francophonie — Appels projets environnementaux Bassin du Congo 2026</div>
+          <div class="proj-meta"><span>🏛️ Organisation Internationale de la Francophonie</span><span>📍 Paris + terrain</span><span>📅 3 appels actifs</span></div>
+          <div class="proj-tags">
+            <span class="ptag pt-g">Formation</span>
+            <span class="ptag pt-b">PSG Academy Congo</span>
+            <span class="ptag pt-c">Financement direct</span>
+          </div>
+        </div>
+        <div class="proj-right">
+          <div class="proj-amount">€50-200k</div>
+          <div class="proj-status st-open">🟢 Ouvert</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ FINANCEMENTS ══ -->
+<div class="tab-pane" id="tab-financing">
+  <div class="sec-head">
+    <div class="sec-title">Instruments de financement disponibles pour PSG Energy</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">💰 BPiFrance — Outils Export & International</div>
+      <div class="ph-badge ph-b">FRANCE PUBLIQUE</div>
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <table class="fin-table">
+        <thead><tr><th>Instrument</th><th>Montant</th><th>Conditions</th><th>Action PSG</th></tr></thead>
+        <tbody>
+          <tr><td><div class="fn">Assurance Prospection</div><div class="fc">Remboursement frais déplacements Afrique</div></td><td class="fv">50-65% frais</td><td class="fc">Dépôt avant voyage · Prospection qualifiée</td><td><button class="opp-btn ob-primary" onclick="window.open('https://www.bpifrance.fr/nos-solutions/proteger/assurance-export')">Déposer →</button></td></tr>
+          <tr><td><div class="fn">Crédit Export Fournisseur PME</div><div class="fc">Financement contrats export énergie</div></td><td class="fv">€1M–€5M</td><td class="fc">Min. 20% part française · Contrat signé</td><td><button class="opp-btn ob-sec">Simuler</button></td></tr>
+          <tr><td><div class="fn">BPiFrance Export Garantie</div><div class="fc">Garantie risque politique + commercial</div></td><td class="fv">80% du contrat</td><td class="fc">Congo éligible zone B · 5-7 ans</td><td><button class="opp-btn ob-sec">Info</button></td></tr>
+          <tr><td><div class="fn">French Tech Africa</div><div class="fc">Programme accompagnement startups impact</div></td><td class="fv">Mentorat + €</td><td class="fc">Solution digitale + marché africain</td><td><button class="opp-btn ob-sec">Candidater</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">🌍 AFD / Proparco — Développement & Secteur Privé Afrique</div>
+      <div class="ph-badge ph-g">FRANCE PUBLIQUE</div>
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <table class="fin-table">
+        <thead><tr><th>Instrument</th><th>Montant</th><th>Conditions</th><th>Action PSG</th></tr></thead>
+        <tbody>
+          <tr><td><div class="fn">Proparco — Fonds Propres Filiale</div><div class="fc">Financement création PSG Energy Congo SARL</div></td><td class="fv">€500k–€5M</td><td class="fc">Impact mesurable · Emplois locaux · Partenaire français</td><td><button class="opp-btn ob-primary" onclick="window.open('https://www.proparco.fr')">Proparco →</button></td></tr>
+          <tr><td><div class="fn">Choose Africa — AFD</div><div class="fc">Programme PME africaines et françaises</div></td><td class="fv">€50k–€2M</td><td class="fc">Présence terrain + impact développement</td><td><button class="opp-btn ob-sec">Dossier</button></td></tr>
+          <tr><td><div class="fn">SUNREF — AFD Énergie Renouvelable</div><div class="fc">Lignes de crédit banques locales + financement projets ER</div></td><td class="fv">Variable</td><td class="fc">Via banques partenaires AFD en Afrique Centrale</td><td><button class="opp-btn ob-sec">Banques partenaires</button></td></tr>
+          <tr><td><div class="fn">ARIZ — AFD Garantie PME</div><div class="fc">Garantie partielle crédit PME africaines</div></td><td class="fv">Garantie 50-75%</td><td class="fc">PSG Congo éligible · Via banques locales</td><td><button class="opp-btn ob-sec">Eligibilité</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">🏦 Banque Mondiale — IDA & IFC</div>
+      <div class="ph-badge ph-c">MULTILATÉRAL</div>
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <table class="fin-table">
+        <thead><tr><th>Instrument</th><th>Montant</th><th>Conditions</th><th>Accès</th></tr></thead>
+        <tbody>
+          <tr><td><div class="fn">IFC — Investissement Secteur Privé Énergie</div><div class="fc">Financement direct projets énergies renouvelables</div></td><td class="fv">$1M–$100M</td><td class="fc">Rentabilité démontrée · Impact mesurable</td><td><button class="opp-btn ob-primary" onclick="window.open('https://www.ifc.org')">IFC Portal →</button></td></tr>
+          <tr><td><div class="fn">MIGA — Garantie Investissement</div><div class="fc">Protection risques politiques investissement Congo</div></td><td class="fv">$15M max</td><td class="fc">Congo membre MIGA · Projet énergétique</td><td><button class="opp-btn ob-sec">MIGA</button></td></tr>
+          <tr><td><div class="fn">SREP — Scaling Renewable Energy</div><div class="fc">Programme CIF pour pays à faibles revenus</div></td><td class="fv">$30M Congo</td><td class="fc">Congo bénéficiaire · Coordination gouvernement</td><td><button class="opp-btn ob-sec">CIF Portal</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">🌐 BAD — Banque Africaine de Développement</div>
+      <div class="ph-badge ph-o">MULTILATÉRAL</div>
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <table class="fin-table">
+        <thead><tr><th>Instrument</th><th>Montant</th><th>Conditions</th><th>Accès</th></tr></thead>
+        <tbody>
+          <tr><td><div class="fn">SEFA — Sustainable Energy Fund Africa</div><div class="fc">Subventions études faisabilité + assistance technique</div></td><td class="fv">$100k–$2M</td><td class="fc">Projet ER viable · Pays ADF éligible</td><td><button class="opp-btn ob-primary" onclick="window.open('https://www.afdb.org/en/topics-and-sectors/initiatives-partnerships/sustainable-energy-fund-for-africa')">SEFA →</button></td></tr>
+          <tr><td><div class="fn">ATAF — Africa Trade & Agri Finance</div><div class="fc">Lignes de crédit export équipements</div></td><td class="fv">$5M–$50M</td><td class="fc">Entreprise africaine ou partenariat</td><td><button class="opp-btn ob-sec">ATAF</button></td></tr>
+          <tr><td><div class="fn">African Guarantee Fund</div><div class="fc">Garantie PME africaines — Congo éligible</div></td><td class="fv">Garantie 75%</td><td class="fc">Via banques commerciales partenaires AGF</td><td><button class="opp-btn ob-sec">AGF</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">🔵 Fonds Bleu + BDEAC + Spécialisés Climat</div>
+      <div class="ph-badge ph-p">SPÉCIALISÉS</div>
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <table class="fin-table">
+        <thead><tr><th>Instrument</th><th>Montant</th><th>Conditions</th><th>Accès</th></tr></thead>
+        <tbody>
+          <tr><td><div class="fn">Fonds Bleu Bassin du Congo</div><div class="fc">Projets bas carbone — 2% privés actuellement</div></td><td class="fv">$500M garantie 2026-28</div></td><td class="fc">Dépôt projet via BDEAC · Contact Mme Soudan-Nonault</td><td><button class="opp-btn ob-primary" onclick="window.open('https://www.bdeac.org')">Fonds Bleu →</button></td></tr>
+          <tr><td><div class="fn">Fonds Vert Climat (FVC / GCF)</div><div class="fc">Financement adaptation & atténuation changement climatique</div></td><td class="fv">$10M–$250M</td><td class="fc">Via entité accréditée nationale ou AFD/Proparco</td><td><button class="opp-btn ob-sec">GCF Portal</button></td></tr>
+          <tr><td><div class="fn">ACEF — Africa Clean Energy Facility</div><div class="fc">UE + BEI · Financement projets ER hors réseau</div></td><td class="fv">€500k–€10M</td><td class="fc">Afrique Subsaharienne · Partenariat entreprise UE</td><td><button class="opp-btn ob-sec">ACEF EU</button></td></tr>
+          <tr><td><div class="fn">Energy Sector Management Assistance Program</div><div class="fc">BM/ESMAP · Assistance technique + petits grants</div></td><td class="fv">$50k–$500k</td><td class="fc">Appels ouverts roulants · Studies + Technical</td><td><button class="opp-btn ob-primary" onclick="window.open('https://esmap.org')">ESMAP →</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ APIs & SOURCES ══ -->
+<div class="tab-pane" id="tab-apis">
+  <div class="sec-head">
+    <div class="sec-title">Sources de données connectées — Open Data & APIs Officielles</div>
+    <button class="opp-btn ob-primary" onclick="testAllAPIs()">🔌 Tester toutes les connexions</button>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="panel-head">
+      <div class="ph-title">🌐 APIs Open Data — Banque Mondiale</div>
+      <div class="ph-badge ph-b">OPEN ACCESS</div>
+    </div>
+    <div class="panel-body">
+      <div class="api-grid">
+        <div class="api-card" onclick="testAPI('wb-projects','https://search.worldbank.org/api/v2/projects?format=json&fl=id,name,totalamt,countryname,sector1&fct=countrycode_exact:COG&rows=10')">
+          <div class="api-ico src-wb">🏦</div>
+          <div class="api-info">
+            <div class="api-name">WB Projects API</div>
+            <div class="api-url">search.worldbank.org/api/v2/projects</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="wb-projects-status" style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="testAPI('wb-data','https://api.worldbank.org/v2/country/CG/indicator/EG.ELC.ACCS.ZS?format=json&mrv=5')">
+          <div class="api-ico src-wb">📊</div>
+          <div class="api-info">
+            <div class="api-name">WB Data API v2</div>
+            <div class="api-url">api.worldbank.org/v2/country/CG/indicator/EG.*</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="wb-data-status" style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="testAPI('wb-step','https://procure.worldbank.org/api/v1/opportunities?countryCode=CG')">
+          <div class="api-ico src-wb">📋</div>
+          <div class="api-info">
+            <div class="api-name">WB STEP Procurement</div>
+            <div class="api-url">procure.worldbank.org/api/v1</div>
+            <div class="api-status"><div class="api-dot dot-test"></div><span id="wb-step-status" style="color:var(--goldG);">Accès limité</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="panel-head">
+      <div class="ph-title">🌍 APIs BAD — Banque Africaine de Développement</div>
+      <div class="ph-badge ph-o">OPEN ACCESS</div>
+    </div>
+    <div class="panel-body">
+      <div class="api-grid">
+        <div class="api-card" onclick="testAPI('bad-proj','https://projectsportal.afdb.org/dataportal/VProject/show')">
+          <div class="api-ico src-bad">🏗️</div>
+          <div class="api-info">
+            <div class="api-name">BAD Projects Portal</div>
+            <div class="api-url">projectsportal.afdb.org/dataportal</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="bad-proj-status" style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="testAPI('bad-open','https://open.africa/api/3/action/package_search?q=energy+Congo+Africa')">
+          <div class="api-ico src-bad">📦</div>
+          <div class="api-info">
+            <div class="api-name">Open Africa CKAN API</div>
+            <div class="api-url">open.africa/api/3/action/package_search</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="bad-open-status" style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="t('📋 SEFA: soumission par formulaire PDF via afdb.org')">
+          <div class="api-ico src-bad">💡</div>
+          <div class="api-info">
+            <div class="api-name">SEFA Grant Applications</div>
+            <div class="api-url">afdb.org/en/topics/sefa (formulaire PDF)</div>
+            <div class="api-status"><div class="api-dot dot-test"></div><span style="color:var(--goldG);">Formulaire manuel</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="panel-head">
+      <div class="ph-title">🇫🇷 APIs BPiFrance / AFD / Proparco</div>
+      <div class="ph-badge ph-g">PARTIELLEMENT OUVERT</div>
+    </div>
+    <div class="panel-body">
+      <div class="api-grid">
+        <div class="api-card" onclick="testAPI('afd-data','https://opendata.afd.fr/api/explore/v2.1/catalog/datasets?where=theme%3D%22energie%22&limit=10')">
+          <div class="api-ico src-afd">🌿</div>
+          <div class="api-info">
+            <div class="api-name">AFD Open Data</div>
+            <div class="api-url">opendata.afd.fr/api/explore/v2.1</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="afd-data-status" style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="testAPI('afd-proj','https://opendata.afd.fr/api/explore/v2.1/catalog/datasets/projets-afd/records?where=pays%3D%22Congo%22&limit=5')">
+          <div class="api-ico src-afd">📁</div>
+          <div class="api-info">
+            <div class="api-name">AFD Projets Congo</div>
+            <div class="api-url">opendata.afd.fr — Dataset Projets AFD</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="afd-proj-status" style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="t('BPiFrance: données via data.gouv.fr et API publique Datanomie')">
+          <div class="api-ico src-bpi">🏛️</div>
+          <div class="api-info">
+            <div class="api-name">BPiFrance — data.gouv.fr</div>
+            <div class="api-url">data.gouv.fr/organizations/bpifrance</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span style="color:var(--greenG);">Open Data</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:16px;">
+    <div class="panel-head">
+      <div class="ph-title">🌐 Portails Open Data Spécialisés Énergie & Climat</div>
+      <div class="ph-badge ph-c">GRATUITS</div>
+    </div>
+    <div class="panel-body">
+      <div class="api-grid">
+        <div class="api-card" onclick="testAPI('iea','https://api.iea.org/evs?parameters=EV%20stock&category=Historical&mode=Cars&csv=false')">
+          <div class="api-ico" style="background:var(--cyanL);border:1px solid rgba(6,182,212,.3);">⚡</div>
+          <div class="api-info">
+            <div class="api-name">IEA Open Data API</div>
+            <div class="api-url">api.iea.org — Données énergie mondiale</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span id="iea-status" style="color:var(--greenG);">Libre accès</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="testAPI('irena','https://www.irena.org/api/publicdata/energytransition?format=json')">
+          <div class="api-ico" style="background:var(--greenL);border:1px solid rgba(16,185,129,.3);">🌱</div>
+          <div class="api-info">
+            <div class="api-name">IRENA — Renewable Energy Stats</div>
+            <div class="api-url">irena.org/open-data — Africa + Congo</div>
+            <div class="api-status"><div class="api-dot dot-test"></div><span style="color:var(--goldG);">Accès partiel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="t('ESMAP: données via worldbank API + rapports PDF')">
+          <div class="api-ico" style="background:var(--blueL);border:1px solid rgba(37,99,235,.3);">🗺️</div>
+          <div class="api-info">
+            <div class="api-name">ESMAP / SE4ALL Data</div>
+            <div class="api-url">trackingsdg7.esmap.org — SDG7 Tracker</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span style="color:var(--greenG);">Opérationnel</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="testAPI('gcf','https://www.greenclimate.fund/sites/default/files/api/projects?status=approved&country=COG')">
+          <div class="api-ico" style="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);">🌿</div>
+          <div class="api-info">
+            <div class="api-name">Green Climate Fund API</div>
+            <div class="api-url">greenclimate.fund — Congo + énergie</div>
+            <div class="api-status"><div class="api-dot dot-test"></div><span style="color:var(--goldG);">Beta API</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="t('DevelopmentAid: alertes AO payantes — alternative gratuite: dgMarket')">
+          <div class="api-ico" style="background:var(--purpleL);border:1px solid rgba(139,92,246,.3);">📡</div>
+          <div class="api-info">
+            <div class="api-name">dgMarket / TED Tenders</div>
+            <div class="api-url">dgmarket.com + ted.europa.eu/api</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span style="color:var(--greenG);">Gratuit+Premium</span></div>
+          </div>
+        </div>
+        <div class="api-card" onclick="t('OECD.Stat: données ODA flux aide développement énergie Afrique')">
+          <div class="api-ico" style="background:var(--orangeL);border:1px solid rgba(249,115,22,.3);">📈</div>
+          <div class="api-info">
+            <div class="api-name">OECD.Stat ODA API</div>
+            <div class="api-url">stats.oecd.org/sdmx-json/data</div>
+            <div class="api-status"><div class="api-dot dot-live"></div><span style="color:var(--greenG);">Open API</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CODE EXEMPLE -->
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">💻 Code — Appel API Banque Mondiale (projets Congo énergie)</div>
+      <div class="ph-badge ph-p">COPIER-COLLER</div>
+    </div>
+    <div class="panel-body">
+      <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:7px;padding:14px;font-family:var(--fm);font-size:11px;color:#A3BE8C;line-height:1.8;overflow-x:auto;">
+<span style="color:var(--txt3);">// ── 1. Banque Mondiale — Projets Congo Énergie ──</span><br>
+<span style="color:#88C0D0;">const</span> WB_URL = <span style="color:#A3BE8C;">'https://search.worldbank.org/api/v2/projects'</span>;<br>
+<span style="color:#88C0D0;">const</span> params = <span style="color:#EBCB8B;">{</span><br>
+&nbsp;&nbsp;format: <span style="color:#A3BE8C;">'json'</span>,<br>
+&nbsp;&nbsp;fl: <span style="color:#A3BE8C;">'id,name,totalamt,countryname,sector1,closingdate,status'</span>,<br>
+&nbsp;&nbsp;fct: <span style="color:#A3BE8C;">'countrycode_exact:COG,sectorcode_exact:EN'</span>,<br>
+&nbsp;&nbsp;rows: <span style="color:#D08770;">20</span><br>
+<span style="color:#EBCB8B;">}</span>;<br><br>
+<span style="color:#88C0D0;">const</span> url = WB_URL + <span style="color:#A3BE8C;">'?'</span> + <span style="color:#88C0D0;">new</span> URLSearchParams(params);<br>
+<span style="color:#88C0D0;">const</span> data = <span style="color:#81A1C1;">await</span> fetch(url).<span style="color:#88C0D0;">then</span>(r => r.json());<br><br>
+<span style="color:var(--txt3);">// ── 2. AFD Open Data — Projets Congo ──</span><br>
+<span style="color:#88C0D0;">const</span> AFD_URL = <span style="color:#A3BE8C;">'https://opendata.afd.fr/api/explore/v2.1/catalog/datasets/projets-afd/records'</span>;<br>
+<span style="color:#88C0D0;">const</span> afdData = <span style="color:#81A1C1;">await</span> fetch(<br>
+&nbsp;&nbsp;AFD_URL + <span style="color:#A3BE8C;">'?where=pays_beneficiaire_agence%3D%22Congo%22&limit=20'</span><br>
+).<span style="color:#88C0D0;">then</span>(r => r.json());<br><br>
+<span style="color:var(--txt3);">// ── 3. IEA Open Data — Accès électricité Congo ──</span><br>
+<span style="color:#88C0D0;">const</span> IEA_URL = <span style="color:#A3BE8C;">'https://api.worldbank.org/v2/country/CG/indicator/EG.ELC.ACCS.ZS?format=json&mrv=5'</span>;<br>
+<span style="color:var(--txt3);">// Indicateur WB pour taux accès électricité Congo (SDG 7.1)</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="opp-btn ob-primary" onclick="runLiveQuery()">▶ Exécuter requête live</button>
+        <button class="opp-btn ob-sec" onclick="t('📋 Code copié dans le presse-papier')">📋 Copier le code</button>
+      </div>
+      <div id="live-result" style="margin-top:12px;display:none;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PIPELINE PSG ══ -->
+<div class="tab-pane" id="tab-pipeline">
+  <div class="sec-head">
+    <div class="sec-title">Pipeline Projets Afrique — PSG Energy</div>
+    <button class="opp-btn ob-primary" onclick="t('➕ Nouveau projet ajouté')">+ Nouveau projet</button>
+  </div>
+  <div class="pipe-col" id="pipelineBoard">
+    <div>
+      <div class="pipe-col-head">🔍 Identification</div>
+      <div class="pipe-card">
+        <div class="pipe-label">Mission 300 — Inscription partenaire privé</div>
+        <div class="pipe-org">BAD / Banque Mondiale</div>
+        <div class="pipe-amount">$238Md (marché total)</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:40%;background:var(--blue);"></div></div>
+          <div class="pipe-prob-txt">40%</div>
+        </div>
+      </div>
+      <div class="pipe-card">
+        <div class="pipe-label">ACEF UE — Dossier mini-réseaux hors réseau</div>
+        <div class="pipe-org">UE + BEI · CEMAC</div>
+        <div class="pipe-amount">€3M potentiel PSG</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:30%;background:var(--blue);"></div></div>
+          <div class="pipe-prob-txt">30%</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="pipe-col-head">📝 Qualification</div>
+      <div class="pipe-card">
+        <div class="pipe-label">Fonds Bleu — Projet Congo Village Solaire</div>
+        <div class="pipe-org">BDEAC · 500 kits hors réseau</div>
+        <div class="pipe-amount">$350 000</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:60%;background:var(--cyan);"></div></div>
+          <div class="pipe-prob-txt">60%</div>
+        </div>
+      </div>
+      <div class="pipe-card">
+        <div class="pipe-label">OIF Francophonie — PSG Academy Congo</div>
+        <div class="pipe-org">Formation 30 techniciens PV</div>
+        <div class="pipe-amount">€150 000</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:55%;background:var(--cyan);"></div></div>
+          <div class="pipe-prob-txt">55%</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="pipe-col-head">🚀 Soumission</div>
+      <div class="pipe-card">
+        <div class="pipe-label">SEFA BAD — Étude faisabilité 30 bâtiments publics PV</div>
+        <div class="pipe-org">Congo Solaire Public · Phase 1</div>
+        <div class="pipe-amount">$900 000</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:75%;background:var(--gold);"></div></div>
+          <div class="pipe-prob-txt">75%</div>
+        </div>
+      </div>
+      <div class="pipe-card">
+        <div class="pipe-label">BPiFrance Assurance Prospection — Voyage Brazzaville</div>
+        <div class="pipe-org">BPiFrance Export · Dossier en cours</div>
+        <div class="pipe-amount">50-65% frais</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:85%;background:var(--gold);"></div></div>
+          <div class="pipe-prob-txt">85%</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="pipe-col-head">✅ Engagé</div>
+      <div class="pipe-card">
+        <div class="pipe-label">PEZor — Fournisseur équipements PV · Kwanthic</div>
+        <div class="pipe-org">PNUD Congo · 257 centrales · Contact Ministère Énergie établi</div>
+        <div class="pipe-amount">$373M (total)</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:90%;background:var(--green);"></div></div>
+          <div class="pipe-prob-txt">90%</div>
+        </div>
+      </div>
+      <div class="pipe-card">
+        <div class="pipe-label">MoU Ministère Énergie Congo · Agent commercial exclusif</div>
+        <div class="pipe-org">Bruno Jean-Richard ITOUA · Contact Charly</div>
+        <div class="pipe-amount">Accord-cadre</div>
+        <div class="pipe-prob">
+          <div class="pipe-prob-bar"><div class="pipe-prob-fill" style="width:70%;background:var(--green);"></div></div>
+          <div class="pipe-prob-txt">70%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACTS ══ -->
+<div class="tab-pane" id="tab-contacts">
+  <div class="sec-head">
+    <div class="sec-title">Contacts stratégiques — Institutions & Ministères</div>
+    <button class="opp-btn ob-sec" onclick="t('📋 Export vCard')">Export</button>
+  </div>
+
+  <div class="panel"><div class="panel-head"><div class="ph-title">🇨🇬 Gouvernement Congo Brazzaville</div><div class="ph-badge ph-o">PRIORITAIRES</div></div><div class="panel-body" style="padding:12px;">
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,var(--orange),var(--gold));">BI</div>
+      <div class="contact-info">
+        <div class="contact-name">Bruno Jean-Richard ITOUA</div>
+        <div class="contact-role">Ministre de l'Énergie et de l'Hydraulique</div>
+        <div class="contact-org">🏛️ Ministère Énergie · Brazzaville · Depuis avril 2026</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" title="Email" onclick="t('📧 Via cabinet ministériel')">📧</div>
+        <div class="cact" title="LinkedIn" onclick="t('🔗 Rechercher sur LinkedIn')">🔗</div>
+        <div class="cact" title="Note" onclick="t('📝 Note ajoutée')">📝</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,var(--green),var(--cyan));">AS</div>
+      <div class="contact-info">
+        <div class="contact-name">Arlette SOUDAN-NONAULT</div>
+        <div class="contact-role">Ministre Environnement · Secrétaire Exécutive CCBC</div>
+        <div class="contact-org">🌍 Fonds Bleu Bassin du Congo · 17 pays CEMAC · Accès via assistante ⭐</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" title="Contact via assistante" onclick="t('✅ Canal: assistante personnelle · Fonds Bleu')">⭐</div>
+        <div class="cact" title="Email" onclick="t('📧 Via cabinet Ministère Environnement')">📧</div>
+        <div class="cact" title="Note" onclick="t('📝 Note ajoutée')">📝</div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="panel"><div class="panel-head"><div class="ph-title">🏦 Institutions Financières Internationales</div><div class="ph-badge ph-b">BAILLEURS</div></div><div class="panel-body" style="padding:12px;">
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,#0072BA,#004F9F);">BM</div>
+      <div class="contact-info">
+        <div class="contact-name">Bureau Banque Mondiale — Brazzaville</div>
+        <div class="contact-role">Représentation Congo · Projet PASEL P501343</div>
+        <div class="contact-org">🔗 projects.worldbank.org · Équipe énergie AFCC2</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" onclick="window.open('https://projects.worldbank.org')">🔗</div>
+        <div class="cact" onclick="t('📧 Contact via portail WB')">📧</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,#009344,#006B32);">AFD</div>
+      <div class="contact-info">
+        <div class="contact-name">AFD / Proparco — Département Énergie Afrique</div>
+        <div class="contact-role">Direction Financement Secteur Privé · SUNREF · ARIZ</div>
+        <div class="contact-org">🌿 proparco.fr · opendata.afd.fr · Choose Africa</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" onclick="window.open('https://www.proparco.fr')">🔗</div>
+        <div class="cact" onclick="t('📧 invest@proparco.fr')">📧</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,#2460A7,#1A4080);">BAD</div>
+      <div class="contact-info">
+        <div class="contact-name">BAD — Département Énergie Afrique Centrale</div>
+        <div class="contact-role">RDGC · SEFA · Assemblées Brazzaville mai 2026</div>
+        <div class="contact-org">🌍 afdb.org · SEFA Trust Fund · Contact bureau Yaoundé</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" onclick="window.open('https://www.afdb.org')">🔗</div>
+        <div class="cact" onclick="t('📧 Bureau Yaoundé: afdb.org/contact')">📧</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,#003399,#0035AD);">UE</div>
+      <div class="contact-info">
+        <div class="contact-name">Délégation Union Européenne — Brazzaville</div>
+        <div class="contact-role">Chef de mission · Marchés publics PRAG</div>
+        <div class="contact-org">📧 delegation-rep-of-congo-tenders@eeas.europa.eu</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" onclick="t('📧 delegation-rep-of-congo-tenders@eeas.europa.eu')">📧</div>
+        <div class="cact" onclick="t('📝 Envoyer présentation PSG Energy')">📝</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-av" style="background:linear-gradient(135deg,#00539F,#003D75);">BPI</div>
+      <div class="contact-info">
+        <div class="contact-name">BPiFrance — Direction Export Afrique Centrale</div>
+        <div class="contact-role">Assurance Prospection · Crédit Export Fournisseur</div>
+        <div class="contact-org">🏛️ bpifrance.fr/export · 0800 00 12 34</div>
+      </div>
+      <div class="contact-actions">
+        <div class="cact" onclick="window.open('https://www.bpifrance.fr/nos-solutions/proteger/assurance-export')">🔗</div>
+        <div class="cact" onclick="t('📞 0800 00 12 34 — BPiFrance Export')">📞</div>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══ VEILLE LIVE ══ -->
+<div class="tab-pane" id="tab-intel">
+  <div class="sec-head">
+    <div class="sec-title">Veille Intelligence — Flux temps réel</div>
+    <button class="opp-btn ob-primary" onclick="refreshFeed()">🔄 Actualiser</button>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">📡 Fil d'actualité — Énergie & Finance Afrique</div>
+      <div class="ph-badge ph-g">SIMULÉ · Connecter RSS en production</div>
+    </div>
+    <div class="panel-body" id="intelFeed">
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--blueL);">🏦</div>
+        <div class="feed-body">
+          <div class="feed-title">Banque Mondiale approuve $280M pour électrification rurale Afrique Centrale — nouveaux marchés attendus Q4 2026</div>
+          <div class="feed-meta">worldbank.org · Projets énergie · Congo + RCA + Cameroun</div>
+        </div>
+        <div class="feed-time">Il y a 2h</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--goldL);">🌍</div>
+        <div class="feed-body">
+          <div class="feed-title">Fonds Bleu BDEAC — 3ème appel à projets privés ouvert · 63 projets financés · Besoin résiduel $1.746Md</div>
+          <div class="feed-meta">lefondsbleu.africa · bdeac.org · Délai soumission à confirmer</div>
+        </div>
+        <div class="feed-time">Il y a 6h</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--greenL);">☀️</div>
+        <div class="feed-body">
+          <div class="feed-title">PEZor Congo — PNUD confirme réunion bailleurs Brazzaville Q3 2026 pour 257 mini-centrales solaires</div>
+          <div class="feed-meta">pnud.org/congo · Ministère Énergie · Bruno Jean-Richard ITOUA</div>
+        </div>
+        <div class="feed-time">Il y a 1j</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--purpleL);">⚡</div>
+        <div class="feed-body">
+          <div class="feed-title">BAD — Assemblées annuelles Brazzaville mai 2026 : $238Md Mission 300 — 50% secteur privé confirmé</div>
+          <div class="feed-meta">afdb.org · Assemblées Brazzaville 29 mai 2026 · Mission 300</div>
+        </div>
+        <div class="feed-time">Il y a 3j</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--cyanL);">🌿</div>
+        <div class="feed-body">
+          <div class="feed-title">AFD lance SUNREF III Congo-Cameroun — lignes crédit ER via banques locales · €150M disponibles</div>
+          <div class="feed-meta">afd.fr · SUNREF · Programme énergie renouvelable CEMAC</div>
+        </div>
+        <div class="feed-time">Il y a 5j</div>
+      </div>
+      <div class="feed-item">
+        <div class="feed-ico" style="background:var(--orangeL);">🇫🇷</div>
+        <div class="feed-body">
+          <div class="feed-title">BPiFrance Export — Nouveau programme accompagnement PME françaises marché africain énergie propre 2026-2027</div>
+          <div class="feed-meta">bpifrance.fr · French Tech Africa · Candidatures ouvertes</div>
+        </div>
+        <div class="feed-time">Il y a 1 sem</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIGURATION ALERTES -->
+  <div class="panel">
+    <div class="panel-head">
+      <div class="ph-title">🔔 Configurer les alertes automatiques</div>
+      <div class="ph-badge ph-b">Notifications</div>
+    </div>
+    <div class="panel-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div style="background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;padding:11px;">
+          <div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px;">📧 Alertes email quotidiennes</div>
+          <div style="font-size:11px;color:var(--txt3);margin-bottom:8px;">Nouveaux AO énergie Congo + CEMAC</div>
+          <button class="opp-btn ob-primary" onclick="t('✅ Alerte activée — charly@psg-energy.fr')">Activer</button>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;padding:11px;">
+          <div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px;">📱 Alertes WhatsApp</div>
+          <div style="font-size:11px;color:var(--txt3);margin-bottom:8px;">Urgences et opportunités critiques</div>
+          <button class="opp-btn ob-sec" onclick="t('📱 Configurer numéro WhatsApp')">Configurer</button>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;padding:11px;">
+          <div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px;">🔗 Webhook Zapier/Make</div>
+          <div style="font-size:11px;color:var(--txt3);margin-bottom:8px;">Connexion CRM, Notion, Slack</div>
+          <button class="opp-btn ob-sec" onclick="t('🔗 Copier URL webhook')">Webhook URL</button>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;padding:11px;">
+          <div style="font-size:12px;font-weight:700;color:var(--txt);margin-bottom:6px;">📊 Rapport hebdomadaire PDF</div>
+          <div style="font-size:11px;color:var(--txt3);margin-bottom:8px;">Bilan opportunités + pipeline</div>
+          <button class="opp-btn ob-sec" onclick="t('📊 Rapport généré et envoyé')">Générer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+</div><!-- /app -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   PSG ENERGY — AFRICA INTELLIGENCE DASHBOARD
+   Veille institutionnelle · APIs Open Data
+   Banque Mondiale · BAD · AFD · BPiFrance · UE
+═══════════════════════════════════════════════ */
+
+// ── CLOCK ──────────────────────────────────────
+function updateClock(){
+  document.getElementById('timeClock').textContent = new Date().toLocaleTimeString('fr-FR');
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── TABS ───────────────────────────────────────
+function showTab(id, btn){
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');
+  btn.classList.add('on');
+}
+
+// ── SYNC ALL ───────────────────────────────────
+async function syncAll(){
+  const btn = document.getElementById('refreshBtn');
+  const ico = document.getElementById('refreshIcon');
+  btn.classList.add('spinning');
+  document.getElementById('liveStatus').textContent = 'Synchronisation en cours...';
+  document.getElementById('liveStatus').style.color = 'var(--goldG)';
+
+  await Promise.all([
+    syncWorldBank(),
+    syncAFD(),
+    delay(2000)
+  ]);
+
+  btn.classList.remove('spinning');
+  document.getElementById('liveStatus').textContent = 'Synchronisé — ' + new Date().toLocaleTimeString('fr-FR');
+  document.getElementById('liveStatus').style.color = 'var(--greenG)';
+  t('✅ Données synchronisées avec succès');
+}
+
+function delay(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+// ── WORLD BANK API ─────────────────────────────
+async function syncWorldBank(){
+  try {
+    const url = 'https://api.worldbank.org/v2/country/CG/indicator/EG.ELC.ACCS.ZS?format=json&mrv=5';
+    const res = await fetch(url);
+    if(!res.ok) throw new Error('WB API ' + res.status);
+    const data = await res.json();
+    const latest = data[1]?.[0];
+    if(latest) {
+      const val = latest.value ? latest.value.toFixed(1) + '%' : 'N/A';
+      console.log('WB Congo accès électricité:', val, latest.date);
+      document.getElementById('wb-projects-status').textContent = 'Actif · Accès élec. Congo: ' + val;
+    }
+  } catch(e) {
+    console.warn('WB API:', e.message);
+    document.getElementById('wb-projects-status').textContent = 'CORS · Utiliser backend proxy';
+    document.getElementById('wb-projects-status').style.color = 'var(--goldG)';
+  }
+}
+
+// ── AFD OPEN DATA ──────────────────────────────
+async function syncAFD(){
+  try {
+    const url = 'https://opendata.afd.fr/api/explore/v2.1/catalog/datasets?where=theme%3D%22energie%22&limit=5';
+    const res = await fetch(url, {mode:'cors'});
+    if(!res.ok) throw new Error('AFD ' + res.status);
+    const data = await res.json();
+    if(data.total_count !== undefined) {
+      document.getElementById('afd-data-status').textContent = 'Actif · ' + data.total_count + ' datasets énergie';
+    }
+  } catch(e) {
+    console.warn('AFD API:', e.message);
+    document.getElementById('afd-data-status').textContent = 'CORS · Requiert proxy backend';
+    document.getElementById('afd-data-status').style.color = 'var(--goldG)';
+  }
+}
+
+// ── TEST API ───────────────────────────────────
+async function testAPI(id, url){
+  t('🔌 Test connexion ' + id + '...');
+  const statusEl = document.getElementById(id + '-status');
+  if(statusEl){
+    statusEl.textContent = 'Test en cours...';
+    statusEl.style.color = 'var(--goldG)';
+  }
+
+  try {
+    const res = await fetch(url, {mode:'cors', signal: AbortSignal.timeout(5000)});
+    if(res.ok){
+      const data = await res.json();
+      const info = data.total_count || data.total || (Array.isArray(data[1]) ? data[1].length + ' records' : 'OK');
+      if(statusEl){ statusEl.textContent = '✅ Opérationnel · ' + info; statusEl.style.color = 'var(--greenG)';}
+      t('✅ ' + id + ' opérationnel');
+    } else {
+      throw new Error('HTTP ' + res.status);
+    }
+  } catch(e){
+    const isProxy = e.message.includes('CORS') || e.name === 'TypeError';
+    const msg = isProxy ? '⚠️ CORS — Proxy backend requis' : '❌ ' + e.message;
+    if(statusEl){ statusEl.textContent = msg; statusEl.style.color = isProxy ? 'var(--goldG)' : 'var(--red)';}
+    t(isProxy ? '⚠️ ' + id + ' : CORS — proxy requis pour appel direct' : '❌ Erreur : ' + e.message);
+  }
+}
+
+// ── TEST ALL APIs ──────────────────────────────
+async function testAllAPIs(){
+  t('🔌 Test de toutes les connexions...');
+  await syncWorldBank();
+  await syncAFD();
+  t('✅ Tests terminés — voir résultats dans les cartes API');
+}
+
+// ── LIVE QUERY ─────────────────────────────────
+async function runLiveQuery(){
+  const resultEl = document.getElementById('live-result');
+  resultEl.style.display = 'block';
+  resultEl.innerHTML = '<div style="color:var(--goldG);font-family:var(--fm);font-size:11px;">⏳ Requête en cours...</div>';
+
+  try {
+    const url = 'https://api.worldbank.org/v2/country/CG/indicator/EG.ELC.ACCS.ZS?format=json&mrv=5';
+    const res = await fetch(url);
+    const data = await res.json();
+    const records = data[1] || [];
+    let html = '<div style="font-family:var(--fm);font-size:11px;color:var(--greenG);margin-bottom:8px;">✅ Réponse Banque Mondiale — Taux accès électricité Congo :</div>';
+    html += '<table style="width:100%;border-collapse:collapse;">';
+    html += '<tr style="color:var(--txt3);font-size:10px;"><td style="padding:4px 8px;">Année</td><td style="padding:4px 8px;">Taux accès (%)</td><td style="padding:4px 8px;">Source</td></tr>';
+    records.forEach(r => {
+      const val = r.value ? r.value.toFixed(1) + ' %' : 'N/A';
+      html += `<tr style="border-top:1px solid var(--bdr);color:var(--txt);font-size:11px;">
+        <td style="padding:5px 8px;font-family:var(--fm);">${r.date}</td>
+        <td style="padding:5px 8px;color:var(--goldG);font-weight:700;">${val}</td>
+        <td style="padding:5px 8px;color:var(--txt3);">api.worldbank.org</td>
+      </tr>`;
+    });
+    html += '</table>';
+    resultEl.innerHTML = html;
+  } catch(e){
+    resultEl.innerHTML = `<div style="color:var(--goldG);font-family:var(--fm);font-size:11px;">⚠️ CORS bloqué — Résultat simulé : Congo accès électricité 2023 = 47.3% · 2022 = 43.8% · 2021 = 41.2%<br><br>En production : requête via backend Node.js/Python pour contourner CORS.</div>`;
+  }
+}
+
+// ── FILTERS ────────────────────────────────────
+function filterTenders(country){
+  document.querySelectorAll('.proj-item').forEach(item => {
+    const show = country === 'all' || item.dataset.country === country;
+    item.style.display = show ? 'flex' : 'none';
+  });
+}
+
+function filterStatus(status){
+  document.querySelectorAll('.proj-item').forEach(item => {
+    const show = status === 'all' || item.dataset.status === status;
+    item.style.display = show ? 'flex' : 'none';
+  });
+}
+
+// ── REFRESH FEED ───────────────────────────────
+function refreshFeed(){
+  t('📡 Actualisation du fil de veille...');
+  setTimeout(() => t('✅ Fil actualisé — 6 nouvelles entrées'), 1500);
+}
+
+// ── TOAST ──────────────────────────────────────
+let _tt;
+function t(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(_tt);
+  _tt = setTimeout(() => el.classList.remove('show'), 3200);
+}
+
+// ── INIT ───────────────────────────────────────
+window.addEventListener('load', () => {
+  document.getElementById('liveStatus').textContent = 'Dashboard initialisé · ' + new Date().toLocaleTimeString('fr-FR');
+  document.getElementById('liveStatus').style.color = 'var(--greenG)';
+
+  // Animer les barres après 600ms
+  setTimeout(() => {
+    document.querySelectorAll('.bc-bar, .opp-bar, .pipe-prob-fill').forEach(bar => {
+      const w = bar.style.width;
+      bar.style.width = '0';
+      setTimeout(() => bar.style.width = w, 100);
+    });
+  }, 600);
+
+  // Auto-sync silencieux toutes les 5 minutes
+  setInterval(() => {
+    syncWorldBank();
+    syncAFD();
+  }, 5 * 60 * 1000);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="description" content="PSG Energy — Votre devis personnalisé avec aides déduites. Signature électronique sécurisée. Gratuit et sans engagement.">
+<title>PSG Energy — Mon Devis & Signature</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1A4DFF;--blueL:#EBF0FF;--blueM:#C5D3FF;--blueD:#0F30CC;
+  --green:#00C48C;--greenL:#E5FBF4;--greenD:#008F68;
+  --gold:#F5A000;--goldL:#FFF5E0;
+  --red:#FF3B55;--redL:#FFF0F2;
+  --purple:#7C3AED;--purpleL:#F3EFFE;
+  --ink:#08091A;--ink2:#374060;--ink3:#7480A0;
+  --bdr:#E2E8F4;--bdr2:#C8D4EC;
+  --surf:#F2F5FB;--w:#fff;--off:#F7F9FC;
+  --ff:'Outfit',sans-serif;--fb:'Inter',sans-serif;
+  --r:14px;--r2:10px;--sh:0 2px 16px rgba(26,77,255,.07);--sh2:0 8px 32px rgba(26,77,255,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--fb);background:var(--off);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;height:54px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 16px;}
+.nav-brand{font-family:var(--ff);font-weight:900;font-size:18px;display:flex;align-items:center;gap:8px;color:var(--ink);}
+.nav-icon{width:30px;height:30px;background:var(--blue);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.nav-secure{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--green);background:var(--greenL);padding:4px 10px;border-radius:20px;}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{background:var(--w);border-bottom:1px solid var(--bdr);padding:10px 16px;}
+.progress-steps{display:flex;align-items:center;justify-content:center;gap:0;position:relative;margin-bottom:6px;}
+.ps-item{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;z-index:1;}
+.ps-circle{width:28px;height:28px;border-radius:50%;border:2px solid var(--bdr2);background:var(--w);display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-size:11px;font-weight:900;color:var(--ink3);transition:all .4s;}
+.ps-circle.done{background:var(--green);border-color:var(--green);color:#fff;}
+.ps-circle.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 0 0 4px var(--blueL);}
+.ps-label{font-size:9px;font-weight:700;color:var(--ink3);margin-top:3px;text-align:center;}
+.ps-label.active{color:var(--blue);}
+.ps-label.done{color:var(--green);}
+.ps-line{position:absolute;top:14px;left:calc(50% + 14px);right:calc(-50% + 14px);height:2px;background:var(--bdr);z-index:0;}
+.ps-line.done{background:var(--green);}
+.progress-bar-wrap{height:3px;background:var(--bdr);border-radius:2px;overflow:hidden;}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:2px;transition:width .5s ease;}
+
+/* ── VIEWS ── */
+.view{display:none;padding:16px 14px 100px;max-width:480px;margin:0 auto;}
+.view.on{display:block;}
+
+/* ── HERO URGENCE ── */
+.urgency-hero{background:linear-gradient(135deg,#FF3B55,#C0002A);border-radius:var(--r);padding:16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.uh-ico{font-size:28px;flex-shrink:0;}
+.uh-title{font-family:var(--ff);font-size:14px;font-weight:900;color:#fff;line-height:1.3;}
+.uh-sub{font-size:11px;color:rgba(255,255,255,.8);margin-top:2px;}
+
+/* ── DEVIS CARD ── */
+.devis-card{background:var(--w);border:2px solid var(--bdr);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh2);margin-bottom:14px;}
+.dc-header{background:linear-gradient(135deg,#071232,var(--blue));padding:18px 16px;}
+.dc-header-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.dc-logo{width:38px;height:38px;background:rgba(255,255,255,.15);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.dc-company{font-family:var(--ff);font-size:16px;font-weight:900;color:#fff;}
+.dc-subtitle{font-size:11px;color:rgba(255,255,255,.65);}
+.dc-ref{display:flex;justify-content:space-between;align-items:center;}
+.dc-ref-num{font-family:var(--ff);font-size:11px;color:rgba(255,255,255,.5);}
+.dc-date{font-size:11px;color:rgba(255,255,255,.5);}
+
+.dc-client{padding:14px 16px;border-bottom:1px solid var(--bdr);background:var(--blueL);}
+.dc-client-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);margin-bottom:6px;}
+.dc-client-name{font-family:var(--ff);font-size:16px;font-weight:900;color:var(--ink);}
+.dc-client-info{font-size:12px;color:var(--ink3);margin-top:2px;}
+
+.dc-body{padding:14px 16px;}
+.dc-section-title{font-family:var(--ff);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:10px;}
+.dc-line{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--bdr);gap:10px;}
+.dc-line:last-child{border:none;}
+.dc-line-label{font-size:13px;color:var(--ink2);flex:1;}
+.dc-line-sub{font-size:10px;color:var(--ink3);}
+.dc-line-val{font-family:var(--ff);font-size:14px;font-weight:800;text-align:right;flex-shrink:0;}
+
+.dc-total-block{background:linear-gradient(135deg,var(--green),var(--greenD));border-radius:var(--r2);padding:16px;margin:14px 0;text-align:center;}
+.dtb-label{font-size:11px;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:4px;}
+.dtb-amount{font-family:var(--ff);font-size:48px;font-weight:900;color:#fff;line-height:1;}
+.dtb-sub{font-size:12px;color:rgba(255,255,255,.75);margin-top:4px;}
+
+.dc-savings{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.ds{text-align:center;background:var(--off);border-radius:var(--r2);padding:10px 6px;border:1px solid var(--bdr);}
+.ds-val{font-family:var(--ff);font-size:17px;font-weight:900;line-height:1;}
+.ds-label{font-size:9px;color:var(--ink3);font-weight:700;text-transform:uppercase;margin-top:3px;}
+
+.dc-installateur{background:var(--blueL);border:1.5px solid var(--blueM);border-radius:var(--r2);padding:13px;margin-bottom:14px;}
+.di-title{font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:8px;color:var(--ink);}
+.di-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:5px;}
+.di-row:last-child{margin:0;}
+.di-ico{width:20px;flex-shrink:0;text-align:center;font-size:14px;}
+
+/* ── SOCIAL PROOF URGENCY ── */
+.social-proof{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:14px;margin-bottom:12px;box-shadow:var(--sh);}
+.sp-title{font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:10px;color:var(--ink);}
+.sp-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr);font-size:12px;}
+.sp-item:last-child{border:none;padding-bottom:0;}
+.sp-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;font-family:var(--ff);flex-shrink:0;}
+.sp-info{flex:1;}
+.sp-name{font-weight:700;color:var(--ink);}
+.sp-text{color:var(--ink3);margin-top:1px;line-height:1.5;}
+.sp-when{font-size:10px;color:var(--ink3);}
+.stars{color:var(--gold);font-size:12px;}
+
+/* ── CONFIANCE VISUELLE ── */
+.trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.tg-item{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r2);padding:12px;display:flex;align-items:flex-start;gap:9px;box-shadow:var(--sh);}
+.tg-ico{font-size:20px;flex-shrink:0;margin-top:1px;}
+.tg-title{font-family:var(--ff);font-size:12px;font-weight:800;margin-bottom:2px;}
+.tg-sub{font-size:10px;color:var(--ink3);line-height:1.4;}
+
+/* ── SIGNATURE PAD YOUSIGN ── */
+.yousign-section{background:var(--w);border:2px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:14px;box-shadow:var(--sh2);}
+.ys-header{background:linear-gradient(135deg,#1A4DFF,#7C3AED);padding:14px 16px;display:flex;align-items:center;gap:10px;}
+.ys-logo{background:rgba(255,255,255,.15);padding:5px 10px;border-radius:7px;font-family:var(--ff);font-size:13px;font-weight:900;color:#fff;}
+.ys-title{font-family:var(--ff);font-size:14px;font-weight:800;color:#fff;}
+.ys-sub{font-size:11px;color:rgba(255,255,255,.7);}
+.ys-body{padding:16px;}
+
+.sign-checklist{display:flex;flex-direction:column;gap:0;margin-bottom:16px;background:var(--off);border-radius:var(--r2);overflow:hidden;border:1px solid var(--bdr);}
+.sc-item{display:flex;align-items:flex-start;gap:11px;padding:13px 14px;border-bottom:1px solid var(--bdr);cursor:pointer;transition:background .15s;position:relative;}
+.sc-item:last-child{border:none;}
+.sc-item:hover{background:var(--blueL);}
+.sc-item.checked{background:var(--greenL);}
+.sc-checkbox{width:22px;height:22px;border-radius:6px;border:2px solid var(--bdr2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:11px;font-weight:900;}
+.sc-item.checked .sc-checkbox{background:var(--green);border-color:var(--green);color:#fff;}
+.sc-content{flex:1;}
+.sc-title{font-size:13px;font-weight:700;margin-bottom:2px;color:var(--ink);}
+.sc-detail{font-size:11px;color:var(--ink3);line-height:1.5;}
+.sc-badge{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:9px;font-weight:800;padding:2px 8px;border-radius:20px;}
+.sc-req{background:var(--redL);color:var(--red);}
+.sc-opt{background:var(--blueL);color:var(--blue);}
+
+/* ── SIGNATURE DRAW ── */
+.sig-draw-wrap{margin-bottom:14px;}
+.sig-draw-label{font-size:12px;font-weight:700;margin-bottom:8px;color:var(--ink);}
+.sig-canvas-wrap{border:2px dashed var(--bdr2);border-radius:var(--r2);background:#FAFBFF;position:relative;overflow:hidden;height:130px;cursor:crosshair;transition:border-color .2s;}
+.sig-canvas-wrap:hover{border-color:var(--blue);}
+.sig-canvas-wrap.has-sig{border:2px solid var(--green);background:var(--greenL);border-style:solid;}
+.sig-canvas{width:100%;height:100%;touch-action:none;}
+.sig-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;transition:opacity .2s;}
+.sig-placeholder.hidden{opacity:0;}
+.sig-placeholder-ico{font-size:28px;margin-bottom:6px;opacity:.4;}
+.sig-placeholder-txt{font-size:12px;color:var(--ink3);font-weight:600;}
+.sig-actions{display:flex;gap:7px;margin-top:7px;}
+.sig-clear{background:none;border:1px solid var(--bdr2);color:var(--ink3);padding:7px 14px;border-radius:7px;font-size:12px;cursor:pointer;font-family:var(--ff);font-weight:600;}
+
+/* ── BOUTON SIGNATURE FINAL ── */
+.sign-cta-wrap{position:sticky;bottom:0;left:0;right:0;padding:12px 14px;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-top:1px solid var(--bdr);margin-top:8px;}
+.btn-sign{width:100%;padding:17px;border-radius:var(--r2);background:linear-gradient(135deg,var(--green),var(--greenD));color:#fff;font-family:var(--ff);font-size:16px;font-weight:900;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 6px 20px rgba(0,196,140,.35);transition:all .2s;letter-spacing:-.01em;}
+.btn-sign:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,196,140,.45);}
+.btn-sign:active{transform:scale(.98);}
+.btn-sign:disabled{background:var(--bdr2);cursor:not-allowed;transform:none;box-shadow:none;}
+.sign-guarantee{text-align:center;font-size:10px;color:var(--ink3);margin-top:8px;display:flex;align-items:center;justify-content:center;gap:5px;}
+
+/* ── BOUTONS GÉNÉRAUX ── */
+.btn{width:100%;padding:15px;border-radius:var(--r2);font-family:var(--ff);font-size:15px;font-weight:800;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:all .18s;margin-bottom:8px;}
+.bb{background:var(--blue);color:#fff;box-shadow:0 4px 16px rgba(26,77,255,.25);}
+.bb:hover{background:var(--blueD);}
+.bg{background:var(--green);color:#fff;}
+.bgh{background:var(--surf);color:var(--ink2);border:1px solid var(--bdr);}
+
+/* ── CONFIRMATION SUCCESS ── */
+.success-screen{text-align:center;padding:32px 20px;}
+.ss-confetti{font-size:60px;margin-bottom:16px;display:block;animation:bounce .8s ease infinite alternate;}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+.ss-title{font-family:var(--ff);font-size:26px;font-weight:900;margin-bottom:8px;color:var(--ink);}
+.ss-sub{font-size:14px;color:var(--ink3);margin-bottom:24px;line-height:1.6;}
+.ss-badge{display:inline-flex;align-items:center;gap:7px;background:var(--greenL);border:1.5px solid #B0ECD9;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:700;color:var(--greenD);margin-bottom:24px;}
+.timeline{text-align:left;background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);overflow:hidden;margin-bottom:14px;box-shadow:var(--sh);}
+.tl-item{display:flex;gap:12px;padding:13px 14px;border-bottom:1px solid var(--bdr);align-items:flex-start;}
+.tl-item:last-child{border:none;}
+.tl-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-size:12px;font-weight:900;flex-shrink:0;}
+.tl-active{background:var(--blue);color:#fff;}
+.tl-next{background:var(--blueL);color:var(--blue);}
+.tl-done{background:var(--green);color:#fff;}
+.tl-info{flex:1;}
+.tl-title{font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:2px;}
+.tl-sub{font-size:11px;color:var(--ink3);line-height:1.5;}
+.tl-time{font-size:10px;font-weight:700;color:var(--gold);}
+
+/* ── NUDGES PSYCHOLOGIQUES ── */
+.nudge{border-radius:var(--r2);padding:11px 13px;margin-bottom:10px;display:flex;gap:9px;align-items:flex-start;font-size:12px;}
+.nudge-urgent{background:#FFF8E6;border:1px solid #FFD070;}
+.nudge-social{background:var(--blueL);border:1px solid var(--blueM);}
+.nudge-guarantee{background:var(--greenL);border:1px solid #B0ECD9;}
+.nudge-ico{font-size:17px;flex-shrink:0;margin-top:1px;}
+.nudge-txt{color:var(--ink2);line-height:1.55;}
+.nudge-txt b{font-weight:800;}
+
+/* ── FLOATING CTA (si pas signé) ── */
+.float-cta{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:2px solid var(--green);padding:12px 16px;z-index:300;max-width:480px;margin:0 auto;}
+.fca-amount{font-family:var(--ff);font-size:13px;font-weight:800;color:var(--green);text-align:center;margin-bottom:7px;}
+
+/* ── MODAL ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:none;align-items:flex-end;justify-content:center;}
+.ov.open{display:flex;}
+.mod{background:var(--w);border-radius:20px 20px 0 0;padding:20px 16px 40px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;animation:sup .3s ease;}
+@keyframes sup{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modh{width:34px;height:4px;background:var(--bdr2);border-radius:2px;margin:0 auto 16px;}
+.modt{font-family:var(--ff);font-size:18px;font-weight:900;margin-bottom:12px;}
+
+/* ── CONFETTI ── */
+.cfw{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden;}
+.conf-p{position:absolute;width:8px;height:8px;border-radius:2px;animation:cffall linear forwards;}
+@keyframes cffall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(10px);opacity:0;background:var(--ink);color:#fff;padding:11px 18px;border-radius:100px;font-size:12px;font-weight:700;z-index:900;transition:all .3s;white-space:nowrap;pointer-events:none;max-width:90vw;text-align:center;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@media(min-width:500px){.float-cta,.sign-cta-wrap{max-width:480px;left:50%;transform:translateX(-50%);}body{background:var(--bdr);}  .view{background:var(--off);}}
+</style>
+</head>
+<body>
+
+<div class="cfw" id="cfw"></div>
+<div class="toast" id="toast"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="nav-icon">⚡</div>
+    PSG Energy
+  </div>
+  <div class="nav-secure">🔒 Sécurisé</div>
+</nav>
+
+<!-- BARRE DE PROGRESSION -->
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="ps-item">
+      <div class="ps-circle done" id="pc1">✓</div>
+      <div class="ps-line done" id="pl1"></div>
+      <div class="ps-label done" id="plb1">Simulation</div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-circle done" id="pc2">✓</div>
+      <div class="ps-line done" id="pl2"></div>
+      <div class="ps-label done" id="plb2">RDV Audit</div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-circle active" id="pc3">3</div>
+      <div class="ps-line" id="pl3"></div>
+      <div class="ps-label active" id="plb3">Votre Devis</div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-circle" id="pc4">4</div>
+      <div class="ps-label" id="plb4">Signature</div>
+    </div>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:62%"></div>
+  </div>
+</div>
+
+<!-- ════ VUE 1 : DEVIS ════ -->
+<div id="v-devis" class="view on">
+
+  <!-- NUDGE URGENCE -->
+  <div class="urgency-hero">
+    <div class="uh-ico">⏰</div>
+    <div>
+      <div class="uh-title">Ce devis est valable 30 jours</div>
+      <div class="uh-sub">Les barèmes MaPrimeRénov peuvent changer. Signez maintenant pour bloquer vos aides.</div>
+    </div>
+  </div>
+
+  <!-- NUDGE SOCIAL -->
+  <div class="nudge nudge-social">
+    <div class="nudge-ico">👥</div>
+    <div class="nudge-txt"><b>3 familles de votre quartier</b> ont signé ce mois-ci et économisent déjà sur leurs factures. Rejoignez-les.</div>
+  </div>
+
+  <!-- LE DEVIS -->
+  <div class="devis-card">
+    <!-- HEADER -->
+    <div class="dc-header">
+      <div class="dc-header-top">
+        <div class="dc-logo">⚡</div>
+        <div>
+          <div class="dc-company">PSG Energy</div>
+          <div class="dc-subtitle">Provider Services Groupe · Régie commerciale RGE</div>
+        </div>
+      </div>
+      <div class="dc-ref">
+        <div class="dc-ref-num">Devis N° <span id="devisNum">PSG-2026-0847</span></div>
+        <div class="dc-date" id="devisDate">21/06/2026 · Valable 30j</div>
+      </div>
+    </div>
+
+    <!-- CLIENT -->
+    <div class="dc-client">
+      <div class="dc-client-title">📋 Établi pour</div>
+      <div class="dc-client-name" id="clientName">M. Jean Dupont</div>
+      <div class="dc-client-info" id="clientInfo">77340 Pontault-Combault · Maison individuelle 1974</div>
+    </div>
+
+    <div class="dc-body">
+      <!-- ÉQUIPEMENT -->
+      <div class="dc-section-title">🔧 Équipement proposé</div>
+      <div class="dc-line">
+        <div>
+          <div class="dc-line-label" id="prodLabel">♨️ Pompe à chaleur Air/Eau</div>
+          <div class="dc-line-sub" id="prodSub">Marque : Kwanthic Premium 12kW · Fabrication française · Garantie 5 ans</div>
+        </div>
+        <div>
+          <div class="dc-line-val" id="prodPrice" style="color:var(--ink);">14 000 €</div>
+          <div style="font-size:9px;color:var(--ink3);text-align:right;">TTC 5,5%</div>
+        </div>
+      </div>
+      <div class="dc-line">
+        <div>
+          <div class="dc-line-label">Audit thermique + dimensionnement</div>
+          <div class="dc-line-sub">Visite à domicile par technicien certifié RGE</div>
+        </div>
+        <div class="dc-line-val" style="color:var(--green);">GRATUIT</div>
+      </div>
+      <div class="dc-line">
+        <div>
+          <div class="dc-line-label">Dossier MaPrimeRénov ANAH</div>
+          <div class="dc-line-sub">Préparation et suivi complet par PSG Energy</div>
+        </div>
+        <div class="dc-line-val" style="color:var(--green);">GRATUIT</div>
+      </div>
+      <div class="dc-line">
+        <div>
+          <div class="dc-line-label">Installation par installateur RGE</div>
+          <div class="dc-line-sub">Pose sous 18 jours · Includes mise en service + formation</div>
+        </div>
+        <div class="dc-line-val" style="color:var(--green);">INCLUS</div>
+      </div>
+
+      <!-- AIDES DÉDUITES -->
+      <div class="dc-section-title" style="margin-top:16px;">💰 Aides déduites automatiquement</div>
+      <div id="aides-list">
+        <div class="dc-line">
+          <div><div class="dc-line-label">💙 MaPrimeRénov 2026 — Tranche Modeste</div><div class="dc-line-sub">ANAH · Versement direct après travaux</div></div>
+          <div class="dc-line-val" style="color:var(--green);">− 7 000 €</div>
+        </div>
+        <div class="dc-line">
+          <div><div class="dc-line-label">🟡 Certificats d'Économie d'Énergie (CEE)</div><div class="dc-line-sub">Obligé énergie · Cumulable MPR</div></div>
+          <div class="dc-line-val" style="color:var(--green);">− 2 200 €</div>
+        </div>
+        <div class="dc-line">
+          <div><div class="dc-line-label">🔵 Économie TVA réduite 5,5%</div><div class="dc-line-sub">Au lieu de 20% — gain direct sur facture</div></div>
+          <div class="dc-line-val" style="color:var(--blue);">− 730 €</div>
+        </div>
+        <div class="dc-line">
+          <div><div class="dc-line-label">🟢 Éco-PTZ disponible (prêt 0%)</div><div class="dc-line-sub">Jusqu'à 50 000 € sans intérêts · Sur demande</div></div>
+          <div class="dc-line-val" style="color:var(--blue);">Financement 0%</div>
+        </div>
+      </div>
+
+      <!-- TOTAL -->
+      <div class="dtb-label" style="font-size:11px;font-weight:700;color:var(--ink3);text-align:center;margin:10px 0 6px;">Votre reste à charge après toutes les aides</div>
+      <div class="dtb-amount" id="racDisplay" style="font-family:var(--ff);font-size:44px;font-weight:900;color:var(--green);text-align:center;line-height:1;">4 070 €</div>
+      <div style="text-align:center;font-size:12px;color:var(--ink3);margin:4px 0 16px;">soit <span id="pourcentAides" style="color:var(--green);font-weight:800;">71% pris en charge</span> par l'État</div>
+
+      <!-- ÉCONOMIES -->
+      <div class="dc-savings">
+        <div class="ds"><div class="ds-val" style="color:var(--green);" id="totalAides">9 930 €</div><div class="ds-label">D'aides</div></div>
+        <div class="ds"><div class="ds-val" style="color:var(--blue);">−65%</div><div class="ds-label">Facture chauf.</div></div>
+        <div class="ds"><div class="ds-val" style="color:var(--gold);">7 ans</div><div class="ds-label">Retour invest.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTALLATEUR -->
+  <div class="dc-installateur">
+    <div class="di-title">🏅 Votre installateur certifié</div>
+    <div class="di-row"><div class="di-ico">⚡</div><div><b id="partnerName">KWANTHIC</b> — Installateur RGE partenaire PSG</div></div>
+    <div class="di-row"><div class="di-ico">🏅</div><div id="partnerCert">Certifié RGE QualiPAC · QualiSOL · Qualibat</div></div>
+    <div class="di-row"><div class="di-ico">⭐</div><div>Note clients : <b>4.9/5</b> sur 340 avis vérifiés</div></div>
+    <div class="di-row"><div class="di-ico">📅</div><div>Disponibilité : <b>sous 18 jours</b> en Île-de-France</div></div>
+    <div class="di-row"><div class="di-ico">🛡️</div><div>Assurance décennale · Garantie fabricant 5 ans</div></div>
+  </div>
+
+  <!-- PREUVE SOCIALE -->
+  <div class="social-proof">
+    <div class="sp-title">💬 Ce que disent vos voisins</div>
+    <div class="sp-item">
+      <div class="sp-av" style="background:var(--blueL);color:var(--blue);">ML</div>
+      <div class="sp-info">
+        <div class="sp-name">Marie-Laure · Pontault-Combault 77</div>
+        <div class="stars">★★★★★</div>
+        <div class="sp-text">"J'hésitais, mais avec les aides j'ai payé que 3 800€ pour ma pompe à chaleur. Ma facture a été divisée par 3 dès le premier hiver."</div>
+      </div>
+      <div class="sp-when">Il y a 3 sem.</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-av" style="background:var(--goldL);color:var(--gold);">KM</div>
+      <div class="sp-info">
+        <div class="sp-name">Karim M. · Croissy-Beaubourg 77</div>
+        <div class="stars">★★★★★</div>
+        <div class="sp-text">"PSG Energy a tout géré, le dossier ANAH, l'installation. Je n'ai rien eu à faire. Très sérieux."</div>
+      </div>
+      <div class="sp-when">Ce mois</div>
+    </div>
+    <div class="sp-item">
+      <div class="sp-av" style="background:var(--greenL);color:var(--greenD);">SF</div>
+      <div class="sp-info">
+        <div class="sp-name">Sophie & François · Lognes 77</div>
+        <div class="stars">★★★★★</div>
+        <div class="sp-text">"On avait peur des arnaques dans ce secteur. PSG nous a guidés étape par étape. Tout est transparent."</div>
+      </div>
+      <div class="sp-when">Il y a 2 sem.</div>
+    </div>
+  </div>
+
+  <!-- GARANTIES PSYCHOLOGIQUES -->
+  <div class="trust-grid">
+    <div class="tg-item">
+      <div class="tg-ico">🔄</div>
+      <div><div class="tg-title">14 jours pour changer d'avis</div><div class="tg-sub">Droit légal de rétractation garanti. Aucune question posée.</div></div>
+    </div>
+    <div class="tg-item">
+      <div class="tg-ico">💸</div>
+      <div><div class="tg-title">Zéro frais si vous annulez</div><div class="tg-sub">Avant installation : annulation totalement gratuite.</div></div>
+    </div>
+    <div class="tg-item">
+      <div class="tg-ico">🏅</div>
+      <div><div class="tg-title">Installateur RGE certifié</div><div class="tg-sub">Seul un artisan RGE donne droit aux aides. Le nôtre l'est.</div></div>
+    </div>
+    <div class="tg-item">
+      <div class="tg-ico">📋</div>
+      <div><div class="tg-title">Dossier ANAH inclus</div><div class="tg-sub">PSG Energy dépose votre dossier d'aides. Vous ne faites rien.</div></div>
+    </div>
+  </div>
+
+  <div class="nudge nudge-guarantee">
+    <div class="nudge-ico">🛡️</div>
+    <div class="nudge-txt"><b>Engagement PSG Energy :</b> Si vous ne recevez pas vos aides ANAH pour une raison imputable à nos services, nous vous remboursons la différence. C'est notre garantie.</div>
+  </div>
+
+  <button class="btn bb" onclick="goToSign()">✍️ Voir les conditions et signer →</button>
+  <button class="btn bgh" onclick="openMod('modQuestions')">❓ J'ai une question avant de signer</button>
+</div>
+
+<!-- ════ VUE 2 : SIGNATURE ════ -->
+<div id="v-sign" class="view">
+
+  <div class="nudge nudge-urgent">
+    <div class="nudge-ico">🔐</div>
+    <div class="nudge-txt"><b>Étape finale :</b> Lisez et cochez chaque point, puis apposez votre signature. Tout est légal et protégé.</div>
+  </div>
+
+  <!-- YOUSIGN SECTION -->
+  <div class="yousign-section">
+    <div class="ys-header">
+      <div>
+        <div class="ys-logo">YouSign ✓</div>
+      </div>
+      <div>
+        <div class="ys-title">Signature électronique certifiée</div>
+        <div class="ys-sub">Norme eIDAS · Valeur juridique · Conforme DGCCRF</div>
+      </div>
+    </div>
+    <div class="ys-body">
+
+      <!-- CHECKLIST LÉGALE -->
+      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:9px;">📋 Documents à lire et accepter</div>
+      <div class="sign-checklist" id="checklistEl">
+        <div class="sc-item" onclick="toggleCheck(this,'cgv')" id="ci-cgv">
+          <div class="sc-checkbox" id="chk-cgv"></div>
+          <div class="sc-content">
+            <div class="sc-title">Conditions Générales de Vente (CGV)</div>
+            <div class="sc-detail">Modalités de prestation, délais d'installation, garanties PSG Energy et partenaire installateur. <span style="color:var(--blue);font-weight:700;cursor:pointer;" onclick="event.stopPropagation();openMod('modCGV')">Lire les CGV →</span></div>
+          </div>
+          <div class="sc-badge sc-req">OBLIGATOIRE</div>
+        </div>
+        <div class="sc-item" onclick="toggleCheck(this,'retract')" id="ci-retract">
+          <div class="sc-checkbox" id="chk-retract"></div>
+          <div class="sc-content">
+            <div class="sc-title">Droit de rétractation 14 jours</div>
+            <div class="sc-detail">Conformément à l'article L221-18 du Code de la Consommation, vous disposez de 14 jours pour annuler sans frais ni justification.</div>
+          </div>
+          <div class="sc-badge sc-req">OBLIGATOIRE</div>
+        </div>
+        <div class="sc-item" onclick="toggleCheck(this,'anah')" id="ci-anah">
+          <div class="sc-checkbox" id="chk-anah"></div>
+          <div class="sc-content">
+            <div class="sc-title">Conditions des aides ANAH / MaPrimeRénov</div>
+            <div class="sc-detail">Je confirme que les travaux n'ont pas commencé, que le logement est ma résidence principale (+15 ans), et que je n'ai pas déjà perçu ces aides pour ce bien.</div>
+          </div>
+          <div class="sc-badge sc-req">OBLIGATOIRE</div>
+        </div>
+        <div class="sc-item" onclick="toggleCheck(this,'rgpd')" id="ci-rgpd">
+          <div class="sc-checkbox" id="chk-rgpd"></div>
+          <div class="sc-content">
+            <div class="sc-title">Traitement des données personnelles (RGPD)</div>
+            <div class="sc-detail">Mes données sont utilisées uniquement pour ce contrat et la constitution du dossier d'aides. Droit d'effacement : dpo@psg-energy.fr</div>
+          </div>
+          <div class="sc-badge sc-req">OBLIGATOIRE</div>
+        </div>
+        <div class="sc-item" onclick="toggleCheck(this,'comms')" id="ci-comms">
+          <div class="sc-checkbox" id="chk-comms"></div>
+          <div class="sc-content">
+            <div class="sc-title">Communications de suivi (optionnel)</div>
+            <div class="sc-detail">Recevoir des notifications SMS/email sur l'avancement de mon dossier, les nouvelles aides disponibles et le suivi après installation.</div>
+          </div>
+          <div class="sc-badge sc-opt">OPTIONNEL</div>
+        </div>
+      </div>
+
+      <!-- SIGNATURE CANVAS -->
+      <div class="sig-draw-wrap">
+        <div class="sig-draw-label">✍️ Votre signature — Tracez dans la zone</div>
+        <div class="sig-canvas-wrap" id="sigWrap">
+          <canvas class="sig-canvas" id="sigCanvas"></canvas>
+          <div class="sig-placeholder" id="sigPlaceholder">
+            <div class="sig-placeholder-ico">✍️</div>
+            <div class="sig-placeholder-txt">Touchez pour signer</div>
+          </div>
+        </div>
+        <div class="sig-actions">
+          <button class="sig-clear" onclick="clearSig()">🗑️ Effacer et recommencer</button>
+          <div style="flex:1;"></div>
+          <div id="sigStatus" style="font-size:11px;font-weight:700;color:var(--green);display:none;align-items:center;gap:4px;">✅ Signature capturée</div>
+        </div>
+      </div>
+
+      <!-- RÉCAP DEVIS -->
+      <div style="background:var(--off);border:1px solid var(--bdr);border-radius:var(--r2);padding:13px;margin-bottom:14px;">
+        <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin-bottom:8px;">📋 Récapitulatif de votre engagement</div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--ink3);">Projet</span><span id="recapProd" style="font-weight:700;">PAC Air/Eau · Kwanthic</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px;"><span style="color:var(--ink3);">Total aides déduites</span><span id="recapAides" style="font-weight:700;color:var(--green);">- 9 930 €</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;padding-top:8px;border-top:1px solid var(--bdr);"><span style="font-weight:800;">Votre reste à charge</span><span id="recapRAC" style="font-family:var(--ff);font-size:18px;font-weight:900;color:var(--green);">4 070 €</span></div>
+        <div style="font-size:10px;color:var(--ink3);margin-top:6px;line-height:1.6;">⚠️ Cette somme vous est demandée uniquement <b>après</b> l'installation réalisée et les aides confirmées par l'ANAH.</div>
+      </div>
+
+      <!-- YOUSIGN BRANDING -->
+      <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--purpleL);border-radius:var(--r2);border:1px solid rgba(124,58,237,.2);">
+        <div style="font-size:18px;">🔐</div>
+        <div style="font-size:11px;color:var(--ink2);line-height:1.5;"><b>Signature certifiée par YouSign</b> — Standard eIDAS · Horodatage certifié · Valeur juridique identique à une signature manuscrite en France et dans l'UE.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA SIGNATURE -->
+  <div class="sign-cta-wrap">
+    <button class="btn-sign" id="signFinalBtn" onclick="launchYouSign()" disabled>
+      ✍️ Signer et valider mon projet PSG Energy
+    </button>
+    <div class="sign-guarantee">🔒 Sécurisé YouSign · eIDAS · Hébergé en France · Droit de rétractation 14j</div>
+  </div>
+
+</div>
+
+<!-- ════ VUE 3 : CONFIRMATION ════ -->
+<div id="v-confirm" class="view">
+  <div class="success-screen">
+    <span class="ss-confetti">🎉</span>
+    <div class="ss-title">C'est signé !</div>
+    <div class="ss-sub">Félicitations ! Votre contrat est officiellement enregistré. PSG Energy s'occupe de tout à partir de maintenant. Vous n'avez <b>rien à faire.</b></div>
+    <div class="ss-badge">✅ Contrat <span id="confirmRef">PSG-2026-0847</span> signé</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-num tl-done">✓</div>
+      <div class="tl-info">
+        <div class="tl-title">✅ Signature reçue et enregistrée</div>
+        <div class="tl-sub">Votre contrat signé vous a été envoyé par email avec copie certifiée YouSign.</div>
+        <div class="tl-time">Maintenant</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num tl-active">2</div>
+      <div class="tl-info">
+        <div class="tl-title">📋 Dossier MaPrimeRénov déposé</div>
+        <div class="tl-sub">PSG Energy dépose votre dossier ANAH. Vous recevrez un accusé de réception dans les 48h.</div>
+        <div class="tl-time">Dans 24–48h</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num tl-next">3</div>
+      <div class="tl-info">
+        <div class="tl-title">📞 Appel de confirmation installation</div>
+        <div class="tl-sub">Un technicien Kwanthic vous appellera pour planifier la date d'installation.</div>
+        <div class="tl-time">Dans 3–5 jours</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num tl-next">4</div>
+      <div class="tl-info">
+        <div class="tl-title">🔧 Installation à votre domicile</div>
+        <div class="tl-sub">Pose de votre équipement par le technicien RGE certifié. Durée moyenne : 1 journée.</div>
+        <div class="tl-time">Dans 15–18 jours</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-num tl-next">5</div>
+      <div class="tl-info">
+        <div class="tl-title">💰 Versement de vos aides</div>
+        <div class="tl-sub">MaPrimeRénov + CEE versés directement sur votre compte après validation ANAH.</div>
+        <div class="tl-time">Dans 6–10 semaines</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nudge nudge-guarantee">
+    <div class="nudge-ico">💬</div>
+    <div class="nudge-txt">Questions ou besoin d'aide ? Votre conseiller PSG Energy reste joignable 7j/7 : <b>contact@psg-energy.fr</b> ou au <b>01 XX XX XX XX</b></div>
+  </div>
+
+  <button class="btn bb" onclick="window.location.href='tel:+33123456789'">📞 Parler à mon conseiller PSG</button>
+  <button class="btn bgh" onclick="shareDevis()">📤 Partager mon devis signé</button>
+</div>
+
+<!-- ════ MODALS ════ -->
+
+<!-- Modal : Questions avant signature -->
+<div class="ov" id="modQuestions" onclick="closeMod('modQuestions')">
+  <div class="mod" onclick="event.stopPropagation()">
+    <div class="modh"></div>
+    <div class="modt">❓ Questions fréquentes</div>
+
+    <div style="display:flex;flex-direction:column;gap:0;background:var(--off);border-radius:var(--r2);overflow:hidden;border:1px solid var(--bdr);margin-bottom:16px;">
+      <div style="padding:13px 14px;border-bottom:1px solid var(--bdr);">
+        <div style="font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:5px;">💸 Est-ce que je dois payer quelque chose maintenant ?</div>
+        <div style="font-size:12px;color:var(--ink2);line-height:1.6;">Non. Vous ne payez rien à la signature. Le paiement de votre reste à charge (4 070€) intervient uniquement <b>après l'installation réalisée</b>, et les aides ANAH vous sont versées dans les semaines suivantes.</div>
+      </div>
+      <div style="padding:13px 14px;border-bottom:1px solid var(--bdr);">
+        <div style="font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:5px;">🔄 Puis-je changer d'avis après avoir signé ?</div>
+        <div style="font-size:12px;color:var(--ink2);line-height:1.6;">Oui. La loi vous protège avec un <b>délai de rétractation légal de 14 jours</b> (Art. L221-18 Code Consommation). Si vous annulez dans ce délai, aucun frais ne vous sera facturé. Aucune justification requise.</div>
+      </div>
+      <div style="padding:13px 14px;border-bottom:1px solid var(--bdr);">
+        <div style="font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:5px;">🏅 Comment être sûr que les aides seront bien versées ?</div>
+        <div style="font-size:12px;color:var(--ink2);line-height:1.6;">PSG Energy constitue et dépose votre dossier ANAH avec toutes les pièces requises. L'installateur Kwanthic est certifié RGE, condition nécessaire pour les aides. En 3 ans, <b>100% de nos dossiers ont été acceptés</b>.</div>
+      </div>
+      <div style="padding:13px 14px;">
+        <div style="font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:5px;">📋 La signature électronique a-t-elle une valeur légale ?</div>
+        <div style="font-size:12px;color:var(--ink2);line-height:1.6;">Oui, exactement la même qu'une signature manuscrite. YouSign est certifié par l'ANSSI selon la norme européenne eIDAS. Votre contrat signé est horodaté et archivé légalement 10 ans.</div>
+      </div>
+    </div>
+
+    <button class="btn bb" onclick="closeMod('modQuestions');goToSign()">✅ Je comprends, je veux signer</button>
+    <button class="btn bgh" onclick="closeMod('modQuestions');window.location.href='tel:+33123456789'">📞 Parler à un conseiller</button>
+  </div>
+</div>
+
+<!-- Modal : CGV -->
+<div class="ov" id="modCGV" onclick="closeMod('modCGV')">
+  <div class="mod" onclick="event.stopPropagation()">
+    <div class="modh"></div>
+    <div class="modt">📋 Conditions Générales de Vente</div>
+    <div style="font-size:12px;color:var(--ink2);line-height:1.8;max-height:50vh;overflow-y:auto;">
+      <p style="font-weight:700;margin-bottom:8px;">PSG Energy — Provider Services Groupe · SASU · 77340 Pontault-Combault</p>
+      <p style="margin-bottom:10px;"><b>Article 1 — Objet</b><br>PSG Energy (ci-après "le Prestataire") agit en qualité de régie commerciale pour le compte d'installateurs partenaires certifiés RGE. Les présentes CGV régissent la relation entre PSG Energy et le client.</p>
+      <p style="margin-bottom:10px;"><b>Article 2 — Rémunération</b><br>PSG Energy est rémunéré exclusivement par l'installateur partenaire sous forme de marge commerciale. Aucun frais n'est facturé au client pour la simulation, la constitution du dossier d'aides, ou l'accompagnement.</p>
+      <p style="margin-bottom:10px;"><b>Article 3 — Devis et engagement</b><br>Le devis est valable 30 jours. La signature électronique constitue un engagement ferme du client, sous réserve du délai légal de rétractation de 14 jours.</p>
+      <p style="margin-bottom:10px;"><b>Article 4 — Délai de rétractation</b><br>Conformément à l'article L221-18 du Code de la Consommation, le client dispose d'un délai de 14 jours calendaires à compter de la date de signature pour se rétracter, sans motif ni pénalité.</p>
+      <p style="margin-bottom:10px;"><b>Article 5 — Aides et subventions</b><br>Les montants d'aides présentés sont estimatifs et basés sur les barèmes ANAH en vigueur. PSG Energy s'engage à constituer le dossier d'aides conformément aux textes réglementaires mais ne peut garantir les décisions de l'ANAH.</p>
+      <p style="margin-bottom:10px;"><b>Article 6 — Installation</b><br>L'installation est réalisée par l'installateur partenaire certifié RGE dans les délais convenus. La garantie de 5 ans sur les équipements est assurée par l'installateur et/ou le fabricant.</p>
+      <p style="margin-bottom:10px;"><b>Article 7 — Données personnelles</b><br>Vos données sont traitées conformément au RGPD. Droit d'accès et effacement : dpo@psg-energy.fr. Durée de conservation : 10 ans (obligation légale contrats).</p>
+      <p><b>Article 8 — Litiges</b><br>En cas de litige, le client peut recourir gratuitement à la médiation de la consommation avant toute action judiciaire. PSG Energy s'engage à répondre à toute réclamation dans les 15 jours ouvrés.</p>
+    </div>
+    <button class="btn bb" style="margin-top:14px;" onclick="closeMod('modCGV');document.getElementById('ci-cgv').click()">✅ Lu et accepté</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   PSG ENERGY — MODULE COMMERCIAL SIGNATURE
+   Parcours vente optimisé + YouSign + Psychologie achat
+   Copywriting grand public · Objections traitées
+═══════════════════════════════════════════════════════ */
+
+// ── DONNÉES DU PROSPECT (injectées depuis V5 MVP) ──
+const PROSPECT = {
+  nom: 'M. Jean Dupont',
+  adresse: '77340 Pontault-Combault',
+  logement: 'Maison individuelle 1974',
+  tranche: 2,
+  tl: 'Modeste',
+  projet: 'pac',
+  produit: '♨️ Pompe à chaleur Air/Eau',
+  produitCourt: 'PAC Air/Eau · Kwanthic Premium 12kW',
+  partenaire: 'KWANTHIC',
+  partenaireDesc: 'Certifié RGE QualiPAC · QualiSOL · Qualibat',
+  prixBrut: 14000,
+  mpr: 7000,
+  cee: 2200,
+  tva: 730,
+  totalAides: 9930,
+  rac: 4070,
+  pctAides: 71,
+  devisNum: 'PSG-2026-' + String(Math.floor(800 + Math.random()*200)).padStart(4,'0'),
+};
+
+// ── ÉTAT COMMERCIAL ──────────────────────────────────
+const CHECKS = { cgv: false, retract: false, anah: false, rgpd: false, comms: false };
+const REQUIRED = ['cgv','retract','anah','rgpd'];
+let hasSig = false;
+let sigCtx = null;
+let isDrawing = false;
+let hasDrawn = false;
+
+// ── INIT ─────────────────────────────────────────────
+window.addEventListener('load', () => {
+  // Peupler les données
+  document.getElementById('devisNum').textContent = PROSPECT.devisNum;
+  document.getElementById('clientName').textContent = PROSPECT.nom;
+  document.getElementById('clientInfo').textContent = PROSPECT.adresse + ' · ' + PROSPECT.logement;
+  document.getElementById('prodLabel').textContent = PROSPECT.produit;
+  document.getElementById('prodSub').textContent = 'Marque : ' + PROSPECT.partenaire + ' Premium · Fabrication française · Garantie 5 ans';
+  document.getElementById('prodPrice').textContent = PROSPECT.prixBrut.toLocaleString('fr-FR') + ' €';
+  document.getElementById('racDisplay').textContent = PROSPECT.rac.toLocaleString('fr-FR') + ' €';
+  document.getElementById('pourcentAides').textContent = PROSPECT.pctAides + '% pris en charge par l\'État';
+  document.getElementById('totalAides').textContent = PROSPECT.totalAides.toLocaleString('fr-FR') + ' €';
+  document.getElementById('partnerName').textContent = PROSPECT.partenaire;
+  document.getElementById('partenaireDesc') && (document.getElementById('partenaireDesc').textContent = PROSPECT.partenaireDesc);
+  document.getElementById('recapProd').textContent = PROSPECT.produitCourt;
+  document.getElementById('recapAides').textContent = '- ' + PROSPECT.totalAides.toLocaleString('fr-FR') + ' €';
+  document.getElementById('recapRAC').textContent = PROSPECT.rac.toLocaleString('fr-FR') + ' €';
+  document.getElementById('confirmRef').textContent = PROSPECT.devisNum;
+
+  // Date du jour
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('fr-FR') + ' · Valable 30j';
+  document.getElementById('devisDate').textContent = dateStr;
+
+  // Init canvas signature
+  initCanvas();
+
+  // Timer urgence (compte à rebours psychologique)
+  startUrgencyTimer();
+});
+
+// ── NAVIGATION ───────────────────────────────────────
+function goToSign(){
+  showView('v-sign');
+  updateProgress(3);
+  window.scrollTo(0,0);
+}
+
+function showView(id){
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
+
+function updateProgress(step){
+  const pct = {2:62, 3:85, 4:100};
+  document.getElementById('progressBar').style.width = (pct[step]||62) + '%';
+
+  for(let i=1;i<=4;i++){
+    const c = document.getElementById('pc'+i);
+    const l = document.getElementById('plb'+i);
+    if(!c) continue;
+    c.className = 'ps-circle';
+    l.className = 'ps-label';
+    if(i < step){ c.classList.add('done'); c.textContent='✓'; l.classList.add('done');}
+    else if(i===step){ c.classList.add('active'); c.textContent=i; l.classList.add('active');}
+    else c.textContent=i;
+    const ln = document.getElementById('pl'+i);
+    if(ln) ln.className = 'ps-line' + (i<step?' done':'');
+  }
+}
+
+// ── CHECKLIST ────────────────────────────────────────
+function toggleCheck(item, key){
+  CHECKS[key] = !CHECKS[key];
+  item.classList.toggle('checked', CHECKS[key]);
+  item.querySelector('.sc-checkbox').textContent = CHECKS[key] ? '✓' : '';
+  checkSignReady();
+}
+
+function checkSignReady(){
+  const allRequired = REQUIRED.every(k => CHECKS[k]);
+  const btn = document.getElementById('signFinalBtn');
+  if(allRequired && hasSig){
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  } else {
+    btn.disabled = true;
+    btn.style.opacity = '0.5';
+  }
+
+  // Message d'encouragement
+  const checked = REQUIRED.filter(k => CHECKS[k]).length;
+  if(checked === REQUIRED.length && !hasSig){
+    t('👆 Super ! Il ne reste que votre signature à apposer.');
+  } else if(checked < REQUIRED.length && hasSig){
+    const missing = REQUIRED.filter(k=>!CHECKS[k]).length;
+    t('👆 Plus que ' + missing + ' case(s) à cocher pour finaliser.');
+  }
+}
+
+// ── CANVAS SIGNATURE ─────────────────────────────────
+function initCanvas(){
+  const canvas = document.getElementById('sigCanvas');
+  const wrap = document.getElementById('sigWrap');
+  if(!canvas) return;
+
+  canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+  canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+  sigCtx = canvas.getContext('2d');
+  sigCtx.scale(window.devicePixelRatio, window.devicePixelRatio);
+  sigCtx.strokeStyle = '#1A4DFF';
+  sigCtx.lineWidth = 2.5;
+  sigCtx.lineCap = 'round';
+  sigCtx.lineJoin = 'round';
+
+  const getPos = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const src = e.touches ? e.touches[0] : e;
+    return { x: src.clientX - rect.left, y: src.clientY - rect.top };
+  };
+
+  const start = (e) => {
+    e.preventDefault();
+    isDrawing = true;
+    const pos = getPos(e);
+    sigCtx.beginPath();
+    sigCtx.moveTo(pos.x, pos.y);
+  };
+
+  const draw = (e) => {
+    if(!isDrawing) return;
+    e.preventDefault();
+    const pos = getPos(e);
+    sigCtx.lineTo(pos.x, pos.y);
+    sigCtx.stroke();
+    if(!hasDrawn){
+      hasDrawn = true;
+      document.getElementById('sigPlaceholder').classList.add('hidden');
+      wrap.classList.add('has-sig');
+    }
+  };
+
+  const stop = () => {
+    if(!isDrawing) return;
+    isDrawing = false;
+    if(hasDrawn){
+      hasSig = true;
+      document.getElementById('sigStatus').style.display = 'flex';
+      sigCtx.strokeStyle = '#00C48C';
+      checkSignReady();
+    }
+  };
+
+  canvas.addEventListener('mousedown', start);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stop);
+  canvas.addEventListener('touchstart', start, {passive:false});
+  canvas.addEventListener('touchmove', draw, {passive:false});
+  canvas.addEventListener('touchend', stop);
+}
+
+function clearSig(){
+  const canvas = document.getElementById('sigCanvas');
+  if(sigCtx) sigCtx.clearRect(0, 0, canvas.width, canvas.height);
+  hasDrawn = false;
+  hasSig = false;
+  document.getElementById('sigPlaceholder').classList.remove('hidden');
+  document.getElementById('sigWrap').classList.remove('has-sig');
+  document.getElementById('sigStatus').style.display = 'none';
+  sigCtx.strokeStyle = '#1A4DFF';
+  checkSignReady();
+}
+
+// ── YOUSIGN LAUNCH ───────────────────────────────────
+async function launchYouSign(){
+  const btn = document.getElementById('signFinalBtn');
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Envoi de votre signature...';
+
+  // Simulation appel YouSign API
+  // En production : POST https://api.yousign.app/v3/signature_requests
+  // avec les données du contrat + image de la signature canvas
+  await simulateYouSignAPI();
+
+  // Succès
+  btn.innerHTML = '✅ Signature envoyée !';
+  confetti();
+
+  setTimeout(() => {
+    showView('v-confirm');
+    updateProgress(4);
+    window.scrollTo(0,0);
+    t('🎉 Contrat signé ! Email de confirmation envoyé.');
+  }, 1200);
+}
+
+async function simulateYouSignAPI(){
+  // ── INTÉGRATION YOUSIGN RÉELLE ──────────────────────
+  // Étape 1 : Créer la demande de signature
+  // POST https://api.yousign.app/v3/signature_requests
+  // Headers: { Authorization: 'Bearer YOUR_API_KEY', Content-Type: 'application/json' }
+  // Body: {
+  //   name: 'Contrat PSG Energy - ' + PROSPECT.nom,
+  //   delivery_mode: 'email',
+  //   signers: [{
+  //     info: { first_name, last_name, email, phone_number },
+  //     signature_level: 'electronic_signature',
+  //     signature_authentication_mode: 'otp_sms'
+  //   }],
+  //   documents: [{ nature: 'signable_document', content: pdfBase64 }]
+  // }
+
+  // Étape 2 : Activer la demande
+  // POST https://api.yousign.app/v3/signature_requests/{id}/activate
+
+  // Étape 3 : Webhook sur signature
+  // PSG Energy reçoit notification → met à jour CRM → envoie email client
+
+  await new Promise(r => setTimeout(r, 2000));
+  console.log('[YouSign] Signature request créée et activée:', PROSPECT.devisNum);
+  return { id: 'ys_' + PROSPECT.devisNum, status: 'ongoing' };
+}
+
+// ── URGENCY TIMER ────────────────────────────────────
+function startUrgencyTimer(){
+  // Nudge toutes les 45 secondes pour encourager la signature
+  let nudgeCount = 0;
+  const nudges = [
+    '👀 2 personnes consultent la même offre en ce moment',
+    '⏰ Vos aides sont valables 30 jours — agissez maintenant',
+    '💰 Les barèmes MaPrimeRénov peuvent changer au prochain trimestre',
+    '🏅 Marie-Laure a signé hier et économise déjà €65/mois',
+  ];
+
+  setTimeout(function tick(){
+    if(nudgeCount < nudges.length && document.getElementById('v-devis').classList.contains('on')){
+      t(nudges[nudgeCount]);
+      nudgeCount++;
+    }
+    if(nudgeCount < nudges.length) setTimeout(tick, 45000);
+  }, 30000);
+}
+
+// ── SHARE ────────────────────────────────────────────
+function shareDevis(){
+  if(navigator.share){
+    navigator.share({
+      title: 'Mon projet énergie PSG Energy',
+      text: 'J\'ai signé mon contrat PAC Air/Eau avec ' + PROSPECT.pctAides + '% d\'aides de l\'État !',
+      url: window.location.href
+    }).catch(()=>{});
+  } else {
+    t('📋 Lien copié — partagez avec votre entourage !');
+  }
+}
+
+// ── MODALS ───────────────────────────────────────────
+function openMod(id){ document.getElementById(id).classList.add('open');}
+function closeMod(id){ document.getElementById(id).classList.remove('open');}
+
+// ── TOAST ────────────────────────────────────────────
+let _tt;
+function t(msg){
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(_tt);
+  _tt = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+// ── CONFETTI ─────────────────────────────────────────
+function confetti(){
+  const w = document.getElementById('cfw');
+  w.innerHTML = '';
+  const cols = ['#1A4DFF','#00C48C','#F5A000','#FF3B55','#7C3AED'];
+  for(let i=0; i<50; i++){
+    const c = document.createElement('div');
+    c.className = 'conf-p';
+    c.style.cssText = `left:${Math.random()*100}%;top:-8px;background:${cols[i%5]};animation-duration:${1.5+Math.random()*2.5}s;animation-delay:${Math.random()*.5}s;`;
+    w.appendChild(c);
+  }
+  setTimeout(() => w.innerHTML = '', 5000);
+}
+
+// ── RESIZE CANVAS ON ROTATE ───────────────────────────
+window.addEventListener('resize', () => {
+  if(sigCtx) initCanvas();
+});
+</script>
+</body>
+</html>

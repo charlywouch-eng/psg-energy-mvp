@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="description" content="PSG Energy — Régie commerciale spécialisée en énergies renouvelables. Simulateur d'aides MaPrimeRénov gratuit. Partenaires RGE certifiés. France & Afrique.">
+<meta name="robots" content="index, follow">
+<title>PSG Energy — Régie Commerciale Énergies Renouvelables | France & Afrique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =============================================
+   PSG ENERGY — SITE VITRINE INSTITUTIONNEL
+   Blanc institutionnel · Bleu nuit · Or accent
+   Signature : ligne dorée verticale gauche
+   Mobile-first · Pas de splash · Pas de dashboard
+============================================= */
+:root{
+  --blanc:#FFFFFF;
+  --off:#F8FAFD;
+  --gris:#F0F3F8;
+  --bord:#DDE3EF;
+  --bord2:#B8C4D8;
+  --noir:#070C1A;
+  --noir2:#1E2840;
+  --gris2:#4A5470;
+  --gris3:#8090B0;
+  --bleu:#0F3CC9;
+  --bleu2:#0A30A8;
+  --bleuL:#EBF0FF;
+  --bleuM:#C0CFFF;
+  --vert:#00B87A;
+  --vertL:#E5F9F0;
+  --or:#C89A2A;
+  --orL:#FBF5E6;
+  --orV:#F5C842;
+  --rouge:#E8324A;
+  --rougeL:#FEF0F2;
+  --r:12px;
+  --r2:8px;
+  --ff:'Outfit',sans-serif;
+  --fb:'Inter',sans-serif;
+  --sh:0 2px 20px rgba(7,12,26,0.07);
+  --sh2:0 8px 40px rgba(7,12,26,0.13);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--fb);background:var(--blanc);color:var(--noir);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ── TYPOGRAPHIE ── */
+h1,h2,h3,h4{font-family:var(--ff);font-weight:800;line-height:1.15;letter-spacing:-0.03em;}
+h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;}
+h2{font-size:clamp(1.5rem,3.5vw,2.4rem);}
+h3{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;}
+p{line-height:1.7;color:var(--gris2);}
+
+/* ── LAYOUT ── */
+.container{max-width:1100px;margin:0 auto;padding:0 20px;}
+section{padding:72px 0;}
+
+/* ── HEADER / NAV ── */
+.header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bord);}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-family:var(--ff);font-weight:900;font-size:20px;letter-spacing:-0.04em;color:var(--noir);display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-icon{width:34px;height:34px;background:var(--bleu);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.logo span{color:var(--bleu);}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{font-family:var(--ff);font-size:14px;font-weight:600;color:var(--gris2);text-decoration:none;transition:color .18s;}
+.nav-links a:hover{color:var(--bleu);}
+.nav-cta{background:var(--bleu);color:var(--blanc)!important;padding:9px 20px;border-radius:var(--r2);font-size:13px!important;font-weight:700!important;transition:background .18s!important;}
+.nav-cta:hover{background:var(--bleu2)!important;}
+.nav-mobile{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;}
+.nav-mobile span{width:22px;height:2px;background:var(--noir);border-radius:2px;display:block;}
+.mobile-menu{display:none;position:fixed;inset:64px 0 0;background:var(--blanc);z-index:199;padding:24px 20px;flex-direction:column;gap:0;border-top:1px solid var(--bord);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:var(--ff);font-size:16px;font-weight:700;color:var(--noir);text-decoration:none;padding:16px 0;border-bottom:1px solid var(--bord);}
+.mob-cta{background:var(--bleu)!important;color:#fff!important;text-align:center;border-radius:var(--r2);margin-top:16px;padding:14px 0!important;border-bottom:none!important;}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,#071232 0%,#0F3CC9 60%,#1850E8 100%);min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 70% 50%,rgba(245,200,66,0.08) 0%,transparent 60%);}
+.hero-content{position:relative;z-index:2;max-width:680px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:24px;}
+.hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--orV);border-radius:50%;animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{color:#fff;margin-bottom:20px;}
+.hero h1 em{font-style:normal;color:var(--orV);}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:36px;max-width:540px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--orV);color:var(--noir);font-family:var(--ff);font-size:15px;font-weight:800;padding:14px 26px;border-radius:var(--r2);text-decoration:none;transition:all .18s;border:none;cursor:pointer;}
+.btn-primary:hover{background:#E8B830;transform:translateY(-1px);}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);color:#fff;font-family:var(--ff);font-size:15px;font-weight:700;padding:14px 26px;border-radius:var(--r2);text-decoration:none;border:1.5px solid rgba(255,255,255,0.3);transition:all .18s;cursor:pointer;}
+.btn-secondary:hover{background:rgba(255,255,255,0.2);}
+.hero-stats{display:flex;gap:32px;margin-top:52px;flex-wrap:wrap;}
+.hstat{border-left:2px solid var(--orV);padding-left:14px;}
+.hstat-num{font-family:var(--ff);font-size:28px;font-weight:900;color:#fff;line-height:1;}
+.hstat-lbl{font-size:12px;color:rgba(255,255,255,.6);font-weight:600;margin-top:3px;text-transform:uppercase;letter-spacing:.05em;}
+.hero-visual{position:absolute;right:-60px;top:50%;transform:translateY(-50%);width:520px;height:520px;opacity:0.06;}
+.hero-visual svg{width:100%;height:100%;}
+
+/* ── TRUST BAR ── */
+.trust-bar{background:var(--off);border-bottom:1px solid var(--bord);padding:18px 0;}
+.trust-inner{display:flex;align-items:center;gap:28px;overflow-x:auto;white-space:nowrap;}
+.trust-inner::-webkit-scrollbar{display:none;}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gris2);flex-shrink:0;}
+.trust-sep{color:var(--bord2);font-size:18px;flex-shrink:0;}
+
+/* ── SECTION LABELS ── */
+.section-eyebrow{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff);font-size:11px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--bleu);margin-bottom:12px;}
+.section-eyebrow::before{content:'';width:20px;height:2px;background:var(--or);border-radius:2px;}
+
+/* ── CARDS ── */
+.card{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);box-shadow:var(--sh);}
+
+/* ── DEUX PORTES ── */
+.portes{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px;}
+.porte{border-radius:var(--r);padding:36px 32px;cursor:pointer;transition:all .2s;text-decoration:none;display:block;position:relative;overflow:hidden;}
+.porte::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:4px 0 0 4px;transition:width .2s;}
+.porte-b{background:var(--bleuL);border:1.5px solid var(--bleuM);}
+.porte-b::before{background:var(--bleu);}
+.porte-b:hover{border-color:var(--bleu);transform:translateY(-2px);box-shadow:var(--sh2);}
+.porte-b:hover::before{width:5px;}
+.porte-o{background:var(--orL);border:1.5px solid #E5CC88;}
+.porte-o::before{background:var(--or);}
+.porte-o:hover{border-color:var(--or);transform:translateY(-2px);box-shadow:var(--sh2);}
+.porte-o:hover::before{width:5px;}
+.porte-ico{font-size:32px;margin-bottom:14px;display:block;}
+.porte-title{font-family:var(--ff);font-size:18px;font-weight:800;margin-bottom:8px;color:var(--noir);}
+.porte-desc{font-size:13px;color:var(--gris2);line-height:1.6;}
+.porte-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--ff);font-size:13px;font-weight:700;margin-top:16px;}
+.porte-b .porte-cta{color:var(--bleu);}
+.porte-o .porte-cta{color:var(--or);}
+
+/* ── PRODUITS ── */
+.produits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.prod{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:22px 18px;position:relative;transition:all .2s;overflow:hidden;}
+.prod::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;border-radius:0 0 var(--r) var(--r);}
+.prod-pac::after{background:linear-gradient(90deg,var(--bleu),#4070FF);}
+.prod-reno::after{background:linear-gradient(90deg,var(--vert),#40D090);}
+.prod-pv::after{background:linear-gradient(90deg,var(--orV),#FFD060);}
+.prod-iso::after{background:linear-gradient(90deg,#7C3AED,#A060FF);}
+.prod-cet::after{background:linear-gradient(90deg,#0098C8,#40C0E8);}
+.prod-ve::after{background:linear-gradient(90deg,var(--vert),var(--bleu));}
+.prod:hover{transform:translateY(-3px);box-shadow:var(--sh2);}
+.prod-badge{position:absolute;top:14px;right:14px;font-size:9px;font-weight:800;padding:3px 8px;border-radius:20px;}
+.badge-top{background:var(--rouge);color:#fff;}
+.badge-new{background:var(--bleu);color:#fff;}
+.prod-ico{font-size:30px;margin-bottom:12px;display:block;}
+.prod-name{font-family:var(--ff);font-size:14px;font-weight:800;margin-bottom:4px;color:var(--noir);}
+.prod-aide{font-size:12px;font-weight:700;color:var(--vert);margin-bottom:3px;}
+.prod-desc{font-size:11px;color:var(--gris3);}
+.prod-bar{height:3px;background:var(--gris);border-radius:2px;margin-top:12px;overflow:hidden;}
+.prod-fill{height:100%;border-radius:2px;background:var(--bleu);transition:width 1.5s ease;}
+.prod-demand{display:flex;justify-content:space-between;font-size:10px;color:var(--gris3);font-weight:600;margin-top:4px;}
+
+/* ── SIMULATEUR ── */
+.sim-section{background:linear-gradient(135deg,#071232,#0F2A80);}
+.sim-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.sim-left h2{color:#fff;margin-bottom:16px;}
+.sim-left p{color:rgba(255,255,255,.7);margin-bottom:28px;}
+.sim-features{display:flex;flex-direction:column;gap:14px;}
+.sim-feat{display:flex;align-items:flex-start;gap:12px;}
+.sim-feat-ico{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.sim-feat-text{font-size:13px;color:rgba(255,255,255,.75);line-height:1.6;}
+.sim-feat-title{font-weight:700;color:#fff;font-family:var(--ff);margin-bottom:2px;}
+.sim-widget{background:var(--blanc);border-radius:16px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.sim-step-row{display:flex;align-items:center;margin-bottom:22px;gap:0;}
+.ss{display:flex;flex-direction:column;align-items:center;min-width:52px;}
+.ssc{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-size:12px;font-weight:800;border:2px solid var(--bord2);background:var(--blanc);color:var(--gris3);transition:all .3s;}
+.ssc.act{background:var(--bleu);border-color:var(--bleu);color:#fff;box-shadow:0 0 0 4px var(--bleuL);}
+.ssc.done{background:var(--vert);border-color:var(--vert);color:#fff;}
+.ssl{font-size:9px;font-weight:700;color:var(--gris3);margin-top:4px;text-align:center;}
+.ssl.act{color:var(--bleu);}
+.ssl.done{color:var(--vert);}
+.ssline{flex:1;height:2px;background:var(--bord);min-width:12px;margin-bottom:14px;transition:background .3s;}
+.ssline.done{background:var(--vert);}
+.sim-q{margin-bottom:16px;}
+.sim-qlabel{font-family:var(--ff);font-size:13px;font-weight:700;margin-bottom:9px;color:var(--noir);}
+.sim-choices{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.sc{padding:10px 8px;border-radius:var(--r2);border:1.5px solid var(--bord2);background:var(--blanc);font-size:11px;font-weight:700;color:var(--gris2);cursor:pointer;text-align:center;transition:all .18s;font-family:var(--ff);}
+.sc:hover{border-color:var(--bleu);color:var(--bleu);}
+.sc.on{border-color:var(--bleu);background:var(--bleuL);color:var(--bleu);}
+.sim-btn{width:100%;padding:13px;background:var(--bleu);color:#fff;font-family:var(--ff);font-size:14px;font-weight:800;border:none;border-radius:var(--r2);cursor:pointer;transition:background .18s;}
+.sim-btn:hover{background:var(--bleu2);}
+.sim-result{background:linear-gradient(135deg,var(--vert),#008C60);border-radius:var(--r2);padding:18px;text-align:center;color:#fff;margin-bottom:14px;display:none;}
+.sr-amount{font-family:var(--ff);font-size:42px;font-weight:900;line-height:1;}
+.sr-lbl{font-size:12px;opacity:.85;margin-top:3px;}
+.sr-rows{background:var(--blanc);border-radius:var(--r2);overflow:hidden;margin-bottom:12px;display:none;}
+.sr-row{display:flex;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bord);font-size:12px;}
+.sr-row:last-child{border:none;}
+.sr-row-lbl{color:var(--gris2);}
+.sr-row-val{font-weight:700;font-family:var(--ff);}
+.sim-retour{background:none;border:none;color:var(--gris3);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:var(--ff);font-weight:600;margin-bottom:12px;}
+
+/* ── PARTENAIRES ── */
+.partners-section{background:var(--off);}
+.partners-header{text-align:center;margin-bottom:48px;}
+.partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;}
+.pcard{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);}
+.pcard-head{padding:20px 22px;border-bottom:1px solid var(--bord);display:flex;align-items:center;gap:13px;}
+.pcard-logo{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.pcard-name{font-family:var(--ff);font-size:16px;font-weight:800;color:var(--noir);}
+.pcard-cat{font-size:11px;color:var(--gris3);margin-top:2px;}
+.pcard-badge{margin-left:auto;font-size:10px;font-weight:800;padding:4px 10px;border-radius:20px;}
+.badge-pri{background:var(--bleuL);color:var(--bleu);}
+.badge-act{background:var(--vertL);color:var(--vert);}
+.pcard-body{padding:18px 22px;}
+.margin-engine{background:linear-gradient(135deg,var(--off),var(--bleuL));border:1px solid var(--bord2);border-radius:var(--r2);padding:14px;margin-bottom:14px;}
+.me-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--gris3);margin-bottom:9px;}
+.me-flow{display:flex;align-items:center;gap:8px;}
+.me-box{flex:1;text-align:center;background:var(--blanc);border:1px solid var(--bord);border-radius:7px;padding:9px 5px;}
+.me-lbl{font-size:9px;color:var(--gris3);font-weight:700;text-transform:uppercase;margin-bottom:2px;}
+.me-val{font-family:var(--ff);font-size:17px;font-weight:900;color:var(--noir2);}
+.me-box.highlight{background:var(--bleuL);}
+.me-box.highlight .me-val{color:var(--bleu);}
+.me-arr{font-size:18px;color:var(--bleu);}
+.me-gain{text-align:center;margin-top:8px;font-family:var(--ff);font-size:12px;font-weight:800;color:var(--vert);}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
+.tag{padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:var(--gris);color:var(--gris2);border:1px solid var(--bord);}
+.pstats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.ps{text-align:center;background:var(--off);border-radius:7px;padding:9px;}
+.ps-val{font-family:var(--ff);font-size:17px;font-weight:900;}
+.ps-lbl{font-size:9px;color:var(--gris3);font-weight:700;text-transform:uppercase;margin-top:2px;}
+.rge-badge{margin-top:12px;padding:9px 12px;background:var(--vertL);border-radius:7px;font-size:11px;font-weight:700;color:var(--vert);}
+.psp-promise{background:var(--bleuL);border:1px solid var(--bleuM);border-radius:var(--r);padding:22px 24px;}
+.psp-title{font-family:var(--ff);font-size:16px;font-weight:800;margin-bottom:14px;color:var(--noir);}
+.psp-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.psp-item{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--gris2);}
+.psp-item::before{content:'✓';color:var(--bleu);font-weight:900;flex-shrink:0;}
+
+/* ── AFRIQUE ── */
+.afrique-section{background:var(--noir);position:relative;overflow:hidden;}
+.afrique-section::before{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(ellipse,rgba(200,154,42,0.12) 0%,transparent 70%);pointer-events:none;}
+.af-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.af-left h2{color:#fff;margin-bottom:14px;}
+.af-left p{color:rgba(255,255,255,.65);margin-bottom:24px;}
+.af-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,154,42,0.15);border:1px solid rgba(200,154,42,0.3);padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;color:var(--orV);margin-bottom:18px;}
+.af-kpis{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
+.af-kpi{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r2);padding:16px;}
+.af-kpi-num{font-family:var(--ff);font-size:24px;font-weight:900;color:var(--orV);}
+.af-kpi-lbl{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;margin-top:3px;}
+.af-refs{display:flex;flex-direction:column;gap:10px;}
+.af-ref{display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,.6);}
+.af-ref-ico{width:28px;height:28px;border-radius:6px;background:rgba(200,154,42,0.15);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.af-right{display:flex;flex-direction:column;gap:14px;}
+.af-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r);padding:20px;}
+.af-card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.af-card-ico{width:36px;height:36px;background:rgba(200,154,42,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.af-card-title{font-family:var(--ff);font-size:14px;font-weight:800;color:#fff;}
+.af-card-sub{font-size:11px;color:rgba(255,255,255,.5);}
+.af-card-body{font-size:12px;color:rgba(255,255,255,.6);line-height:1.65;}
+.af-card-amount{font-family:var(--ff);font-size:18px;font-weight:900;color:var(--orV);margin-top:8px;}
+
+/* ── PROCESSUS ── */
+.process-section{background:var(--off);}
+.process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;}
+.process-grid::before{content:'';position:absolute;top:28px;left:28px;right:28px;height:2px;background:linear-gradient(90deg,var(--bleu),var(--orV));z-index:0;}
+.proc{text-align:center;padding:0 10px;position:relative;z-index:1;}
+.proc-num{width:56px;height:56px;border-radius:50%;background:var(--blanc);border:2px solid var(--bord2);display:flex;align-items:center;justify-content:center;font-family:var(--ff);font-size:18px;font-weight:900;color:var(--bleu);margin:0 auto 14px;transition:all .3s;}
+.proc:hover .proc-num{background:var(--bleu);color:#fff;border-color:var(--bleu);transform:scale(1.1);}
+.proc-title{font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:5px;color:var(--noir);}
+.proc-desc{font-size:11px;color:var(--gris3);line-height:1.5;}
+
+/* ── CNIL ── */
+.cnil-section{background:var(--blanc);}
+.cnil-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.cnil-card{background:var(--bleuL);border:1px solid var(--bleuM);border-radius:var(--r);padding:24px;}
+.cnil-title{font-family:var(--ff);font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--noir);}
+.cnil-rows{display:flex;flex-direction:column;gap:0;}
+.cnil-row{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(15,60,201,0.1);font-size:12px;}
+.cnil-row:last-child{border:none;padding-bottom:0;}
+.cnil-ico{font-size:15px;flex-shrink:0;margin-top:1px;}
+.cnil-txt{color:var(--gris2);line-height:1.55;}
+.rgpd-toggles{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:24px;}
+.rgt-title{font-family:var(--ff);font-size:15px;font-weight:800;margin-bottom:14px;color:var(--noir);}
+.togrow{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--bord);}
+.togrow:last-child{border:none;}
+.toglbl{font-size:13px;font-weight:600;color:var(--noir);}
+.togsub{font-size:11px;color:var(--gris3);}
+.tg{position:relative;width:42px;height:23px;flex-shrink:0;}
+.tg input{opacity:0;width:0;height:0;}
+.tgs{position:absolute;inset:0;border-radius:23px;background:var(--bord2);transition:.3s;cursor:pointer;}
+.tgs::before{content:'';position:absolute;height:17px;width:17px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.tg input:checked+.tgs{background:var(--bleu);}
+.tg input:checked+.tgs::before{transform:translateX(19px);}
+
+/* ── RDV ── */
+.rdv-section{background:linear-gradient(135deg,var(--bleu),#1850E8);}
+.rdv-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.rdv-left h2{color:#fff;margin-bottom:12px;}
+.rdv-left p{color:rgba(255,255,255,.75);margin-bottom:28px;}
+.rdv-form{background:var(--blanc);border-radius:16px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.3);}
+.rf-title{font-family:var(--ff);font-size:17px;font-weight:800;margin-bottom:20px;color:var(--noir);}
+.fg{margin-bottom:14px;}
+.fl{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:var(--noir);}
+.fi{width:100%;padding:11px 13px;border:1.5px solid var(--bord2);border-radius:var(--r2);background:var(--blanc);color:var(--noir);font-size:14px;font-family:var(--fb);outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.fi:focus{border-color:var(--bleu);box-shadow:0 0 0 3px var(--bleuL);}
+.rdv-btn{width:100%;padding:14px;background:var(--bleu);color:#fff;font-family:var(--ff);font-size:15px;font-weight:800;border:none;border-radius:var(--r2);cursor:pointer;transition:background .18s;}
+.rdv-btn:hover{background:var(--bleu2);}
+.rdv-garanties{display:flex;flex-direction:column;gap:16px;}
+.rdv-gar{display:flex;align-items:flex-start;gap:12px;}
+.rdv-gar-ico{width:38px;height:38px;background:rgba(255,255,255,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.rdv-gar-title{font-family:var(--ff);font-size:14px;font-weight:800;color:#fff;margin-bottom:3px;}
+.rdv-gar-desc{font-size:12px;color:rgba(255,255,255,.65);line-height:1.5;}
+
+/* ── FOOTER ── */
+.footer{background:var(--noir);color:rgba(255,255,255,.5);padding:48px 0 32px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.footer-brand{font-family:var(--ff);font-size:19px;font-weight:900;color:#fff;margin-bottom:12px;}
+.footer-desc{font-size:13px;line-height:1.7;margin-bottom:18px;}
+.footer-legal{font-size:11px;line-height:1.8;}
+.footer-col-title{font-family:var(--ff);font-size:13px;font-weight:800;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px;}
+.footer-links{display:flex;flex-direction:column;gap:10px;}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.45);text-decoration:none;transition:color .18s;}
+.footer-links a:hover{color:rgba(255,255,255,.85);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap;gap:12px;}
+.footer-bottom-text{font-size:12px;}
+.footer-bottom-badges{display:flex;gap:10px;flex-wrap:wrap;}
+.fbadge{padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700;background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);opacity:0;background:var(--noir);color:#fff;padding:12px 22px;border-radius:100px;font-size:13px;font-weight:700;z-index:999;transition:all .3s;white-space:nowrap;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .produits-grid{grid-template-columns:repeat(2,1fr);}
+  .portes{grid-template-columns:1fr;}
+  .sim-inner,.af-inner,.rdv-inner{grid-template-columns:1fr;gap:36px;}
+  .partners-grid{grid-template-columns:1fr;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:20px;}
+  .process-grid::before{display:none;}
+  .cnil-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+  .nav-links{display:none;}
+  .nav-mobile{display:flex;}
+}
+@media(max-width:600px){
+  section{padding:52px 0;}
+  .produits-grid{grid-template-columns:1fr 1fr;}
+  .process-grid{grid-template-columns:1fr;}
+  .af-kpis{grid-template-columns:1fr 1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  h1{font-size:1.85rem;}
+  .hero-stats{gap:20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <div class="logo-icon">⚡</div>
+        PSG <span>Energy</span>
+      </a>
+      <div class="nav-links">
+        <a href="#solutions">Nos solutions</a>
+        <a href="#partenaires">Partenaires</a>
+        <a href="#afrique">Afrique</a>
+        <a href="#simulateur">Simulateur</a>
+        <a href="#contact" class="nav-cta">RDV gratuit</a>
+      </div>
+      <div class="nav-mobile" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#solutions" onclick="closeMenu()">Nos solutions</a>
+  <a href="#partenaires" onclick="closeMenu()">Partenaires installateurs</a>
+  <a href="#afrique" onclick="closeMenu()">PSG Energy Africa</a>
+  <a href="#simulateur" onclick="closeMenu()">Simulateur d'aides</a>
+  <a href="#contact" onclick="closeMenu()" class="mob-cta">Prendre RDV gratuit</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-visual">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="180" stroke="white" stroke-width="1"/>
+      <circle cx="200" cy="200" r="130" stroke="white" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="80" stroke="white" stroke-width="0.5"/>
+      <line x1="200" y1="20" x2="200" y2="380" stroke="white" stroke-width="0.5"/>
+      <line x1="20" y1="200" x2="380" y2="200" stroke="white" stroke-width="0.5"/>
+      <line x1="73" y1="73" x2="327" y2="327" stroke="white" stroke-width="0.5"/>
+      <line x1="327" y1="73" x2="73" y2="327" stroke="white" stroke-width="0.5"/>
+    </svg>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Régie Commerciale Officielle · France & Afrique</div>
+      <h1>Nous vendons l'énergie<br>propre à votre place.</h1>
+      <p class="hero-sub">PSG Energy commercialise les solutions des meilleurs installateurs RGE français. Vous cumulez jusqu'à <strong style="color:var(--orV)">€28 000 d'aides d'État</strong>. Devis gratuit, sans engagement, réponse sous 24h.</p>
+      <div class="hero-btns">
+        <a href="#simulateur" class="btn-primary">💰 Simuler mes aides gratuitement</a>
+        <a href="#contact" class="btn-secondary">📞 Être rappelé</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-num">€18M</div><div class="hstat-lbl">Aides obtenues</div></div>
+        <div class="hstat"><div class="hstat-num">847</div><div class="hstat-lbl">Projets signés</div></div>
+        <div class="hstat"><div class="hstat-num">4.9★</div><div class="hstat-lbl">Satisfaction</div></div>
+        <div class="hstat"><div class="hstat-num">0€</div><div class="hstat-lbl">Frais pour vous</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-item">✅ Partenaires RGE certifiés</div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">🔒 Données RGPD protégées</div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">🇫🇷 Équipe française</div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">⚡ Kwanthic · Le Solariste</div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">🌍 Mission 300 BAD · BPiFrance</div>
+      <div class="trust-sep">·</div>
+      <div class="trust-item">📋 SIREN en cours d'immatriculation</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEUX PORTES D'ENTRÉE -->
+<section style="padding:48px 0;">
+  <div class="container">
+    <div class="section-eyebrow">Vous êtes</div>
+    <h2>Choisissez votre espace</h2>
+    <div class="portes">
+      <a href="#simulateur" class="porte porte-b">
+        <span class="porte-ico">🏠</span>
+        <div class="porte-title">Particulier propriétaire</div>
+        <div class="porte-desc">Vous souhaitez réduire vos factures d'énergie et bénéficier des aides d'État. Simulez vos droits en 2 minutes, obtenez un devis gratuit et un RDV avec un technicien certifié.</div>
+        <div class="porte-cta">Simuler mes aides →</div>
+      </a>
+      <a href="#partenaires" class="porte porte-o">
+        <span class="porte-ico">🤝</span>
+        <div class="porte-title">Installateur RGE · Partenaire Pro</div>
+        <div class="porte-desc">Vous êtes installateur et vous voulez plus de clients signés sans gérer le commercial. PSG Energy s'occupe de la prospection, de la mise en confiance et de la signature pour vous.</div>
+        <div class="porte-cta">Devenir partenaire →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUITS -->
+<section id="solutions" style="background:var(--off);">
+  <div class="container">
+    <div class="section-eyebrow">Nos solutions</div>
+    <h2 style="margin-bottom:8px;">Les produits les plus demandés en 2026</h2>
+    <p style="margin-bottom:36px;max-width:560px;">Nous commercialisons uniquement des équipements certifiés CE, fabriqués en Europe, avec garantie fabricant et installation par des techniciens RGE.</p>
+    <div class="produits-grid">
+      <div class="prod prod-pac"><div class="prod-badge badge-top">🔥 #1 VENTES</div><span class="prod-ico">♨️</span><div class="prod-name">Pompe à chaleur Air/Eau</div><div class="prod-aide">Jusqu'à +€12 000 d'aides</div><div class="prod-desc">Chauffage principal · Économies -65% · PAC haute performance</div><div class="prod-bar"><div class="prod-fill" style="width:95%"></div></div><div class="prod-demand"><span>Demande marché</span><span style="color:var(--bleu);font-weight:700;">95%</span></div></div>
+      <div class="prod prod-reno"><div class="prod-badge badge-top">💰 MAX AIDES</div><span class="prod-ico">🏡</span><div class="prod-name">Rénovation Globale</div><div class="prod-aide">Jusqu'à +€28 000 d'aides</div><div class="prod-desc">PAC + Isolation + VMC · Bonus +10% · Finançable à 100%</div><div class="prod-bar"><div class="prod-fill" style="width:88%;background:var(--vert)"></div></div><div class="prod-demand"><span>Demande marché</span><span style="color:var(--vert);font-weight:700;">88%</span></div></div>
+      <div class="prod prod-pv"><span class="prod-ico">☀️</span><div class="prod-name">Panneaux Photovoltaïques</div><div class="prod-aide">Prime EDF OA + TVA 5.5%</div><div class="prod-desc">Autoconsommation · ROI 7 ans · -80% facture électricité</div><div class="prod-bar"><div class="prod-fill" style="width:82%;background:var(--orV)"></div></div><div class="prod-demand"><span>Demande marché</span><span style="color:var(--or);font-weight:700;">82%</span></div></div>
+      <div class="prod prod-iso"><span class="prod-ico">🧱</span><div class="prod-name">Isolation Thermique</div><div class="prod-aide">Jusqu'à +€9 000 d'aides</div><div class="prod-desc">Combles perdus · Murs · Planchers · Isolant biosourcé</div><div class="prod-bar"><div class="prod-fill" style="width:75%;background:#7C3AED"></div></div><div class="prod-demand"><span>Demande marché</span><span style="color:#7C3AED;font-weight:700;">75%</span></div></div>
+      <div class="prod prod-cet"><span class="prod-ico">💧</span><div class="prod-name">Chauffe-eau Thermodynamique</div><div class="prod-aide">Jusqu'à +€2 000 d'aides</div><div class="prod-desc">ECS · -70% consommation eau chaude · Fab. française</div><div class="prod-bar"><div class="prod-fill" style="width:64%;background:#0098C8"></div></div><div class="prod-demand"><span>Demande marché</span><span style="color:#0098C8;font-weight:700;">64%</span></div></div>
+      <div class="prod prod-ve"><div class="prod-badge badge-new">✨ NOUVEAU</div><span class="prod-ico">🔌</span><div class="prod-name">Borne de Recharge VE</div><div class="prod-aide">Crédit ADVENIR · Crédit impôt 75%</div><div class="prod-desc">Chargeur 7kW intelligent · Installation certifiée IRVE</div><div class="prod-bar"><div class="prod-fill" style="width:52%;background:var(--vert)"></div></div><div class="prod-demand"><span>Demande marché</span><span style="color:var(--vert);font-weight:700;">52%</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATEUR -->
+<section id="simulateur" class="sim-section">
+  <div class="container">
+    <div class="sim-inner">
+      <div class="sim-left">
+        <div class="section-eyebrow" style="color:var(--orV);">Simulateur officiel 2026</div>
+        <h2 style="color:#fff;margin-bottom:14px;">Calculez vos aides<br>en 2 minutes</h2>
+        <p style="color:rgba(255,255,255,.7);margin-bottom:28px;">Données officielles ANAH · ADEME · CEE. 100% gratuit, sans engagement et confidentiel.</p>
+        <div class="sim-features">
+          <div class="sim-feat"><div class="sim-feat-ico">💙</div><div><div class="sim-feat-title">MaPrimeRénov</div><div class="sim-feat-text">Jusqu'à €20 000 selon votre tranche fiscale (ANAH 2026)</div></div></div>
+          <div class="sim-feat"><div class="sim-feat-ico">🟡</div><div><div class="sim-feat-title">Certificats CEE</div><div class="sim-feat-text">Primes énergie des obligés — cumulables avec MPR</div></div></div>
+          <div class="sim-feat"><div class="sim-feat-ico">🟢</div><div><div class="sim-feat-title">Éco-PTZ</div><div class="sim-feat-text">Prêt à 0% jusqu'à 50 000€ pour financer le reste à charge</div></div></div>
+          <div class="sim-feat"><div class="sim-feat-ico">🔵</div><div><div class="sim-feat-title">TVA 5.5%</div><div class="sim-feat-text">Au lieu de 20% — économie directe sur votre devis</div></div></div>
+        </div>
+      </div>
+      <div class="sim-widget">
+        <!-- Step indicators -->
+        <div class="sim-step-row" id="stepRow">
+          <div class="ss"><div class="ssc act" id="sc1">1</div><div class="ssl act" id="sl1">Logement</div></div>
+          <div class="ssline" id="sln1"></div>
+          <div class="ss"><div class="ssc" id="sc2">2</div><div class="ssl" id="sl2">Revenus</div></div>
+          <div class="ssline" id="sln2"></div>
+          <div class="ss"><div class="ssc" id="sc3">3</div><div class="ssl" id="sl3">Projet</div></div>
+          <div class="ssline" id="sln3"></div>
+          <div class="ss"><div class="ssc" id="sc4">4</div><div class="ssl" id="sl4">Résultat</div></div>
+        </div>
+
+        <!-- STEP 1 -->
+        <div id="ws1">
+          <div class="sim-q"><div class="sim-qlabel">Vous êtes</div><div class="sim-choices"><button class="sc on" onclick="pick(this,'statut','proprio')">🏡 Propriétaire</button><button class="sc" onclick="pick(this,'statut','bailleur')">🏢 Bailleur</button></div></div>
+          <div class="sim-q"><div class="sim-qlabel">Type de logement</div><div class="sim-choices"><button class="sc on" onclick="pick(this,'type','maison')">🏠 Maison</button><button class="sc" onclick="pick(this,'type','appart')">🏬 Appartement</button></div></div>
+          <div class="sim-q"><div class="sim-qlabel">Année de construction</div><div class="sim-choices"><button class="sc" onclick="pick(this,'annee','pre48')">Avant 1948</button><button class="sc on" onclick="pick(this,'annee','48-74')">1948–1974</button><button class="sc" onclick="pick(this,'annee','75-89')">1975–1989</button><button class="sc" onclick="pick(this,'annee','post90')">Après 1990</button></div></div>
+          <button class="sim-btn" onclick="ns(2)">Continuer →</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div id="ws2" style="display:none">
+          <button class="sim-retour" onclick="ns(1)">← Retour</button>
+          <div class="sim-q"><div class="sim-qlabel">Revenu fiscal de référence (case 1BJ)</div><div class="sim-choices"><button class="sc" onclick="pickT(this,1)">🟢 &lt; 20 593 €</button><button class="sc on" onclick="pickT(this,2)">🔵 &lt; 30 310 €</button><button class="sc" onclick="pickT(this,3)">🟡 &lt; 45 537 €</button><button class="sc" onclick="pickT(this,4)">⚪ &gt; 45 537 €</button></div></div>
+          <div class="sim-q"><div class="sim-qlabel">Composition du foyer</div><div class="sim-choices"><button class="sc on" onclick="pick(this,'foyer',1)">👤 1 pers.</button><button class="sc" onclick="pick(this,'foyer',2)">👫 2 pers.</button><button class="sc" onclick="pick(this,'foyer',3)">👨‍👩‍👦 3-4 pers.</button><button class="sc" onclick="pick(this,'foyer',5)">👨‍👩‍👧‍👦 5+</button></div></div>
+          <button class="sim-btn" onclick="ns(3)">Continuer →</button>
+        </div>
+
+        <!-- STEP 3 -->
+        <div id="ws3" style="display:none">
+          <button class="sim-retour" onclick="ns(2)">← Retour</button>
+          <div class="sim-q"><div class="sim-qlabel">Votre projet</div>
+            <div style="display:flex;flex-direction:column;gap:6px;" id="projList">
+              <button class="sc on" style="text-align:left;padding:9px 12px;display:flex;justify-content:space-between;" onclick="sp(this,'pac',14000)"><span>♨️ PAC Air/Eau</span><span style="color:var(--vert);font-weight:800;">+€12k</span></button>
+              <button class="sc" style="text-align:left;padding:9px 12px;display:flex;justify-content:space-between;" onclick="sp(this,'reno',35000)"><span>🏡 Rénovation Globale</span><span style="color:var(--vert);font-weight:800;">+€28k</span></button>
+              <button class="sc" style="text-align:left;padding:9px 12px;display:flex;justify-content:space-between;" onclick="sp(this,'pv',22000)"><span>☀️ Panneaux PV</span><span style="color:var(--vert);font-weight:800;">+€7k</span></button>
+              <button class="sc" style="text-align:left;padding:9px 12px;display:flex;justify-content:space-between;" onclick="sp(this,'iso',8000)"><span>🧱 Isolation</span><span style="color:var(--vert);font-weight:800;">+€9k</span></button>
+              <button class="sc" style="text-align:left;padding:9px 12px;display:flex;justify-content:space-between;" onclick="sp(this,'cet',3200)"><span>💧 Chauffe-eau Thermo.</span><span style="color:var(--vert);font-weight:800;">+€2k</span></button>
+              <button class="sc" style="text-align:left;padding:9px 12px;display:flex;justify-content:space-between;" onclick="sp(this,'ve',4500)"><span>🔌 Borne VE</span><span style="color:var(--vert);font-weight:800;">+€960</span></button>
+            </div>
+          </div>
+          <button class="sim-btn" onclick="calcAides()">Calculer mes aides →</button>
+        </div>
+
+        <!-- STEP 4 -->
+        <div id="ws4" style="display:none">
+          <button class="sim-retour" onclick="ns(3)">← Modifier</button>
+          <div class="sim-result" id="simResult">
+            <div class="sr-amount" id="srAmount">€0</div>
+            <div class="sr-lbl">d'aides estimées sur votre projet</div>
+          </div>
+          <div class="sr-rows" id="srRows"></div>
+          <button class="sim-btn" style="background:var(--vert);margin-bottom:8px;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">📅 Prendre RDV pour finaliser mon dossier</button>
+          <button class="sim-btn" style="background:var(--off);color:var(--noir);border:1px solid var(--bord);" onclick="toast('✅ Simulation sauvegardée')">💾 Sauvegarder ma simulation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTENAIRES -->
+<section id="partenaires" class="partners-section">
+  <div class="container">
+    <div class="partners-header">
+      <div class="section-eyebrow">Partenaires installateurs</div>
+      <h2>Triés sur le volet.<br>Certifiés RGE. Garantis.</h2>
+      <p style="max-width:560px;margin:12px auto 0;">PSG Energy ne signe que des contrats avec des installateurs que nous connaissons, audités et certifiés. Chaque partenaire est sélectionné sur ses délais, sa qualité et ses certifications.</p>
+    </div>
+    <div class="partners-grid">
+      <div class="pcard">
+        <div class="pcard-head"><div class="pcard-logo" style="background:#EBF0FF;">⚡</div><div><div class="pcard-name">KWANTHIC</div><div class="pcard-cat">PAC · CET · PV · Bornes VE · Isolation · Climatisation</div></div><div class="pcard-badge badge-pri">⭐ PRIORITAIRE</div></div>
+        <div class="pcard-body">
+          <div class="margin-engine"><div class="me-title">Modèle commercial PSG Energy</div><div class="me-flow"><div class="me-box"><div class="me-lbl">Prix partenaire</div><div class="me-val">10 000 €</div></div><div class="me-arr">→</div><div class="me-box highlight"><div class="me-lbl">Prix client PSG</div><div class="me-val">14 000 €</div></div></div><div class="me-gain">✓ Marge PSG : +4 000 € / contrat (28.5%)</div></div>
+          <div class="tags"><span class="tag">♨️ PAC Air/Eau</span><span class="tag">❄️ PAC Air/Air</span><span class="tag">💧 CET</span><span class="tag">☀️ PV</span><span class="tag">🔌 Borne VE</span><span class="tag">🧱 Isolation</span></div>
+          <div class="pstats"><div class="ps"><div class="ps-val" style="color:var(--vert);">23</div><div class="ps-lbl">Contrats</div></div><div class="ps"><div class="ps-val" style="color:var(--bleu);">€92k</div><div class="ps-lbl">CA Géré</div></div><div class="ps"><div class="ps-val" style="color:var(--or);">18j</div><div class="ps-lbl">Délai pose</div></div></div>
+          <div class="rge-badge">✓ RGE QualiPAC · QualiSOL · Qualibat · Fabrication française · Garantie 5 ans</div>
+        </div>
+      </div>
+      <div class="pcard">
+        <div class="pcard-head"><div class="pcard-logo" style="background:#FFF5E0;">☀️</div><div><div class="pcard-name">LE SOLARISTE</div><div class="pcard-cat">Panneaux PV · Batteries · Autoconsommation</div></div><div class="pcard-badge badge-act">● ACTIF</div></div>
+        <div class="pcard-body">
+          <div class="margin-engine"><div class="me-title">Modèle commercial PSG Energy</div><div class="me-flow"><div class="me-box"><div class="me-lbl">Prix partenaire</div><div class="me-val">16 000 €</div></div><div class="me-arr">→</div><div class="me-box highlight" style="background:var(--orL);"><div class="me-lbl">Prix client PSG</div><div class="me-val" style="color:var(--or);">22 000 €</div></div></div><div class="me-gain">✓ Marge PSG : +6 000 € / contrat (37.5%)</div></div>
+          <div class="tags"><span class="tag">☀️ PV 3–12 kWc</span><span class="tag">🔋 Batterie 10 kWh</span><span class="tag">⚡ Raccord. Enedis</span><span class="tag">📊 Monitoring</span></div>
+          <div class="pstats"><div class="ps"><div class="ps-val" style="color:var(--vert);">17</div><div class="ps-lbl">Contrats</div></div><div class="ps"><div class="ps-val" style="color:var(--bleu);">€63k</div><div class="ps-lbl">CA Géré</div></div><div class="ps"><div class="ps-val" style="color:var(--or);">26j</div><div class="ps-lbl">Délai pose</div></div></div>
+          <div class="rge-badge">✓ RGE QualiSOL · Qualifelec · Garantie performance 25 ans · Premium européen</div>
+        </div>
+      </div>
+    </div>
+    <div class="psp-promise">
+      <div class="psp-title">Ce que PSG Energy fait pour vous, en votre nom</div>
+      <div class="psp-list">
+        <div class="psp-item">Publicité Facebook & Google sous votre marque</div>
+        <div class="psp-item">Simulation d'aides envoyée au prospect avant RDV</div>
+        <div class="psp-item">Qualification téléphonique et prise de RDV</div>
+        <div class="psp-item">Signature du bon de commande avant votre visite</div>
+        <div class="psp-item">Constitution dossier MaPrimeRénov incluse</div>
+        <div class="psp-item">Suivi client post-installation assuré</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSUS -->
+<section class="process-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-eyebrow">Comment ça marche</div>
+      <h2>De la simulation à l'installation<br>en 5 étapes simples</h2>
+    </div>
+    <div class="process-grid">
+      <div class="proc"><div class="proc-num">1</div><div class="proc-title">Simulation gratuite</div><div class="proc-desc">Calculez vos aides en 2 min via notre simulateur officiel ANAH 2026</div></div>
+      <div class="proc"><div class="proc-num">2</div><div class="proc-title">RDV technique</div><div class="proc-desc">Un technicien RGE vient chez vous gratuitement pour l'audit</div></div>
+      <div class="proc"><div class="proc-num">3</div><div class="proc-title">Devis personnalisé</div><div class="proc-desc">Reste à charge exact calculé après déduction de toutes les aides</div></div>
+      <div class="proc"><div class="proc-num">4</div><div class="proc-title">Signature sécurisée</div><div class="proc-desc">Contrat électronique eIDAS · Droit de rétractation 14j garanti</div></div>
+      <div class="proc"><div class="proc-num">5</div><div class="proc-title">Installation & Dossier</div><div class="proc-desc">PSG Energy monte votre dossier MaPrimeRénov et suit les travaux</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AFRIQUE -->
+<section id="afrique" class="afrique-section">
+  <div class="container">
+    <div class="af-inner">
+      <div class="af-left">
+        <div class="af-badge">🌍 PSG Energy Africa — Nouveau</div>
+        <h2 style="color:#fff;margin-bottom:14px;">L'énergie propre<br><em style="color:var(--orV);font-style:normal;">pour l'Afrique Centrale</em></h2>
+        <p style="color:rgba(255,255,255,.65);margin-bottom:28px;">PSG Energy est le pont commercial entre les fabricants d'équipements solaires français certifiés CE et les marchés d'Afrique Centrale. Partenaire officiel des programmes Mission 300 et du Pacte National Énergétique du Congo.</p>
+        <div class="af-kpis">
+          <div class="af-kpi"><div class="af-kpi-num">€238Md</div><div class="af-kpi-lbl">Financement Mission 300</div></div>
+          <div class="af-kpi"><div class="af-kpi-num">300M</div><div class="af-kpi-lbl">Africains à électrifier d'ici 2030</div></div>
+          <div class="af-kpi"><div class="af-kpi-num">81%</div><div class="af-kpi-lbl">Objectif accès électricité Congo 2030</div></div>
+          <div class="af-kpi"><div class="af-kpi-num">17</div><div class="af-kpi-lbl">Pays CEMAC couverts</div></div>
+        </div>
+        <div class="af-refs">
+          <div class="af-ref"><div class="af-ref-ico">📋</div><span>Aligné Pacte National Énergétique Congo (PNE) — Banque Mondiale 2025</span></div>
+          <div class="af-ref"><div class="af-ref-ico">🏦</div><span>Financement BAD/SEFA · BPiFrance Export · Proparco · AFD</span></div>
+          <div class="af-ref"><div class="af-ref-ico">🌿</div><span>Fonds Bleu Bassin du Congo — 3,554 Md USD mobilisés mai 2026</span></div>
+        </div>
+      </div>
+      <div class="af-right">
+        <div class="af-card">
+          <div class="af-card-head"><div class="af-card-ico">☀️</div><div><div class="af-card-title">Congo Solaire Public</div><div class="af-card-sub">Phase 1 · 2026-2027</div></div></div>
+          <div class="af-card-body">Installation PV sur 30 bâtiments publics prioritaires (cliniques, écoles, mairies). Économies 60-80% sur les factures. Équipements Kwanthic certifiés CE.</div>
+          <div class="af-card-amount">900 000 €</div>
+        </div>
+        <div class="af-card">
+          <div class="af-card-head"><div class="af-card-ico">🏘️</div><div><div class="af-card-title">Congo Village Solaire</div><div class="af-card-sub">PEZor · 257 mini-centrales</div></div></div>
+          <div class="af-card-body">Kits solaires autonomes hors réseau pour 5 villages pilotes. 500 kits Phase 1. Programme d'électrification rurale PNUD · 373 M USD.</div>
+          <div class="af-card-amount">350 000 €</div>
+        </div>
+        <div class="af-card">
+          <div class="af-card-head"><div class="af-card-ico">🎓</div><div><div class="af-card-title">PSG Academy Congo</div><div class="af-card-sub">Formation techniciens locaux</div></div></div>
+          <div class="af-card-body">Formation de 30 techniciens congolais à l'installation PV. Partenariat École Polytechnique de Brazzaville. 30 emplois directs créés.</div>
+          <div class="af-card-amount">150 000 €</div>
+        </div>
+        <a href="#contact" class="btn-primary" style="justify-content:center;margin-top:4px;">Nous contacter pour un projet Afrique →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CNIL / RGPD -->
+<section class="cnil-section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:36px;">
+      <div class="section-eyebrow">Conformité & Protection</div>
+      <h2>Vos données protégées.<br>Notre engagement légal.</h2>
+    </div>
+    <div class="cnil-grid">
+      <div class="cnil-card">
+        <div class="cnil-title">🔒 Conformité CNIL & RGPD</div>
+        <div class="cnil-rows">
+          <div class="cnil-row"><div class="cnil-ico">🛡️</div><div class="cnil-txt">Données collectées <strong>uniquement avec votre consentement explicite</strong>, jamais revendues à des tiers commerciaux</div></div>
+          <div class="cnil-row"><div class="cnil-ico">🗑️</div><div class="cnil-txt">Droit à l'effacement garanti sous 72h — <strong>dpo@psg-energy.fr</strong></div></div>
+          <div class="cnil-row"><div class="cnil-ico">🇫🇷</div><div class="cnil-txt">Hébergement exclusivement en France · Données chiffrées en transit et au repos</div></div>
+          <div class="cnil-row"><div class="cnil-ico">📋</div><div class="cnil-txt">Déclaration CNIL en cours · Registre des traitements tenu à jour</div></div>
+          <div class="cnil-row"><div class="cnil-ico">⚖️</div><div class="cnil-txt">Conformité Loi n°78-17 du 6 janvier 1978 modifiée · Règlement UE 2016/679</div></div>
+        </div>
+      </div>
+      <div class="rgpd-toggles">
+        <div class="rgt-title">Vos préférences de confidentialité</div>
+        <div class="togrow"><div><div class="toglbl">Fonctionnement du simulateur</div><div class="togsub">Indispensable au calcul de vos aides</div></div><label class="tg"><input type="checkbox" checked disabled><div class="tgs"></div></label></div>
+        <div class="togrow"><div><div class="toglbl">Contact par un conseiller PSG</div><div class="togsub">Rappel gratuit pour votre accompagnement</div></div><label class="tg"><input type="checkbox" checked id="conC"><div class="tgs"></div></label></div>
+        <div class="togrow"><div><div class="toglbl">Informations & actualités</div><div class="togsub">Nouvelles aides, évolutions réglementation</div></div><label class="tg"><input type="checkbox"><div class="tgs"></div></label></div>
+        <div class="togrow"><div><div class="toglbl">Analyse d'audience anonymisée</div><div class="togsub">Améliorer nos services (aucune donnée personnelle)</div></div><label class="tg"><input type="checkbox"><div class="tgs"></div></label></div>
+        <div style="margin-top:14px;padding:10px 12px;background:var(--off);border-radius:var(--r2);font-size:11px;color:var(--gris3);line-height:1.6;">En cliquant sur "Confirmer mon RDV", vous acceptez nos <a href="#" style="color:var(--bleu);">CGV</a> et notre <a href="#" style="color:var(--bleu);">Politique de confidentialité</a>. Droit de rétractation légal 14 jours garanti (Art. L221-18 Code Consommation).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RDV / CONTACT -->
+<section id="contact" class="rdv-section">
+  <div class="container">
+    <div class="rdv-inner">
+      <div class="rdv-left">
+        <div class="section-eyebrow" style="color:var(--orV);">Rendez-vous gratuit</div>
+        <h2 style="color:#fff;margin-bottom:12px;">Votre projet mérite<br>une attention personnelle.</h2>
+        <p style="color:rgba(255,255,255,.7);margin-bottom:32px;">Un expert PSG Energy vous rappelle sous 24h pour analyser votre situation, calculer vos aides exactes et vous orienter vers le meilleur installateur de votre département.</p>
+        <div class="rdv-garanties">
+          <div class="rdv-gar"><div class="rdv-gar-ico">🎁</div><div><div class="rdv-gar-title">Devis 100% gratuit</div><div class="rdv-gar-desc">Aucun frais à aucune étape. PSG Energy est rémunéré par les partenaires installateurs, jamais par vous.</div></div></div>
+          <div class="rdv-gar"><div class="rdv-gar-ico">⏰</div><div><div class="rdv-gar-title">Sans engagement</div><div class="rdv-gar-desc">Droit de rétractation 14 jours garanti par la loi. Vous signez uniquement si vous êtes 100% satisfait.</div></div></div>
+          <div class="rdv-gar"><div class="rdv-gar-ico">🏅</div><div><div class="rdv-gar-title">Installateurs RGE sélectionnés</div><div class="rdv-gar-desc">Nous ne travaillons qu'avec des installateurs audités, certifiés et notés 4.8+ par nos clients.</div></div></div>
+        </div>
+      </div>
+      <div class="rdv-form">
+        <div class="rf-title">📅 Demande de rappel gratuit</div>
+        <div class="fg"><label class="fl">Prénom & Nom</label><input class="fi" type="text" placeholder="Jean Dupont" id="fNom"></div>
+        <div class="fg"><label class="fl">Téléphone</label><input class="fi" type="tel" placeholder="06 XX XX XX XX" id="fTel"></div>
+        <div class="fg"><label class="fl">Code postal</label><input class="fi" type="tel" placeholder="77340" maxlength="5" id="fCp"></div>
+        <div class="fg"><label class="fl">Votre projet</label>
+          <select class="fi" id="fProjet">
+            <option>♨️ Pompe à chaleur Air/Eau</option>
+            <option>🏡 Rénovation Globale</option>
+            <option>☀️ Panneaux Photovoltaïques</option>
+            <option>🧱 Isolation Thermique</option>
+            <option>💧 Chauffe-eau Thermodynamique</option>
+            <option>🔌 Borne Recharge VE</option>
+            <option>🌍 Projet Afrique / International</option>
+          </select>
+        </div>
+        <div style="font-size:11px;color:var(--gris3);margin-bottom:12px;line-height:1.6;">En soumettant ce formulaire, vous acceptez d'être contacté par PSG Energy. Données conformes RGPD. Non revendues. Droit de rétractation 14j.</div>
+        <button class="rdv-btn" onclick="submitForm()">✅ Être rappelé sous 24h gratuitement</button>
+        <div style="text-align:center;font-size:11px;color:var(--gris3);margin-top:10px;">🔒 Données sécurisées · Hébergement France · Conforme CNIL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">⚡ PSG Energy</div>
+        <div class="footer-desc">Régie commerciale spécialisée en énergies renouvelables. Partenaire officiel Mission 300 BAD / Banque Mondiale. Équipements français certifiés CE. France & Afrique Centrale.</div>
+        <div class="footer-legal">
+          <strong style="color:rgba(255,255,255,.6);">PROVIDER SERVICES GROUPE</strong><br>
+          SAS au capital de 100 €<br>
+          56 Rue des Berchères — 77340 Pontault-Combault<br>
+          Immatriculation RCS en cours · Dossier Jurisociété N°1727182<br>
+          <a href="mailto:contact@psg-energy.fr" style="color:rgba(255,255,255,.5);text-decoration:none;">contact@psg-energy.fr</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Solutions</div>
+        <div class="footer-links">
+          <a href="#solutions">PAC Air/Eau</a>
+          <a href="#solutions">Panneaux PV</a>
+          <a href="#solutions">Isolation Thermique</a>
+          <a href="#solutions">Chauffe-eau Thermo.</a>
+          <a href="#solutions">Borne VE</a>
+          <a href="#solutions">Rénovation Globale</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Entreprise</div>
+        <div class="footer-links">
+          <a href="#top">À propos de PSG Energy</a>
+          <a href="#partenaires">Nos partenaires</a>
+          <a href="#afrique">PSG Energy Africa</a>
+          <a href="#simulateur">Simulateur d'aides</a>
+          <a href="#contact">Contact & RDV</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Légal</div>
+        <div class="footer-links">
+          <a href="#">Mentions légales</a>
+          <a href="#">CGV & Conditions</a>
+          <a href="#">Politique RGPD</a>
+          <a href="#">Cookies</a>
+          <a href="mailto:dpo@psg-energy.fr">DPO : dpo@psg-energy.fr</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-text">© 2026 Provider Services Groupe / PSG Energy — Tous droits réservés</div>
+      <div class="footer-bottom-badges">
+        <div class="fbadge">🏅 RGE Partenaires</div>
+        <div class="fbadge">🔒 RGPD Conforme</div>
+        <div class="fbadge">🌍 Mission 300 BAD</div>
+        <div class="fbadge">🇫🇷 Made in France</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── DATA ── */
+const D={statut:'proprio',type:'maison',annee:'48-74',tranche:2,tl:'Modeste',foyer:1,proj:'pac',cost:14000};
+const AC={
+  pac:{l:'PAC Air/Eau',b:[{m:12000,c:3500},{m:7000,c:2200},{m:4000,c:1600},{m:1500,c:800}],tva:true,ptz:50000},
+  reno:{l:'Rénovation Globale',b:[{m:20000,c:5000},{m:15000,c:3500},{m:10000,c:2000},{m:5000,c:1000}],tva:true,ptz:50000,bon:.10},
+  pv:{l:'Panneaux PV',b:[{m:0,c:0},{m:0,c:0},{m:0,c:0},{m:0,c:0}],tva:true,ptz:0,prime:1530},
+  iso:{l:'Isolation Thermique',b:[{m:7000,c:2500},{m:5000,c:1800},{m:3000,c:1200},{m:1500,c:600}],tva:true,ptz:50000},
+  cet:{l:'Chauffe-eau Thermo.',b:[{m:1200,c:400},{m:800,c:300},{m:400,c:200},{m:0,c:100}],tva:true,ptz:0},
+  ve:{l:'Borne Recharge VE',b:[{m:0,c:0},{m:0,c:0},{m:0,c:0},{m:0,c:0}],tva:true,ptz:0,adv:960}
+};
+
+/* ── NAV MOBILE ── */
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+/* ── FORM HELPERS ── */
+function pick(btn,k,v){if(k)D[k]=v;const g=btn.closest('.sim-choices')||btn.closest('[style*="flex-direction:column"]');if(g)g.querySelectorAll('.sc').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+function pickT(btn,n){D.tranche=n;const lbls=['','Très modeste','Modeste','Interméd.','Supérieur'];D.tl=lbls[n];pick(btn,'tr',n);}
+function sp(btn,k,c){D.proj=k;D.cost=c;document.getElementById('projList').querySelectorAll('.sc').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
+
+/* ── STEPS ── */
+function ns(n){
+  for(let i=1;i<=4;i++){const el=document.getElementById('ws'+i);if(el)el.style.display=i===n?'block':'none';}
+  for(let i=1;i<=4;i++){
+    const c=document.getElementById('sc'+i),l=document.getElementById('sl'+i),ln=document.getElementById('sln'+i);
+    if(!c)continue;
+    c.className='ssc';l.className='ssl';
+    if(i<n){c.classList.add('done');c.textContent='✓';l.classList.add('done');}
+    else if(i===n){c.classList.add('act');c.textContent=i;l.classList.add('act');}
+    else c.textContent=i;
+    if(ln&&i<n)ln.classList.add('done');else if(ln)ln.classList.remove('done');
+  }
+}
+
+/* ── CALC ── */
+function calcAides(){
+  const cfg=AC[D.proj]||AC.pac;const b=cfg.b[D.tranche-1];
+  const tv=cfg.tva?Math.round(D.cost*.055/1.055):0;
+  let rows=[],total=0;
+  if(b.m>0){rows.push({l:'MaPrimeRénov 2026 — Tranche '+D.tl,v:b.m,cl:'var(--vert)'});total+=b.m;}
+  if(b.c>0){rows.push({l:'Certificats d\'Économie d\'Énergie (CEE)',v:b.c,cl:'var(--bleu)'});total+=b.c;}
+  if(tv>0){rows.push({l:'Économie TVA 5.5% (au lieu de 20%)',v:tv,cl:'var(--bleu)'});total+=tv;}
+  if(cfg.ptz>0)rows.push({l:'Éco-PTZ — Prêt sans intérêt jusqu\'à 50 000€',v:0,note:'Financement 0%',cl:'var(--vert)'});
+  if(cfg.prime>0){rows.push({l:'Prime Autoconsommation EDF OA',v:cfg.prime,cl:'var(--vert)'});total+=cfg.prime;}
+  if(cfg.adv>0){rows.push({l:'Crédit ADVENIR',v:cfg.adv,cl:'var(--vert)'});total+=cfg.adv;}
+  if(cfg.bon){const bo=Math.round(b.m*cfg.bon);rows.push({l:'Bonus Rénovation Globale +10%',v:bo,cl:'var(--vert)'});total+=bo;}
+  const rac=Math.max(0,D.cost-total);
+  const res=document.getElementById('simResult');res.style.display='block';
+  document.getElementById('srAmount').textContent='€'+total.toLocaleString('fr-FR');
+  const rr=document.getElementById('srRows');rr.style.display='block';rr.innerHTML='';
+  rows.forEach(r=>{rr.innerHTML+=`<div class="sr-row"><div class="sr-row-lbl">${r.l}</div><div class="sr-row-val" style="color:${r.cl}">${r.note||'+ €'+r.v.toLocaleString('fr-FR')}</div></div>`;});
+  rr.innerHTML+=`<div class="sr-row" style="border-top:2px solid var(--bord2);font-weight:700;"><div style="color:var(--noir)">Reste à charge</div><div style="color:var(--rouge);font-family:var(--ff);font-size:16px;">€${rac.toLocaleString('fr-FR')}</div></div>`;
+  ns(4);
+}
+
+/* ── FORM SUBMIT ── */
+function submitForm(){
+  const n=document.getElementById('fNom').value;
+  const t=document.getElementById('fTel').value;
+  if(!n||!t){toast('⚠️ Merci de renseigner votre nom et téléphone');return;}
+  document.getElementById('fNom').value='';
+  document.getElementById('fTel').value='';
+  document.getElementById('fCp').value='';
+  toast('✅ Demande reçue ! Nous vous rappelons sous 24h au '+t+' 🎉');
+}
+
+/* ── TOAST ── */
+let _tt;
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),3500);}
+
+/* ── PROD BAR ANIMATION ── */
+window.addEventListener('load',()=>{
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.prod-fill').forEach(bar=>{bar.style.width=bar.style.width;});}});},{threshold:0.2});
+  const ps=document.querySelector('.produits-grid');
+  if(ps)obs.observe(ps);
+});
+</script>
+</body>
+</html>
