@@ -75,10 +75,10 @@ Tous les fichiers partagent les mêmes tokens (copiés manuellement) :
 3. **Si des cookies sont introduits** (ex. : analytics, A/B test), un bandeau de consentement conforme CNIL 2022 est obligatoire avant tout dépôt — les cookies analytiques ne sont pas exemptés sans anonymisation stricte.
 4. **Sous-traitants** : tout nouveau prestataire traitant des données personnelles doit être ajouté à la section 4 de `politique-confidentialite.html` avec base légale et localisation des serveurs.
 5. **Durées de conservation** : ne pas collecter de données sans durée définie dans `politique-confidentialite.html`.
-6. **Email DPO** `dpo@psg-energy.fr` doit être opérationnel avant la mise en production (délai de réponse légal : 1 mois, RGPD art. 12).
+6. **Email DPO** `dpo@psglobal.energy` doit être opérationnel avant la mise en production (délai de réponse légal : 1 mois, RGPD art. 12).
 
 ### Points légaux encore en attente
 - SIREN non encore disponible (immatriculation Jurisociété N°1727182) — mentionné dans `mentions-legales.html` et footer
-- Emails `contact@psg-energy.fr` et `dpo@psg-energy.fr` à créer sur OVH **avant mise en ligne**
+- Email `dpo@psglobal.energy` à créer dans Zoho Mail (domaine psglobal.energy déjà configuré sur OVH) **avant mise en ligne**
 - Connexion Zoho CRM dans Make.com (OAuth, UI Make.com) — leads non encore transmis au CRM
 - Tester le formulaire en production et vérifier réception dans Zoho CRM
