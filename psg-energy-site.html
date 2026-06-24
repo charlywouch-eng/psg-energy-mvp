@@ -832,14 +832,37 @@ function calcAides(){
 }
 
 /* ── FORM SUBMIT ── */
-function submitForm(){
-  const n=document.getElementById('fNom').value;
-  const t=document.getElementById('fTel').value;
-  if(!n||!t){toast('⚠️ Merci de renseigner votre nom et téléphone');return;}
-  document.getElementById('fNom').value='';
-  document.getElementById('fTel').value='';
-  document.getElementById('fCp').value='';
-  toast('✅ Demande reçue ! Nous vous rappelons sous 24h au '+t+' 🎉');
+// Brancher ici votre webhook Make.com / Zoho CRM quand disponible
+const LEAD_WEBHOOK = '';  // ex: 'https://hook.eu1.make.com/xxxx'
+
+async function submitForm(){
+  const nom=document.getElementById('fNom').value.trim();
+  const tel=document.getElementById('fTel').value.trim();
+  const cp=document.getElementById('fCp').value.trim();
+  const projet=document.getElementById('fProjet').value;
+  if(!nom||!tel){toast('⚠️ Merci de renseigner votre nom et téléphone');return;}
+
+  const btn=document.querySelector('.rdv-btn');
+  btn.disabled=true;btn.textContent='Envoi en cours…';
+
+  const payload={nom,tel,cp,projet,date:new Date().toISOString(),source:'psg-energy.fr'};
+
+  try{
+    if(LEAD_WEBHOOK){
+      await fetch(LEAD_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    } else {
+      // Fallback email tant que le webhook n'est pas configuré
+      window.open(`mailto:contact@psglobal.energy?subject=Nouveau lead PSG Energy — ${encodeURIComponent(nom)}&body=Nom: ${encodeURIComponent(nom)}%0ATél: ${encodeURIComponent(tel)}%0ACode postal: ${encodeURIComponent(cp)}%0AProjet: ${encodeURIComponent(projet)}%0ADate: ${new Date().toLocaleString('fr-FR')}`,'_blank');
+    }
+    document.getElementById('fNom').value='';
+    document.getElementById('fTel').value='';
+    document.getElementById('fCp').value='';
+    toast('✅ Demande reçue ! Nous vous rappelons sous 24h au '+tel+' 🎉');
+  } catch(e){
+    toast('⚠️ Erreur réseau — appelez-nous au 06 XX XX XX XX');
+  } finally{
+    btn.disabled=false;btn.textContent='✅ Être rappelé sous 24h gratuitement';
+  }
 }
 
 /* ── TOAST ── */

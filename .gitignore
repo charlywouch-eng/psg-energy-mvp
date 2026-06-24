@@ -1,0 +1,25 @@
+# ════════════════════════════════════════════
+# PSG ENERGY — .gitignore
+# ════════════════════════════════════════════
+
+# FICHIERS INTERNES — NE JAMAIS COMMITTER
+psg-dashboard-admin.html
+memory/
+*.env
+.env*
+*.local
+
+# Données sensibles
+leads.json
+pipeline.json
+secrets.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
