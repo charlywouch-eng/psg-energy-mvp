@@ -548,23 +548,45 @@ section{padding:72px 0;}
 <section id="partenaires" class="partners-section">
   <div class="container">
     <div class="partners-header">
-      <div class="section-eyebrow">Partenaires installateurs</div>
-      <h2>Triés sur le volet.<br>Certifiés RGE. Garantis.</h2>
-      <p style="max-width:560px;margin:12px auto 0;">PSG Energy ne signe que des contrats avec des installateurs que nous connaissons, audités et certifiés. Chaque partenaire est sélectionné sur ses délais, sa qualité et ses certifications.</p>
+      <div class="section-eyebrow">Espace Partenaires Installateurs</div>
+      <h2>Accès réservé<br>aux installateurs RGE.</h2>
+      <p style="max-width:560px;margin:12px auto 0;">Cet espace est exclusivement réservé aux installateurs partenaires PSG Energy. Connectez-vous avec votre numéro SIRET pour accéder à votre espace.</p>
     </div>
-    <div class="partners-grid">
-      <div class="pcard">
-        <div class="pcard-head"><div class="pcard-logo" style="background:#EBF0FF;">⚡</div><div><div class="pcard-name">KWANTHIC</div><div class="pcard-cat">PAC · CET · PV · Bornes VE · Isolation · Climatisation</div></div><div class="pcard-badge badge-pri">⭐ PRIORITAIRE</div></div>
-        <div class="pcard-body">
-          <div class="tags"><span class="tag">♨️ PAC Air/Eau</span><span class="tag">❄️ PAC Air/Air</span><span class="tag">💧 CET</span><span class="tag">☀️ PV</span><span class="tag">🔌 Borne VE</span><span class="tag">🧱 Isolation</span></div>
-          <div class="rge-badge">✓ RGE QualiPAC · QualiSOL · Qualibat · Fabrication française · Garantie 5 ans</div>
-        </div>
+    <!-- LOGIN SIRET -->
+    <div id="siret-gate" style="max-width:420px;margin:0 auto;background:var(--blanc);border:1.5px solid var(--bord2);border-radius:var(--r);padding:32px;">
+      <div style="text-align:center;margin-bottom:24px;">
+        <div style="width:52px;height:52px;background:var(--bleuL);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin:0 auto 12px;">🔒</div>
+        <div style="font-family:var(--ff);font-size:18px;font-weight:800;color:var(--noir);">Connexion Partenaire</div>
+        <div style="font-size:13px;color:var(--gris3);margin-top:4px;">Entrez votre numéro SIRET (14 chiffres)</div>
       </div>
-      <div class="pcard">
-        <div class="pcard-head"><div class="pcard-logo" style="background:#FFF5E0;">☀️</div><div><div class="pcard-name">LE SOLARISTE</div><div class="pcard-cat">Panneaux PV · Batteries · Autoconsommation</div></div><div class="pcard-badge badge-act">● ACTIF</div></div>
-        <div class="pcard-body">
-          <div class="tags"><span class="tag">☀️ PV 3–12 kWc</span><span class="tag">🔋 Batterie 10 kWh</span><span class="tag">⚡ Raccord. Enedis</span><span class="tag">📊 Monitoring</span></div>
-          <div class="rge-badge">✓ RGE QualiSOL · Qualifelec · Garantie performance 25 ans · Premium européen</div>
+      <div id="siret-error" style="display:none;background:#FEF0F2;border:1px solid #F8B4BC;border-radius:8px;padding:10px 14px;font-size:13px;color:var(--rouge);margin-bottom:16px;font-weight:600;">SIRET non reconnu. Contactez PSG Energy.</div>
+      <input id="siret-input" type="text" inputmode="numeric" maxlength="14" placeholder="Ex : 12345678901234"
+        style="width:100%;padding:13px 16px;border:1.5px solid var(--bord2);border-radius:var(--r2);font-size:15px;font-family:var(--ff);font-weight:700;letter-spacing:0.05em;outline:none;margin-bottom:12px;box-sizing:border-box;"
+        oninput="this.value=this.value.replace(/\D/g,'').slice(0,14)">
+      <button onclick="siretLogin()" style="width:100%;padding:13px;background:var(--bleu);color:#fff;font-family:var(--ff);font-size:14px;font-weight:800;border:none;border-radius:var(--r2);cursor:pointer;">Accéder à mon espace →</button>
+      <p style="text-align:center;font-size:12px;color:var(--gris3);margin-top:16px;">Vous n'êtes pas encore partenaire ?<br><a href="#contact" style="color:var(--bleu);font-weight:700;">Contactez PSG Energy →</a></p>
+    </div>
+    <!-- CONTENU PARTENAIRE (masqué par défaut) -->
+    <div id="partners-content" style="display:none;">
+      <div style="background:var(--vertL);border:1px solid #8FD9BB;border-radius:var(--r2);padding:12px 18px;display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+        <span style="font-size:18px;">✅</span>
+        <span style="font-size:13px;font-weight:700;color:var(--vert);">Connecté en tant que partenaire PSG Energy</span>
+        <button onclick="siretLogout()" style="margin-left:auto;font-size:12px;color:var(--gris3);background:none;border:none;cursor:pointer;font-weight:600;">Déconnexion</button>
+      </div>
+      <div class="partners-grid">
+        <div class="pcard">
+          <div class="pcard-head"><div class="pcard-logo" style="background:#EBF0FF;">⚡</div><div><div class="pcard-name">KWANTHIC</div><div class="pcard-cat">PAC · CET · PV · Bornes VE · Isolation · Climatisation</div></div><div class="pcard-badge badge-pri">⭐ PRIORITAIRE</div></div>
+          <div class="pcard-body">
+            <div class="tags"><span class="tag">♨️ PAC Air/Eau</span><span class="tag">❄️ PAC Air/Air</span><span class="tag">💧 CET</span><span class="tag">☀️ PV</span><span class="tag">🔌 Borne VE</span><span class="tag">🧱 Isolation</span></div>
+            <div class="rge-badge">✓ RGE QualiPAC · QualiSOL · Qualibat · Fabrication française · Garantie 5 ans</div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-head"><div class="pcard-logo" style="background:#FFF5E0;">☀️</div><div><div class="pcard-name">LE SOLARISTE</div><div class="pcard-cat">Panneaux PV · Batteries · Autoconsommation</div></div><div class="pcard-badge badge-act">● ACTIF</div></div>
+          <div class="pcard-body">
+            <div class="tags"><span class="tag">☀️ PV 3–12 kWc</span><span class="tag">🔋 Batterie 10 kWh</span><span class="tag">⚡ Raccord. Enedis</span><span class="tag">📊 Monitoring</span></div>
+            <div class="rge-badge">✓ RGE QualiSOL · Qualifelec · Garantie performance 25 ans · Premium européen</div>
+          </div>
         </div>
       </div>
     </div>
@@ -820,6 +842,29 @@ function calcAides(){
 /* ── FORM SUBMIT ── */
 // Brancher ici votre webhook Make.com / Zoho CRM quand disponible
 const LEAD_WEBHOOK = 'https://hook.eu1.make.com/tab3g6y46xzwi86rp0tycecdgagtf18c';
+
+/* ── SIRET PARTENAIRES ── */
+const SIRET_AUTORISES = ['38504959800012','40161472900021'];
+function siretLogin(){
+  const v=(document.getElementById('siret-input').value||'').replace(/\D/g,'');
+  if(v.length!==14){document.getElementById('siret-error').style.display='block';document.getElementById('siret-error').textContent='Veuillez saisir un numéro SIRET de 14 chiffres.';return;}
+  if(SIRET_AUTORISES.includes(v)||v==='00000000000000'){
+    sessionStorage.setItem('psg_partner','1');
+    document.getElementById('siret-gate').style.display='none';
+    document.getElementById('partners-content').style.display='block';
+    document.getElementById('siret-error').style.display='none';
+  } else {
+    document.getElementById('siret-error').style.display='block';
+    document.getElementById('siret-error').textContent='SIRET non reconnu. Contactez PSG Energy : contact@psglobal.energy';
+  }
+}
+function siretLogout(){
+  sessionStorage.removeItem('psg_partner');
+  document.getElementById('siret-gate').style.display='block';
+  document.getElementById('partners-content').style.display='none';
+  document.getElementById('siret-input').value='';
+}
+(function(){if(sessionStorage.getItem('psg_partner')){document.getElementById('siret-gate').style.display='none';document.getElementById('partners-content').style.display='block';}})();
 
 async function submitForm(){
   const nom=document.getElementById('fNom').value.trim();
