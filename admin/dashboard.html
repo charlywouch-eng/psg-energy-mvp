@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>PSG Energy — Admin CRM</title>
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../shared/design-system.css">
+<style>
+body { background:var(--surf); }
+
+/* LOGIN */
+#login-screen {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#08091A,#1A2050);
+}
+.login-box {
+  background:#fff; border-radius:20px; padding:40px; width:100%; max-width:380px;
+  box-shadow:0 16px 48px rgba(0,0,0,.3);
+}
+.login-logo { font-size:1.3rem; font-weight:900; color:var(--ink); text-align:center; margin-bottom:6px; }
+.login-logo span { color:var(--blue); }
+.login-sub { font-size:.82rem; color:var(--ink3); text-align:center; margin-bottom:28px; font-family:var(--fb); }
+.login-label { font-size:.78rem; font-weight:700; color:var(--ink2); margin-bottom:6px; text-transform:uppercase; letter-spacing:.04em; }
+.login-inp {
+  width:100%; padding:13px 14px; border:1.5px solid var(--bdr);
+  border-radius:10px; font-family:var(--ff); font-size:.95rem; color:var(--ink);
+  margin-bottom:16px; transition:border-color .2s;
+}
+.login-inp:focus { outline:none; border-color:var(--blue); }
+.login-btn {
+  width:100%; padding:14px; border-radius:10px;
+  background:linear-gradient(135deg,var(--blue),var(--blueD));
+  color:#fff; font-family:var(--ff); font-size:1rem; font-weight:900;
+  border:none; cursor:pointer; box-shadow:0 4px 16px rgba(26,77,255,.28);
+  transition:all .2s;
+}
+.login-btn:hover { transform:translateY(-1px); }
+.login-err {
+  display:none; margin-top:12px; padding:10px 14px; border-radius:8px;
+  background:#FEE2E2; color:#DC2626; font-size:.82rem; font-family:var(--fb); text-align:center;
+}
+
+/* DASHBOARD */
+#dashboard { display:none; }
+
+.dash-nav {
+  background:var(--ink); padding:0 24px; height:60px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.dash-logo { font-weight:900; font-size:1.05rem; color:#fff; }
+.dash-logo span { color:#00C48C; }
+.dash-nav-right { display:flex; align-items:center; gap:16px; }
+.dash-user { font-size:.82rem; color:rgba(255,255,255,.6); font-family:var(--fb); }
+.dash-logout { padding:7px 14px; border-radius:8px; border:1px solid rgba(255,255,255,.2); color:rgba(255,255,255,.7); font-size:.8rem; font-weight:700; font-family:var(--ff); background:none; cursor:pointer; transition:all .2s; }
+.dash-logout:hover { background:rgba(255,255,255,.1); color:#fff; }
+
+.dash-content { padding:28px 24px; max-width:1200px; margin:0 auto; }
+
+/* KPI CARDS */
+.kpi-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:28px; }
+.kpi-card { background:#fff; border-radius:14px; padding:20px; border:1.5px solid var(--bdr); }
+.kpi-label { font-size:.78rem; font-weight:700; color:var(--ink3); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+.kpi-val { font-size:1.8rem; font-weight:900; color:var(--ink); line-height:1; }
+.kpi-sub { font-size:.78rem; color:var(--ink3); font-family:var(--fb); margin-top:4px; }
+.kpi-trend { font-size:.78rem; font-weight:700; margin-top:6px; }
+.kpi-up { color:var(--greenD); }
+.kpi-down { color:var(--red); }
+
+/* PIPELINE KANBAN */
+.pipeline-title { font-size:1.1rem; font-weight:800; color:var(--ink); margin-bottom:16px; }
+.kanban { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:28px; }
+.kanban-col { background:var(--surf); border-radius:12px; padding:14px; min-height:200px; }
+.kanban-col-hdr { font-size:.78rem; font-weight:800; color:var(--ink2); text-transform:uppercase; letter-spacing:.05em; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; }
+.kanban-count { background:var(--bdr); color:var(--ink3); padding:2px 8px; border-radius:100px; font-size:.72rem; }
+.kanban-card { background:#fff; border-radius:10px; padding:12px; border:1.5px solid var(--bdr); margin-bottom:8px; cursor:pointer; transition:all .2s; }
+.kanban-card:hover { border-color:var(--blue); box-shadow:var(--sh1); }
+.kc-name { font-size:.85rem; font-weight:700; color:var(--ink); }
+.kc-info { font-size:.75rem; color:var(--ink3); font-family:var(--fb); margin-top:3px; }
+.kc-score { display:inline-block; margin-top:6px; padding:2px 7px; border-radius:100px; font-size:.7rem; font-weight:800; }
+.score-hot  { background:#FEE2E2; color:#DC2626; }
+.score-warm { background:#FEF3C7; color:#92400E; }
+.score-cold { background:var(--blueL); color:var(--blueD); }
+
+/* LEADS TABLE */
+.table-wrap { background:#fff; border-radius:14px; border:1.5px solid var(--bdr); overflow:hidden; margin-bottom:28px; }
+.table-hdr { padding:16px 20px; border-bottom:1.5px solid var(--bdr); display:flex; align-items:center; justify-content:space-between; }
+.table-title { font-size:1rem; font-weight:800; color:var(--ink); }
+.table-filters { display:flex; gap:8px; }
+.filter-btn { padding:6px 12px; border-radius:8px; font-size:.78rem; font-weight:700; border:1.5px solid var(--bdr); background:#fff; color:var(--ink2); cursor:pointer; font-family:var(--ff); transition:all .2s; }
+.filter-btn:hover, .filter-btn.active { background:var(--blue); border-color:var(--blue); color:#fff; }
+table { width:100%; border-collapse:collapse; }
+th { padding:10px 16px; background:var(--surf); font-size:.75rem; font-weight:800; color:var(--ink3); text-align:left; text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid var(--bdr); }
+td { padding:12px 16px; font-size:.85rem; border-bottom:1px solid var(--bdr); vertical-align:middle; }
+tr:last-child td { border:none; }
+tr:hover td { background:var(--surf); }
+.td-name { font-weight:700; color:var(--ink); }
+.td-score-badge { display:inline-block; padding:3px 9px; border-radius:100px; font-size:.72rem; font-weight:800; }
+.statut-badge { display:inline-block; padding:3px 9px; border-radius:100px; font-size:.72rem; font-weight:700; font-family:var(--fb); }
+.s-entrant    { background:#F3F4F6; color:var(--ink3); }
+.s-qualifie   { background:var(--blueL); color:var(--blueD); }
+.s-devis      { background:#FEF3C7; color:#92400E; }
+.s-signe      { background:var(--greenL); color:var(--greenD); }
+.s-perdu      { background:#FEE2E2; color:#DC2626; }
+.td-action { padding:6px 12px; border-radius:8px; border:1.5px solid var(--bdr); font-size:.75rem; font-weight:700; font-family:var(--ff); cursor:pointer; transition:all .2s; }
+.td-action:hover { border-color:var(--blue); color:var(--blue); }
+
+@media(max-width:900px) {
+  .kpi-grid { grid-template-columns:1fr 1fr; }
+  .kanban { grid-template-columns:1fr 1fr; overflow-x:auto; }
+}
+@media(max-width:600px) {
+  .kpi-grid { grid-template-columns:1fr; }
+  .table-hdr { flex-direction:column; gap:10px; align-items:flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">PSG<span>Energy</span></div>
+    <div class="login-sub">Dashboard administrateur interne · Accès restreint</div>
+    <div class="login-label">Mot de passe</div>
+    <input class="login-inp" type="password" id="pwd-inp" placeholder="••••••••••••"
+      onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Accéder au tableau de bord →</button>
+    <div class="login-err" id="login-err">Mot de passe incorrect.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="dash-nav">
+    <div class="dash-logo">PSG<span>Energy</span> · Admin</div>
+    <div class="dash-nav-right">
+      <span class="dash-user">Connecté en tant que Charly</span>
+      <button class="dash-logout" onclick="logout()">Déconnexion</button>
+    </div>
+  </div>
+
+  <div class="dash-content">
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Leads ce mois</div>
+        <div class="kpi-val" id="kpi-leads">—</div>
+        <div class="kpi-trend kpi-up" id="kpi-leads-trend"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Taux conversion</div>
+        <div class="kpi-val" id="kpi-conv">—</div>
+        <div class="kpi-sub">Leads → Signés</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Score moyen</div>
+        <div class="kpi-val" id="kpi-score">—</div>
+        <div class="kpi-sub">Sur 100 points</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Aides générées</div>
+        <div class="kpi-val" id="kpi-aides">—</div>
+        <div class="kpi-sub">Total estimé leads</div>
+      </div>
+    </div>
+
+    <!-- PIPELINE KANBAN -->
+    <div class="pipeline-title">Pipeline Commercial</div>
+    <div class="kanban" id="kanban-board"></div>
+
+    <!-- TABLE LEADS -->
+    <div class="table-wrap">
+      <div class="table-hdr">
+        <div class="table-title">Derniers leads</div>
+        <div class="table-filters">
+          <button class="filter-btn active" onclick="filtrerLeads('tous',this)">Tous</button>
+          <button class="filter-btn" onclick="filtrerLeads('qualifie',this)">Qualifiés</button>
+          <button class="filter-btn" onclick="filtrerLeads('hot',this)">🔥 Score 70+</button>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Téléphone</th>
+            <th>Tranche</th>
+            <th>Gestes</th>
+            <th>Aides estimées</th>
+            <th>Score</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="leads-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/engine.js"></script>
+<script>
+/* ── AUTH ──────────────────────────────────────────────────────── */
+const ADMIN_PWD = 'PSGEnergy2026!';
+
+function login() {
+  const pwd = document.getElementById('pwd-inp').value;
+  if (pwd === ADMIN_PWD) {
+    sessionStorage.setItem('psg_admin', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    initDashboard();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    document.getElementById('pwd-inp').value = '';
+    document.getElementById('pwd-inp').focus();
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('psg_admin');
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('pwd-inp').value = '';
+}
+
+// Auto-login si session active
+(function() {
+  if (sessionStorage.getItem('psg_admin')) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    initDashboard();
+  }
+})();
+
+/* ── DONNÉES DEMO ───────────────────────────────────────────────── */
+const LEADS_DEMO = [
+  { nom:'Martin Dupont',    tel:'06 12 34 56 78', tranche:'T1', gestes:['pac_air_eau','iso_combles'], cp:'77100', dpe:'F', statut:'proprio', statut_crm:'qualifie' },
+  { nom:'Sophie Legrand',   tel:'06 23 45 67 89', tranche:'T2', gestes:['iso_murs_ext','vmc'],        cp:'94200', dpe:'E', statut:'proprio', statut_crm:'devis_envoye' },
+  { nom:'Ahmed Bensaid',    tel:'07 34 56 78 90', tranche:'T1', gestes:['pac_air_eau'],               cp:'91300', dpe:'G', statut:'proprio', statut_crm:'entrant' },
+  { nom:'Claire Moreau',    tel:'06 45 67 89 01', tranche:'T3', gestes:['pv','iso_combles'],           cp:'93400', dpe:'D', statut:'proprio', statut_crm:'signe' },
+  { nom:'Paul Fontaine',    tel:'06 56 78 90 12', tranche:'T2', gestes:['cet'],                       cp:'77200', dpe:'E', statut:'bailleur', statut_crm:'entrant' },
+  { nom:'Nathalie Bernard', tel:'07 67 89 01 23', tranche:'T1', gestes:['pac_air_eau','iso_murs_ext','vmc'], cp:'94100', dpe:'G', statut:'proprio', statut_crm:'qualifie' },
+];
+
+/* ── INIT ────────────────────────────────────────────────────────── */
+function initDashboard() {
+  const leads = LEADS_DEMO.map(function(l) {
+    const r = PSGEngine.analyser(l, l.gestes);
+    return Object.assign({}, l, { score:r.score, aides:r.base.total_aides, rac:r.base.rac });
+  });
+
+  // KPI
+  const total = leads.length;
+  const signes = leads.filter(function(l){ return l.statut_crm === 'signe'; }).length;
+  const scoreMoy = Math.round(leads.reduce(function(s,l){ return s+l.score; },0) / total);
+  const totalAides = leads.reduce(function(s,l){ return s+l.aides; },0);
+
+  document.getElementById('kpi-leads').textContent = total;
+  document.getElementById('kpi-leads-trend').textContent = '↑ +2 vs mois dernier';
+  document.getElementById('kpi-conv').textContent = Math.round(signes/total*100) + '%';
+  document.getElementById('kpi-score').textContent = scoreMoy + '/100';
+  document.getElementById('kpi-aides').textContent = (totalAides/1000).toFixed(0) + 'k €';
+
+  // Kanban
+  buildKanban(leads);
+
+  // Table
+  window._leads = leads;
+  filtrerLeads('tous', document.querySelector('.filter-btn.active'));
+}
+
+/* ── KANBAN ──────────────────────────────────────────────────────── */
+const COLONNES = [
+  { id:'entrant',      label:'Entrant',       color:'var(--ink3)' },
+  { id:'qualifie',     label:'Qualifié',      color:'var(--blue)' },
+  { id:'devis_envoye', label:'Devis envoyé',  color:'var(--gold)' },
+  { id:'rdv_planifie', label:'RDV planifié',  color:'var(--purple)' },
+  { id:'signe',        label:'Signé ✅',       color:'var(--green)' },
+];
+
+function buildKanban(leads) {
+  document.getElementById('kanban-board').innerHTML = COLONNES.map(function(col) {
+    const colLeads = leads.filter(function(l){ return l.statut_crm === col.id; });
+    const cards = colLeads.map(function(l) {
+      const sc = l.score >= 70 ? 'hot' : l.score >= 50 ? 'warm' : 'cold';
+      const scLabel = l.score >= 70 ? '🔥 ' + l.score : l.score >= 50 ? '⚡ ' + l.score : l.score;
+      return `<div class="kanban-card">
+        <div class="kc-name">${l.nom}</div>
+        <div class="kc-info">${l.gestes.length} geste(s) · ${l.aides.toLocaleString('fr-FR')} € d'aides</div>
+        <span class="kc-score score-${sc}">${scLabel}</span>
+      </div>`;
+    }).join('');
+    return `<div class="kanban-col">
+      <div class="kanban-col-hdr">
+        <span style="color:${col.color}">${col.label}</span>
+        <span class="kanban-count">${colLeads.length}</span>
+      </div>
+      ${cards || '<div style="font-size:.78rem;color:var(--ink3);text-align:center;padding:20px 0;">Vide</div>'}
+    </div>`;
+  }).join('');
+}
+
+/* ── TABLE LEADS ─────────────────────────────────────────────────── */
+const STATUT_LABELS = {
+  entrant: '<span class="statut-badge s-entrant">Entrant</span>',
+  qualifie: '<span class="statut-badge s-qualifie">Qualifié</span>',
+  devis_envoye: '<span class="statut-badge s-devis">Devis envoyé</span>',
+  rdv_planifie: '<span class="statut-badge s-qualifie">RDV planifié</span>',
+  signe: '<span class="statut-badge s-signe">Signé</span>',
+  perdu: '<span class="statut-badge s-perdu">Perdu</span>',
+};
+
+function filtrerLeads(filtre, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+
+  let leads = window._leads || [];
+  if (filtre === 'qualifie') leads = leads.filter(function(l){ return l.statut_crm !== 'entrant'; });
+  if (filtre === 'hot') leads = leads.filter(function(l){ return l.score >= 70; });
+
+  const GESTE_LABELS = {
+    pac_air_eau:'PAC Air/Eau', iso_combles:'Iso. combles', iso_murs_ext:'ITE murs',
+    menuiseries:'Fenêtres', vmc:'VMC', cet:'Chauffe-eau', pv:'Solaire',
+    iso_plancher:'Iso. plancher', pac_air_air:'PAC Air/Air', borne_ve:'Borne VE'
+  };
+
+  document.getElementById('leads-tbody').innerHTML = leads.map(function(l) {
+    const sc = l.score >= 70 ? 'hot' : l.score >= 50 ? 'warm' : 'cold';
+    const gestesLabel = l.gestes.map(function(g){ return GESTE_LABELS[g]||g; }).join(', ');
+    return `<tr>
+      <td class="td-name">${l.nom}</td>
+      <td><a href="tel:${l.tel}" style="color:var(--blue);font-weight:600;">${l.tel}</a></td>
+      <td><span class="badge badge--blue">${l.tranche}</span></td>
+      <td style="font-size:.78rem;color:var(--ink2);max-width:180px;">${gestesLabel}</td>
+      <td style="font-weight:800;color:var(--greenD);">${l.aides.toLocaleString('fr-FR')} €</td>
+      <td><span class="td-score-badge score-${sc}">${l.score >= 70 ? '🔥 ' : l.score >= 50 ? '⚡ ' : ''}${l.score}</span></td>
+      <td>${STATUT_LABELS[l.statut_crm] || l.statut_crm}</td>
+      <td><button class="td-action" onclick="alert('Fonctionnalité CRM complète à connecter via Make.com / Zoho CRM')">Voir →</button></td>
+    </tr>`;
+  }).join('');
+}
+</script>
+</body>
+</html>

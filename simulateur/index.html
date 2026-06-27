@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulateur ANAH 2026 — Calculez vos aides gratuitement | PSG Energy</title>
+<meta name="description" content="Simulateur officiel MaPrimeRénov 2026. Calculez vos aides en 4 étapes : tranche fiscale, logement, gestes, résultats détaillés. Gratuit et sans engagement.">
+<link rel="canonical" href="https://psglobal.energy/simulateur/">
+<link rel="stylesheet" href="../fonts/fonts.css">
+<link rel="stylesheet" href="../shared/design-system.css">
+<style>
+/* ── SIMULATEUR 4 ÉTAPES ── */
+body { background:var(--surf); }
+
+.sim-shell {
+  min-height:100vh; display:flex; flex-direction:column;
+}
+
+/* HEADER */
+.sim-hdr {
+  background:#fff; border-bottom:1.5px solid var(--bdr);
+  padding:0 24px; height:60px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.sim-hdr-logo { font-weight:900; font-size:1.1rem; color:var(--ink); }
+.sim-hdr-logo span { color:var(--blue); }
+.sim-hdr-back { font-size:.85rem; font-weight:600; color:var(--ink3); text-decoration:none; transition:color .2s; }
+.sim-hdr-back:hover { color:var(--blue); }
+
+/* STEPPER */
+.stepper-wrap {
+  background:#fff; border-bottom:1.5px solid var(--bdr); padding:16px 24px;
+}
+.stepper {
+  max-width:640px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;
+}
+.stepper::before {
+  content:''; position:absolute; top:18px; left:12%; right:12%; height:2px;
+  background:var(--bdr); z-index:0;
+}
+.stepper-fill {
+  position:absolute; top:18px; left:12%; height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--green));
+  z-index:1; transition:width .4s ease;
+}
+.step-item { text-align:center; position:relative; z-index:2; }
+.step-dot {
+  width:36px; height:36px; border-radius:50%; margin:0 auto 6px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:.85rem; font-weight:800; border:2px solid var(--bdr);
+  background:#fff; color:var(--ink3); transition:all .3s;
+}
+.step-item.active .step-dot { background:var(--blue); border-color:var(--blue); color:#fff; box-shadow:0 0 0 4px rgba(26,77,255,.15); }
+.step-item.done .step-dot { background:var(--green); border-color:var(--green); color:#fff; }
+.step-lbl { font-size:.72rem; font-weight:700; color:var(--ink3); }
+.step-item.active .step-lbl { color:var(--blue); }
+.step-item.done .step-lbl { color:var(--greenD); }
+
+/* MAIN */
+.sim-main {
+  flex:1; padding:32px 24px;
+  display:flex; align-items:flex-start; justify-content:center;
+}
+.sim-card {
+  background:#fff; border-radius:20px; border:1.5px solid var(--bdr);
+  padding:40px; width:100%; max-width:620px;
+  box-shadow:0 4px 24px rgba(8,9,26,.07);
+}
+.sim-step-title { font-size:1.4rem; font-weight:900; color:var(--ink); margin-bottom:6px; }
+.sim-step-sub { font-size:.9rem; color:var(--ink3); font-family:var(--fb); line-height:1.5; margin-bottom:28px; }
+
+/* OPTIONS GRILLE */
+.opt-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:24px; }
+.opt-card {
+  border:2px solid var(--bdr); border-radius:14px; padding:18px 16px;
+  cursor:pointer; transition:all .2s; background:#fff; text-align:left;
+}
+.opt-card:hover { border-color:var(--blue); background:var(--blueL); }
+.opt-card.selected { border-color:var(--blue); background:var(--blueL); box-shadow:0 0 0 3px rgba(26,77,255,.12); }
+.opt-ico { font-size:1.6rem; margin-bottom:8px; }
+.opt-name { font-size:.9rem; font-weight:800; color:var(--ink); margin-bottom:4px; }
+.opt-desc { font-size:.78rem; color:var(--ink3); font-family:var(--fb); line-height:1.4; }
+.opt-badge { display:inline-block; margin-top:8px; padding:2px 8px; border-radius:100px; font-size:.72rem; font-weight:700; background:var(--blueL); color:var(--blue); }
+.opt-card.selected .opt-badge { background:rgba(26,77,255,.2); }
+
+/* GESTES CHECKBOXES */
+.geste-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+.geste-item {
+  border:2px solid var(--bdr); border-radius:12px; padding:14px;
+  cursor:pointer; transition:all .2s; background:#fff; display:flex; align-items:center; gap:10px;
+}
+.geste-item:hover { border-color:var(--blue); }
+.geste-item.checked { border-color:var(--green); background:var(--greenL); }
+.geste-check { width:20px; height:20px; border-radius:6px; border:2px solid var(--bdr); flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.geste-item.checked .geste-check { background:var(--green); border-color:var(--green); color:#fff; }
+.geste-ico { font-size:1.2rem; }
+.geste-label { font-size:.82rem; font-weight:700; color:var(--ink); line-height:1.3; }
+
+/* FORM CONTACT */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px; }
+.contact-full { grid-column:1/-1; }
+
+/* RÉSULTATS */
+.result-header { text-align:center; margin-bottom:28px; }
+.result-total { font-size:3rem; font-weight:900; color:var(--green); line-height:1; }
+.result-sub { font-size:.95rem; color:var(--ink3); font-family:var(--fb); margin-top:6px; }
+.result-pct-bar {
+  background:var(--surf); border-radius:100px; height:8px; margin:16px 0 8px; overflow:hidden;
+}
+.result-pct-fill { height:100%; border-radius:100px; background:linear-gradient(90deg,var(--blue),var(--green)); transition:width 1s ease; }
+.result-pct-label { font-size:.82rem; color:var(--ink3); font-family:var(--fb); text-align:right; }
+
+.result-rows { display:flex; flex-direction:column; gap:0; border-radius:12px; overflow:hidden; border:1.5px solid var(--bdr); margin-bottom:20px; }
+.result-row { display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border-bottom:1px solid var(--bdr); }
+.result-row:last-child { border:none; }
+.result-row-lbl { font-size:.88rem; color:var(--ink2); font-family:var(--fb); }
+.result-row-val { font-size:.95rem; font-weight:800; }
+.rv-green  { color:var(--greenD); }
+.rv-blue   { color:var(--blue); }
+.rv-purple { color:var(--purple); }
+.rv-gold   { color:#A06B00; }
+
+.result-ampleur {
+  border-radius:14px; padding:20px; margin-bottom:20px;
+  background:linear-gradient(135deg,#08091A,#1A2050);
+  border:1.5px solid rgba(26,77,255,.3);
+}
+.amp-title { font-size:.9rem; font-weight:800; color:#F5A000; margin-bottom:10px; }
+.amp-amount { font-size:2rem; font-weight:900; color:#fff; }
+.amp-sub { font-size:.8rem; color:rgba(255,255,255,.6); font-family:var(--fb); margin-top:4px; margin-bottom:12px; }
+.amp-cond { font-size:.8rem; color:rgba(255,255,255,.7); font-family:var(--fb); line-height:1.6; }
+
+.result-rac { background:var(--surf); border-radius:12px; padding:16px 18px; margin-bottom:20px; display:flex; justify-content:space-between; align-items:center; }
+.rac-lbl { font-size:.88rem; font-weight:800; color:var(--ink); }
+.rac-val { font-size:1.4rem; font-weight:900; color:var(--ink); }
+.rac-ptz { font-size:.78rem; color:var(--ink3); font-family:var(--fb); margin-top:2px; }
+
+/* NAVIGATION BAS */
+.sim-nav { display:flex; justify-content:space-between; align-items:center; margin-top:28px; padding-top:24px; border-top:1px solid var(--bdr); }
+.btn-back { padding:12px 24px; border-radius:10px; border:1.5px solid var(--bdr); font-family:var(--ff); font-size:.9rem; font-weight:700; color:var(--ink2); background:#fff; cursor:pointer; transition:all .2s; }
+.btn-back:hover { border-color:var(--blue); color:var(--blue); }
+.btn-next { padding:14px 32px; border-radius:10px; background:linear-gradient(135deg,var(--blue),var(--blueD)); color:#fff; font-family:var(--ff); font-size:1rem; font-weight:900; border:none; cursor:pointer; box-shadow:0 4px 16px rgba(26,77,255,.28); transition:all .2s; }
+.btn-next:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(26,77,255,.36); }
+.btn-next:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+/* WIDGET ÉLIA */
+#elia-bubble {
+  position:fixed; bottom:20px; right:20px; z-index:200;
+}
+.elia-btn {
+  width:52px; height:52px; border-radius:50%;
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  border:none; cursor:pointer; font-size:1.3rem;
+  box-shadow:0 4px 16px rgba(26,77,255,.35);
+  display:flex; align-items:center; justify-content:center;
+  transition:all .2s; position:relative;
+}
+.elia-btn:hover { transform:scale(1.08); }
+.elia-dot { position:absolute; top:1px; right:1px; width:12px; height:12px; border-radius:50%; background:#00C48C; border:2px solid #fff; }
+
+@media(max-width:640px) {
+  .sim-card { padding:24px 18px; }
+  .opt-grid  { grid-template-columns:1fr; }
+  .geste-grid { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  .contact-full { grid-column:auto; }
+}
+</style>
+</head>
+<body>
+<div class="sim-shell">
+
+<!-- HEADER -->
+<div class="sim-hdr">
+  <a href="/" class="sim-hdr-logo">PSG<span>Energy</span></a>
+  <a href="/" class="sim-hdr-back">← Retour accueil</a>
+</div>
+
+<!-- STEPPER -->
+<div class="stepper-wrap">
+  <div class="stepper" id="stepper">
+    <div class="stepper-fill" id="stepper-fill" style="width:0%"></div>
+    <div class="step-item active" id="s1"><div class="step-dot">1</div><div class="step-lbl">Profil</div></div>
+    <div class="step-item" id="s2"><div class="step-dot">2</div><div class="step-lbl">Logement</div></div>
+    <div class="step-item" id="s3"><div class="step-dot">3</div><div class="step-lbl">Travaux</div></div>
+    <div class="step-item" id="s4"><div class="step-dot">4</div><div class="step-lbl">Résultats</div></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="sim-main">
+  <div class="sim-card" id="sim-card">
+    <!-- ÉTAPE 1 : PROFIL -->
+    <div id="step1">
+      <div class="sim-step-title">Votre situation fiscale</div>
+      <div class="sim-step-sub">Le montant de vos aides dépend de votre tranche de revenus selon le barème ANAH 2026. Revenus du foyer fiscal de référence.</div>
+      <div class="opt-grid">
+        <div class="opt-card" onclick="selTranche('T1',this)">
+          <div class="opt-ico">🏅</div>
+          <div class="opt-name">Très modeste</div>
+          <div class="opt-desc">Revenus inférieurs à 21 805 €/an</div>
+          <span class="opt-badge">Jusqu'à 80% d'aides</span>
+        </div>
+        <div class="opt-card" onclick="selTranche('T2',this)">
+          <div class="opt-ico">🥈</div>
+          <div class="opt-name">Modeste</div>
+          <div class="opt-desc">Entre 21 805 € et 26 939 €/an</div>
+          <span class="opt-badge">Jusqu'à 60% d'aides</span>
+        </div>
+        <div class="opt-card" onclick="selTranche('T3',this)">
+          <div class="opt-ico">🥉</div>
+          <div class="opt-name">Intermédiaire</div>
+          <div class="opt-desc">Entre 26 939 € et 40 018 €/an</div>
+          <span class="opt-badge">Jusqu'à 40% d'aides</span>
+        </div>
+        <div class="opt-card" onclick="selTranche('T4',this)">
+          <div class="opt-ico">💼</div>
+          <div class="opt-name">Supérieur</div>
+          <div class="opt-desc">Au-dessus de 40 018 €/an</div>
+          <span class="opt-badge">Jusqu'à 15% d'aides</span>
+        </div>
+      </div>
+      <div class="sim-nav">
+        <span></span>
+        <button class="btn-next" onclick="nextStep()" id="btn1" disabled>Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 2 : LOGEMENT -->
+    <div id="step2" style="display:none">
+      <div class="sim-step-title">Votre logement</div>
+      <div class="sim-step-sub">Ces informations permettent de vérifier votre éligibilité au Parcours Accompagné et au bonus passoire thermique.</div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label class="form-label">Statut du logement</label>
+        <select class="form-select" id="f-statut" onchange="profil.statut=this.value">
+          <option value="proprio">Propriétaire occupant</option>
+          <option value="bailleur">Propriétaire bailleur</option>
+          <option value="copro">Copropriétaire</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label class="form-label">Type de logement</label>
+        <div class="opt-grid" style="margin-bottom:0">
+          <div class="opt-card" onclick="selType('maison',this)" id="type-maison">
+            <div class="opt-ico">🏡</div>
+            <div class="opt-name">Maison individuelle</div>
+          </div>
+          <div class="opt-card" onclick="selType('appart',this)" id="type-appart">
+            <div class="opt-ico">🏢</div>
+            <div class="opt-name">Appartement</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label class="form-label">Étiquette DPE actuelle (si connue)</label>
+        <select class="form-select" id="f-dpe" onchange="profil.dpe=this.value">
+          <option value="">Je ne sais pas</option>
+          <option value="G">G — Passoire thermique extrême</option>
+          <option value="F">F — Passoire thermique</option>
+          <option value="E">E — Énergivore</option>
+          <option value="D">D — Peu efficace</option>
+          <option value="C">C — Assez efficace</option>
+          <option value="B">B — Efficace</option>
+          <option value="A">A — Très efficace</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Code postal</label>
+        <input class="form-input" type="text" id="f-cp" placeholder="ex : 77100" maxlength="5" inputmode="numeric" oninput="profil.cp=this.value">
+      </div>
+      <div class="sim-nav">
+        <button class="btn-back" onclick="prevStep()">← Retour</button>
+        <button class="btn-next" onclick="nextStep()">Étape suivante →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 3 : GESTES -->
+    <div id="step3" style="display:none">
+      <div class="sim-step-title">Vos travaux de rénovation</div>
+      <div class="sim-step-sub">Sélectionnez un ou plusieurs gestes. Plus vous en combinez, plus vos aides augmentent (Parcours Accompagné dès 2 gestes dont 1 isolation).</div>
+      <div class="geste-grid" id="geste-grid"></div>
+      <div id="ampleur-tip" style="display:none;padding:12px 14px;border-radius:10px;background:var(--goldL);border:1.5px solid rgba(245,160,0,.3);font-size:.82rem;font-family:var(--fb);color:#8B6000;margin-bottom:16px;"></div>
+      <div class="sim-nav">
+        <button class="btn-back" onclick="prevStep()">← Retour</button>
+        <button class="btn-next" onclick="calculerEtAfficher()" id="btn3" disabled>Voir mes aides →</button>
+      </div>
+    </div>
+
+    <!-- ÉTAPE 4 : RÉSULTATS + CONTACT -->
+    <div id="step4" style="display:none">
+      <div class="result-header">
+        <div style="font-size:.85rem;font-weight:700;color:var(--ink3);margin-bottom:8px;font-family:var(--fb);">Estimation personnalisée ANAH 2026</div>
+        <div class="result-total" id="r-total">0 €</div>
+        <div class="result-sub">d'aides estimées pour votre projet</div>
+        <div class="result-pct-bar"><div class="result-pct-fill" id="r-pct-fill" style="width:0%"></div></div>
+        <div class="result-pct-label" id="r-pct-label">0% de vos travaux pris en charge</div>
+      </div>
+
+      <div class="result-rows" id="r-rows"></div>
+
+      <div class="result-ampleur" id="r-ampleur" style="display:none">
+        <div class="amp-title">🏆 Parcours Accompagné — Maximum légal</div>
+        <div class="amp-amount" id="a-total">0 €</div>
+        <div class="amp-sub" id="a-sub"></div>
+        <div class="amp-cond" id="a-cond"></div>
+      </div>
+
+      <div class="result-rac">
+        <div>
+          <div class="rac-lbl">Reste à charge estimé</div>
+          <div class="rac-ptz" id="r-ptz"></div>
+        </div>
+        <div class="rac-val" id="r-rac">0 €</div>
+      </div>
+
+      <!-- FORMULAIRE CONTACT -->
+      <div style="background:var(--surf);border-radius:14px;padding:20px;border:1.5px solid var(--bdr);" id="contact-form">
+        <div style="font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:6px;">📥 Recevoir mon estimation détaillée</div>
+        <div style="font-size:.82rem;color:var(--ink3);font-family:var(--fb);margin-bottom:16px;">Un expert PSG Energy vous rappelle sous 24h avec un devis personnalisé gratuit.</div>
+        <div class="contact-grid">
+          <div class="form-group">
+            <label class="form-label">Prénom</label>
+            <input class="form-input" type="text" id="c-nom" placeholder="Votre prénom">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Téléphone</label>
+            <input class="form-input" type="tel" id="c-tel" placeholder="06 XX XX XX XX" inputmode="tel">
+          </div>
+          <div class="form-group contact-full">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" id="c-email" placeholder="votre@email.fr">
+          </div>
+        </div>
+        <div class="form-mention" style="margin-bottom:14px;">
+          Données traitées par PSG Energy pour votre demande de devis. Pas de spam.
+          <a href="/politique-confidentialite.html" style="color:var(--blue);">Politique de confidentialité</a>.
+        </div>
+        <button class="btn btn--green btn--full" onclick="soumettreSimulateur()">Recevoir mon devis gratuit →</button>
+      </div>
+      <div id="contact-confirm" style="display:none;text-align:center;padding:20px;background:var(--greenL);border-radius:14px;border:1.5px solid rgba(0,196,140,.3);">
+        <div style="font-size:1.8rem;margin-bottom:8px;">✅</div>
+        <div style="font-weight:800;color:var(--greenD);font-size:1.05rem;">Demande reçue !</div>
+        <div style="font-size:.88rem;color:var(--ink3);font-family:var(--fb);margin-top:6px;">Un expert PSG Energy vous contacte sous 24h.</div>
+      </div>
+
+      <div class="sim-nav" style="margin-top:16px;border:none;padding:0;">
+        <button class="btn-back" onclick="prevStep()">← Modifier</button>
+        <a href="/psg-chatbot-elia.html" style="font-size:.85rem;font-weight:700;color:var(--blue);">Parler à Élia →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /sim-shell -->
+
+<!-- WIDGET ÉLIA -->
+<div id="elia-bubble">
+  <button class="elia-btn" onclick="location.href='/psg-chatbot-elia.html'" aria-label="Élia">
+    💬<span class="elia-dot"></span>
+  </button>
+</div>
+
+<script src="../shared/engine.js"></script>
+<script>
+const LEAD_WEBHOOK = ''; // URL Make.com
+
+/* ── ÉTAT ──────────────────────────────────────────────────────── */
+let etape = 1;
+let profil = { tranche:null, statut:'proprio', type:'maison', dpe:'', cp:'' };
+let gestesChoisis = [];
+
+const GESTES_LISTE = [
+  { id:'pac_air_eau',  ico:'♨️', label:'Pompe à chaleur Air/Eau' },
+  { id:'iso_combles',  ico:'🧱', label:'Isolation combles perdus' },
+  { id:'iso_murs_ext', ico:'🏠', label:'Isolation murs extérieur' },
+  { id:'menuiseries',  ico:'🪟', label:'Fenêtres / Portes-fenêtres' },
+  { id:'vmc',          ico:'💨', label:'VMC Double Flux' },
+  { id:'cet',          ico:'💧', label:'Chauffe-eau Thermodynamique' },
+  { id:'pv',           ico:'☀️', label:'Panneaux photovoltaïques' },
+  { id:'iso_plancher', ico:'🏗️', label:'Isolation plancher bas' },
+  { id:'pac_air_air',  ico:'❄️', label:'PAC Air/Air' },
+  { id:'borne_ve',     ico:'🔌', label:'Borne recharge VE' }
+];
+
+/* ── STEPPER ────────────────────────────────────────────────────── */
+function updateStepper(n) {
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('s' + i);
+    el.className = 'step-item' + (i < n ? ' done' : i === n ? ' active' : '');
+  }
+  const fill = (n - 1) / 3 * 76; // 76% = de 12% à 88%
+  document.getElementById('stepper-fill').style.width = fill + '%';
+}
+
+function nextStep() { goTo(etape + 1); }
+function prevStep() { goTo(etape - 1); }
+
+function goTo(n) {
+  document.getElementById('step' + etape).style.display = 'none';
+  etape = n;
+  document.getElementById('step' + etape).style.display = 'block';
+  updateStepper(etape);
+  if (etape === 3) buildGestes();
+  window.scrollTo(0, 0);
+}
+
+/* ── ÉTAPE 1 ────────────────────────────────────────────────────── */
+function selTranche(t, el) {
+  profil.tranche = t;
+  document.querySelectorAll('#step1 .opt-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('btn1').disabled = false;
+}
+
+/* ── ÉTAPE 2 ────────────────────────────────────────────────────── */
+function selType(t, el) {
+  profil.type = t;
+  document.querySelectorAll('#step2 .opt-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+/* ── ÉTAPE 3 ────────────────────────────────────────────────────── */
+function buildGestes() {
+  document.getElementById('geste-grid').innerHTML = GESTES_LISTE.map(function(g) {
+    const checked = gestesChoisis.includes(g.id);
+    return `<div class="geste-item${checked?' checked':''}" id="gi-${g.id}" onclick="toggleGeste('${g.id}')">
+      <div class="geste-check">${checked?'✓':''}</div>
+      <div class="geste-ico">${g.ico}</div>
+      <div class="geste-label">${g.label}</div>
+    </div>`;
+  }).join('');
+  checkAmpleur();
+}
+
+function toggleGeste(id) {
+  const idx = gestesChoisis.indexOf(id);
+  if (idx === -1) gestesChoisis.push(id);
+  else gestesChoisis.splice(idx, 1);
+
+  const el = document.getElementById('gi-' + id);
+  el.classList.toggle('checked');
+  el.querySelector('.geste-check').textContent = gestesChoisis.includes(id) ? '✓' : '';
+
+  document.getElementById('btn3').disabled = gestesChoisis.length === 0;
+  checkAmpleur();
+}
+
+function checkAmpleur() {
+  const tip = document.getElementById('ampleur-tip');
+  const gestesIso = ['iso_combles','iso_murs_ext','iso_plancher','menuiseries'];
+  const nbIso = gestesChoisis.filter(function(g){ return gestesIso.includes(g); }).length;
+  const n = gestesChoisis.length;
+
+  if (n >= 2 && nbIso >= 1) {
+    tip.style.display = 'block';
+    tip.innerHTML = '🏆 <strong>Parcours Accompagné éligible !</strong> Vous pouvez accéder au maximum légal des aides ANAH.';
+    tip.style.background = 'var(--greenL)';
+    tip.style.borderColor = 'rgba(0,196,140,.3)';
+    tip.style.color = 'var(--greenD)';
+  } else if (n === 1) {
+    tip.style.display = 'block';
+    tip.innerHTML = '💡 Ajoutez un geste d\'isolation pour débloquer le <strong>Parcours Accompagné</strong> et doubler vos aides.';
+    tip.style.background = 'var(--goldL)';
+    tip.style.borderColor = 'rgba(245,160,0,.3)';
+    tip.style.color = '#8B6000';
+  } else {
+    tip.style.display = 'none';
+  }
+}
+
+/* ── ÉTAPE 4 : CALCUL ───────────────────────────────────────────── */
+function calculerEtAfficher() {
+  const res = PSGEngine.analyser(profil, gestesChoisis);
+  const base = res.base;
+  const amp  = res.ampleur;
+
+  goTo(4);
+
+  // Total et % de prise en charge
+  document.getElementById('r-total').textContent = base.total_aides.toLocaleString('fr-FR') + ' €';
+  const pct = base.cout_total > 0 ? Math.round(base.total_aides / base.cout_total * 100) : 0;
+  setTimeout(function() {
+    document.getElementById('r-pct-fill').style.width = Math.min(pct, 100) + '%';
+  }, 200);
+  document.getElementById('r-pct-label').textContent = pct + '% de vos travaux pris en charge';
+
+  // Détail lignes
+  let rows = '';
+  base.gestes.forEach(function(g) {
+    rows += `<div class="result-row">
+      <span class="result-row-lbl">${g.icon} MPR — ${g.label}</span>
+      <span class="result-row-val rv-green">+${g.mpr.toLocaleString('fr-FR')} €</span>
+    </div>`;
+    if (g.cee > 0) rows += `<div class="result-row">
+      <span class="result-row-lbl">CEE — ${g.label}</span>
+      <span class="result-row-val rv-blue">+${g.cee.toLocaleString('fr-FR')} €</span>
+    </div>`;
+  });
+  if (['F','G'].includes(profil.dpe)) {
+    rows += `<div class="result-row">
+      <span class="result-row-lbl">🔥 Bonus passoire thermique (DPE ${profil.dpe})</span>
+      <span class="result-row-val rv-gold">+1 500 €</span>
+    </div>`;
+  }
+  rows += `<div class="result-row">
+    <span class="result-row-lbl">Économie TVA 5,5%</span>
+    <span class="result-row-val rv-blue">+${base.total_tva.toLocaleString('fr-FR')} €</span>
+  </div>`;
+  document.getElementById('r-rows').innerHTML = rows;
+
+  // Parcours Accompagné
+  if (amp.eligible) {
+    document.getElementById('r-ampleur').style.display = 'block';
+    document.getElementById('a-total').textContent = amp.total.toLocaleString('fr-FR') + ' €';
+    document.getElementById('a-sub').textContent = 'MPR Ampleur + MAR ' + amp.mar_aide.toLocaleString('fr-FR') + ' €' + (amp.bonus_sortie > 0 ? ' + bonus passoire ' + amp.bonus_sortie.toLocaleString('fr-FR') + ' €' : '');
+    document.getElementById('a-cond').innerHTML = amp.conditions + '<br>• Gain minimum 2 classes DPE requis<br>• Mon Accompagnateur Rénov\' inclus<br>• Éco-PTZ jusqu\'à 50 000 € à taux 0%';
+  }
+
+  // RAC
+  document.getElementById('r-rac').textContent = base.rac.toLocaleString('fr-FR') + ' €';
+  document.getElementById('r-ptz').textContent = 'Finançable via Éco-PTZ jusqu\'à ' + base.eco_ptz.toLocaleString('fr-FR') + ' € à 0%';
+}
+
+/* ── SOUMISSION CONTACT ─────────────────────────────────────────── */
+function soumettreSimulateur() {
+  const nom   = document.getElementById('c-nom').value.trim();
+  const tel   = document.getElementById('c-tel').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+
+  if (!nom || !tel) { alert('Veuillez indiquer votre prénom et téléphone.'); return; }
+
+  const res = PSGEngine.analyser(profil, gestesChoisis);
+
+  const payload = {
+    nom, tel, email,
+    cp: profil.cp,
+    tranche: profil.tranche,
+    dpe: profil.dpe,
+    statut: profil.statut,
+    gestes: gestesChoisis,
+    aides_estimees: res.base.total_aides,
+    rac_estime: res.base.rac,
+    score: res.score,
+    source: 'simulateur',
+    date: new Date().toISOString()
+  };
+
+  if (LEAD_WEBHOOK) {
+    fetch(LEAD_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+  }
+
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('contact-confirm').style.display = 'block';
+}
+</script>
+</body>
+</html>

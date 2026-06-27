@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/psg-energy-site.html" }
+    { "source": "/simulateur", "destination": "/simulateur/index.html" },
+    { "source": "/admin",      "destination": "/admin/dashboard.html" }
   ]
 }
