@@ -732,7 +732,7 @@ section{padding:72px 0;}
           SASU au capital de 100 €<br>
           56 Rue des Berchères — 77340 Pontault-Combault<br>
           Immatriculation RCS en cours · Dossier Jurisociété N°1727182<br>
-          <a href="mailto:contact@psg-energy.fr" style="color:rgba(255,255,255,.5);text-decoration:none;">contact@psg-energy.fr</a>
+          <a href="mailto:contact@psglobal.energy" style="color:rgba(255,255,255,.5);text-decoration:none;">contact@psglobal.energy</a>
         </div>
       </div>
       <div>
@@ -876,7 +876,7 @@ async function submitForm(){
   const btn=document.querySelector('.rdv-btn');
   btn.disabled=true;btn.textContent='Envoi en cours…';
 
-  const payload={nom,tel,cp,projet,date:new Date().toISOString(),source:'psg-energy.fr'};
+  const payload={nom,tel,cp,projet,date:new Date().toISOString(),source:'psglobal.energy'};
 
   try{
     if(LEAD_WEBHOOK){

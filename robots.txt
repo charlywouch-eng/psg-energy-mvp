@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://psg-energy.fr/sitemap.xml
+Sitemap: https://psglobal.energy/sitemap.xml
