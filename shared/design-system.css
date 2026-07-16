@@ -185,6 +185,11 @@ button { cursor:pointer; font-family:var(--ff); border:none; background:none; }
 @media(max-width:768px) {
   .nav-links { display:none; }
 }
+@media(max-width:480px) {
+  .nav .btn { display:none; }
+  .lang-switcher { display:none; }
+  .nav { padding:0 16px; }
+}
 
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .footer {
