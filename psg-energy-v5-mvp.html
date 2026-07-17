@@ -280,6 +280,12 @@ body{font-family:var(--fb);background:var(--off);color:var(--ink);-webkit-font-s
 /* TOAST */
 .toast{position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(10px);opacity:0;background:var(--ink);color:#fff;padding:11px 18px;border-radius:100px;font-size:12px;font-weight:700;z-index:800;transition:all .3s;white-space:nowrap;pointer-events:none;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* PROD BARS */
+.prod-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.prod-bar-label{font-size:11px;font-weight:700;width:110px;flex-shrink:0;color:var(--ink2);}
+.prod-bar-wrap{flex:1;height:8px;background:var(--bdr);border-radius:4px;overflow:hidden;}
+.prod-bar-fill{height:100%;border-radius:4px;transition:width 1s ease;}
+.prod-bar-val{font-size:10px;font-weight:700;color:var(--ink3);width:72px;text-align:right;flex-shrink:0;}
 /* RTL */
 html[dir="rtl"] .bback{flex-direction:row-reverse;}
 html[dir="rtl"] .li:hover{transform:translateX(-2px);}
@@ -597,6 +603,15 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     <div class="pcard">
       <div class="ph"><div class="plogo" style="background:#E8F0FF;">⚡</div><div><div class="pname">KWANTHIC</div><div class="pcat">PAC · CET · PV · Bornes VE · Isolation</div></div><div class="pbdg pbp">⭐ PRIORITAIRE</div></div>
       <div class="pbody">
+        <div class="meng">
+          <div class="met">Moteur de marge PSGLOBAL Energy</div>
+          <div class="mf">
+            <div class="mb"><div class="mbl">Prix partenaire</div><div class="mbv" style="color:var(--ink2);">10 000€</div></div>
+            <div class="marr">→</div>
+            <div class="mb" style="background:var(--blueL);"><div class="mbl">Prix client PSG</div><div class="mbv" style="color:var(--blue);">14 000€</div></div>
+          </div>
+          <div class="mgain">✓ Marge PSG : +4 000€ / contrat (28.5%)</div>
+        </div>
         <div class="tags"><span class="tag">♨️ PAC Air/Eau</span><span class="tag">❄️ PAC Air/Air</span><span class="tag">💧 CET</span><span class="tag">☀️ PV</span><span class="tag">🔌 Borne VE</span><span class="tag">🧱 Isolation</span></div>
         <div class="pstats">
           <div class="ps"><div class="psv" style="color:var(--green);">23</div><div class="psl">Contrats</div></div>
@@ -606,6 +621,7 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
         <div class="rge">✓ RGE QualiPAC · QualiSOL · Qualibat · Fab. française · Garantie 5 ans</div>
         <div class="pact">
           <button class="btn bb bsm" style="margin:0;flex:1;" onclick="t('📋 Catalogue Kwanthic ouvert')">Voir les produits</button>
+          <button class="btn bgh bsm" style="margin:0;flex:1;" onclick="openMod('mMargeKwanthic')">✏️ Modifier marges</button>
         </div>
       </div>
     </div>
@@ -613,6 +629,15 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     <div class="pcard">
       <div class="ph"><div class="plogo" style="background:#FFF5E0;">☀️</div><div><div class="pname">LE SOLARISTE</div><div class="pcat">Panneaux PV · Batteries · Autoconsommation</div></div><div class="pbdg pba">● ACTIF</div></div>
       <div class="pbody">
+        <div class="meng">
+          <div class="met">Moteur de marge PSGLOBAL Energy</div>
+          <div class="mf">
+            <div class="mb"><div class="mbl">Prix partenaire</div><div class="mbv" style="color:var(--ink2);">16 000€</div></div>
+            <div class="marr">→</div>
+            <div class="mb" style="background:var(--goldL);"><div class="mbl">Prix client PSG</div><div class="mbv" style="color:var(--gold);">22 000€</div></div>
+          </div>
+          <div class="mgain">✓ Marge PSG : +6 000€ / contrat (37.5%)</div>
+        </div>
         <div class="tags"><span class="tag">☀️ PV 3–12kWc</span><span class="tag">🔋 Batterie 10kWh</span><span class="tag">⚡ Raccord. Enedis</span></div>
         <div class="pstats">
           <div class="ps"><div class="psv" style="color:var(--green);">17</div><div class="psl">Contrats</div></div>
@@ -622,32 +647,204 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
         <div class="rge">✓ RGE QualiSOL · Qualifelec · Garantie performance 25 ans</div>
         <div class="pact">
           <button class="btn bb bsm" style="margin:0;flex:1;" onclick="t('📋 Catalogue Solariste ouvert')">Voir les produits</button>
-          <button class="btn bgh bsm" style="margin:0;flex:1;" onclick="openMod('mAddPart')">+ Partenaire</button>
+          <button class="btn bgh bsm" style="margin:0;flex:1;" onclick="openMod('mMarge')">✏️ Modifier marges</button>
         </div>
       </div>
     </div>
-    <button class="btn bgh" onclick="logoutB2b()" style="margin-top:8px;">🔓 Se déconnecter</button>
+
+    <div class="sl">Calculatrice marge rapide</div>
+    <div class="card" style="margin-bottom:10px;">
+      <div class="met" style="margin-bottom:12px;">⚡ Simuler une marge sur devis</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div><div class="fl" style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:4px;">Prix partenaire (€)</div><input class="fi" type="number" id="calc_p1" placeholder="ex: 12000" oninput="calcMarge()" style="width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:var(--ff);"></div>
+        <div><div class="fl" style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:4px;">Prix client PSG (€)</div><input class="fi" type="number" id="calc_p2" placeholder="ex: 16500" oninput="calcMarge()" style="width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:var(--ff);"></div>
+      </div>
+      <div id="calc_result" style="padding:12px;background:var(--surf);border-radius:8px;text-align:center;font-size:13px;color:var(--ink3);font-family:var(--fb);">Saisissez les deux prix pour calculer</div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:8px;">
+      <button class="btn bgh" style="flex:1;" onclick="openMod('mAddPart')">➕ Ajouter partenaire</button>
+      <button class="btn bgh" onclick="logoutB2b()" style="flex:1;">🔓 Déconnexion</button>
+    </div>
   </div>
 </div>
 
-<!-- ══ DASHBOARD ══ -->
+<!-- ══ DASHBOARD GESTION ══ -->
 <div id="v-dash" class="view">
-  <div class="kgrid">
-    <div class="kc"><div class="kl">Leads ce mois</div><div class="kv" style="color:var(--blue)">284</div><div class="kd">↑ +34%</div></div>
-    <div class="kc"><div class="kl">Contrats signés</div><div class="kv" style="color:var(--green)">47</div><div class="kd">↑ 16.5%</div></div>
-    <div class="kc"><div class="kl">Gains PSG</div><div class="kv" style="color:var(--gold)">€18.4k</div><div class="kd">↑ Ce mois</div></div>
-    <div class="kc"><div class="kl">Projection M+1</div><div class="kv" style="color:var(--blue)">€24.3k</div><div class="kd">↑ Pipeline</div></div>
+
+  <!-- Sélecteur de période -->
+  <div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;">
+    <button class="pft on" onclick="setPeriod(this,'mois')">Ce mois</button>
+    <button class="pft" onclick="setPeriod(this,'trim')">Trimestre</button>
+    <button class="pft" onclick="setPeriod(this,'annee')">Année</button>
+    <button class="pft" onclick="setPeriod(this,'total')">Total</button>
   </div>
-  <div class="ringwrap">
-    <div class="ri">
-      <svg class="rsvg" width="120" height="120" viewBox="0 0 120 120">
-        <circle class="rbg" cx="60" cy="60" r="51"/>
-        <circle class="rfg" id="ringEl" cx="60" cy="60" r="51"/>
-      </svg>
-      <div class="rtxt"><div class="rpct">78%</div><div class="rlbl">Objectif mois</div></div>
+
+  <!-- KPI bloc 1 : résultats -->
+  <div class="sl">📊 Résultats</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;">
+    <div class="kc" style="border-left:3px solid var(--green);">
+      <div class="kl">Contrats réalisés</div>
+      <div class="kv" id="kpi_contrats" style="color:var(--green);">47</div>
+      <div class="kd">↑ +8 vs mois préc.</div>
+    </div>
+    <div class="kc" style="border-left:3px solid var(--gold);">
+      <div class="kl">Bénéfice marge PSG</div>
+      <div class="kv" id="kpi_marge" style="color:var(--gold);">€18.4k</div>
+      <div class="kd">↑ +22% vs préc.</div>
+    </div>
+    <div class="kc" style="border-left:3px solid var(--blue);">
+      <div class="kl">CA total géré</div>
+      <div class="kv" id="kpi_ca" style="color:var(--blue);">€155k</div>
+      <div class="kd">Kwanthic + Solariste</div>
+    </div>
+    <div class="kc" style="border-left:3px solid var(--purple);">
+      <div class="kl">Taux de conversion</div>
+      <div class="kv" id="kpi_taux" style="color:var(--purple);">16.5%</div>
+      <div class="kd">Leads → Contrats</div>
     </div>
   </div>
-  <div class="sl">Pipeline actif</div>
+
+  <!-- KPI bloc 2 : leads -->
+  <div class="sl">🎯 Leads & Prospection</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px;">
+    <div class="kc">
+      <div class="kl">Leads reçus</div>
+      <div class="kv" style="color:var(--blue);">284</div>
+      <div class="kd">↑ +34% ce mois</div>
+    </div>
+    <div class="kc">
+      <div class="kl">Leads vendus</div>
+      <div class="kv" style="color:var(--green);">61</div>
+      <div class="kd">À €150/lead qualifié</div>
+    </div>
+    <div class="kc">
+      <div class="kl">Revenu leads</div>
+      <div class="kv" style="color:var(--gold);">€9 150</div>
+      <div class="kd">61 × 150€ moyens</div>
+    </div>
+    <div class="kc">
+      <div class="kl">Score moyen</div>
+      <div class="kv" style="color:var(--purple);">87/100</div>
+      <div class="kd">Qualité prospection</div>
+    </div>
+  </div>
+
+  <!-- Objectif mensuel -->
+  <div class="sl">🎯 Objectif mensuel</div>
+  <div class="card" style="margin-bottom:12px;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="ringwrap" style="margin:0;flex-shrink:0;">
+        <div class="ri">
+          <svg class="rsvg" width="90" height="90" viewBox="0 0 120 120">
+            <circle class="rbg" cx="60" cy="60" r="51"/>
+            <circle class="rfg" id="ringEl" cx="60" cy="60" r="51"/>
+          </svg>
+          <div class="rtxt"><div class="rpct" style="font-size:18px;">78%</div><div class="rlbl">Objectif</div></div>
+        </div>
+      </div>
+      <div style="flex:1;">
+        <div style="font-family:var(--ff);font-size:13px;font-weight:800;margin-bottom:8px;">Juillet 2026</div>
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:4px;">Réalisé : <b style="color:var(--green);">€18 400</b></div>
+        <div style="font-size:12px;color:var(--ink3);margin-bottom:4px;">Objectif : <b style="color:var(--blue);">€24 000</b></div>
+        <div style="font-size:12px;color:var(--ink3);">Reste : <b style="color:var(--red);">€5 600</b></div>
+        <div style="background:var(--bdr);border-radius:4px;height:6px;margin-top:8px;overflow:hidden;">
+          <div style="background:linear-gradient(90deg,var(--green),var(--blue));width:78%;height:100%;border-radius:4px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bénéfice par partenaire -->
+  <div class="sl">💰 Bénéfice par partenaire</div>
+  <div class="card" style="margin-bottom:12px;">
+    <div style="margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:12px;font-weight:700;">⚡ Kwanthic <span style="color:var(--ink3);font-weight:400;">(28.5%)</span></span>
+        <span style="font-size:13px;font-weight:800;color:var(--blue);">€11 200</span>
+      </div>
+      <div style="background:var(--bdr);border-radius:4px;height:8px;overflow:hidden;">
+        <div style="background:var(--blue);width:61%;height:100%;border-radius:4px;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--ink3);margin-top:3px;">23 contrats · CA géré €92k</div>
+    </div>
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:12px;font-weight:700;">☀️ Le Solariste <span style="color:var(--ink3);font-weight:400;">(37.5%)</span></span>
+        <span style="font-size:13px;font-weight:800;color:var(--gold);">€7 200</span>
+      </div>
+      <div style="background:var(--bdr);border-radius:4px;height:8px;overflow:hidden;">
+        <div style="background:var(--gold);width:39%;height:100%;border-radius:4px;"></div>
+      </div>
+      <div style="font-size:10px;color:var(--ink3);margin-top:3px;">17 contrats · CA géré €63k</div>
+    </div>
+    <div style="border-top:1px solid var(--bdr);margin-top:12px;padding-top:10px;display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-size:12px;font-weight:700;color:var(--ink3);">Total bénéfice marge</span>
+      <span style="font-size:16px;font-weight:900;color:var(--green);">€18 400</span>
+    </div>
+  </div>
+
+  <!-- Statistiques produits vendus -->
+  <div class="sl">📦 Produits vendus — répartition</div>
+  <div class="card" style="margin-bottom:12px;" id="prod_stats">
+    <div class="prod-bar-row" data-pct="38">
+      <div class="prod-bar-label">♨️ PAC Air/Eau</div>
+      <div class="prod-bar-wrap"><div class="prod-bar-fill" style="background:var(--blue);width:38%;"></div></div>
+      <div class="prod-bar-val">18 contrats</div>
+    </div>
+    <div class="prod-bar-row" data-pct="25">
+      <div class="prod-bar-label">☀️ Panneaux PV</div>
+      <div class="prod-bar-wrap"><div class="prod-bar-fill" style="background:var(--gold);width:25%;"></div></div>
+      <div class="prod-bar-val">12 contrats</div>
+    </div>
+    <div class="prod-bar-row" data-pct="19">
+      <div class="prod-bar-label">🧱 Isolation</div>
+      <div class="prod-bar-wrap"><div class="prod-bar-fill" style="background:var(--purple);width:19%;"></div></div>
+      <div class="prod-bar-val">9 contrats</div>
+    </div>
+    <div class="prod-bar-row" data-pct="10">
+      <div class="prod-bar-label">🏠 Réno globale</div>
+      <div class="prod-bar-wrap"><div class="prod-bar-fill" style="background:var(--green);width:10%;"></div></div>
+      <div class="prod-bar-val">5 contrats</div>
+    </div>
+    <div class="prod-bar-row" data-pct="8">
+      <div class="prod-bar-label">💧 CET + Borne VE</div>
+      <div class="prod-bar-wrap"><div class="prod-bar-fill" style="background:var(--ink3);width:8%;"></div></div>
+      <div class="prod-bar-val">3 contrats</div>
+    </div>
+  </div>
+
+  <!-- Calculatrice marge rapide -->
+  <div class="sl">🧮 Calculatrice marge rapide</div>
+  <div class="card" style="margin-bottom:12px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:4px;">Prix partenaire (€)</div>
+        <input type="number" id="dash_p1" placeholder="ex: 12 000" oninput="dashCalc()" style="width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:var(--ff);outline:none;">
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:4px;">Prix client PSG (€)</div>
+        <input type="number" id="dash_p2" placeholder="ex: 16 500" oninput="dashCalc()" style="width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:var(--ff);outline:none;">
+      </div>
+    </div>
+    <div id="dash_result" style="padding:12px;background:var(--surf);border-radius:8px;text-align:center;font-size:13px;color:var(--ink3);font-family:var(--fb);">Saisissez les deux prix pour calculer la marge</div>
+    <div id="dash_result2" style="display:none;margin-top:8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;text-align:center;">
+      <div style="background:var(--blueL);border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--ink3);">Marge €</div><div id="dr_eur" style="font-family:var(--ff);font-weight:900;color:var(--blue);font-size:15px;">—</div></div>
+      <div style="background:var(--greenL);border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--ink3);">Marge %</div><div id="dr_pct" style="font-family:var(--ff);font-weight:900;color:var(--green);font-size:15px;">—</div></div>
+      <div style="background:var(--goldL);border-radius:8px;padding:8px;"><div style="font-size:10px;color:var(--ink3);">× 10 contrats</div><div id="dr_x10" style="font-family:var(--ff);font-weight:900;color:var(--gold);font-size:15px;">—</div></div>
+    </div>
+  </div>
+
+  <!-- Vente de leads -->
+  <div class="sl">📤 Leads vendus récents</div>
+  <div id="leads_vendus">
+    <div class="li" data-s="sign"><div class="lav" style="background:#F0FFF8;color:#007A5C;">LV</div><div class="linfo"><div class="lname">Lead #284 — M. Bernard</div><div class="ldet">94100 · PAC Air/Eau · Score 94</div></div><div class="lright"><div class="lamt" style="color:var(--green);">+€200</div><div class="lstg ssign">✅ Vendu</div></div></div>
+    <div class="li" data-s="sign"><div class="lav" style="background:#F0FFF8;color:#007A5C;">LV</div><div class="linfo"><div class="lname">Lead #283 — Mme Fouquet</div><div class="ldet">77500 · Réno globale · Score 89</div></div><div class="lright"><div class="lamt" style="color:var(--green);">+€150</div><div class="lstg ssign">✅ Vendu</div></div></div>
+    <div class="li" data-s="sign"><div class="lav" style="background:#F0FFF8;color:#007A5C;">LV</div><div class="linfo"><div class="lname">Lead #281 — M. Guérin</div><div class="ldet">91300 · Panneaux PV · Score 91</div></div><div class="lright"><div class="lamt" style="color:var(--green);">+€175</div><div class="lstg ssign">✅ Vendu</div></div></div>
+  </div>
+
+  <!-- Pipeline actif -->
+  <div class="sl">🔄 Pipeline actif</div>
   <div class="pf">
     <button class="pft on" onclick="fLeads(this,'all')">Tous</button>
     <button class="pft" onclick="fLeads(this,'new')">🆕 Entrant</button>
@@ -656,14 +853,61 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     <button class="pft" onclick="fLeads(this,'sign')">✍️ Signé</button>
   </div>
   <div id="lc">
-    <div class="li" data-s="sign" onclick="t('✅ M. Lefebvre — Contrat signé')"><div class="lav" style="background:var(--greenL);color:#007A5C;">LF</div><div class="linfo"><div class="lname">M. Lefebvre</div><div class="ldet">77500 · PAC Air/Eau · Kwanthic</div><div class="lscore"><div class="lsf" style="width:95%;background:var(--green)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--green);">€14k</div><div class="lstg ssign">✅ Signé</div></div></div>
+    <div class="li" data-s="sign" onclick="t('✅ M. Lefebvre — €14k — Kwanthic PAC')"><div class="lav" style="background:var(--greenL);color:#007A5C;">LF</div><div class="linfo"><div class="lname">M. Lefebvre</div><div class="ldet">77500 · PAC Air/Eau · Kwanthic</div><div class="lscore"><div class="lsf" style="width:95%;background:var(--green)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--green);">€14k</div><div class="lstg ssign">✅ Signé</div></div></div>
     <div class="li" data-s="rdv" onclick="t('📅 M. Moreau — RDV demain 14h')"><div class="lav" style="background:var(--greenL);color:#007A5C;">MO</div><div class="linfo"><div class="lname">M. Moreau</div><div class="ldet">77270 · Réno globale · Demain 14h</div><div class="lscore"><div class="lsf" style="width:88%;background:var(--blue)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--blue);">€35k</div><div class="lstg srdv">📅 RDV</div></div></div>
-    <div class="li" data-s="qual" onclick="t('⭐ Mme Petit — Score 97 · Dossier prêt')"><div class="lav" style="background:var(--goldL);color:var(--gold);">MP</div><div class="linfo"><div class="lname">Mme Petit</div><div class="ldet">77340 · Réno T2 · Aides €28 500</div><div class="lscore"><div class="lsf" style="width:97%;background:var(--gold)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--gold);">€28.5k</div><div class="lstg squal">✅ Qualifié</div></div></div>
+    <div class="li" data-s="qual" onclick="t('⭐ Mme Petit — Score 97 · Dossier prêt')"><div class="lav" style="background:var(--goldL);color:var(--gold);">MP</div><div class="linfo"><div class="lname">Mme Petit</div><div class="ldet">77340 · Réno globale · Aides €28 500</div><div class="lscore"><div class="lsf" style="width:97%;background:var(--gold)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--gold);">€28.5k</div><div class="lstg squal">✅ Qualifié</div></div></div>
     <div class="li" data-s="new" onclick="t('🔥 M. Dupont — Score 91 · À appeler')"><div class="lav" style="background:var(--blueL);color:var(--blue);">DP</div><div class="linfo"><div class="lname">M. Dupont</div><div class="ldet">77350 · PAC Air/Eau · Score 91 🔥</div><div class="lscore"><div class="lsf" style="width:91%;background:var(--blue)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--blue);">€14.5k</div><div class="lstg snew">🆕 Entrant</div></div></div>
+    <div class="li" data-s="new" onclick="t('📞 Mme Rousseau — Score 88 · IDF 93')"><div class="lav" style="background:var(--blueL);color:var(--blue);">RO</div><div class="linfo"><div class="lname">Mme Rousseau</div><div class="ldet">93300 · Isolation + PAC · Score 88</div><div class="lscore"><div class="lsf" style="width:88%;background:var(--blue)"></div></div></div><div class="lright"><div class="lamt" style="color:var(--blue);">€22k</div><div class="lstg snew">🆕 Entrant</div></div></div>
+  </div>
+
+  <!-- Actions rapides -->
+  <div class="sl">⚡ Actions rapides</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:80px;">
+    <button class="btn bb bsm" style="margin:0;" onclick="t('📊 Export CSV des leads en cours...')">📊 Export leads CSV</button>
+    <button class="btn bgh bsm" style="margin:0;" onclick="goView('v-pro')">🤝 Espace partenaires</button>
+    <button class="btn bgh bsm" style="margin:0;" onclick="t('📅 Agenda synchronisé')">📅 Voir agenda</button>
+    <button class="btn bgh bsm" style="margin:0;" onclick="openMod('mObjectif')">🎯 Modifier objectif</button>
   </div>
 </div>
 
 <!-- MODALS -->
+
+<!-- Modal modifier marges Kwanthic -->
+<div class="ov" id="mMargeKwanthic" onclick="closeMod('mMargeKwanthic')">
+  <div class="mod" onclick="event.stopPropagation()">
+    <div class="modh"></div>
+    <div class="modt">⚡ Modifier marges — Kwanthic</div>
+    <div class="fg"><label class="fl">Prix partenaire PAC (€)</label><input class="fi" type="number" value="10000" id="mk1" oninput="umK()"></div>
+    <div class="fg"><label class="fl">Prix client PSG (€)</label><input class="fi" type="number" value="14000" id="mk2" oninput="umK()"></div>
+    <div id="mprevK" style="padding:12px;background:var(--blueL);border-radius:8px;text-align:center;margin-bottom:14px;font-family:var(--ff);font-size:18px;font-weight:800;color:var(--blue);">Marge : +€4 000 (28.5%)</div>
+    <button class="btn bb" onclick="closeMod('mMargeKwanthic');t('✅ Marges Kwanthic enregistrées')">Enregistrer</button>
+  </div>
+</div>
+
+<!-- Modal modifier marges Le Solariste -->
+<div class="ov" id="mMarge" onclick="closeMod('mMarge')">
+  <div class="mod" onclick="event.stopPropagation()">
+    <div class="modh"></div>
+    <div class="modt">☀️ Modifier marges — Le Solariste</div>
+    <div class="fg"><label class="fl">Prix partenaire PV 9kWc (€)</label><input class="fi" type="number" value="16000" id="mm1" oninput="um2()"></div>
+    <div class="fg"><label class="fl">Prix client PSG (€)</label><input class="fi" type="number" value="22000" id="mm2" oninput="um2()"></div>
+    <div id="mprev2" style="padding:12px;background:var(--goldL);border-radius:8px;text-align:center;margin-bottom:14px;font-family:var(--ff);font-size:18px;font-weight:800;color:var(--gold);">Marge : +€6 000 (37.5%)</div>
+    <button class="btn bb" onclick="closeMod('mMarge');t('✅ Marges Le Solariste enregistrées')">Enregistrer</button>
+  </div>
+</div>
+
+<!-- Modal objectif mensuel -->
+<div class="ov" id="mObjectif" onclick="closeMod('mObjectif')">
+  <div class="mod" onclick="event.stopPropagation()">
+    <div class="modh"></div>
+    <div class="modt">🎯 Modifier l'objectif mensuel</div>
+    <div class="fg"><label class="fl">Objectif bénéfice marge (€)</label><input class="fi" type="number" value="24000" id="mo1" placeholder="ex: 30000"></div>
+    <div class="fg"><label class="fl">Objectif contrats</label><input class="fi" type="number" value="60" id="mo2" placeholder="ex: 60"></div>
+    <div class="fg"><label class="fl">Objectif leads vendus</label><input class="fi" type="number" value="80" id="mo3" placeholder="ex: 80"></div>
+    <button class="btn bb" onclick="closeMod('mObjectif');t('✅ Objectif mis à jour')">Enregistrer</button>
+  </div>
+</div>
+
 <div class="ov" id="mAddPart" onclick="closeMod('mAddPart')">
   <div class="mod" onclick="event.stopPropagation()">
     <div class="modh"></div>
@@ -866,6 +1110,52 @@ function openMod(id){document.getElementById(id).classList.add('open');}
 function closeMod(id){document.getElementById(id).classList.remove('open');}
 function um(){const p1=+document.getElementById('mp1').value||0,p2=+document.getElementById('mp2').value||0,m=p2-p1;document.getElementById('mprev').textContent=m>0?`Marge : +€${m.toLocaleString('fr-FR')} (${p1?((m/p1)*100).toFixed(1):0}%)`:'Saisissez les prix ci-dessus';}
 function um2(){const p1=+document.getElementById('mm1').value||0,p2=+document.getElementById('mm2').value||0,m=p2-p1;document.getElementById('mprev2').textContent=`Marge : +€${m.toLocaleString('fr-FR')} (${p1?((m/p1)*100).toFixed(1):0}%)`;}
+function umK(){const p1=+document.getElementById('mk1').value||0,p2=+document.getElementById('mk2').value||0,m=p2-p1;document.getElementById('mprevK').textContent=`Marge : +€${m.toLocaleString('fr-FR')} (${p1?((m/p1)*100).toFixed(1):0}%)`;}
+
+// ── CALCULATRICE MARGE (B2B) ─────────────────
+function calcMarge(){
+  const p1=+document.getElementById('calc_p1').value||0,p2=+document.getElementById('calc_p2').value||0,m=p2-p1;
+  const el=document.getElementById('calc_result');
+  if(p1>0&&p2>0&&m>0){el.innerHTML=`<b style="font-family:var(--ff);font-size:16px;color:var(--green);">+€${m.toLocaleString('fr-FR')}</b> de marge soit <b>${((m/p1)*100).toFixed(1)}%</b>`;el.style.background='var(--greenL)';el.style.color='#007A5C';}
+  else{el.textContent='Saisissez les deux prix pour calculer';el.style.background='var(--surf)';el.style.color='var(--ink3)';}
+}
+
+// ── CALCULATRICE MARGE (DASHBOARD) ───────────
+function dashCalc(){
+  const p1=+document.getElementById('dash_p1').value||0,p2=+document.getElementById('dash_p2').value||0,m=p2-p1;
+  const res=document.getElementById('dash_result'),res2=document.getElementById('dash_result2');
+  if(p1>0&&p2>0&&m>0){
+    res.style.display='none';res2.style.display='grid';
+    document.getElementById('dr_eur').textContent=`€${m.toLocaleString('fr-FR')}`;
+    document.getElementById('dr_pct').textContent=`${((m/p1)*100).toFixed(1)}%`;
+    document.getElementById('dr_x10').textContent=`€${(m*10).toLocaleString('fr-FR')}`;
+  } else {res.style.display='block';res2.style.display='none';}
+}
+
+// ── PÉRIODE DASHBOARD ─────────────────────────
+const PERIODS={
+  mois:{contrats:47,marge:'€18.4k',ca:'€155k',taux:'16.5%',leads:284,vendus:61,rev:'€9 150'},
+  trim:{contrats:138,marge:'€52k',ca:'€445k',taux:'17.2%',leads:803,vendus:178,rev:'€26 700'},
+  annee:{contrats:512,marge:'€198k',ca:'€1.6M',taux:'15.8%',leads:3240,vendus:690,rev:'€103k'},
+  total:{contrats:847,marge:'€321k',ca:'€2.7M',taux:'16.1%',leads:5260,vendus:1100,rev:'€165k'}
+};
+function setPeriod(btn,key){
+  document.querySelectorAll('#v-dash .pft').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  const d=PERIODS[key];
+  document.getElementById('kpi_contrats').textContent=d.contrats;
+  document.getElementById('kpi_marge').textContent=d.marge;
+  document.getElementById('kpi_ca').textContent=d.ca;
+  document.getElementById('kpi_taux').textContent=d.taux;
+}
+
+// ── NAVIGATION ENTRE VUES ─────────────────────
+function goView(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  document.querySelectorAll('.bn').forEach(b=>b.classList.remove('on'));
+  const map={'v-home':'bn-home','v-sim':'bn-sim','v-rdv':'bn-rdv','v-pro':'bn-pro','v-dash':'bn-dash'};
+  if(map[id])document.getElementById(map[id])?.classList.add('on');
+}
 
 // ── TOAST ────────────────────────────────────
 let _tt;
