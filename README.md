@@ -1,2 +1,4 @@
-# psg-energy-mvp
-PSG Energy-Regis Commerciale energies renouvelables
+# PSGLOBAL Energy — MVP
+
+Régie commerciale spécialisée en énergies renouvelables (SASU française).  
+Site : **psglobal.energy** | Déployé sur Vercel
