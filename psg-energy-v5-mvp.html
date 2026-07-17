@@ -593,84 +593,92 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
 
   <div id="b2b-content" style="display:none;">
     <div class="hero" style="background:linear-gradient(135deg,#1A4DFF,#6B3AED);">
-      <div class="h-tag">Espace Partenaires — Confidentiel B2B</div>
-      <div class="h-title">Vous installez.<br>PSG vend pour vous.</div>
-      <div class="h-sub">Prospection · Mise en confiance · Signature · Dossier aides</div>
+      <div class="h-tag">Espace Partenaires</div>
+      <div class="h-title">Installateur certifié RGE</div>
+      <div class="h-sub">Référence · Qualifications · Contact · Zone d'intervention</div>
     </div>
 
-    <div class="sl">Partenaires actifs</div>
+    <div class="sl">Partenaire certifié</div>
 
+    <!-- Fiche partenaire Kwanthic : contact, références, qualifications, adresse uniquement -->
     <div class="pcard">
-      <div class="ph"><div class="plogo" style="background:#E8F0FF;">⚡</div><div><div class="pname">KWANTHIC</div><div class="pcat">PAC · CET · PV · Bornes VE · Isolation</div></div><div class="pbdg pbp">⭐ PRIORITAIRE</div></div>
+      <div class="ph">
+        <div class="plogo" style="background:#E8F0FF;">⚡</div>
+        <div>
+          <div class="pname">KWANTHIC</div>
+          <div class="pcat">Installateur RGE — Île-de-France</div>
+        </div>
+        <div class="pbdg pbp">⭐ CERTIFIÉ</div>
+      </div>
       <div class="pbody">
-        <div class="meng">
-          <div class="met">Moteur de marge PSGLOBAL Energy</div>
-          <div class="mf">
-            <div class="mb"><div class="mbl">Prix partenaire</div><div class="mbv" style="color:var(--ink2);">10 000€</div></div>
-            <div class="marr">→</div>
-            <div class="mb" style="background:var(--blueL);"><div class="mbl">Prix client PSG</div><div class="mbv" style="color:var(--blue);">14 000€</div></div>
+
+        <!-- Coordonnées -->
+        <div class="sl" style="margin-top:0;">📍 Coordonnées</div>
+        <div class="card" style="margin-bottom:10px;padding:13px;">
+          <div style="font-size:12px;line-height:1.9;color:var(--ink2);">
+            <div><b>Adresse :</b> Zone Industrielle Val d'Europe, 77700 Serris</div>
+            <div><b>Téléphone :</b> <a href="tel:+33123456789" style="color:var(--blue);font-weight:700;">01 23 45 67 89</a></div>
+            <div><b>Email :</b> <a href="mailto:pro@kwanthic.fr" style="color:var(--blue);font-weight:700;">pro@kwanthic.fr</a></div>
+            <div><b>Référent PSG :</b> Service partenaires</div>
           </div>
-          <div class="mgain">✓ Marge PSG : +4 000€ / contrat (28.5%)</div>
         </div>
-        <div class="tags"><span class="tag">♨️ PAC Air/Eau</span><span class="tag">❄️ PAC Air/Air</span><span class="tag">💧 CET</span><span class="tag">☀️ PV</span><span class="tag">🔌 Borne VE</span><span class="tag">🧱 Isolation</span></div>
-        <div class="pstats">
-          <div class="ps"><div class="psv" style="color:var(--green);">23</div><div class="psl">Contrats</div></div>
-          <div class="ps"><div class="psv" style="color:var(--blue);">€92k</div><div class="psl">CA Géré</div></div>
-          <div class="ps"><div class="psv" style="color:var(--gold);">18j</div><div class="psl">Délai pose</div></div>
-        </div>
-        <div class="rge">✓ RGE QualiPAC · QualiSOL · Qualibat · Fab. française · Garantie 5 ans</div>
-        <div class="pact">
-          <button class="btn bb bsm" style="margin:0;flex:1;" onclick="t('📋 Catalogue Kwanthic ouvert')">Voir les produits</button>
-          <button class="btn bgh bsm" style="margin:0;flex:1;" onclick="openMod('mMargeKwanthic')">✏️ Modifier marges</button>
-        </div>
-      </div>
-    </div>
 
-    <div class="pcard">
-      <div class="ph"><div class="plogo" style="background:#FFF5E0;">☀️</div><div><div class="pname">LE SOLARISTE</div><div class="pcat">Panneaux PV · Batteries · Autoconsommation</div></div><div class="pbdg pba">● ACTIF</div></div>
-      <div class="pbody">
-        <div class="meng">
-          <div class="met">Moteur de marge PSGLOBAL Energy</div>
-          <div class="mf">
-            <div class="mb"><div class="mbl">Prix partenaire</div><div class="mbv" style="color:var(--ink2);">16 000€</div></div>
-            <div class="marr">→</div>
-            <div class="mb" style="background:var(--goldL);"><div class="mbl">Prix client PSG</div><div class="mbv" style="color:var(--gold);">22 000€</div></div>
+        <!-- Qualifications RGE -->
+        <div class="sl">🏅 Qualifications & certifications</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+          <span class="tag" style="background:var(--blueL);color:var(--blue);border-color:rgba(26,77,255,.2);">✓ QualiPAC</span>
+          <span class="tag" style="background:var(--blueL);color:var(--blue);border-color:rgba(26,77,255,.2);">✓ QualiSOL</span>
+          <span class="tag" style="background:var(--blueL);color:var(--blue);border-color:rgba(26,77,255,.2);">✓ Qualibat</span>
+          <span class="tag" style="background:var(--greenL);color:var(--greenD);border-color:rgba(0,196,140,.2);">✓ RGE reconnu ANAH</span>
+          <span class="tag" style="background:var(--greenL);color:var(--greenD);border-color:rgba(0,196,140,.2);">✓ Fab. française</span>
+          <span class="tag" style="background:var(--goldL);color:#8B6000;border-color:rgba(245,160,0,.2);">✓ Garantie 5 ans</span>
+        </div>
+
+        <!-- Gamme de produits -->
+        <div class="sl">🔧 Gamme d'équipements</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;">
+          <span class="tag">♨️ PAC Air/Eau</span>
+          <span class="tag">❄️ PAC Air/Air</span>
+          <span class="tag">💧 Chauffe-eau Thermo.</span>
+          <span class="tag">☀️ Panneaux PV</span>
+          <span class="tag">🔌 Borne VE</span>
+          <span class="tag">🧱 Isolation thermique</span>
+          <span class="tag">🏠 VMC Double flux</span>
+        </div>
+
+        <!-- Zone d'intervention -->
+        <div class="sl">📌 Zone d'intervention</div>
+        <div class="card" style="margin-bottom:12px;padding:12px;background:var(--surf);">
+          <div style="font-size:12px;color:var(--ink2);line-height:1.8;">
+            <div>🗺️ <b>Île-de-France</b> — Départements 77, 94, 91, 93</div>
+            <div>⏱️ Délai d'intervention moyen : <b>18 jours</b></div>
+            <div>📋 Dossier ANAH géré en direct avec PSGLOBAL Energy</div>
           </div>
-          <div class="mgain">✓ Marge PSG : +6 000€ / contrat (37.5%)</div>
         </div>
-        <div class="tags"><span class="tag">☀️ PV 3–12kWc</span><span class="tag">🔋 Batterie 10kWh</span><span class="tag">⚡ Raccord. Enedis</span></div>
-        <div class="pstats">
-          <div class="ps"><div class="psv" style="color:var(--green);">17</div><div class="psl">Contrats</div></div>
-          <div class="ps"><div class="psv" style="color:var(--blue);">€63k</div><div class="psl">CA Géré</div></div>
-          <div class="ps"><div class="psv" style="color:var(--gold);">26j</div><div class="psl">Délai pose</div></div>
-        </div>
-        <div class="rge">✓ RGE QualiSOL · Qualifelec · Garantie performance 25 ans</div>
-        <div class="pact">
-          <button class="btn bb bsm" style="margin:0;flex:1;" onclick="t('📋 Catalogue Solariste ouvert')">Voir les produits</button>
-          <button class="btn bgh bsm" style="margin:0;flex:1;" onclick="openMod('mMarge')">✏️ Modifier marges</button>
-        </div>
-      </div>
-    </div>
 
-    <div class="sl">Calculatrice marge rapide</div>
-    <div class="card" style="margin-bottom:10px;">
-      <div class="met" style="margin-bottom:12px;">⚡ Simuler une marge sur devis</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
-        <div><div class="fl" style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:4px;">Prix partenaire (€)</div><input class="fi" type="number" id="calc_p1" placeholder="ex: 12000" oninput="calcMarge()" style="width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:var(--ff);"></div>
-        <div><div class="fl" style="font-size:11px;font-weight:700;color:var(--ink3);margin-bottom:4px;">Prix client PSG (€)</div><input class="fi" type="number" id="calc_p2" placeholder="ex: 16500" oninput="calcMarge()" style="width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:8px;font-size:14px;font-family:var(--ff);"></div>
+        <button class="btn bgh" onclick="logoutB2b()" style="width:100%;margin-top:4px;">🔓 Se déconnecter</button>
       </div>
-      <div id="calc_result" style="padding:12px;background:var(--surf);border-radius:8px;text-align:center;font-size:13px;color:var(--ink3);font-family:var(--fb);">Saisissez les deux prix pour calculer</div>
-    </div>
-
-    <div style="display:flex;gap:8px;margin-top:8px;">
-      <button class="btn bgh" style="flex:1;" onclick="openMod('mAddPart')">➕ Ajouter partenaire</button>
-      <button class="btn bgh" onclick="logoutB2b()" style="flex:1;">🔓 Déconnexion</button>
     </div>
   </div>
 </div>
 
-<!-- ══ DASHBOARD GESTION ══ -->
+<!-- ══ DASHBOARD GESTION — ADMIN SEULEMENT ══ -->
 <div id="v-dash" class="view">
+
+  <!-- Gate admin -->
+  <div id="dash-gate" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:14px;padding:24px;">
+    <div style="width:56px;height:56px;background:var(--blueL);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;">🔐</div>
+    <div style="font-family:var(--ff);font-size:18px;font-weight:900;text-align:center;">Tableau de bord administrateur</div>
+    <div style="font-size:12px;color:var(--ink3);text-align:center;max-width:260px;line-height:1.6;">Accès réservé à l'administrateur PSGLOBAL Energy. Saisissez votre code PIN pour continuer.</div>
+    <div style="display:flex;gap:8px;width:100%;max-width:280px;">
+      <input type="password" id="dashPin" maxlength="6" placeholder="Code PIN admin" style="flex:1;padding:12px 16px;border:2px solid var(--bdr);border-radius:10px;font-size:16px;font-family:var(--ff);font-weight:700;letter-spacing:.15em;text-align:center;outline:none;transition:border-color .2s;" oninput="this.style.borderColor='var(--bdr)'" onkeydown="if(event.key==='Enter')unlockDash()">
+    </div>
+    <button class="btn bb" style="width:100%;max-width:280px;" onclick="unlockDash()">🔓 Accéder au tableau de bord</button>
+    <div id="dash-pin-err" style="font-size:11px;color:var(--red);font-weight:700;display:none;">Code incorrect — réessayez</div>
+  </div>
+
+  <!-- Contenu admin (masqué par défaut) -->
+  <div id="dash-content" style="display:none;">
 
   <!-- Sélecteur de période -->
   <div style="display:flex;gap:6px;margin-bottom:12px;overflow-x:auto;">
@@ -696,7 +704,7 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     <div class="kc" style="border-left:3px solid var(--blue);">
       <div class="kl">CA total géré</div>
       <div class="kv" id="kpi_ca" style="color:var(--blue);">€155k</div>
-      <div class="kd">Kwanthic + Solariste</div>
+      <div class="kd">Kwanthic IDF</div>
     </div>
     <div class="kc" style="border-left:3px solid var(--purple);">
       <div class="kl">Taux de conversion</div>
@@ -755,32 +763,23 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     </div>
   </div>
 
-  <!-- Bénéfice par partenaire -->
-  <div class="sl">💰 Bénéfice par partenaire</div>
+  <!-- Bénéfice Kwanthic -->
+  <div class="sl">💰 Bénéfice partenaire — Kwanthic</div>
   <div class="card" style="margin-bottom:12px;">
     <div style="margin-bottom:10px;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <span style="font-size:12px;font-weight:700;">⚡ Kwanthic <span style="color:var(--ink3);font-weight:400;">(28.5%)</span></span>
-        <span style="font-size:13px;font-weight:800;color:var(--blue);">€11 200</span>
+        <span style="font-size:12px;font-weight:700;">⚡ Kwanthic</span>
+        <span style="font-size:13px;font-weight:800;color:var(--blue);" id="kwanth_marge">€18 400</span>
       </div>
       <div style="background:var(--bdr);border-radius:4px;height:8px;overflow:hidden;">
-        <div style="background:var(--blue);width:61%;height:100%;border-radius:4px;"></div>
+        <div style="background:linear-gradient(90deg,var(--blue),var(--green));width:78%;height:100%;border-radius:4px;"></div>
       </div>
-      <div style="font-size:10px;color:var(--ink3);margin-top:3px;">23 contrats · CA géré €92k</div>
+      <div style="font-size:10px;color:var(--ink3);margin-top:3px;">23 contrats · CA géré €92k · Marge 28.5%</div>
     </div>
-    <div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <span style="font-size:12px;font-weight:700;">☀️ Le Solariste <span style="color:var(--ink3);font-weight:400;">(37.5%)</span></span>
-        <span style="font-size:13px;font-weight:800;color:var(--gold);">€7 200</span>
-      </div>
-      <div style="background:var(--bdr);border-radius:4px;height:8px;overflow:hidden;">
-        <div style="background:var(--gold);width:39%;height:100%;border-radius:4px;"></div>
-      </div>
-      <div style="font-size:10px;color:var(--ink3);margin-top:3px;">17 contrats · CA géré €63k</div>
-    </div>
-    <div style="border-top:1px solid var(--bdr);margin-top:12px;padding-top:10px;display:flex;justify-content:space-between;align-items:center;">
-      <span style="font-size:12px;font-weight:700;color:var(--ink3);">Total bénéfice marge</span>
-      <span style="font-size:16px;font-weight:900;color:var(--green);">€18 400</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;">
+      <div style="text-align:center;padding:8px;background:var(--blueL);border-radius:8px;"><div style="font-size:10px;color:var(--ink3);">Contrats</div><div style="font-family:var(--ff);font-weight:900;color:var(--blue);">23</div></div>
+      <div style="text-align:center;padding:8px;background:var(--greenL);border-radius:8px;"><div style="font-size:10px;color:var(--ink3);">CA géré</div><div style="font-family:var(--ff);font-weight:900;color:var(--green);">€92k</div></div>
+      <div style="text-align:center;padding:8px;background:var(--goldL);border-radius:8px;"><div style="font-size:10px;color:var(--ink3);">Délai pose</div><div style="font-family:var(--ff);font-weight:900;color:var(--gold);">18j</div></div>
     </div>
   </div>
 
@@ -868,6 +867,9 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     <button class="btn bgh bsm" style="margin:0;" onclick="t('📅 Agenda synchronisé')">📅 Voir agenda</button>
     <button class="btn bgh bsm" style="margin:0;" onclick="openMod('mObjectif')">🎯 Modifier objectif</button>
   </div>
+  <button class="btn bgh" style="width:100%;margin-bottom:80px;" onclick="lockDash()">🔒 Verrouiller le tableau de bord</button>
+
+  </div><!-- /dash-content -->
 </div>
 
 <!-- MODALS -->
@@ -881,18 +883,6 @@ html[dir="rtl"] .mc{flex-direction:row-reverse;}
     <div class="fg"><label class="fl">Prix client PSG (€)</label><input class="fi" type="number" value="14000" id="mk2" oninput="umK()"></div>
     <div id="mprevK" style="padding:12px;background:var(--blueL);border-radius:8px;text-align:center;margin-bottom:14px;font-family:var(--ff);font-size:18px;font-weight:800;color:var(--blue);">Marge : +€4 000 (28.5%)</div>
     <button class="btn bb" onclick="closeMod('mMargeKwanthic');t('✅ Marges Kwanthic enregistrées')">Enregistrer</button>
-  </div>
-</div>
-
-<!-- Modal modifier marges Le Solariste -->
-<div class="ov" id="mMarge" onclick="closeMod('mMarge')">
-  <div class="mod" onclick="event.stopPropagation()">
-    <div class="modh"></div>
-    <div class="modt">☀️ Modifier marges — Le Solariste</div>
-    <div class="fg"><label class="fl">Prix partenaire PV 9kWc (€)</label><input class="fi" type="number" value="16000" id="mm1" oninput="um2()"></div>
-    <div class="fg"><label class="fl">Prix client PSG (€)</label><input class="fi" type="number" value="22000" id="mm2" oninput="um2()"></div>
-    <div id="mprev2" style="padding:12px;background:var(--goldL);border-radius:8px;text-align:center;margin-bottom:14px;font-family:var(--ff);font-size:18px;font-weight:800;color:var(--gold);">Marge : +€6 000 (37.5%)</div>
-    <button class="btn bb" onclick="closeMod('mMarge');t('✅ Marges Le Solariste enregistrées')">Enregistrer</button>
   </div>
 </div>
 
@@ -1147,6 +1137,30 @@ function setPeriod(btn,key){
   document.getElementById('kpi_ca').textContent=d.ca;
   document.getElementById('kpi_taux').textContent=d.taux;
 }
+
+// ── ADMIN DASHBOARD PIN ──────────────────────
+const DASH_PIN='2606';
+function unlockDash(){
+  const pin=document.getElementById('dashPin').value;
+  if(pin===DASH_PIN){
+    document.getElementById('dash-gate').style.display='none';
+    document.getElementById('dash-content').style.display='block';
+    sessionStorage.setItem('psg_admin','1');
+  } else {
+    document.getElementById('dashPin').style.borderColor='var(--red)';
+    document.getElementById('dash-pin-err').style.display='block';
+    document.getElementById('dashPin').value='';
+  }
+}
+function lockDash(){
+  document.getElementById('dash-gate').style.display='flex';
+  document.getElementById('dash-content').style.display='none';
+  document.getElementById('dashPin').value='';
+  document.getElementById('dash-pin-err').style.display='none';
+  sessionStorage.removeItem('psg_admin');
+}
+// Auto-déverrouiller si déjà authentifié dans cette session
+(function(){if(sessionStorage.getItem('psg_admin')==='1'){document.getElementById('dash-gate').style.display='none';document.getElementById('dash-content').style.display='block';}})();
 
 // ── NAVIGATION ENTRE VUES ─────────────────────
 function goView(id){
