@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Élia — Assistante PSG Energy</title>
+<title>Élia — Assistante PSGLOBAL Energy</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
 :root{
@@ -180,7 +180,7 @@ body{font-family:var(--fb);background:var(--off);color:var(--ink);-webkit-font-s
     <div class="header-top">
       <div class="avatar">É<div class="avatar-dot"></div></div>
       <div class="agent-info">
-        <div class="agent-name">Élia · Assistante PSG Energy</div>
+        <div class="agent-name">Élia · Assistante PSGLOBAL Energy</div>
         <div class="agent-role">Experte aides ANAH · MaPrimeRénov 2026</div>
       </div>
       <button class="header-action" onclick="resetChat()">↺ Nouveau</button>
@@ -237,13 +237,13 @@ let userProfile = {};
 
 // ── BASE DE CONNAISSANCES ANAH 2026 ───────────────
 const ANAH_KNOWLEDGE = `
-Tu es Élia, l'assistante virtuelle experte de PSG Energy, spécialisée dans les aides ANAH et MaPrimeRénov 2026.
+Tu es Élia, l'assistante virtuelle experte de PSGLOBAL Energy, spécialisée dans les aides ANAH et MaPrimeRénov 2026.
 
 RÈGLES DE COMPORTEMENT :
 - Tu es chaleureuse, précise, professionnelle et pédagogue
 - Tu poses des questions pour mieux qualifier le profil de l'utilisateur
 - Tu n'inventes jamais de chiffres : tu utilises uniquement les données ci-dessous
-- Tu recommandes toujours un RDV gratuit avec PSG Energy à la fin de chaque réponse
+- Tu recommandes toujours un RDV gratuit avec PSGLOBAL Energy à la fin de chaque réponse
 - Tu réponds en français par défaut, mais tu peux détecter et répondre en arabe, anglais, portugais, turc ou mandarin si l'utilisateur écrit dans ces langues
 - Tu utilises des émojis avec parcimonie pour rendre les réponses lisibles sur mobile
 - Tu structures tes réponses avec des tirets ou des paragraphes courts
@@ -339,7 +339,7 @@ DÉLAIS ET PROCESSUS ANAH :
 ACCOMPAGNATEUR RÉNOV (MAR) - OBLIGATOIRE si > 5 000 € MPR :
 - Gratuit pour T1 et T2
 - 50 % pris en charge pour T3
-- PSG Energy peut orienter vers un MAR agréé
+- PSGLOBAL Energy peut orienter vers un MAR agréé
 
 PSG ENERGY — QUI NOUS SOMMES :
 - Régie commerciale en énergies renouvelables
@@ -377,7 +377,7 @@ const LOCAL_RESPONSES = {
 // ── RÉPONSES PRÉDÉFINIES ───────────────────────────
 
 function replyGreet(msg){
-  return `Bonjour ! 👋 Je suis **Élia**, votre assistante personnelle PSG Energy.
+  return `Bonjour ! 👋 Je suis **Élia**, votre assistante personnelle PSGLOBAL Energy.
 
 Je suis spécialisée dans les **aides ANAH et MaPrimeRénov 2026**. Je peux vous aider à :
 
@@ -409,7 +409,7 @@ function replyPAC(msg){
 </div>
 <div class="alert-box alert-warn">
   <div class="alert-ico">⚠️</div>
-  <div class="alert-txt"><b>Important :</b> La demande d'aide doit être faite AVANT la signature du bon de commande. PSG Energy prépare votre dossier ANAH gratuitement.</div>
+  <div class="alert-txt"><b>Important :</b> La demande d'aide doit être faite AVANT la signature du bon de commande. PSGLOBAL Energy prépare votre dossier ANAH gratuitement.</div>
 </div>
 <div class="cta-row">
   <button class="cta-btn cta-bb" onclick="sendSug({textContent:'💰 Calculer mes aides PAC selon mon profil'})">Calculer mon aide</button>
@@ -578,7 +578,7 @@ function replyEligib(msg){
 </div>
 <div class="alert-box alert-info">
   <div class="alert-ico">💡</div>
-  <div class="alert-txt">PSG Energy vérifie votre éligibilité <b>gratuitement</b> et prépare votre dossier ANAH. Vous n'avez rien à faire.</div>
+  <div class="alert-txt">PSGLOBAL Energy vérifie votre éligibilité <b>gratuitement</b> et prépare votre dossier ANAH. Vous n'avez rien à faire.</div>
 </div>
 <div class="cta-row">
   <button class="cta-btn cta-bb" onclick="sendSug({textContent:'💰 Calculer mes aides maintenant'})">Calculer mes aides</button>
@@ -614,12 +614,12 @@ function replyProcess(msg){
     text:`Voici le **processus complet** pour obtenir vos aides ANAH, étape par étape :`,
     rich:`
 <div class="step-list">
-  <div class="step-item"><div class="step-num">1</div><div><b>Simulation gratuite</b> avec PSG Energy — 2 min en ligne ou par téléphone</div></div>
-  <div class="step-item"><div class="step-num">2</div><div><b>Dépôt dossier ANAH</b> sur monprojet.anah.gouv.fr — PSG Energy vous aide gratuitement</div></div>
+  <div class="step-item"><div class="step-num">1</div><div><b>Simulation gratuite</b> avec PSGLOBAL Energy — 2 min en ligne ou par téléphone</div></div>
+  <div class="step-item"><div class="step-num">2</div><div><b>Dépôt dossier ANAH</b> sur monprojet.anah.gouv.fr — PSGLOBAL Energy vous aide gratuitement</div></div>
   <div class="step-item"><div class="step-num">3</div><div><b>Accord de financement</b> reçu par courrier (délai : 4 à 8 semaines ANAH)</div></div>
   <div class="step-item"><div class="step-num">4</div><div><b>Signature bon de commande</b> avec l'installateur RGE — APRÈS l'accord uniquement</div></div>
   <div class="step-item"><div class="step-num">5</div><div><b>Travaux réalisés</b> par Kwanthic ou Le Solariste (3 à 6 semaines)</div></div>
-  <div class="step-item"><div class="step-num">6</div><div><b>Demande de versement</b> MPR avec factures — PSG Energy transmet le dossier</div></div>
+  <div class="step-item"><div class="step-num">6</div><div><b>Demande de versement</b> MPR avec factures — PSGLOBAL Energy transmet le dossier</div></div>
   <div class="step-item"><div class="step-num done">✓</div><div><b>Versement ANAH</b> sur votre compte (4 à 6 semaines après réception)</div></div>
 </div>
 <div class="alert-box alert-warn">
@@ -675,7 +675,7 @@ function replyCumul(msg){
 
 function replyRDV(msg){
   return {
-    text:`Parfait ! Un **rendez-vous gratuit** avec un conseiller PSG Energy, c'est :`,
+    text:`Parfait ! Un **rendez-vous gratuit** avec un conseiller PSGLOBAL Energy, c'est :`,
     rich:`
 <div class="step-list">
   <div class="step-item"><div class="step-num done">✓</div><div>Un audit gratuit de votre logement et de vos droits</div></div>
@@ -762,7 +762,7 @@ function addMessage(role, content, rich='', followup='') {
   div.innerHTML = `
     <div class="msg-av ${isBot?'bot':'user'}">${isBot?'É':'👤'}</div>
     <div class="msg-body">
-      <div class="msg-name">${isBot?'Élia · PSG Energy':'Vous'}</div>
+      <div class="msg-name">${isBot?'Élia · PSGLOBAL Energy':'Vous'}</div>
       <div class="bubble ${isBot?'bot':'user'}">${bubbleContent}${rich}</div>
       ${followupHtml}
       <div class="bubble-time">${now}</div>
@@ -781,7 +781,7 @@ function showTyping() {
   div.innerHTML = `
     <div class="msg-av bot">É</div>
     <div class="msg-body">
-      <div class="msg-name">Élia · PSG Energy</div>
+      <div class="msg-name">Élia · PSGLOBAL Energy</div>
       <div class="typing">
         <div class="typing-wave">
           <div class="tw"></div><div class="tw"></div><div class="tw"></div>
@@ -845,7 +845,7 @@ async function sendMessage() {
     const fallback = `Je rencontre une difficulté technique momentanée. 😕
 
 Pour toute question sur vos aides ANAH, vous pouvez :
-- **Appeler PSG Energy** directement
+- **Appeler PSGLOBAL Energy** directement
 - **Utiliser notre simulateur** gratuit en ligne
 
 Nos conseillers vous répondent **lundi-samedi, 8h-19h**.`;
@@ -982,7 +982,7 @@ function initChat() {
   welcomeDiv.innerHTML = `
     <div class="welcome">
       <div class="welcome-hero">
-        <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;">PSG Energy · Intelligence Artificielle</div>
+        <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px;">PSGLOBAL Energy · Intelligence Artificielle</div>
         <div class="welcome-title">Bonjour ! Je suis Élia 👋</div>
         <div class="welcome-sub">Votre assistante personnelle pour toutes vos questions sur les aides énergie en 2026. Je connais tous les barèmes ANAH et peux calculer vos droits en temps réel.</div>
         <div class="welcome-stats">
