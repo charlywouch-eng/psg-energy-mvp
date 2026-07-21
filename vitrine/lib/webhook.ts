@@ -13,22 +13,18 @@ export interface LeadPayload {
 }
 
 export async function sendLead(payload: LeadPayload): Promise<boolean> {
-  const webhookUrl = process.env.NEXT_PUBLIC_MAKE_WEBHOOK_URL;
-  if (!webhookUrl) {
-    console.error("[PSG] NEXT_PUBLIC_MAKE_WEBHOOK_URL non définie");
-    return false;
-  }
+  const data: LeadPayload = {
+    ...payload,
+    date: payload.date || new Date().toISOString(),
+    source: payload.source || "psglobal.energy",
+    lang: payload.lang || "fr",
+  };
 
   try {
-    const res = await fetch(webhookUrl, {
+    const res = await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...payload,
-        date: payload.date || new Date().toISOString(),
-        source: payload.source || "psglobal.energy",
-        lang: payload.lang || "fr",
-      }),
+      body: JSON.stringify(data),
     });
     return res.ok;
   } catch (err) {
