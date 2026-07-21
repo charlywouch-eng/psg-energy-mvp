@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0A0E1A;
+  --blue: #1A4DFF;
+  --green: #00C48C;
+  --gold: #F5A000;
+  --surf: #F2F5FB;
+  --font-display: 'Big Shoulders Display', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0A0E1A;
+    color: #fff;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-ink;
+    background: linear-gradient(135deg, #1A4DFF 0%, #0D3ACC 100%);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(26, 77, 255, 0.4);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-semibold text-sm text-white border border-white/20 transition-all duration-200;
+    background: rgba(255,255,255,0.05);
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .btn-green {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-semibold text-sm text-white transition-all duration-200;
+    background: linear-gradient(135deg, #00C48C 0%, #009E72 100%);
+  }
+  .btn-green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 196, 140, 0.4);
+  }
+
+  .card {
+    background: linear-gradient(145deg, #111827 0%, #0D1533 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    @apply rounded-2xl p-6;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold font-body;
+  }
+
+  .section-label {
+    @apply badge text-green mb-4;
+    background: rgba(0, 196, 140, 0.12);
+    border: 1px solid rgba(0, 196, 140, 0.25);
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white leading-tight;
+  }
+
+  .section-sub {
+    @apply text-base md:text-lg text-white/60 font-body leading-relaxed max-w-2xl;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl text-sm font-body text-white placeholder-white/40 border border-white/10 focus:outline-none focus:border-blue/60 focus:ring-1 focus:ring-blue/40 transition-colors;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #00C48C 0%, #1A4DFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+}
