@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Collectivités & Mairies — Rénovation énergétique 0 € avancé | PSGLOBAL-ENERGY",
   description:
-    "Écoles, mairies, gymnases en Seine-et-Marne : climatisation et rénovation énergétique financées 100 % fonds publics. PSGLOBAL Energy monte votre dossier.",
+    "Écoles, mairies, gymnases en Seine-et-Marne : Fonds Vert, CEE tertiaire, Plan Fraîcheur. PSGLOBAL Energy monte votre dossier sans mobiliser vos services techniques.",
 };
 
 const ETABLISSEMENTS = [
@@ -47,10 +47,10 @@ export default function CollectivitesPage() {
             </div>
             <h1 className="section-title mb-6">
               Rénovez vos bâtiments publics<br />
-              <span className="gradient-text">financés à 100 %</span>
+              <span className="gradient-text">sans avancer un euro</span>
             </h1>
             <p className="section-sub mb-8">
-              Fond Vert, DSIL, DETR, CEE, Plan Fraîcheur — PSGLOBAL Energy identifie et monte l&apos;ensemble des financements disponibles pour votre commune ou EPCI, sans mobiliser vos services techniques.
+              Fonds Vert, DSIL, DETR, CEE tertiaire, Plan Fraîcheur — PSGLOBAL Energy identifie et monte l&apos;ensemble des financements disponibles pour votre commune ou EPCI, sans mobiliser vos services techniques.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
