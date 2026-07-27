@@ -20,15 +20,15 @@ const ETAPES = [
   {
     n: "02",
     titre: "Montage des dossiers de financement",
-    desc: "Notre équipe constitue l'intégralité des dossiers ANAH, CEE, Plan Fraîcheur, Fond Vert — vous ne signez qu'en bout de chaîne.",
-    details: ["Dossier ANAH / CEE", "Convention Plan Fraîcheur", "Demandes DSIL / DETR pour collectivités", "Suivi administratif complet"],
+    desc: "Notre équipe constitue l'intégralité des dossiers Fonds Vert, CEE, Plan Fraîcheur, DSIL/DETR — vous ne signez qu'en bout de chaîne.",
+    details: ["Dossier Fonds Vert / CEE", "Convention Plan Fraîcheur", "Demandes DSIL / DETR pour collectivités", "Suivi administratif complet"],
     icon: "📋",
   },
   {
     n: "03",
     titre: "Sélection des équipements",
     desc: "Nous sélectionnons les matériels parmi notre réseau de partenaires certifiés RGE — marques françaises, garanties constructeur.",
-    details: ["Marques françaises premium", "Garantie 5 ans minimum", "Matériels éligibles CEE/ANAH", "Délai d'approvisionnement 7–18 j"],
+    details: ["Marques françaises premium", "Garantie 5 ans minimum", "Matériels éligibles CEE/Fonds Vert", "Délai d'approvisionnement 7–18 j"],
     icon: "⚙️",
   },
   {
@@ -48,7 +48,7 @@ const ETAPES = [
   {
     n: "06",
     titre: "Perception des aides",
-    desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge net — souvent nul pour les EHPAD et collectivités.",
+    desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge net — minimisé via le cumul des guichets mobilisés.",
     details: ["Versement direct à l'installateur", "Solde = reste à charge net", "Accompagnement comptable", "Clôture administrative du dossier"],
     icon: "💶",
   },
@@ -58,7 +58,7 @@ const ENGAGEMENTS = [
   { titre: "0 € de frais de dossier", desc: "Notre rémunération est incluse dans la marge commerciale des équipements. Aucun frais caché." },
   { titre: "Délai garanti", desc: "Du premier rendez-vous à la livraison : 6 à 12 semaines selon la complexité du projet." },
   { titre: "Installateurs RGE", desc: "Tous nos partenaires sont certifiés RGE — condition obligatoire pour débloquer les aides." },
-  { titre: "Conformité ANAH 2026", desc: "Dossiers montés selon les dernières dispositions réglementaires. Nous assumons les erreurs." },
+  { titre: "Conformité réglementaire 2026", desc: "Dossiers montés selon les dernières dispositions (décret tertiaire, Fonds Vert, CEE). Nous assumons les erreurs." },
 ];
 
 export default function MethodePage() {

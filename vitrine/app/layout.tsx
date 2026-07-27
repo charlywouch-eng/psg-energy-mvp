@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | PSGLOBAL-ENERGY",
   },
   description:
-    "PSGLOBAL Energy accompagne les EHPAD et collectivités de Seine-et-Marne dans le déploiement du Plan Fraîcheur — climatisation, pompes à chaleur, PV, isolation — avec 0 € avancé grâce aux aides ANAH 2026.",
+    "PSGLOBAL Energy accompagne les EHPAD et collectivités de Seine-et-Marne dans le déploiement du Plan Fraîcheur — climatisation, pompes à chaleur, PV, isolation — avec 0 € avancé grâce au Fonds Vert et aux CEE tertiaires 2026.",
   keywords: [
     "Plan Fraîcheur EHPAD",
     "climatisation EHPAD Seine-et-Marne",

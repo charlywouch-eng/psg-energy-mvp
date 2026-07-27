@@ -40,7 +40,7 @@ const SOLUTIONS = [
   {
     icon: "🏠",
     titre: "Particuliers",
-    desc: "CEE, Éco-PTZ, aides ANAH — nos conseillers optimisent votre plan de financement pour les particuliers.",
+    desc: "CEE, Éco-PTZ — nos conseillers optimisent votre plan de financement pour les propriétaires particuliers.",
     href: "/particuliers",
     badge: "Île-de-France",
     badgeColor: "#00C48C",
@@ -51,7 +51,7 @@ const SOLUTIONS = [
 
 const ETAPES = [
   { n: "01", titre: "Audit gratuit 48 h", desc: "Nous analysons vos droits aux aides et vous envoyons une synthèse financière sans engagement." },
-  { n: "02", titre: "Montage du dossier", desc: "Notre équipe constitue l'intégralité des dossiers ANAH, CEE, Plan Fraîcheur à votre place." },
+  { n: "02", titre: "Montage du dossier", desc: "Notre équipe constitue l'intégralité des dossiers Fonds Vert, CEE, Plan Fraîcheur à votre place." },
   { n: "03", titre: "Installation RGE", desc: "Nos partenaires installateurs certifiés RGE réalisent les travaux dans les délais convenus." },
   { n: "04", titre: "Perception des aides", desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge net." },
 ];

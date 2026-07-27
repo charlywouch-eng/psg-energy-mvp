@@ -4,9 +4,9 @@ import Footer from "@/components/layout/Footer";
 import EligibilityForm from "@/components/ui/EligibilityForm";
 
 export const metadata: Metadata = {
-  title: "Simulateur d'éligibilité — Aides ANAH 2026 & Plan Fraîcheur",
+  title: "Simulateur d'éligibilité — Plan Fraîcheur 2026 & CEE tertiaire",
   description:
-    "Estimez en 2 minutes vos droits aux aides ANAH 2026, CEE et Plan Fraîcheur. Gratuit, sans engagement — réponse de nos experts sous 48 h.",
+    "Estimez en 2 minutes vos financements disponibles : Plan Fraîcheur, Fonds Vert, CEE tertiaire. Gratuit, sans engagement — réponse de nos experts sous 48 h.",
 };
 
 export default function EligibilitePage() {
