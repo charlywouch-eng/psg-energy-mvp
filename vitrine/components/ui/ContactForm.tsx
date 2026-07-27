@@ -97,7 +97,7 @@ export default function ContactForm() {
           <option value="">Sélectionnez...</option>
           <option>Plan Fraîcheur EHPAD</option>
           <option>Rénovation collectivité / mairie</option>
-          <option>MaPrimeRénov&apos; particulier</option>
+          <option>Rénovation particulier (aides ANAH / CEE)</option>
           <option>Panneaux photovoltaïques</option>
           <option>Pompe à chaleur</option>
           <option>Autre projet</option>

@@ -19,7 +19,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://psglobal.energy"),
   title: {
-    default: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités | MaPrimeRénov 2026",
+    default: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités | Fonds Vert 2026",
     template: "%s | PSGLOBAL-ENERGY",
   },
   description:
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   keywords: [
     "Plan Fraîcheur EHPAD",
     "climatisation EHPAD Seine-et-Marne",
-    "MaPrimeRénov collectivités",
+    "Fonds Vert collectivités",
     "pompe à chaleur IDF",
     "PSGLOBAL Energy",
     "rénovation énergétique 77",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "PSGLOBAL-ENERGY",
     title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités",
     description:
-      "Financement 100 % public pour la rénovation thermique de vos établissements. Zéro avance de fonds.",
+      "Fonds Vert, CEE tertiaire, Plan Fraîcheur pour EHPAD et collectivités. Reste à charge minimisé, 0 € avancé.",
     images: [
       {
         url: "/og-image.png",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités",
-    description: "Financement 100 % public. Zéro avance de fonds.",
+    description: "Fonds Vert, CEE tertiaire, Plan Fraîcheur. 0 € avancé par l'établissement.",
     images: ["/og-image.png"],
   },
   alternates: {

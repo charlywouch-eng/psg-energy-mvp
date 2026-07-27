@@ -4,18 +4,19 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Particuliers — MaPrimeRénov 2026, CEE, Éco-PTZ | PSGLOBAL-ENERGY",
+  title: "Particuliers — CEE, Éco-PTZ, aides ANAH | PSGLOBAL-ENERGY",
   description:
-    "PAC, isolation, PV, chauffe-eau thermodynamique — PSGLOBAL Energy optimise vos aides MaPrimeRénov' 2026 en Île-de-France. Audit gratuit.",
+    "PAC, isolation, PV, chauffe-eau thermodynamique — PSGLOBAL Energy optimise vos aides CEE et ANAH en Île-de-France. Audit gratuit.",
+  robots: { index: false, follow: false },
 };
 
 const AIDES_PART = [
-  { nom: "MaPrimeRénov' 2026", montant: "jusqu'à 10 000 €", desc: "Subvention ANAH selon revenus et type de travaux.", color: "#00C48C" },
+  { nom: "Aide ANAH rénovation", montant: "jusqu'à 10 000 €", desc: "Subvention ANAH selon revenus et type de travaux — conditions vérifiées lors de l'audit.", color: "#00C48C" },
   { nom: "CEE Particuliers", montant: "jusqu'à 3 000 €", desc: "Certificats d'Économie d'Énergie versés par les énergéticiens.", color: "#1A4DFF" },
   { nom: "Éco-PTZ", montant: "jusqu'à 50 000 €", desc: "Prêt à taux 0 % sans condition de revenus pour rénovation globale.", color: "#F5A000" },
   { nom: "Prime MAR", montant: "2 000 €", desc: "Prime Mon Accompagnateur Rénov' pour rénovation globale avec AMO.", color: "#00C48C" },
   { nom: "TVA réduite 5,5 %", montant: "−14,5 pts", desc: "Sur tous travaux de rénovation énergétique par artisan RGE.", color: "#8B92A5" },
-  { nom: "Chèque énergie", montant: "48 à 277 €", desc: "Pour ménages aux revenus modestes — cumulable avec MPR.", color: "#8B92A5" },
+  { nom: "Chèque énergie", montant: "48 à 277 €", desc: "Pour ménages aux revenus modestes — cumulable avec aides ANAH.", color: "#8B92A5" },
 ];
 
 const TRAVAUX = [
@@ -44,7 +45,7 @@ export default function ParticuliersPage() {
               <span className="gradient-text">avec 0 € avancé</span>
             </h1>
             <p className="section-sub mb-8">
-              MaPrimeRénov&apos; 2026, CEE, Éco-PTZ, TVA 5,5 % — nos conseillers calculent l&apos;ensemble des aides auxquelles vous avez droit et constituent votre dossier de A à Z.
+              CEE, Éco-PTZ, aides ANAH, TVA 5,5 % — nos conseillers calculent l&apos;ensemble des aides auxquelles vous avez droit et constituent votre dossier de A à Z.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/eligibilite" className="btn-green text-base px-7 py-4">

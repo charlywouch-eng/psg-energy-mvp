@@ -87,9 +87,9 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
     }
   } else {
     aides.push({
-      nom: "MaPrimeRénov' 2026",
+      nom: "Aide ANAH rénovation 2026",
       montant: 4000,
-      condition: "Propriétaire occupant, revenus modestes à intermédiaires",
+      condition: "Propriétaire occupant, revenus modestes à intermédiaires — conditions ANAH vérifiées lors de l'audit",
     });
     aides.push({
       nom: "CEE Particuliers",

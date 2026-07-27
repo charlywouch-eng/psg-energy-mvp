@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const CERTIFS = [
-  { nom: "Partenaires RGE", desc: "Tous nos installateurs sont certifiés Reconnu Garant de l'Environnement — condition obligatoire pour débloquer MaPrimeRénov' et les CEE.", icon: "🏅" },
+  { nom: "Partenaires RGE", desc: "Tous nos installateurs sont certifiés Reconnu Garant de l'Environnement — condition obligatoire pour débloquer les aides ANAH et les CEE.", icon: "🏅" },
   { nom: "QualiPAC", desc: "Certification pour l'installation de pompes à chaleur air/eau et air/air.", icon: "✅" },
   { nom: "QualiSOL", desc: "Certification pour les systèmes solaires thermiques et photovoltaïques.", icon: "☀️" },
   { nom: "Qualibat", desc: "Qualification pour les travaux d'isolation thermique par l'extérieur et par l'intérieur.", icon: "🏗️" },
@@ -20,7 +20,7 @@ const CERTIFS = [
 const REGLEMENTS = [
   { titre: "Décret tertiaire (2019)", desc: "Réduction obligatoire de 40 % des consommations d'énergie des bâtiments tertiaires de plus de 1 000 m² d'ici 2030." },
   { titre: "RE2020", desc: "Réglementation environnementale 2020 pour les constructions neuves — nos équipements sont compatibles." },
-  { titre: "ANAH 2026", desc: "Mise à jour des barèmes MaPrimeRénov' et des conditions d'éligibilité applicables depuis le 1er janvier 2026." },
+  { titre: "ANAH 2026", desc: "Mise à jour des barèmes d'aides et des conditions d'éligibilité applicables depuis le 1er janvier 2026." },
   { titre: "RGPD", desc: "Vos données sont traitées conformément au RGPD. Politique de confidentialité disponible sur ce site." },
 ];
 

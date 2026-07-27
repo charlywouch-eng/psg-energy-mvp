@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { href: "/fraicheur-ehpad", label: "EHPAD" },
   { href: "/collectivites", label: "Collectivités" },
   { href: "/methode", label: "Notre méthode" },
-  { href: "/particuliers", label: "Particuliers" },
   { href: "/contact", label: "Contact" },
 ];
 
