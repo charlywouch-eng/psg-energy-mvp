@@ -34,7 +34,7 @@ export default function MentionsLegalesPage() {
           </section>
           <section>
             <h2 className="font-display font-extrabold text-lg text-white mb-3">Responsabilité</h2>
-            <p>PSGLOBAL Energy s&apos;efforce de maintenir les informations à jour mais ne garantit pas l&apos;exactitude des montants d&apos;aides présentés, susceptibles d&apos;évoluer selon la réglementation ANAH.</p>
+            <p>PSGLOBAL Energy s&apos;efforce de maintenir les informations à jour mais ne garantit pas l&apos;exactitude des montants d&apos;aides présentés, susceptibles d&apos;évoluer selon les réglementations en vigueur.</p>
           </section>
           <section>
             <h2 className="font-display font-extrabold text-lg text-white mb-3">Médiation</h2>

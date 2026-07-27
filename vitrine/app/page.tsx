@@ -6,11 +6,11 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités | 0 € avancé",
   description:
-    "Climatisation, PAC, isolation financées 100 % fonds publics pour EHPAD et collectivités de Seine-et-Marne. Audit gratuit en 48 h — PSGLOBAL Energy.",
+    "Climatisation, PAC, isolation pour EHPAD et collectivités de Seine-et-Marne — Fonds Vert, CEE tertiaire, Plan Fraîcheur. 0 € avancé, audit gratuit en 48 h — PSGLOBAL Energy.",
 };
 
 const CHIFFRES = [
-  { val: "100 %", label: "financé sur fonds publics", color: "text-green" },
+  { val: "Fonds Vert", label: "CEE tertiaire · ACTEE · Plan Fraîcheur", color: "text-green" },
   { val: "0 €", label: "avancé par l'établissement", color: "text-blue" },
   { val: "48 h", label: "pour votre audit de faisabilité", color: "text-gold" },
   { val: "RGE", label: "installateurs certifiés", color: "text-white" },
@@ -40,7 +40,7 @@ const SOLUTIONS = [
   {
     icon: "🏠",
     titre: "Particuliers",
-    desc: "MaPrimeRénov' 2026, CEE, Éco-PTZ — nos conseillers optimisent votre plan de financement.",
+    desc: "CEE, Éco-PTZ — nos conseillers optimisent votre plan de financement pour les propriétaires particuliers.",
     href: "/particuliers",
     badge: "Île-de-France",
     badgeColor: "#00C48C",
@@ -51,7 +51,7 @@ const SOLUTIONS = [
 
 const ETAPES = [
   { n: "01", titre: "Audit gratuit 48 h", desc: "Nous analysons vos droits aux aides et vous envoyons une synthèse financière sans engagement." },
-  { n: "02", titre: "Montage du dossier", desc: "Notre équipe constitue l'intégralité des dossiers ANAH, CEE, Plan Fraîcheur à votre place." },
+  { n: "02", titre: "Montage du dossier", desc: "Notre équipe constitue l'intégralité des dossiers Fonds Vert, CEE, Plan Fraîcheur à votre place." },
   { n: "03", titre: "Installation RGE", desc: "Nos partenaires installateurs certifiés RGE réalisent les travaux dans les délais convenus." },
   { n: "04", titre: "Perception des aides", desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge net." },
 ];
@@ -107,7 +107,7 @@ export default function HomePage() {
             </h1>
 
             <p className="section-sub mb-8 animate-fade-up animate-delay-200">
-              PSGLOBAL Energy monte vos dossiers de financement Plan Fraîcheur, CEE et MaPrimeRénov&apos; — de l&apos;audit à la livraison. Climatisation, PAC, isolation, PV : 100 % financé sur fonds publics.
+              PSGLOBAL Energy monte vos dossiers de financement Plan Fraîcheur, Fonds Vert et CEE tertiaire — de l&apos;audit à la livraison. Climatisation, PAC, isolation, PV : reste à charge minimisé, subventions mobilisées de A à Z.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mb-12 animate-fade-up animate-delay-300">
@@ -127,6 +127,9 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+            <p className="text-xs text-white/30 font-body mt-4 animate-fade-up animate-delay-400">
+              Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date d&apos;un dépôt.
+            </p>
           </div>
         </div>
       </section>

@@ -25,7 +25,7 @@ export default function CgvPage() {
           </section>
           <section>
             <h2 className="font-display font-extrabold text-lg text-white mb-3">3. Prix et aides</h2>
-            <p>Les montants d&apos;aides présentés sont indicatifs et basés sur les barèmes ANAH 2026 en vigueur. Le montant définitif est confirmé par l&apos;organisme compétent. PSGLOBAL Energy ne garantit pas l&apos;obtention des aides, mais s&apos;engage sur la qualité du dossier constitué.</p>
+            <p>Les montants d&apos;aides présentés sont indicatifs et basés sur les barèmes en vigueur (Fonds Vert, CEE, Plan Fraîcheur). Le montant définitif est confirmé par l&apos;organisme compétent. PSGLOBAL Energy ne garantit pas l&apos;obtention des aides, mais s&apos;engage sur la qualité du dossier constitué.</p>
           </section>
           <section>
             <h2 className="font-display font-extrabold text-lg text-white mb-3">4. Garanties</h2>

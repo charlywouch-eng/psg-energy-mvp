@@ -3,24 +3,24 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Conformité & agréments — RGE, ANAH, CEE | PSGLOBAL-ENERGY",
+  title: "Conformité & agréments — RGE, Fonds Vert, CEE | PSGLOBAL-ENERGY",
   description:
     "PSGLOBAL Energy travaille exclusivement avec des partenaires certifiés RGE. Découvrez nos agréments et notre conformité réglementaire.",
 };
 
 const CERTIFS = [
-  { nom: "Partenaires RGE", desc: "Tous nos installateurs sont certifiés Reconnu Garant de l'Environnement — condition obligatoire pour débloquer MaPrimeRénov' et les CEE.", icon: "🏅" },
+  { nom: "Partenaires RGE", desc: "Tous nos installateurs sont certifiés Reconnu Garant de l'Environnement — condition obligatoire pour débloquer les CEE et le Fonds Vert.", icon: "🏅" },
   { nom: "QualiPAC", desc: "Certification pour l'installation de pompes à chaleur air/eau et air/air.", icon: "✅" },
   { nom: "QualiSOL", desc: "Certification pour les systèmes solaires thermiques et photovoltaïques.", icon: "☀️" },
   { nom: "Qualibat", desc: "Qualification pour les travaux d'isolation thermique par l'extérieur et par l'intérieur.", icon: "🏗️" },
   { nom: "Fabrication française", desc: "Notre partenaire Kwanthic fabrique ses équipements en France, garantie 5 ans.", icon: "🇫🇷" },
-  { nom: "Conformité ANAH 2026", desc: "Dossiers montés selon les barèmes et conditions de l'ANAH en vigueur au 1er janvier 2026.", icon: "📋" },
+  { nom: "Conformité réglementaire 2026", desc: "Dossiers montés selon les barèmes Fonds Vert, CEE et décret tertiaire en vigueur au 1er janvier 2026.", icon: "📋" },
 ];
 
 const REGLEMENTS = [
   { titre: "Décret tertiaire (2019)", desc: "Réduction obligatoire de 40 % des consommations d'énergie des bâtiments tertiaires de plus de 1 000 m² d'ici 2030." },
   { titre: "RE2020", desc: "Réglementation environnementale 2020 pour les constructions neuves — nos équipements sont compatibles." },
-  { titre: "ANAH 2026", desc: "Mise à jour des barèmes MaPrimeRénov' et des conditions d'éligibilité applicables depuis le 1er janvier 2026." },
+  { titre: "Fonds Vert / CEE 2026", desc: "Mise à jour des barèmes Fonds Vert et CEE tertiaire applicables depuis le 1er janvier 2026." },
   { titre: "RGPD", desc: "Vos données sont traitées conformément au RGPD. Politique de confidentialité disponible sur ce site." },
 ];
 

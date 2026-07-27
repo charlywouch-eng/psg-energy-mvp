@@ -1,9 +1,10 @@
 import { MetadataRoute } from "next";
+import { COMMUNES } from "@/data/communes";
 
 const BASE_URL = "https://psglobal.energy";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
+  const staticRoutes = [
     { url: "/", priority: 1.0, changeFrequency: "monthly" as const },
     { url: "/fraicheur-ehpad", priority: 0.9, changeFrequency: "monthly" as const },
     { url: "/collectivites", priority: 0.9, changeFrequency: "monthly" as const },
@@ -15,7 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
   ];
 
-  return routes.map(({ url, priority, changeFrequency }) => ({
+  const communeRoutes = COMMUNES.map((c) => ({
+    url: `/collectivites/${c.slug}`,
+    priority: 0.7 as const,
+    changeFrequency: "monthly" as const,
+  }));
+
+  return [...staticRoutes, ...communeRoutes].map(({ url, priority, changeFrequency }) => ({
     url: `${BASE_URL}${url}`,
     lastModified: new Date(),
     changeFrequency,

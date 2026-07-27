@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Collectivités & Mairies — Rénovation énergétique 0 € avancé | PSGLOBAL-ENERGY",
   description:
-    "Écoles, mairies, gymnases en Seine-et-Marne : climatisation et rénovation énergétique financées 100 % fonds publics. PSGLOBAL Energy monte votre dossier.",
+    "Écoles, mairies, gymnases en Seine-et-Marne : Fonds Vert, CEE tertiaire, Plan Fraîcheur. PSGLOBAL Energy monte votre dossier sans mobiliser vos services techniques.",
 };
 
 const ETABLISSEMENTS = [
@@ -14,7 +14,7 @@ const ETABLISSEMENTS = [
   { icon: "🏛️", titre: "Mairie & hôtel de ville", desc: "Mise aux normes thermiques, PAC, panneaux solaires — réduisez la facture énergétique municipale." },
   { icon: "🏃", titre: "Gymnases & piscines", desc: "Pompes à chaleur, chauffage solaire, VMC haute performance pour équipements sportifs." },
   { icon: "🌳", titre: "Espaces publics", desc: "Éclairage LED solaire, bornes de recharge VE, îlots de fraîcheur pour les zones piétonnes." },
-  { icon: "🏗️", titre: "Logements sociaux", desc: "Partenariat bailleur social — MaPrimeRénov' Copropriété, CEE, Éco-PTZ collectif." },
+  { icon: "🏗️", titre: "Logements sociaux", desc: "Partenariat bailleur social — Fonds Vert, CEE, Éco-PTZ collectif." },
   { icon: "🚑", titre: "CCAS & structures d'accueil", desc: "Plan Fraîcheur pour centres d'accueil de jour, SAAD, résidences autonomie." },
 ];
 
@@ -47,10 +47,10 @@ export default function CollectivitesPage() {
             </div>
             <h1 className="section-title mb-6">
               Rénovez vos bâtiments publics<br />
-              <span className="gradient-text">financés à 100 %</span>
+              <span className="gradient-text">sans avancer un euro</span>
             </h1>
             <p className="section-sub mb-8">
-              Fond Vert, DSIL, DETR, CEE, Plan Fraîcheur — PSGLOBAL Energy identifie et monte l&apos;ensemble des financements disponibles pour votre commune ou EPCI, sans mobiliser vos services techniques.
+              Fonds Vert, DSIL, DETR, CEE tertiaire, Plan Fraîcheur — PSGLOBAL Energy identifie et monte l&apos;ensemble des financements disponibles pour votre commune ou EPCI, sans mobiliser vos services techniques.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
@@ -121,7 +121,7 @@ export default function CollectivitesPage() {
             {[
               { icon: "📋", titre: "Ingénierie financière", desc: "Constitution complète des dossiers DSIL, DETR, CEE, Fond Vert — aucune ressource RH à mobiliser." },
               { icon: "🔧", titre: "Coordination travaux", desc: "Sélection des entreprises RGE, planning, suivi de chantier, réception des ouvrages." },
-              { icon: "✅", titre: "Conformité garantie", desc: "Montage de dossiers aux normes ANAH 2026, décret tertiaire, accessibilité." },
+              { icon: "✅", titre: "Conformité garantie", desc: "Montage de dossiers aux normes décret tertiaire, Fonds Vert 2026, accessibilité." },
             ].map((i) => (
               <div key={i.titre} className="card">
                 <div className="text-2xl mb-3">{i.icon}</div>
