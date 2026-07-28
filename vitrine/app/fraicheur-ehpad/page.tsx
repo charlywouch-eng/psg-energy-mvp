@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SymbolesBande from "@/components/ui/SymbolesBande";
 
 export const metadata: Metadata = {
-  title: "Plan Fraîcheur EHPAD — Climatisation financée 100 % | Seine-et-Marne",
+  title: "Plan Fraîcheur EHPAD — Confort des résidents financé | Seine-et-Marne",
   description:
     "Climatisation, PAC, ventilation et isolation pour vos résidents EHPAD — 0 € avancé via CEE et Plan Fraîcheur État. PSGLOBAL Energy, Seine-et-Marne & IDF.",
 };
@@ -38,7 +40,7 @@ export default function FraicheurEhpadPage() {
     <>
       <Navbar />
 
-      {/* HERO */}
+      {/* HERO — fond dégradé navy, URL hero à fournir par le client */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0A0E1A 0%, #0A1A2E 100%)" }} />
         <div
@@ -56,7 +58,7 @@ export default function FraicheurEhpadPage() {
               ❄️ Plan Fraîcheur 2026 — EHPAD & ESMS
             </div>
             <h1 className="section-title mb-6">
-              Climatisez votre EHPAD<br />
+              Vos résidents au frais,<br />
               <span className="gradient-text">sans avancer un euro</span>
             </h1>
             <p className="section-sub mb-8">
@@ -74,6 +76,9 @@ export default function FraicheurEhpadPage() {
         </div>
       </section>
 
+      {/* SYMBOLES — bande de bénéfices visuels */}
+      <SymbolesBande variante="ehpad" />
+
       {/* AIDES */}
       <section className="py-16 bg-[#070A14]" aria-labelledby="aides-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -82,6 +87,9 @@ export default function FraicheurEhpadPage() {
             <h2 id="aides-title" className="section-title mb-4">
               Jusqu&apos;à <span style={{ color: "#00C48C" }}>28 000 €</span> d&apos;aides cumulables
             </h2>
+            <p className="text-xs text-white/35 font-body">
+              Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
+            </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {AIDES.map((a) => (
@@ -95,8 +103,56 @@ export default function FraicheurEhpadPage() {
         </div>
       </section>
 
+      {/* SECTION BÉNÉFICE RÉSIDENT — image 1 */}
+      <section className="py-16" aria-label="Confort et sérénité des résidents">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+              <Image
+                src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80&fm=jpg"
+                alt="Soignante attentive auprès d'une résidente âgée sereine"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority={false}
+              />
+              {/* Légende discrète */}
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <p className="text-xs text-white/70 font-body">
+                  © Unsplash — illustration, pas un établissement client
+                </p>
+              </div>
+            </div>
+            <div>
+              <div className="section-label mb-4" style={{ color: "#F5A000", background: "rgba(245,160,0,0.1)", border: "1px solid rgba(245,160,0,0.2)" }}>
+                Confort & sérénité
+              </div>
+              <h2 className="section-title mb-4">
+                Des résidents sereins<br />
+                <span className="gradient-text">toute l&apos;année</span>
+              </h2>
+              <p className="section-sub mb-6">
+                La chaleur estivale représente un risque réel pour les personnes âgées. Le Plan Fraîcheur État finance la climatisation de vos chambres, salons et espaces de vie — avec zéro avance sur les subventions.
+              </p>
+              <ul className="flex flex-col gap-2">
+                {[
+                  "Chambres, unités Alzheimer, espaces communs",
+                  "Travaux hors présence des résidents sur demande",
+                  "Installateurs RGE certifiés, garantie 5 ans",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm font-body text-white/65">
+                    <span className="text-green mt-0.5" aria-hidden="true">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ÉQUIPEMENTS */}
-      <section className="py-16" aria-labelledby="equipements-title">
+      <section className="py-16 bg-[#070A14]" aria-labelledby="equipements-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Équipements éligibles</div>
@@ -115,6 +171,51 @@ export default function FraicheurEhpadPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION ACCOMPAGNEMENT ÉQUIPES — image 2 */}
+      <section className="py-16" aria-label="Accompagnement des équipes soignantes">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="order-2 md:order-1">
+              <div className="section-label mb-4">Notre accompagnement</div>
+              <h2 className="section-title mb-4">
+                Vos équipes se concentrent<br />
+                <span className="gradient-text">sur les soins</span>
+              </h2>
+              <p className="section-sub mb-6">
+                PSGLOBAL Energy prend en charge l&apos;intégralité du montage administratif et financier. Vos soignants n&apos;ont aucun dossier à constituer — nous coordonnons tout jusqu&apos;à la réception des travaux.
+              </p>
+              <ul className="flex flex-col gap-2">
+                {[
+                  "Dossier CEE, Plan Fraîcheur et TVA intégralement gérés",
+                  "Coordination avec les installateurs RGE",
+                  "Transmission des justificatifs aux organismes instructeurs",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm font-body text-white/65">
+                    <span className="text-green mt-0.5" aria-hidden="true">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden order-1 md:order-2">
+              <Image
+                src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=900&q=80&fm=jpg"
+                alt="Mains d'un soignant accompagnant une personne âgée"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                priority={false}
+              />
+              <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+                <p className="text-xs text-white/70 font-body">
+                  © Unsplash — illustration, pas un établissement client
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

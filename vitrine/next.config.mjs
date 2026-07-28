@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Optimisation images désactivée (pas d'images externes)
   images: {
-    unoptimized: false,
+    // Unsplash images served through Next.js optimizer (browser never hits unsplash.com directly).
+    // To host locally: download each URL to public/images/ and update src props.
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
   },
   // En-têtes de sécurité
   async headers() {

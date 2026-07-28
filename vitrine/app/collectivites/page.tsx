@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SymbolesBande from "@/components/ui/SymbolesBande";
 
 export const metadata: Metadata = {
   title: "Collectivités & Mairies — Rénovation énergétique 0 € avancé | PSGLOBAL-ENERGY",
@@ -63,6 +64,9 @@ export default function CollectivitesPage() {
           </div>
         </div>
       </section>
+
+      {/* SYMBOLES — bande de bénéfices visuels (inclut le symbole écoles printemps 2027) */}
+      <SymbolesBande variante="collectivites" />
 
       {/* ÉTABLISSEMENTS */}
       <section className="py-16 bg-[#070A14]" aria-labelledby="etab-title">

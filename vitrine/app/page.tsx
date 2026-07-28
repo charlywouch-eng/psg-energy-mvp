@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import SymbolesBande from "@/components/ui/SymbolesBande";
 
 export const metadata: Metadata = {
   title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités | 0 € avancé",
@@ -133,6 +134,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* SYMBOLES — bande de bénéfices visuels */}
+      <SymbolesBande variante="accueil" />
 
       {/* SOLUTIONS */}
       <section className="py-20 bg-[#070A14]" aria-labelledby="solutions-title">
