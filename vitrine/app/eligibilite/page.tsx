@@ -24,7 +24,7 @@ export default function EligibilitePage() {
               <span className="gradient-text">aides 2026 ?</span>
             </h1>
             <p className="section-sub mx-auto text-center">
-              Répondez à quelques questions — nos experts calculent votre plan de financement personnalisé sous 48 h.
+              Répondez à quelques questions — nos experts identifient les guichets mobilisables et vous orientent sous 48 h.
             </p>
           </div>
           <EligibilityForm />

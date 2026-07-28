@@ -1,28 +1,25 @@
-export type EligibilityCategory = "ehpad" | "collectivite" | "particulier" | "entreprise";
+export type EligibilityCategory = "ehpad" | "collectivite" | "entreprise";
 
 export interface EligibilityInput {
   category: EligibilityCategory;
   departement: string;
-  nbLits?: number;          // EHPAD
-  nbBatiments?: number;     // collectivité
+  nbLits?: number;
   anneeConstruction: number;
   chauffageActuel: "fioul" | "gaz" | "electrique" | "autre";
   climatisation: boolean;
   travauxEnvisages: string[];
-  revenuFiscal?: number;    // particulier
 }
 
 export interface EligibilityResult {
-  score: number;             // 0–100
+  score: number;
   niveau: "faible" | "moyen" | "fort" | "excellent";
-  montantEstime: number;     // €
   aides: AideDetail[];
   message: string;
 }
 
 export interface AideDetail {
   nom: string;
-  montant: number;
+  statut: "éligible" | "à vérifier" | "non éligible";
   condition: string;
 }
 
@@ -33,7 +30,6 @@ const SCORE_WEIGHTS = {
   sansCli: 15,
   multitravaux: 10,
   grandEhpad: 10,
-  revenuModeste: 10,
 };
 
 export function computeEligibility(input: EligibilityInput): EligibilityResult {
@@ -53,11 +49,7 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
   if (input.category === "ehpad" && (input.nbLits ?? 0) >= 50) {
     score += SCORE_WEIGHTS.grandEhpad;
   }
-  if (input.category === "particulier" && (input.revenuFiscal ?? 99999) < 30000) {
-    score += SCORE_WEIGHTS.revenuModeste;
-  }
 
-  // Capper à 100
   score = Math.min(100, score);
 
   let niveau: EligibilityResult["niveau"];
@@ -66,64 +58,40 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
   else if (score >= 40) niveau = "moyen";
   else niveau = "faible";
 
-  // Aides selon catégorie
-  if (input.category === "ehpad" || input.category === "collectivite") {
+  aides.push({
+    nom: "CEE Rénovation énergétique tertiaire",
+    statut: input.anneeConstruction < 2010 ? "éligible" : "à vérifier",
+    condition: "Bâtiment tertiaire construit avant 2010",
+  });
+
+  if (input.category === "ehpad") {
     aides.push({
-      nom: "CEE Rénovation énergétique tertiaire",
-      montant: 15000,
-      condition: "Bâtiment tertiaire construit avant 2010",
-    });
-    aides.push({
-      nom: "Plan Fraîcheur — subvention État",
-      montant: 8000,
+      nom: "Plan Fraîcheur — subvention ARS / État",
+      statut: "éligible",
       condition: "EHPAD ou établissement accueillant des publics vulnérables",
     });
-    if (input.chauffageActuel !== "electrique") {
-      aides.push({
-        nom: "Prime conversion chaudière → PAC",
-        montant: 5000,
-        condition: "Remplacement d'une chaudière fossile",
-      });
-    }
-  } else {
-    aides.push({
-      nom: "Aide rénovation énergétique (particuliers)",
-      montant: 4000,
-      condition: "Propriétaire occupant, revenus modestes à intermédiaires — conditions vérifiées lors de l'audit",
-    });
-    aides.push({
-      nom: "CEE Particuliers",
-      montant: 1500,
-      condition: "Travaux réalisés par un artisan RGE",
-    });
-    aides.push({
-      nom: "Éco-PTZ",
-      montant: 30000,
-      condition: "Prêt à taux 0 % — jusqu'à 30 000 €",
-    });
-    if ((input.revenuFiscal ?? 99999) < 30000) {
-      aides.push({
-        nom: "Prime MAR (Mon Accompagnateur Rénov)",
-        montant: 2000,
-        condition: "Rénovation globale avec accompagnateur agréé",
-      });
-    }
   }
 
-  const montantEstime = aides.reduce((sum, a) => sum + a.montant, 0);
+  aides.push({
+    nom: "Fonds Vert",
+    statut: input.category === "collectivite" ? "éligible" : "à vérifier",
+    condition: "Collectivités territoriales et EPCI — appel à projets annuel DREAL",
+  });
+
+  if (input.chauffageActuel !== "electrique") {
+    aides.push({
+      nom: "Prime conversion chaudière fossile → PAC",
+      statut: "à vérifier",
+      condition: "Remplacement d'une chaudière fioul ou gaz — dossier CEE associé",
+    });
+  }
 
   const messages: Record<EligibilityResult["niveau"], string> = {
-    excellent: "Votre établissement est très fortement éligible. Nos experts peuvent monter votre dossier en 48 h.",
-    fort: "Votre profil est éligible à plusieurs financements publics. Un audit confirme les montants précis.",
-    moyen: "Des aides sont disponibles pour votre situation. Parlons-en pour affiner le plan de financement.",
+    excellent: "Votre établissement présente un profil d'éligibilité très fort. Nos experts identifient les guichets mobilisables et vous orientent sous 48 h.",
+    fort: "Votre profil est éligible à plusieurs guichets publics. Un audit gratuit précise les dispositifs accessibles.",
+    moyen: "Des guichets de financement sont probablement accessibles. Parlons-en pour affiner votre dossier.",
     faible: "Votre éligibilité est partielle. Un audit gratuit identifie les dispositifs accessibles.",
   };
 
-  return {
-    score,
-    niveau,
-    montantEstime,
-    aides,
-    message: messages[niveau],
-  };
+  return { score, niveau, aides, message: messages[niveau] };
 }

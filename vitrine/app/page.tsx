@@ -40,7 +40,7 @@ const SOLUTIONS = [
   {
     icon: "🏠",
     titre: "Particuliers",
-    desc: "CEE, Éco-PTZ — nos conseillers optimisent votre plan de financement pour les propriétaires particuliers.",
+    desc: "CEE, Éco-PTZ — nos conseillers identifient les aides mobilisables pour les propriétaires particuliers.",
     href: "/particuliers",
     badge: "Île-de-France",
     badgeColor: "#00C48C",

@@ -25,7 +25,7 @@ export default function ContactPage() {
                 <span className="gradient-text">sous 48 heures</span>
               </h1>
               <p className="section-sub mb-8">
-                Audit gratuit, sans engagement — nos conseillers analysent votre situation et vous proposent un plan de financement optimisé.
+                Audit gratuit, sans engagement — nos conseillers analysent votre situation et identifient les guichets de financement mobilisables.
               </p>
 
               <div className="flex flex-col gap-4">
