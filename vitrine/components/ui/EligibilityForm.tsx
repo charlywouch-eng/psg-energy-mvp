@@ -34,6 +34,7 @@ export default function EligibilityForm() {
   const [contact, setContact] = useState({ nom: "", tel: "", email: "" });
   const [result, setResult] = useState<ReturnType<typeof computeEligibility> | null>(null);
   const [sending, setSending] = useState(false);
+  const [webhookOk, setWebhookOk] = useState<boolean | null>(null);
 
   const TRAVAUX_OPTIONS = [
     "Climatisation / PAC",
@@ -82,7 +83,7 @@ export default function EligibilityForm() {
     const res = computeEligibility(input);
     setResult(res);
 
-    await sendLead({
+    const ok = await sendLead({
       nom: contact.nom,
       tel: contact.tel,
       email: contact.email,
@@ -95,6 +96,7 @@ export default function EligibilityForm() {
       score: res.score,
     });
 
+    setWebhookOk(ok);
     setSending(false);
     setStep("result");
   }
@@ -374,9 +376,15 @@ export default function EligibilityForm() {
             <p className="text-sm text-white/75 font-body leading-relaxed">{result.message}</p>
           </div>
 
-          <p className="text-xs text-white/40 font-body text-center mb-2">
-            ✅ Votre demande a été transmise à nos experts. Vous serez contacté(e) sous 48 h.
-          </p>
+          {webhookOk === false ? (
+            <p className="text-xs text-red-400 font-body text-center mb-2">
+              Votre demande n&apos;a pas pu être transmise — contactez-nous directement : contact@psglobal.energy
+            </p>
+          ) : (
+            <p className="text-xs text-white/40 font-body text-center mb-2">
+              ✅ Votre demande a été transmise à nos experts. Vous serez contacté(e) sous 48 h.
+            </p>
+          )}
           <p className="text-xs text-white/30 font-body text-center">
             Estimation indicative — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
           </p>
