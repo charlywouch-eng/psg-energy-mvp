@@ -9,11 +9,16 @@ type Step = "categorie" | "details" | "contact" | "result";
 const CATEGORIES: { val: EligibilityCategory; label: string; icon: string }[] = [
   { val: "ehpad", label: "EHPAD / ESMS", icon: "🏥" },
   { val: "collectivite", label: "Collectivité / Mairie", icon: "🏛️" },
-  { val: "particulier", label: "Particulier", icon: "🏠" },
-  { val: "entreprise", label: "Entreprise / Tertiaire", icon: "🏢" },
+  { val: "entreprise", label: "Bâtiment tertiaire / Entreprise", icon: "🏢" },
 ];
 
 const DEPTS_IDF = ["75", "77", "78", "91", "92", "93", "94", "95"];
+
+const STATUT_CONFIG = {
+  "éligible": { color: "#00C48C", bg: "rgba(0,196,140,0.1)", border: "rgba(0,196,140,0.25)", label: "Éligible" },
+  "à vérifier": { color: "#F5A000", bg: "rgba(245,160,0,0.1)", border: "rgba(245,160,0,0.25)", label: "À vérifier" },
+  "non éligible": { color: "#8B92A5", bg: "rgba(139,146,165,0.1)", border: "rgba(139,146,165,0.25)", label: "Non éligible" },
+};
 
 export default function EligibilityForm() {
   const [step, setStep] = useState<Step>("categorie");
@@ -25,12 +30,10 @@ export default function EligibilityForm() {
     climatisation: false,
     travauxEnvisages: [] as string[],
     nbLits: 0,
-    revenuFiscal: 30000,
   });
   const [contact, setContact] = useState({ nom: "", tel: "", email: "" });
   const [result, setResult] = useState<ReturnType<typeof computeEligibility> | null>(null);
   const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
 
   const TRAVAUX_OPTIONS = [
     "Climatisation / PAC",
@@ -40,7 +43,6 @@ export default function EligibilityForm() {
     "VMC double-flux",
     "Panneaux photovoltaïques",
     "Chauffe-eau thermodynamique",
-    "Borne VE",
   ];
 
   function toggleTravaux(t: string) {
@@ -75,7 +77,6 @@ export default function EligibilityForm() {
       climatisation: form.climatisation,
       travauxEnvisages: form.travauxEnvisages,
       nbLits: form.nbLits || undefined,
-      revenuFiscal: category === "particulier" ? form.revenuFiscal : undefined,
     };
 
     const res = computeEligibility(input);
@@ -86,17 +87,15 @@ export default function EligibilityForm() {
       tel: contact.tel,
       email: contact.email,
       cp: form.departement,
-      projet: form.travauxEnvisages.join(", ") || "Rénovation énergétique",
+      projet: form.travauxEnvisages.join(", ") || "Rénovation énergétique tertiaire",
       categorie: category,
       date: new Date().toISOString(),
       source: "psglobal.energy/eligibilite",
       lang: "fr",
       score: res.score,
-      montantEstime: res.montantEstime,
     });
 
     setSending(false);
-    setSent(true);
     setStep("result");
   }
 
@@ -134,7 +133,7 @@ export default function EligibilityForm() {
         <div>
           <h2 className="font-display font-extrabold text-2xl text-white mb-2">Qui êtes-vous ?</h2>
           <p className="text-sm text-white/55 font-body mb-6">Sélectionnez votre profil pour adapter le simulateur.</p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {CATEGORIES.map((c) => (
               <button
                 key={c.val}
@@ -153,7 +152,7 @@ export default function EligibilityForm() {
       {step === "details" && (
         <div>
           <h2 className="font-display font-extrabold text-2xl text-white mb-2">Votre situation</h2>
-          <p className="text-sm text-white/55 font-body mb-6">Ces informations permettent de calculer vos aides exactes.</p>
+          <p className="text-sm text-white/55 font-body mb-6">Ces informations permettent d&apos;identifier les guichets de financement mobilisables.</p>
 
           <div className="flex flex-col gap-4">
             <div>
@@ -250,22 +249,6 @@ export default function EligibilityForm() {
               </div>
             )}
 
-            {category === "particulier" && (
-              <div>
-                <label className="text-xs font-body font-semibold text-white/60 uppercase tracking-wide mb-1.5 block" htmlFor="revenu">
-                  Revenu fiscal de référence (foyer)
-                </label>
-                <input
-                  id="revenu"
-                  type="number"
-                  className="input-field"
-                  min={0}
-                  value={form.revenuFiscal}
-                  onChange={(e) => setForm({ ...form, revenuFiscal: Number(e.target.value) })}
-                />
-              </div>
-            )}
-
             <button
               type="button"
               onClick={handleDetails}
@@ -283,7 +266,7 @@ export default function EligibilityForm() {
         <form onSubmit={handleSubmit}>
           <h2 className="font-display font-extrabold text-2xl text-white mb-2">Vos coordonnées</h2>
           <p className="text-sm text-white/55 font-body mb-6">
-            Nos experts vous envoient votre simulation personnalisée sous 48 h.
+            Nos experts vous envoient votre analyse d&apos;éligibilité sous 48 h.
           </p>
 
           <div className="flex flex-col gap-4">
@@ -342,7 +325,7 @@ export default function EligibilityForm() {
               disabled={!contact.nom || !contact.tel || sending}
               className="btn-green mt-2 justify-center disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {sending ? "Envoi en cours…" : "Voir ma simulation →"}
+              {sending ? "Envoi en cours…" : "Voir mon analyse →"}
             </button>
           </div>
         </form>
@@ -364,25 +347,26 @@ export default function EligibilityForm() {
             </div>
           </div>
 
-          <div className="card p-5 mb-5" style={{ borderColor: "rgba(0,196,140,0.3)" }}>
-            <div className="font-display font-black text-3xl text-green mb-1">
-              {result.montantEstime.toLocaleString("fr-FR")} €
-            </div>
-            <div className="text-sm text-white/60 font-body">Estimation du montant total des aides disponibles</div>
-          </div>
-
           <div className="mb-5">
-            <h3 className="font-body font-semibold text-xs uppercase tracking-wide text-white/50 mb-3">Aides identifiées</h3>
+            <h3 className="font-body font-semibold text-xs uppercase tracking-wide text-white/50 mb-3">Guichets identifiés</h3>
             <div className="flex flex-col gap-2">
-              {result.aides.map((a) => (
-                <div key={a.nom} className="flex items-start gap-3 p-3 rounded-xl bg-white/4 border border-white/8">
-                  <div className="w-2 h-2 rounded-full bg-green shrink-0 mt-1.5" />
-                  <div>
-                    <div className="text-sm font-semibold font-body text-white">{a.nom} — {a.montant.toLocaleString("fr-FR")} €</div>
-                    <div className="text-xs text-white/45 font-body">{a.condition}</div>
+              {result.aides.map((a) => {
+                const cfg = STATUT_CONFIG[a.statut];
+                return (
+                  <div key={a.nom} className="flex items-start gap-3 p-3 rounded-xl border" style={{ background: cfg.bg, borderColor: cfg.border }}>
+                    <div
+                      className="shrink-0 mt-0.5 px-2 py-0.5 rounded-md text-xs font-body font-semibold"
+                      style={{ color: cfg.color, background: `${cfg.color}18` }}
+                    >
+                      {cfg.label}
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold font-body text-white">{a.nom}</div>
+                      <div className="text-xs text-white/45 font-body">{a.condition}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
@@ -390,8 +374,11 @@ export default function EligibilityForm() {
             <p className="text-sm text-white/75 font-body leading-relaxed">{result.message}</p>
           </div>
 
-          <p className="text-xs text-white/40 font-body text-center">
-            ✅ Votre simulation a été transmise à nos experts. Vous serez contacté(e) sous 48 h.
+          <p className="text-xs text-white/40 font-body text-center mb-2">
+            ✅ Votre demande a été transmise à nos experts. Vous serez contacté(e) sous 48 h.
+          </p>
+          <p className="text-xs text-white/30 font-body text-center">
+            Estimation indicative — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
           </p>
         </div>
       )}
