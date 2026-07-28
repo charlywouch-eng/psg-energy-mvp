@@ -37,6 +37,8 @@ const BADGE_COLOR: Record<string, string> = {
   "cee": "#1A4DFF",
   "dsil-detr": "#8B92A5",
   "prefecture": "#8B92A5",
+  "actee": "#9B59B6",
+  "sante": "#E74C3C",
 };
 
 const EQUIPEMENTS = [
@@ -69,6 +71,22 @@ function GuichetCard({ g }: { g: Guichet }) {
       <div className="text-xs text-white/35 font-body">
         Instructeur : <span className="text-white/55">{g.instructeur}</span>
       </div>
+      {g.echeance && (
+        <div className="text-xs text-white/35 font-body">
+          Échéance : <span className="text-white/55">{g.echeance}</span>
+        </div>
+      )}
+      {g.url && (
+        <a
+          href={g.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-body transition-colors"
+          style={{ color }}
+        >
+          Accéder au guichet →
+        </a>
+      )}
     </div>
   );
 }
@@ -180,10 +198,23 @@ export default async function CommunePage({ params }: Props) {
               Ces guichets sont ouverts aux communes et EPCI du {commune.nomDep}. Les montants sont indicatifs — le détail est confirmé lors de l&apos;audit.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {guichets.map((g) => (
               <GuichetCard key={g.nom} g={g} />
             ))}
+          </div>
+
+          {/* Preuve RACINE (ACTEE) — résultats mesurés sans climatisation */}
+          <div
+            className="mt-8 rounded-2xl p-4 flex gap-3 items-start"
+            style={{ background: "rgba(155,89,182,0.08)", border: "1px solid rgba(155,89,182,0.2)" }}
+          >
+            <div className="text-xl shrink-0">🌡️</div>
+            <p className="text-xs text-white/65 font-body leading-relaxed">
+              <span className="font-semibold text-white/85">Programme RACINE (ACTEE) :</span>{" "}
+              gains mesurés de 5 à 10 °C de confort en classe sans climatisation — ex. +7 °C de confort
+              pour 23 000 € de travaux (Grabels). Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
+            </p>
           </div>
         </div>
       </section>
