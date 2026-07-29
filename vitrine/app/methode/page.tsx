@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 const ETAPES = [
   {
     n: "01",
-    titre: "Audit de faisabilité gratuit",
+    titre: "Diagnostic de faisabilité",
     desc: "Visite sur site ou dossier à distance. Nous analysons les bâtiments, la consommation énergétique, le DPE et identifions les travaux éligibles.",
-    details: ["Analyse thermique du bâtiment", "Identification des aides cumulables", "Simulation financière préliminaire", "Rapport de faisabilité sous 48 h"],
+    details: ["Analyse thermique du bâtiment", "Identification des guichets mobilisables", "Simulation financière préliminaire", "Rapport de faisabilité sous 48 h"],
     icon: "🔍",
   },
   {
@@ -47,9 +47,9 @@ const ETAPES = [
   },
   {
     n: "06",
-    titre: "Perception des aides",
-    desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge net — minimisé via le cumul des guichets mobilisés.",
-    details: ["Versement direct à l'installateur", "Solde = reste à charge net", "Accompagnement comptable", "Clôture administrative du dossier"],
+    titre: "Versement des subventions",
+    desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge maîtrisé — minimisé via le cumul des guichets mobilisés.",
+    details: ["Versement direct à l'installateur", "Solde = reste à charge maîtrisé", "Accompagnement comptable", "Clôture administrative du dossier"],
     icon: "💶",
   },
 ];
@@ -57,7 +57,7 @@ const ETAPES = [
 const ENGAGEMENTS = [
   { titre: "0 € de frais de dossier", desc: "Notre rémunération est incluse dans la marge commerciale des équipements. Aucun frais caché." },
   { titre: "Délai garanti", desc: "Du premier rendez-vous à la livraison : 6 à 12 semaines selon la complexité du projet." },
-  { titre: "Installateurs RGE", desc: "Tous nos partenaires sont certifiés RGE — condition obligatoire pour débloquer les aides." },
+  { titre: "Installateurs RGE", desc: "Tous nos partenaires sont certifiés RGE — condition obligatoire pour mobiliser les subventions." },
   { titre: "Conformité réglementaire 2026", desc: "Dossiers montés selon les dernières dispositions (décret tertiaire, Fonds Vert, CEE). Nous assumons les erreurs." },
 ];
 
@@ -146,7 +146,7 @@ export default function MethodePage() {
       <section className="py-16 text-center">
         <div className="max-w-xl mx-auto px-4 sm:px-6">
           <h2 className="section-title mb-4">Prêt à démarrer ?</h2>
-          <p className="section-sub mx-auto text-center mb-6">Votre audit gratuit est la première étape. Aucun engagement, réponse sous 48 h.</p>
+          <p className="section-sub mx-auto text-center mb-6">Votre diagnostic d&apos;éligibilité est la première étape. Aucun engagement, réponse sous 48 h.</p>
           <Link href="/eligibilite" className="btn-green text-base px-8 py-4 inline-flex">
             Tester mon éligibilité →
           </Link>

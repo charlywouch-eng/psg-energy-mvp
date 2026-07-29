@@ -1,0 +1,67 @@
+<svg viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration : fenêtre lumineuse, plante verte, fauteuil confortable — confort et sérénité des résidents">
+  <!-- Fond circulaire doux -->
+  <circle cx="300" cy="200" r="190" fill="url(#bgGlow)" opacity="0.18"/>
+
+  <!-- Grande fenêtre cintrée -->
+  <rect x="160" y="40" width="200" height="260" rx="100" fill="rgba(26,77,255,0.06)" stroke="rgba(26,77,255,0.25)" stroke-width="2"/>
+  <!-- Vitre intérieure -->
+  <rect x="175" y="55" width="170" height="230" rx="85" fill="rgba(255,255,255,0.03)"/>
+
+  <!-- Rayons de lumière filtrés -->
+  <line x1="255" y1="55" x2="210" y2="310" stroke="url(#rayGold)" stroke-width="18" stroke-linecap="round" opacity="0.18"/>
+  <line x1="275" y1="50" x2="250" y2="310" stroke="url(#rayGold)" stroke-width="10" stroke-linecap="round" opacity="0.14"/>
+  <line x1="295" y1="50" x2="285" y2="295" stroke="url(#rayGold)" stroke-width="8" stroke-linecap="round" opacity="0.10"/>
+
+  <!-- Fauteuil (silhouette abstraite) -->
+  <!-- Assise -->
+  <rect x="195" y="250" width="130" height="32" rx="8" fill="rgba(0,196,140,0.25)" stroke="rgba(0,196,140,0.5)" stroke-width="1.5"/>
+  <!-- Dossier -->
+  <rect x="215" y="205" width="90" height="52" rx="8" fill="rgba(0,196,140,0.18)" stroke="rgba(0,196,140,0.4)" stroke-width="1.5"/>
+  <!-- Accoudoirs -->
+  <rect x="193" y="230" width="22" height="30" rx="5" fill="rgba(0,196,140,0.15)" stroke="rgba(0,196,140,0.35)" stroke-width="1.2"/>
+  <rect x="305" y="230" width="22" height="30" rx="5" fill="rgba(0,196,140,0.15)" stroke="rgba(0,196,140,0.35)" stroke-width="1.2"/>
+  <!-- Pieds -->
+  <rect x="205" y="278" width="10" height="18" rx="3" fill="rgba(0,196,140,0.2)"/>
+  <rect x="305" y="278" width="10" height="18" rx="3" fill="rgba(0,196,140,0.2)"/>
+
+  <!-- Silhouette personne (très abstraite) -->
+  <!-- Tête -->
+  <circle cx="260" cy="195" r="16" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.20)" stroke-width="1.5"/>
+  <!-- Corps (assis) -->
+  <path d="M248 211 Q252 235 260 240 Q268 235 272 211" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" stroke-width="1.2"/>
+
+  <!-- Plante verte (gauche) -->
+  <path d="M120 330 Q120 290 145 275 Q155 270 160 280 Q155 285 150 295 Q148 308 148 330" fill="rgba(0,196,140,0.15)" stroke="rgba(0,196,140,0.40)" stroke-width="1.5"/>
+  <path d="M120 330 Q120 295 100 280 Q92 274 88 283 Q92 290 98 300 Q106 312 112 330" fill="rgba(0,196,140,0.12)" stroke="rgba(0,196,140,0.35)" stroke-width="1.5"/>
+  <path d="M120 295 Q128 270 145 260 Q153 257 155 266 Q150 272 143 278 Q133 285 125 295" fill="rgba(0,196,140,0.10)" stroke="rgba(0,196,140,0.30)" stroke-width="1.2"/>
+  <!-- Pot -->
+  <path d="M108 330 L112 355 L128 355 L132 330 Z" fill="rgba(0,196,140,0.20)" stroke="rgba(0,196,140,0.40)" stroke-width="1.2"/>
+
+  <!-- Petits cercles de confort (ambiance) -->
+  <circle cx="380" cy="80" r="28" fill="rgba(0,196,140,0.08)" stroke="rgba(0,196,140,0.20)" stroke-width="1"/>
+  <circle cx="380" cy="80" r="16" fill="rgba(0,196,140,0.12)" stroke="rgba(0,196,140,0.28)" stroke-width="1"/>
+  <circle cx="100" cy="100" r="20" fill="rgba(26,77,255,0.08)" stroke="rgba(26,77,255,0.18)" stroke-width="1"/>
+  <circle cx="410" cy="280" r="14" fill="rgba(245,160,0,0.10)" stroke="rgba(245,160,0,0.22)" stroke-width="1"/>
+
+  <!-- Étoile / particule légèreté -->
+  <circle cx="390" cy="150" r="3" fill="#00C48C" opacity="0.6"/>
+  <circle cx="100" cy="200" r="2.5" fill="#1A4DFF" opacity="0.5"/>
+  <circle cx="420" cy="200" r="2" fill="#F5A000" opacity="0.55"/>
+  <circle cx="75" cy="300" r="3" fill="#00C48C" opacity="0.4"/>
+  <circle cx="430" cy="330" r="2.5" fill="#1A4DFF" opacity="0.45"/>
+
+  <!-- Sol (ligne) -->
+  <line x1="80" y1="356" x2="420" y2="356" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+
+  <!-- Dégradés -->
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1A4DFF" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1A4DFF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rayGold" x1="260" y1="50" x2="250" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F5A000" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#F5A000" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

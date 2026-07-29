@@ -4,19 +4,19 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
-  title: "Particuliers — CEE, Éco-PTZ, aides ANAH | PSGLOBAL-ENERGY",
+  title: "Particuliers — CEE · Éco-PTZ · Rénovation énergétique | PSGLOBAL-ENERGY",
   description:
-    "PAC, isolation, PV, chauffe-eau thermodynamique — PSGLOBAL Energy optimise vos aides CEE et ANAH en Île-de-France. Audit gratuit.",
+    "PAC, isolation, PV, chauffe-eau thermodynamique — PSGLOBAL Energy optimise vos guichets CEE et Éco-PTZ en Île-de-France. Diagnostic d'éligibilité sans engagement.",
   robots: { index: false, follow: false },
 };
 
-const AIDES_PART = [
-  { nom: "Aide ANAH rénovation", montant: "jusqu'à 10 000 €", desc: "Subvention ANAH selon revenus et type de travaux — conditions vérifiées lors de l'audit.", color: "#00C48C" },
+const GUICHETS_PART = [
+  { nom: "Prime rénovation globale", montant: "jusqu'à 10 000 €", desc: "Subvention selon revenus et type de travaux — conditions vérifiées lors du diagnostic.", color: "#00C48C" },
   { nom: "CEE Particuliers", montant: "jusqu'à 3 000 €", desc: "Certificats d'Économie d'Énergie versés par les énergéticiens.", color: "#1A4DFF" },
   { nom: "Éco-PTZ", montant: "jusqu'à 50 000 €", desc: "Prêt à taux 0 % sans condition de revenus pour rénovation globale.", color: "#F5A000" },
   { nom: "Prime MAR", montant: "2 000 €", desc: "Prime Mon Accompagnateur Rénov' pour rénovation globale avec AMO.", color: "#00C48C" },
-  { nom: "TVA réduite 5,5 %", montant: "−14,5 pts", desc: "Sur tous travaux de rénovation énergétique par artisan RGE.", color: "#8B92A5" },
-  { nom: "Chèque énergie", montant: "48 à 277 €", desc: "Pour ménages aux revenus modestes — cumulable avec aides ANAH.", color: "#8B92A5" },
+  { nom: "TVA travaux RGE", montant: "taux réduit", desc: "Sur tous travaux de rénovation énergétique réalisés par un artisan RGE.", color: "#8B92A5" },
+  { nom: "Chèque énergie", montant: "48 à 277 €", desc: "Pour ménages aux revenus modestes — cumulable avec les autres guichets.", color: "#8B92A5" },
 ];
 
 const TRAVAUX = [
@@ -45,11 +45,11 @@ export default function ParticuliersPage() {
               <span className="gradient-text">avec 0 € avancé</span>
             </h1>
             <p className="section-sub mb-8">
-              CEE, Éco-PTZ, aides ANAH, TVA 5,5 % — nos conseillers calculent l&apos;ensemble des aides auxquelles vous avez droit et constituent votre dossier de A à Z.
+              CEE, Éco-PTZ, prime rénovation — nos conseillers identifient l&apos;ensemble des guichets mobilisables et constituent votre dossier de A à Z.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
-                Simuler mes aides gratuitement →
+                Simuler mon éligibilité →
               </Link>
               <Link href="/contact" className="btn-secondary text-base px-7 py-4">
                 Parler à un conseiller
@@ -59,17 +59,17 @@ export default function ParticuliersPage() {
         </div>
       </section>
 
-      {/* AIDES */}
+      {/* GUICHETS */}
       <section className="py-16 bg-[#070A14]" aria-labelledby="aides-part-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <div className="section-label mx-auto w-fit mb-4">Aides 2026</div>
+            <div className="section-label mx-auto w-fit mb-4">Guichets 2026</div>
             <h2 id="aides-part-title" className="section-title mb-4">
-              Jusqu&apos;à <span style={{ color: "#00C48C" }}>65 000 €</span> d&apos;aides cumulables
+              Jusqu&apos;à <span style={{ color: "#00C48C" }}>65 000 €</span> de financements cumulables
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {AIDES_PART.map((a) => (
+            {GUICHETS_PART.map((a) => (
               <div key={a.nom} className="card">
                 <div className="font-display font-black text-2xl mb-1" style={{ color: a.color }}>{a.montant}</div>
                 <div className="font-body font-semibold text-white text-sm mb-2">{a.nom}</div>
@@ -77,6 +77,9 @@ export default function ParticuliersPage() {
               </div>
             ))}
           </div>
+          <p className="text-xs text-white/30 font-body text-center mt-6">
+            Montants indicatifs — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
+          </p>
         </div>
       </section>
 
@@ -104,9 +107,9 @@ export default function ParticuliersPage() {
 
       <section className="py-16 text-center">
         <div className="max-w-xl mx-auto px-4 sm:px-6">
-          <h2 className="section-title mb-4">Calculez vos aides<br /><span className="gradient-text">en 2 minutes</span></h2>
-          <p className="section-sub mx-auto text-center mb-6">Gratuit, sans engagement — nos experts vous envoient votre plan de financement sous 48 h.</p>
-          <Link href="/eligibilite" className="btn-green text-base px-8 py-4 inline-flex">Simuler mes aides →</Link>
+          <h2 className="section-title mb-4">Estimez vos guichets<br /><span className="gradient-text">en 2 minutes</span></h2>
+          <p className="section-sub mx-auto text-center mb-6">Sans engagement — nos experts vous envoient votre plan de financement sous 48 h.</p>
+          <Link href="/eligibilite" className="btn-green text-base px-8 py-4 inline-flex">Simuler mon éligibilité →</Link>
         </div>
       </section>
 

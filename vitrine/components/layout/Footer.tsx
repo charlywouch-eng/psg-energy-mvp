@@ -74,9 +74,9 @@ export default function Footer() {
 
           {/* Newsletter / contact rapide */}
           <div>
-            <h3 className="font-body font-semibold text-white/80 text-xs uppercase tracking-widest mb-4">Audit gratuit</h3>
+            <h3 className="font-body font-semibold text-white/80 text-xs uppercase tracking-widest mb-4">Diagnostic d&apos;éligibilité</h3>
             <p className="text-sm text-white/50 font-body mb-4">
-              Recevez une analyse de vos droits aux aides en 48 h.
+              Recevez une analyse de vos guichets mobilisables en 48 h.
             </p>
             <Link href="/eligibilite" className="btn-green text-sm px-4 py-2.5 w-full justify-center">
               Démarrer →

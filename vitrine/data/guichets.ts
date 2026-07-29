@@ -18,10 +18,10 @@ export interface Guichet {
 const GUICHET_ACTEE_ECOLES: Guichet = {
   nom: "Guichet unique adaptation écoles — ACTEE × EduRénov",
   type: "actee",
-  montant: "3 500 € ou 10 000 € forfaitaires + diagnostic gratuit",
+  montant: "3 500 € ou 10 000 € forfaitaires + diagnostic inclus",
   description:
     "Ouvert le 8 juillet 2026, doté de 60 M€ dans un plan global de ~200 M€ " +
-    "(avec EDF 80 M€ et l'appui du Fonds vert). Diagnostic gratuit pour 12 500 " +
+    "(avec EDF 80 M€ et l'appui du Fonds vert). Diagnostic préalable inclus pour 12 500 " +
     "établissements ; aide forfaitaire de 3 500 € (petits travaux) ou 10 000 € " +
     "pour chacun des 2 500 établissements référencés vulnérables. " +
     "Ambition EduRénov : 15 000 bâtiments d'ici 2028, réduction minimale de 40 % " +
@@ -70,7 +70,7 @@ const GUICHETS_77: Guichet[] = [
     nom: "CEE Tertiaire",
     type: "cee",
     montant: "variable selon surface",
-    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors de l'audit.",
+    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors du diagnostic.",
     instructeur: "Obligés CEE (via PSGLOBAL Energy)",
   },
   {
@@ -106,7 +106,7 @@ const GUICHETS_94: Guichet[] = [
     nom: "CEE Tertiaire",
     type: "cee",
     montant: "variable selon surface",
-    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors de l'audit.",
+    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors du diagnostic.",
     instructeur: "Obligés CEE (via PSGLOBAL Energy)",
   },
   {
@@ -142,7 +142,7 @@ const GUICHETS_91: Guichet[] = [
     nom: "CEE Tertiaire",
     type: "cee",
     montant: "variable selon surface",
-    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors de l'audit.",
+    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors du diagnostic.",
     instructeur: "Obligés CEE (via PSGLOBAL Energy)",
   },
   {
@@ -178,7 +178,7 @@ const GUICHETS_93: Guichet[] = [
     nom: "CEE Tertiaire",
     type: "cee",
     montant: "variable selon surface",
-    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors de l'audit.",
+    description: "Certificats d'Économie d'Énergie pour tout bâtiment tertiaire construit avant 2010 — estimé lors du diagnostic.",
     instructeur: "Obligés CEE (via PSGLOBAL Energy)",
   },
   {
