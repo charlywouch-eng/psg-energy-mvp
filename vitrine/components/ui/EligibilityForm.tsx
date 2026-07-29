@@ -27,7 +27,7 @@ export default function EligibilityForm() {
     departement: "",
     anneeConstruction: 1980,
     chauffageActuel: "gaz" as EligibilityInput["chauffageActuel"],
-    climatisation: false,
+    rafraichissementExistant: false,
     travauxEnvisages: [] as string[],
     nbLits: 0,
   });
@@ -36,7 +36,7 @@ export default function EligibilityForm() {
   const [sending, setSending] = useState(false);
 
   const TRAVAUX_OPTIONS = [
-    "Climatisation / PAC",
+    "Rafraîchissement passif / PAC",
     "Isolation combles",
     "Isolation murs",
     "Fenêtres / vitrage",
@@ -74,7 +74,7 @@ export default function EligibilityForm() {
       departement: form.departement,
       anneeConstruction: form.anneeConstruction,
       chauffageActuel: form.chauffageActuel,
-      climatisation: form.climatisation,
+      rafraichissementExistant: form.rafraichissementExistant,
       travauxEnvisages: form.travauxEnvisages,
       nbLits: form.nbLits || undefined,
     };

@@ -20,7 +20,7 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
       nom: form.nom,
       tel: form.tel,
       cp: form.cp,
-      projet: form.projet || `Audit collectivité — ${communeNom}`,
+      projet: form.projet || `Diagnostic d'éligibilité — ${communeNom}`,
       categorie: "collectivite",
       date: new Date().toISOString(),
       source: `psglobal.energy/collectivites/${communeSlug}`,
@@ -45,7 +45,7 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
   return (
     <form onSubmit={handleSubmit} className="card p-6 flex flex-col gap-4">
       <h3 className="font-display font-extrabold text-xl text-white">
-        Audit gratuit — {communeNom}
+        Diagnostic d&apos;éligibilité — {communeNom}
       </h3>
       <p className="text-xs text-white/55 font-body leading-relaxed -mt-2">
         0 € de subvention transitant par PSG. Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
@@ -134,7 +134,7 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
         disabled={!form.nom || !form.tel || status === "sending"}
         className="btn-green justify-center disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {status === "sending" ? "Envoi en cours…" : "Demander un audit gratuit →"}
+        {status === "sending" ? "Envoi en cours…" : "Demander un diagnostic d'éligibilité →"}
       </button>
     </form>
   );

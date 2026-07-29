@@ -6,7 +6,8 @@ export interface EligibilityInput {
   nbLits?: number;
   anneeConstruction: number;
   chauffageActuel: "fioul" | "gaz" | "electrique" | "autre";
-  climatisation: boolean;
+  /** true si le bâtiment dispose déjà d'un système de rafraîchissement actif */
+  rafraichissementExistant: boolean;
   travauxEnvisages: string[];
 }
 
@@ -27,7 +28,7 @@ const SCORE_WEIGHTS = {
   departementIdf: 20,
   ancienBatiment: 15,
   chauffageFossile: 20,
-  sansCli: 15,
+  sansRafraichissement: 15,
   multitravaux: 10,
   grandEhpad: 10,
 };
@@ -44,7 +45,7 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
   if (input.chauffageActuel === "fioul" || input.chauffageActuel === "gaz") {
     score += SCORE_WEIGHTS.chauffageFossile;
   }
-  if (!input.climatisation) score += SCORE_WEIGHTS.sansCli;
+  if (!input.rafraichissementExistant) score += SCORE_WEIGHTS.sansRafraichissement;
   if (input.travauxEnvisages.length >= 2) score += SCORE_WEIGHTS.multitravaux;
   if (input.category === "ehpad" && (input.nbLits ?? 0) >= 50) {
     score += SCORE_WEIGHTS.grandEhpad;
@@ -88,9 +89,9 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
 
   const messages: Record<EligibilityResult["niveau"], string> = {
     excellent: "Votre établissement présente un profil d'éligibilité très fort. Nos experts identifient les guichets mobilisables et vous orientent sous 48 h.",
-    fort: "Votre profil est éligible à plusieurs guichets publics. Un audit gratuit précise les dispositifs accessibles.",
+    fort: "Votre profil est éligible à plusieurs guichets publics. Un diagnostic d'éligibilité précise les dispositifs accessibles.",
     moyen: "Des guichets de financement sont probablement accessibles. Parlons-en pour affiner votre dossier.",
-    faible: "Votre éligibilité est partielle. Un audit gratuit identifie les dispositifs accessibles.",
+    faible: "Votre éligibilité est partielle. Un diagnostic d'éligibilité identifie les dispositifs accessibles.",
   };
 
   return { score, niveau, aides, message: messages[niveau] };

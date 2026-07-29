@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SymbolesBande from "@/components/ui/SymbolesBande";
@@ -11,19 +12,19 @@ export const metadata: Metadata = {
 };
 
 const ETABLISSEMENTS = [
-  { icon: "🏫", titre: "Écoles & collèges", desc: "Climatisation des salles de classe, isolation, VMC — priorité sur les bâtiments les plus anciens." },
-  { icon: "🏛️", titre: "Mairie & hôtel de ville", desc: "Mise aux normes thermiques, PAC, panneaux solaires — réduisez la facture énergétique municipale." },
+  { icon: "🏫", titre: "Écoles & collèges", desc: "Confort d'été passif (protections solaires extérieures, surventilation nocturne), isolation, VMC — priorité sur les bâtiments les plus anciens, en réduction des degrés-heures d'inconfort estival." },
+  { icon: "🏛️", titre: "Mairie & hôtel de ville", desc: "Mise aux normes thermiques — bouquet de gestes passif d'abord, PAC, panneaux solaires — réduisez la facture d'énergie municipale." },
   { icon: "🏃", titre: "Gymnases & piscines", desc: "Pompes à chaleur, chauffage solaire, VMC haute performance pour équipements sportifs." },
   { icon: "🌳", titre: "Espaces publics", desc: "Éclairage LED solaire, bornes de recharge VE, îlots de fraîcheur pour les zones piétonnes." },
   { icon: "🏗️", titre: "Logements sociaux", desc: "Partenariat bailleur social — Fonds Vert, CEE, Éco-PTZ collectif." },
   { icon: "🚑", titre: "CCAS & structures d'accueil", desc: "Plan Fraîcheur pour centres d'accueil de jour, SAAD, résidences autonomie." },
 ];
 
-const AIDES = [
-  { nom: "CEE Tertiaire", montant: "variable", desc: "Selon surface et économies d'énergie réalisées — estimé lors de l'audit." },
+const FINANCEMENTS = [
+  { nom: "CEE Tertiaire", montant: "variable", desc: "Selon surface et économies d'énergie réalisées — estimé lors du diagnostic." },
   { nom: "DSIL / DETR", montant: "jusqu'à 30 %", desc: "Dotation de soutien à l'investissement local — selon préfecture de département." },
   { nom: "Plan Fraîcheur", montant: "8 000 €+", desc: "Pour établissements accueillant des publics vulnérables (petite enfance, seniors)." },
-  { nom: "Fond Vert", montant: "40 à 80 %", desc: "Rénovation thermique des bâtiments publics — enveloppe annuelle à saisir avant octobre." },
+  { nom: "Fonds Vert", montant: "40 à 80 %", desc: "Rénovation thermique des bâtiments publics — enveloppe annuelle à saisir avant octobre." },
 ];
 
 export default function CollectivitesPage() {
@@ -39,27 +40,40 @@ export default function CollectivitesPage() {
           aria-hidden="true"
         />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <div
-              className="badge mb-4"
-              style={{ color: "#1A4DFF", background: "rgba(26,77,255,0.12)", border: "1px solid rgba(26,77,255,0.25)" }}
-            >
-              🏛️ Collectivités — 77 · 94 · 91 · 93
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div
+                className="badge mb-4"
+                style={{ color: "#1A4DFF", background: "rgba(26,77,255,0.12)", border: "1px solid rgba(26,77,255,0.25)" }}
+              >
+                🏛️ Collectivités — 77 · 94 · 91 · 93
+              </div>
+              <h1 className="section-title mb-6">
+                Rénovez vos bâtiments publics<br />
+                <span className="gradient-text">sans avancer un euro</span>
+              </h1>
+              <p className="section-sub mb-8">
+                Fonds Vert, DSIL, DETR, CEE tertiaire, Plan Fraîcheur — PSGLOBAL Energy identifie et monte l&apos;ensemble des financements disponibles pour votre commune ou EPCI, sans mobiliser vos services techniques.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
+                  Simuler les financements disponibles →
+                </Link>
+                <Link href="/contact" className="btn-secondary text-base px-7 py-4">
+                  Contacter un conseiller
+                </Link>
+              </div>
             </div>
-            <h1 className="section-title mb-6">
-              Rénovez vos bâtiments publics<br />
-              <span className="gradient-text">sans avancer un euro</span>
-            </h1>
-            <p className="section-sub mb-8">
-              Fonds Vert, DSIL, DETR, CEE tertiaire, Plan Fraîcheur — PSGLOBAL Energy identifie et monte l&apos;ensemble des financements disponibles pour votre commune ou EPCI, sans mobiliser vos services techniques.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
-                Simuler les aides disponibles →
-              </Link>
-              <Link href="/contact" className="btn-secondary text-base px-7 py-4">
-                Contacter un conseiller
-              </Link>
+
+            <div className="hidden lg:flex items-center justify-center">
+              <Image
+                src="/images/hero-collectivites.svg"
+                alt="Illustration : bâtiment public ombragé par de grands arbres, enfants au frais, soleil filtré — confort d'été avant printemps 2027"
+                width={480}
+                height={400}
+                className="w-full max-w-md"
+                priority
+              />
             </div>
           </div>
         </div>
@@ -92,7 +106,7 @@ export default function CollectivitesPage() {
         </div>
       </section>
 
-      {/* AIDES */}
+      {/* FINANCEMENTS */}
       <section className="py-16" aria-labelledby="aides-coll-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
@@ -102,7 +116,7 @@ export default function CollectivitesPage() {
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {AIDES.map((a) => (
+            {FINANCEMENTS.map((a) => (
               <div key={a.nom} className="card">
                 <div className="font-display font-black text-xl text-blue mb-1">{a.montant}</div>
                 <div className="font-body font-semibold text-white text-sm mb-2">{a.nom}</div>
@@ -123,7 +137,7 @@ export default function CollectivitesPage() {
           </h2>
           <div className="grid sm:grid-cols-3 gap-5 text-left">
             {[
-              { icon: "📋", titre: "Ingénierie financière", desc: "Constitution complète des dossiers DSIL, DETR, CEE, Fond Vert — aucune ressource RH à mobiliser." },
+              { icon: "📋", titre: "Ingénierie financière", desc: "Constitution complète des dossiers DSIL, DETR, CEE, Fonds Vert — aucune ressource RH à mobiliser." },
               { icon: "🔧", titre: "Coordination travaux", desc: "Sélection des entreprises RGE, planning, suivi de chantier, réception des ouvrages." },
               { icon: "✅", titre: "Conformité garantie", desc: "Montage de dossiers aux normes décret tertiaire, Fonds Vert 2026, accessibilité." },
             ].map((i) => (
@@ -134,6 +148,12 @@ export default function CollectivitesPage() {
               </div>
             ))}
           </div>
+
+          <div className="mt-10 card p-5 text-left" style={{ background: "rgba(26,77,255,0.06)", borderColor: "rgba(26,77,255,0.18)" }}>
+            <p className="text-xs text-white/55 font-body leading-relaxed text-center">
+              Notre méthode s&apos;inscrit dans la démarche Bâtiments Durables Franciliens et s&apos;appuie sur les enseignements du programme RACINE et la Charte de la rénovation du bâti scolaire (Cerema / CSTB).
+            </p>
+          </div>
         </div>
       </section>
 
@@ -142,13 +162,13 @@ export default function CollectivitesPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div className="card p-8" style={{ borderColor: "rgba(26,77,255,0.3)" }}>
             <h2 className="section-title mb-4">
-              Audit collectivité <span className="gradient-text">gratuit</span>
+              Diagnostic collectivité <span className="gradient-text">sans engagement</span>
             </h2>
             <p className="section-sub mx-auto text-center mb-6">
               Transmettez-nous vos coordonnées — nos experts répondent en 48 h avec une estimation de financements disponibles pour votre commune.
             </p>
             <Link href="/contact" className="btn-primary text-base px-8 py-4 inline-flex">
-              Demander un audit collectivité →
+              Demander un diagnostic collectivité →
             </Link>
           </div>
         </div>

@@ -4,9 +4,9 @@ import Footer from "@/components/layout/Footer";
 import ContactForm from "@/components/ui/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Audit gratuit en 48 h | PSGLOBAL-ENERGY",
+  title: "Contact — Diagnostic d'éligibilité en 48 h | PSGLOBAL-ENERGY",
   description:
-    "Contactez PSGLOBAL Energy pour un audit de faisabilité gratuit. Réponse sous 48 h — Seine-et-Marne et Île-de-France.",
+    "Contactez PSGLOBAL Energy pour un diagnostic de faisabilité. Réponse sous 48 h — Seine-et-Marne et Île-de-France.",
 };
 
 export default function ContactPage() {
@@ -25,7 +25,7 @@ export default function ContactPage() {
                 <span className="gradient-text">sous 48 heures</span>
               </h1>
               <p className="section-sub mb-8">
-                Audit gratuit, sans engagement — nos conseillers analysent votre situation et identifient les guichets de financement mobilisables.
+                Diagnostic d&apos;éligibilité, sans engagement — nos conseillers analysent votre situation et identifient les guichets de financement mobilisables.
               </p>
 
               <div className="flex flex-col gap-4">

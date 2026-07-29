@@ -8,31 +8,31 @@ import SymbolesBande from "@/components/ui/SymbolesBande";
 export const metadata: Metadata = {
   title: "Plan Fraîcheur EHPAD — Confort des résidents financé | Seine-et-Marne",
   description:
-    "Climatisation, PAC, ventilation et isolation pour vos résidents EHPAD — 0 € avancé via CEE et Plan Fraîcheur État. PSGLOBAL Energy, Seine-et-Marne & IDF.",
+    "Rafraîchissement passif, PAC, ventilation et isolation pour vos résidents EHPAD — 0 € avancé via CEE et Plan Fraîcheur État. PSGLOBAL Energy, Seine-et-Marne & IDF.",
 };
 
-const AIDES = [
+const FINANCEMENTS = [
   { nom: "Plan Fraîcheur État", montant: "jusqu'à 8 000 €", desc: "Subvention directe pour tout établissement accueillant des personnes vulnérables." },
   { nom: "CEE tertiaire", montant: "jusqu'à 15 000 €", desc: "Certificats d'Économie d'Énergie pour bâtiments construits avant 2010." },
-  { nom: "Prime PAC", montant: "jusqu'à 5 000 €", desc: "Remplacement d'une chaudière fioul ou gaz par une pompe à chaleur air/eau." },
-  { nom: "TVA réduite 5,5 %", montant: "−14,5 pts TVA", desc: "Sur travaux de rénovation énergétique dans les établissements sociaux et médico-sociaux." },
+  { nom: "Prime conversion PAC", montant: "jusqu'à 5 000 €", desc: "Remplacement d'une chaudière fioul ou gaz par une pompe à chaleur air/eau." },
+  { nom: "Fonds qualité", montant: "selon dossier", desc: "Guichet complémentaire mobilisable selon le profil de l'établissement et le département." },
 ];
 
 const EQUIPEMENTS = [
-  { icon: "❄️", titre: "Climatisation réversible", desc: "PAC air/air multi-split pour toutes les chambres, espaces communs et unités Alzheimer." },
+  { icon: "🌿", titre: "Rafraîchissement passif", desc: "Protections solaires extérieures motorisées, stores, surventilation nocturne — efficaces sans aucun équipement actif." },
   { icon: "🔄", titre: "VMC double-flux", desc: "Ventilation mécanique contrôlée pour renouveler l'air sans déperdition thermique." },
-  { icon: "☀️", titre: "Protection solaire", desc: "Stores extérieurs motorisés et films solaires pour réduire les apports thermiques." },
-  { icon: "🌡️", titre: "Régulation intelligente", desc: "Thermostat connecté par zone, pilotage depuis la direction, alertes canicule." },
-  { icon: "⚡", titre: "Panneaux photovoltaïques", desc: "Autoconsommation pour réduire la facture électrique de la climatisation." },
-  { icon: "🏠", titre: "Isolation des combles", desc: "ITE et isolation des combles pour limiter l'inconfort thermique estival." },
+  { icon: "🌡️", titre: "Pompe à chaleur air/eau", desc: "Remplacement de chaudière fossile par une PAC réversible pour le chauffage et le confort d'été." },
+  { icon: "⚡", titre: "Panneaux photovoltaïques", desc: "Autoconsommation pour réduire la facture d'énergie de l'établissement." },
+  { icon: "🏠", titre: "Isolation thermique (ITE)", desc: "Isolation par l'extérieur des murs et combles — réduit les degrés-heures d'inconfort estival." },
+  { icon: "💡", titre: "Régulation intelligente", desc: "Thermostat connecté par zone, pilotage depuis la direction, suivi de la performance énergétique." },
 ];
 
 const PROCESS = [
-  { titre: "Audit technique gratuit", desc: "Visite sur site ou dossier à distance — bilan thermique, plans, DPE, effectifs." },
-  { titre: "Simulation financière", desc: "Dossier CEE + Plan Fraîcheur + TVA — montant exact des aides disponibles sous 48 h." },
+  { titre: "Diagnostic d'éligibilité", desc: "Visite sur site ou dossier à distance — bilan thermique, plans, DPE, effectifs." },
+  { titre: "Ingénierie financière", desc: "Dossier CEE, Fonds vert et fonds qualité — guichets mobilisables confirmés sous 48 h." },
   { titre: "Choix de l'équipement", desc: "Sélection des matériels avec nos partenaires Kwanthic — marque française, garantie 5 ans." },
   { titre: "Installation & réception", desc: "Travaux réalisés par techniciens RGE, hors présence des résidents sur demande." },
-  { titre: "Perception des aides", desc: "Aides versées à l'installateur. Vous signez la convention de mandat, c'est tout." },
+  { titre: "Versement des subventions", desc: "Subventions versées à l'installateur. Vous signez la convention de mandat, c'est tout." },
 ];
 
 export default function FraicheurEhpadPage() {
@@ -40,7 +40,7 @@ export default function FraicheurEhpadPage() {
     <>
       <Navbar />
 
-      {/* HERO — fond dégradé navy, URL hero à fournir par le client */}
+      {/* HERO — fond dégradé navy + illustration droite */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #0A0E1A 0%, #0A1A2E 100%)" }} />
         <div
@@ -50,53 +50,71 @@ export default function FraicheurEhpadPage() {
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="max-w-3xl">
-            <div
-              className="badge mb-4"
-              style={{ color: "#F5A000", background: "rgba(245,160,0,0.12)", border: "1px solid rgba(245,160,0,0.25)" }}
-            >
-              ❄️ Plan Fraîcheur 2026 — EHPAD & ESMS
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Colonne texte */}
+            <div>
+              <div
+                className="badge mb-4"
+                style={{ color: "#F5A000", background: "rgba(245,160,0,0.12)", border: "1px solid rgba(245,160,0,0.25)" }}
+              >
+                🌿 Plan Fraîcheur 2026 — EHPAD & ESMS
+              </div>
+              <h1 className="section-title mb-6">
+                Vos résidents au frais,<br />
+                <span className="gradient-text">sans avancer un euro</span>
+              </h1>
+              <p className="section-sub mb-3">
+                Fonds vert, CEE tertiaire, fonds qualité — PSGLOBAL Energy monte et pilote votre dossier de financement pour le rafraîchissement (confort d&apos;été) de vos chambres, salons et espaces de vie — sans avance de trésorerie sur les subventions.
+              </p>
+              <p className="text-xs text-white/35 font-body mb-8">
+                Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
+                  Tester l&apos;éligibilité de mon EHPAD →
+                </Link>
+                <Link href="/contact" className="btn-secondary text-base px-7 py-4">
+                  Demander un diagnostic d&apos;éligibilité
+                </Link>
+              </div>
             </div>
-            <h1 className="section-title mb-6">
-              Vos résidents au frais,<br />
-              <span className="gradient-text">sans avancer un euro</span>
-            </h1>
-            <p className="section-sub mb-8">
-              Plan Fraîcheur État, CEE tertiaire, TVA 5,5 % — PSGLOBAL Energy constitue votre dossier complet et gère l&apos;intégralité du financement de la climatisation de vos chambres et espaces communs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
-                Tester l&apos;éligibilité de mon EHPAD →
-              </Link>
-              <Link href="/contact" className="btn-secondary text-base px-7 py-4">
-                Demander un audit gratuit
-              </Link>
+
+            {/* Colonne illustration */}
+            <div className="hidden lg:flex items-center justify-center">
+              <Image
+                src="/images/hero-fraicheur-ehpad.svg"
+                alt="Fenêtre lumineuse, fauteuil confortable, plante verte — confort et sérénité des résidents EHPAD"
+                width={480}
+                height={400}
+                className="w-full max-w-md"
+                priority
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* SYMBOLES — bande de bénéfices visuels */}
+      {/* SYMBOLES — bénéfices visuels */}
       <SymbolesBande variante="ehpad" />
 
-      {/* AIDES */}
-      <section className="py-16 bg-[#070A14]" aria-labelledby="aides-title">
+      {/* FINANCEMENTS */}
+      <section className="py-16 bg-[#070A14]" aria-labelledby="financements-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <div className="section-label mx-auto w-fit mb-4">Financements disponibles</div>
-            <h2 id="aides-title" className="section-title mb-4">
-              Jusqu&apos;à <span style={{ color: "#00C48C" }}>28 000 €</span> d&apos;aides cumulables
+            <div className="section-label mx-auto w-fit mb-4">Guichets disponibles</div>
+            <h2 id="financements-title" className="section-title mb-4">
+              Jusqu&apos;à <span style={{ color: "#00C48C" }}>28 000 €</span> de subventions cumulables
             </h2>
             <p className="text-xs text-white/35 font-body">
               Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {AIDES.map((a) => (
-              <div key={a.nom} className="card">
-                <div className="font-display font-black text-2xl text-green mb-1">{a.montant}</div>
-                <div className="font-body font-semibold text-white text-sm mb-2">{a.nom}</div>
-                <p className="text-xs text-white/55 font-body leading-relaxed">{a.desc}</p>
+            {FINANCEMENTS.map((f) => (
+              <div key={f.nom} className="card">
+                <div className="font-display font-black text-2xl text-green mb-1">{f.montant}</div>
+                <div className="font-body font-semibold text-white text-sm mb-2">{f.nom}</div>
+                <p className="text-xs text-white/55 font-body leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -116,7 +134,6 @@ export default function FraicheurEhpadPage() {
                 className="object-cover"
                 priority={false}
               />
-              {/* Légende discrète */}
               <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent p-4">
                 <p className="text-xs text-white/70 font-body">
                   © Unsplash — illustration, pas un établissement client
@@ -132,7 +149,7 @@ export default function FraicheurEhpadPage() {
                 <span className="gradient-text">toute l&apos;année</span>
               </h2>
               <p className="section-sub mb-6">
-                La chaleur estivale représente un risque réel pour les personnes âgées. Le Plan Fraîcheur État finance la climatisation de vos chambres, salons et espaces de vie — avec zéro avance sur les subventions.
+                La chaleur estivale est un enjeu de sécurité pour les personnes âgées. PSGLOBAL Energy mobilise les guichets Fonds vert, fonds qualité et CEE pour le rafraîchissement de vos chambres, salons et espaces de vie — sans avance de trésorerie sur les subventions.
               </p>
               <ul className="flex flex-col gap-2">
                 {[
@@ -190,7 +207,7 @@ export default function FraicheurEhpadPage() {
               </p>
               <ul className="flex flex-col gap-2">
                 {[
-                  "Dossier CEE, Plan Fraîcheur et TVA intégralement gérés",
+                  "Dossier CEE, Fonds vert et fonds qualité intégralement montés",
                   "Coordination avec les installateurs RGE",
                   "Transmission des justificatifs aux organismes instructeurs",
                 ].map((item) => (
@@ -224,7 +241,7 @@ export default function FraicheurEhpadPage() {
       <section className="py-16 bg-[#070A14]" aria-labelledby="process-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <div className="section-label mx-auto w-fit mb-4">Notre accompagnement</div>
+            <div className="section-label mx-auto w-fit mb-4">Notre méthode</div>
             <h2 id="process-title" className="section-title mb-4">
               De l&apos;audit à la livraison,<br />
               <span className="gradient-text">nous gérons tout</span>
@@ -247,6 +264,17 @@ export default function FraicheurEhpadPage() {
               ))}
             </div>
           </div>
+
+          {/* Volet Ethos */}
+          <div
+            className="mt-10 rounded-2xl p-4 flex gap-3 items-start"
+            style={{ background: "rgba(26,77,255,0.07)", border: "1px solid rgba(26,77,255,0.18)" }}
+          >
+            <div className="text-lg shrink-0">🏛️</div>
+            <p className="text-xs text-white/60 font-body leading-relaxed">
+              Notre méthode s&apos;inscrit dans la démarche <span className="text-white/80 font-semibold">Bâtiments Durables Franciliens</span> et s&apos;appuie sur les enseignements du programme RACINE et la Charte de la rénovation du bâti scolaire (Cerema / CSTB).
+            </p>
+          </div>
         </div>
       </section>
 
@@ -255,7 +283,7 @@ export default function FraicheurEhpadPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div className="card p-8" style={{ borderColor: "rgba(245,160,0,0.3)" }}>
             <div className="section-label mx-auto w-fit mb-4" style={{ color: "#F5A000", background: "rgba(245,160,0,0.12)", border: "1px solid rgba(245,160,0,0.25)" }}>
-              Audit EHPAD gratuit
+              Diagnostic EHPAD
             </div>
             <h2 className="section-title mb-4">
               Votre EHPAD est-il éligible<br />au <span style={{ color: "#F5A000" }}>Plan Fraîcheur</span> ?

@@ -38,7 +38,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="card p-6 flex flex-col gap-4">
-      <h2 className="font-display font-extrabold text-xl text-white">Demande d&apos;audit gratuit</h2>
+      <h2 className="font-display font-extrabold text-xl text-white">Demande de diagnostic d&apos;éligibilité</h2>
 
       <div>
         <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-nom">

@@ -1,0 +1,93 @@
+<svg viewBox="0 0 480 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration : bâtiment public, arbres ombragés, soleil filtré — confort d'été avant printemps 2027">
+  <!-- Soleil (haut droite) -->
+  <circle cx="390" cy="70" r="42" fill="rgba(245,160,0,0.10)" stroke="rgba(245,160,0,0.20)" stroke-width="1.5"/>
+  <circle cx="390" cy="70" r="28" fill="rgba(245,160,0,0.15)" stroke="rgba(245,160,0,0.28)" stroke-width="1.2"/>
+  <!-- Rayons soleil -->
+  <line x1="390" y1="22" x2="390" y2="14" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.50"/>
+  <line x1="424" y1="36" x2="430" y2="30" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <line x1="438" y1="70" x2="446" y2="70" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+  <line x1="424" y1="104" x2="430" y2="110" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.40"/>
+  <line x1="356" y1="36" x2="350" y2="30" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.40"/>
+  <line x1="342" y1="70" x2="334" y2="70" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.40"/>
+
+  <!-- Bâtiment public / école (simplifié) -->
+  <!-- Corps principal -->
+  <rect x="120" y="180" width="240" height="160" rx="4" fill="rgba(26,77,255,0.08)" stroke="rgba(26,77,255,0.25)" stroke-width="1.5"/>
+  <!-- Toit triangulaire -->
+  <path d="M110 182 L240 110 L370 182" fill="rgba(26,77,255,0.10)" stroke="rgba(26,77,255,0.30)" stroke-width="1.5"/>
+  <!-- Fronton central -->
+  <path d="M190 155 L240 125 L290 155" fill="rgba(26,77,255,0.08)" stroke="rgba(26,77,255,0.22)" stroke-width="1"/>
+  <!-- Fenêtres -->
+  <rect x="145" y="210" width="40" height="45" rx="3" fill="rgba(26,77,255,0.12)" stroke="rgba(26,77,255,0.28)" stroke-width="1"/>
+  <rect x="220" y="210" width="40" height="45" rx="3" fill="rgba(26,77,255,0.12)" stroke="rgba(26,77,255,0.28)" stroke-width="1"/>
+  <rect x="295" y="210" width="40" height="45" rx="3" fill="rgba(26,77,255,0.12)" stroke="rgba(26,77,255,0.28)" stroke-width="1"/>
+  <!-- Porte -->
+  <rect x="215" y="295" width="50" height="45" rx="3" fill="rgba(26,77,255,0.15)" stroke="rgba(26,77,255,0.30)" stroke-width="1.2"/>
+  <!-- Colonne porte -->
+  <line x1="240" y1="295" x2="240" y2="340" stroke="rgba(26,77,255,0.20)" stroke-width="0.8"/>
+  <!-- Drapeau -->
+  <line x1="240" y1="80" x2="240" y2="110" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+  <rect x="240" y="80" width="20" height="14" rx="2" fill="rgba(26,77,255,0.30)" stroke="rgba(26,77,255,0.40)" stroke-width="0.8"/>
+
+  <!-- Arbre gauche (ombragé) -->
+  <!-- Tronc -->
+  <rect x="76" y="300" width="12" height="60" rx="4" fill="rgba(0,196,140,0.20)" stroke="rgba(0,196,140,0.35)" stroke-width="1"/>
+  <!-- Feuillage (3 cercles superposés) -->
+  <circle cx="82" cy="300" r="48" fill="rgba(0,196,140,0.12)" stroke="rgba(0,196,140,0.22)" stroke-width="1.2"/>
+  <circle cx="62" cy="280" r="38" fill="rgba(0,196,140,0.10)" stroke="rgba(0,196,140,0.18)" stroke-width="1"/>
+  <circle cx="102" cy="278" r="36" fill="rgba(0,196,140,0.11)" stroke="rgba(0,196,140,0.20)" stroke-width="1"/>
+  <!-- Ombre portée -->
+  <ellipse cx="82" cy="362" rx="52" ry="8" fill="rgba(0,196,140,0.08)"/>
+
+  <!-- Arbre droite (plus petit) -->
+  <rect x="388" y="320" width="10" height="45" rx="3" fill="rgba(0,196,140,0.18)" stroke="rgba(0,196,140,0.30)" stroke-width="1"/>
+  <circle cx="393" cy="320" r="34" fill="rgba(0,196,140,0.10)" stroke="rgba(0,196,140,0.18)" stroke-width="1"/>
+  <circle cx="375" cy="305" r="26" fill="rgba(0,196,140,0.09)" stroke="rgba(0,196,140,0.15)" stroke-width="1"/>
+  <ellipse cx="393" cy="366" rx="36" ry="6" fill="rgba(0,196,140,0.07)"/>
+
+  <!-- Silhouettes enfants (très abstraites) -->
+  <circle cx="175" cy="348" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
+  <path d="M175 355 L175 372" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="310" cy="345" r="7" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.20)" stroke-width="1"/>
+  <path d="M310 352 L310 369" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="293" cy="348" r="6" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.18)" stroke-width="1"/>
+  <path d="M293 354 L293 368" stroke="rgba(255,255,255,0.13)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Calendrier "Printemps 2027" (coin bas droit) -->
+  <rect x="346" y="285" width="78" height="66" rx="6" fill="rgba(245,160,0,0.08)" stroke="rgba(245,160,0,0.28)" stroke-width="1.2"/>
+  <!-- Barre calendrier -->
+  <rect x="346" y="285" width="78" height="18" rx="6" fill="rgba(245,160,0,0.18)" stroke="rgba(245,160,0,0.28)" stroke-width="0"/>
+  <rect x="352" y="293" width="66" height="10" rx="3" fill="rgba(245,160,0,0.20)"/>
+  <!-- Anneaux -->
+  <line x1="366" y1="282" x2="366" y2="292" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+  <line x1="408" y1="282" x2="408" y2="292" stroke="#F5A000" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+  <!-- Grille date -->
+  <rect x="352" y="309" width="14" height="10" rx="1.5" fill="rgba(245,160,0,0.12)"/>
+  <rect x="370" y="309" width="14" height="10" rx="1.5" fill="rgba(245,160,0,0.12)"/>
+  <rect x="388" y="309" width="14" height="10" rx="1.5" fill="rgba(245,160,0,0.12)"/>
+  <rect x="352" y="323" width="14" height="10" rx="1.5" fill="rgba(245,160,0,0.08)"/>
+  <rect x="370" y="323" width="14" height="10" rx="1.5" fill="rgba(245,160,0,0.08)"/>
+  <rect x="388" y="323" width="14" height="10" rx="1.5" fill="rgba(0,196,140,0.25)" stroke="rgba(0,196,140,0.50)" stroke-width="1"/>
+  <!-- "2027" text -->
+  <text x="385" y="303" text-anchor="middle" font-size="8.5" font-weight="700" fill="rgba(245,160,0,0.75)" font-family="system-ui, sans-serif">2027</text>
+
+  <!-- Sol -->
+  <line x1="50" y1="368" x2="440" y2="368" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+  <!-- Particules luminosité -->
+  <circle cx="148" cy="145" r="3" fill="#F5A000" opacity="0.45"/>
+  <circle cx="340" cy="140" r="2.5" fill="#00C48C" opacity="0.50"/>
+  <circle cx="58" cy="200" r="2" fill="#1A4DFF" opacity="0.40"/>
+  <circle cx="450" cy="220" r="3" fill="#F5A000" opacity="0.38"/>
+  <circle cx="450" cy="160" r="2" fill="#00C48C" opacity="0.35"/>
+
+  <!-- Glow fond -->
+  <circle cx="240" cy="220" r="160" fill="url(#glow2)" opacity="0.08"/>
+
+  <defs>
+    <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1A4DFF" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#1A4DFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

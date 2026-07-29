@@ -42,7 +42,7 @@ const BADGE_COLOR: Record<string, string> = {
 };
 
 const EQUIPEMENTS = [
-  { icon: "❄️", titre: "Climatisation réversible", desc: "PAC air/air multi-split pour salles de classe, gymnases et espaces communs." },
+  { icon: "❄️", titre: "Rafraîchissement passif", desc: "Protections solaires extérieures, surventilation nocturne, végétalisation — bouquet de gestes passif d'abord pour réduire les degrés-heures d'inconfort estival." },
   { icon: "🌡️", titre: "Pompe à chaleur air/eau", desc: "Remplacement de chaudière fioul/gaz pour bâtiments tertiaires et logements sociaux." },
   { icon: "🔄", titre: "VMC double-flux", desc: "Renouvellement d'air sans déperdition thermique — obligatoire RE2020 pour travaux lourds." },
   { icon: "☀️", titre: "Panneaux photovoltaïques", desc: "Autoconsommation et revente — réduction durable de la facture énergétique municipale." },
@@ -175,7 +175,7 @@ export default async function CommunePage({ params }: Props) {
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a href="#audit" className="btn-green text-base px-7 py-4">
-                Demander un audit gratuit →
+                Demander un diagnostic d&apos;éligibilité →
               </a>
               <a href="/collectivites" className="btn-secondary text-base px-7 py-4">
                 Voir tous les dispositifs
@@ -204,7 +204,7 @@ export default async function CommunePage({ params }: Props) {
             ))}
           </div>
 
-          {/* Preuve RACINE (ACTEE) — résultats mesurés sans climatisation */}
+          {/* Preuve RACINE (ACTEE) — résultats mesurés en rafraîchissement passif */}
           <div
             className="mt-8 rounded-2xl p-4 flex gap-3 items-start"
             style={{ background: "rgba(155,89,182,0.08)", border: "1px solid rgba(155,89,182,0.2)" }}
@@ -212,7 +212,7 @@ export default async function CommunePage({ params }: Props) {
             <div className="text-xl shrink-0">🌡️</div>
             <p className="text-xs text-white/65 font-body leading-relaxed">
               <span className="font-semibold text-white/85">Programme RACINE (ACTEE) :</span>{" "}
-              gains mesurés de 5 à 10 °C de confort en classe sans climatisation — ex. +7 °C de confort
+              gains mesurés de 5 à 10 °C de confort en classe par rafraîchissement passif — ex. +7 °C de confort
               pour 23 000 € de travaux (Grabels). Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
             </p>
           </div>
@@ -316,7 +316,7 @@ export default async function CommunePage({ params }: Props) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div>
-              <div className="section-label mb-4">Audit collectivité gratuit</div>
+              <div className="section-label mb-4">Diagnostic collectivité</div>
               <h2 className="section-title mb-4">
                 {commune.nom} est-elle<br />
                 <span className="gradient-text">éligible au Fonds Vert ?</span>

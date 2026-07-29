@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SymbolesBande from "@/components/ui/SymbolesBande";
@@ -7,13 +8,13 @@ import SymbolesBande from "@/components/ui/SymbolesBande";
 export const metadata: Metadata = {
   title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités | 0 € avancé",
   description:
-    "Climatisation, PAC, isolation pour EHPAD et collectivités de Seine-et-Marne — Fonds Vert, CEE tertiaire, Plan Fraîcheur. 0 € avancé, audit gratuit en 48 h — PSGLOBAL Energy.",
+    "Confort d'été, PAC, isolation pour EHPAD et collectivités de Seine-et-Marne — Fonds Vert, CEE tertiaire, Fonds qualité. 0 € avancé, diagnostic d'éligibilité en 48 h — PSGLOBAL Energy.",
 };
 
 const CHIFFRES = [
   { val: "Fonds Vert", label: "CEE tertiaire · ACTEE · Plan Fraîcheur", color: "text-green" },
   { val: "0 €", label: "avancé par l'établissement", color: "text-blue" },
-  { val: "48 h", label: "pour votre audit de faisabilité", color: "text-gold" },
+  { val: "48 h", label: "pour votre diagnostic de faisabilité", color: "text-gold" },
   { val: "RGE", label: "installateurs certifiés", color: "text-white" },
 ];
 
@@ -21,7 +22,7 @@ const SOLUTIONS = [
   {
     icon: "❄️",
     titre: "Plan Fraîcheur EHPAD",
-    desc: "Climatisation, ventilation double-flux et protection solaire pour vos résidents. Zéro avance sur subventions État et CEE.",
+    desc: "Rafraîchissement passif, ventilation double-flux et protection solaire pour vos résidents. Zéro avance sur subventions État et CEE.",
     href: "/fraicheur-ehpad",
     badge: "Priorité canicule",
     badgeColor: "#F5A000",
@@ -41,7 +42,7 @@ const SOLUTIONS = [
   {
     icon: "🏠",
     titre: "Particuliers",
-    desc: "CEE, Éco-PTZ — nos conseillers identifient les aides mobilisables pour les propriétaires particuliers.",
+    desc: "CEE, Éco-PTZ — nos conseillers identifient les guichets mobilisables pour les propriétaires particuliers.",
     href: "/particuliers",
     badge: "Île-de-France",
     badgeColor: "#00C48C",
@@ -51,10 +52,10 @@ const SOLUTIONS = [
 ];
 
 const ETAPES = [
-  { n: "01", titre: "Audit gratuit 48 h", desc: "Nous analysons vos droits aux aides et vous envoyons une synthèse financière sans engagement." },
-  { n: "02", titre: "Montage du dossier", desc: "Notre équipe constitue l'intégralité des dossiers Fonds Vert, CEE, Plan Fraîcheur à votre place." },
+  { n: "01", titre: "Diagnostic d'éligibilité 48 h", desc: "Nous analysons vos droits aux financements publics et vous envoyons une synthèse financière sans engagement." },
+  { n: "02", titre: "Montage du dossier", desc: "Notre équipe constitue l'intégralité des dossiers Fonds Vert, CEE, Fonds qualité à votre place." },
   { n: "03", titre: "Installation RGE", desc: "Nos partenaires installateurs certifiés RGE réalisent les travaux dans les délais convenus." },
-  { n: "04", titre: "Perception des aides", desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge net." },
+  { n: "04", titre: "Versement des subventions", desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge maîtrisé." },
 ];
 
 const TEMOIGNAGES = [
@@ -95,42 +96,55 @@ export default function HomePage() {
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 w-full">
-          <div className="max-w-4xl">
-            <div className="section-label animate-fade-up">
-              ❄️ Plan Fraîcheur 2026 — Seine-et-Marne &amp; IDF
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="section-label animate-fade-up">
+                ❄️ Plan Fraîcheur 2026 — Seine-et-Marne &amp; IDF
+              </div>
+
+              <h1 className="section-title mt-4 mb-6 animate-fade-up animate-delay-100">
+                Confort d&apos;été pour vos{" "}
+                <span className="gradient-text">EHPAD &amp; bâtiments</span>{" "}
+                publics à{" "}
+                <span style={{ color: "#F5A000" }}>0 € avancé</span>
+              </h1>
+
+              <p className="section-sub mb-8 animate-fade-up animate-delay-200">
+                Fonds vert, CEE tertiaire, fonds qualité — PSGLOBAL Energy monte et pilote votre dossier de financement pour le rafraîchissement (confort d&apos;été) de vos chambres et espaces communs.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 mb-12 animate-fade-up animate-delay-300">
+                <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
+                  Tester mon éligibilité →
+                </Link>
+                <Link href="/fraicheur-ehpad" className="btn-secondary text-base px-7 py-4">
+                  Découvrir le Plan Fraîcheur
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 animate-fade-up animate-delay-400">
+                {CHIFFRES.map((c) => (
+                  <div key={c.val} className="card p-4 text-center">
+                    <div className={`font-display font-black text-3xl ${c.color} leading-none mb-1`}>{c.val}</div>
+                    <div className="text-xs text-white/50 font-body leading-snug">{c.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-white/30 font-body mt-4 animate-fade-up animate-delay-400">
+                Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date d&apos;un dépôt.
+              </p>
             </div>
 
-            <h1 className="section-title mt-4 mb-6 animate-fade-up animate-delay-100">
-              Climatisez vos{" "}
-              <span className="gradient-text">EHPAD &amp; bâtiments</span>{" "}
-              publics à{" "}
-              <span style={{ color: "#F5A000" }}>0 € avancé</span>
-            </h1>
-
-            <p className="section-sub mb-8 animate-fade-up animate-delay-200">
-              PSGLOBAL Energy monte vos dossiers de financement Plan Fraîcheur, Fonds Vert et CEE tertiaire — de l&apos;audit à la livraison. Climatisation, PAC, isolation, PV : reste à charge minimisé, subventions mobilisées de A à Z.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 mb-12 animate-fade-up animate-delay-300">
-              <Link href="/eligibilite" className="btn-green text-base px-7 py-4">
-                Tester mon éligibilité →
-              </Link>
-              <Link href="/fraicheur-ehpad" className="btn-secondary text-base px-7 py-4">
-                Découvrir le Plan Fraîcheur
-              </Link>
+            <div className="hidden lg:flex items-center justify-center animate-fade-up animate-delay-200">
+              <Image
+                src="/images/hero-fraicheur-ehpad.svg"
+                alt="Illustration : fenêtre en arc avec lumière filtrée, fauteuil confortable, plante — confort d'été en EHPAD"
+                width={480}
+                height={400}
+                className="w-full max-w-md"
+                priority
+              />
             </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-up animate-delay-400">
-              {CHIFFRES.map((c) => (
-                <div key={c.val} className="card p-4 text-center">
-                  <div className={`font-display font-black text-3xl ${c.color} leading-none mb-1`}>{c.val}</div>
-                  <div className="text-xs text-white/50 font-body leading-snug">{c.label}</div>
-                </div>
-              ))}
-            </div>
-            <p className="text-xs text-white/30 font-body mt-4 animate-fade-up animate-delay-400">
-              Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date d&apos;un dépôt.
-            </p>
           </div>
         </div>
       </section>
@@ -148,7 +162,7 @@ export default function HomePage() {
               <span className="gradient-text">une solution sur mesure</span>
             </h2>
             <p className="section-sub mx-auto text-center">
-              EHPAD, mairies, gymnases, logements individuels — nous couvrons l&apos;ensemble des dispositifs d&apos;aides disponibles en 2026.
+              EHPAD, mairies, gymnases, logements individuels — nous couvrons l&apos;ensemble des dispositifs de financement disponibles en 2026.
             </p>
           </div>
 
@@ -210,6 +224,12 @@ export default function HomePage() {
               Détail de notre méthode →
             </Link>
           </div>
+
+          <div className="mt-10 max-w-3xl mx-auto card p-5" style={{ background: "rgba(26,77,255,0.06)", borderColor: "rgba(26,77,255,0.18)" }}>
+            <p className="text-xs text-white/55 font-body leading-relaxed text-center">
+              Notre méthode s&apos;inscrit dans la démarche Bâtiments Durables Franciliens et s&apos;appuie sur les enseignements du programme RACINE et la Charte de la rénovation du bâti scolaire (Cerema / CSTB).
+            </p>
+          </div>
         </div>
       </section>
 
@@ -250,13 +270,13 @@ export default function HomePage() {
             className="card p-10"
             style={{ background: "linear-gradient(145deg, #0D1533 0%, #0A0E2A 100%)", borderColor: "rgba(26,77,255,0.3)" }}
           >
-            <div className="section-label mx-auto w-fit mb-4">Audit gratuit</div>
+            <div className="section-label mx-auto w-fit mb-4">Diagnostic d&apos;éligibilité</div>
             <h2 id="cta-title" className="section-title mb-4">
               Découvrez vos droits<br />
               <span className="gradient-text">en 2 minutes</span>
             </h2>
             <p className="section-sub mx-auto text-center mb-8">
-              Notre simulateur analyse votre situation et estime le montant des aides auxquelles vous avez droit. Gratuit, sans engagement, réponse en 48 h.
+              Notre simulateur analyse votre situation et identifie les guichets mobilisables. Sans engagement, réponse en 48 h.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/eligibilite" className="btn-green text-base px-8 py-4">
