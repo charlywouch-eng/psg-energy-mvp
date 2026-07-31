@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Big_Shoulders_Display, Inter } from "next/font/google";
+import PwaRegister from "@/components/PwaRegister";
 import "./globals.css";
 
 const bigShouldersDisplay = Big_Shoulders_Display({
@@ -36,6 +37,20 @@ export const metadata: Metadata = {
   creator: "PSGLOBAL Energy",
   publisher: "PSGLOBAL Energy",
   robots: { index: true, follow: true },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "PSGLOBAL-ENERGY",
+  },
+  icons: {
+    icon: [
+      { url: "/icons/favicon-32.png", sizes: "32x32" },
+      { url: "/icons/favicon-16.png", sizes: "16x16" },
+      { url: "/icons/icon-192.png",   sizes: "192x192" },
+    ],
+    apple: "/icons/apple-touch-icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
@@ -64,6 +79,11 @@ export const metadata: Metadata = {
   },
 };
 
+// themeColor must live in viewport export (deprecated inside metadata in Next 14+)
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -74,7 +94,10 @@ export default function RootLayout({
       lang="fr"
       className={`${bigShouldersDisplay.variable} ${inter.variable}`}
     >
-      <body className="bg-ink text-white font-body antialiased">{children}</body>
+      <body className="bg-ink text-white font-body antialiased">
+        {children}
+        <PwaRegister />
+      </body>
     </html>
   );
 }
