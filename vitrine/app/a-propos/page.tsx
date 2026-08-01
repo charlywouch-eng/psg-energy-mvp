@@ -55,9 +55,6 @@ export default function AProposPage() {
                 <li className="flex items-center gap-2 text-white/70">
                   <span className="text-blue">▸</span> Seine-Saint-Denis (93)
                 </li>
-                <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-gold">▸</span> Congo Brazzaville &amp; zone CEMAC (à venir)
-                </li>
               </ul>
             </div>
           </div>
