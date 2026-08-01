@@ -3,13 +3,18 @@
 @tailwind utilities;
 
 :root {
+  /* Anciens tokens conservés pour les pages non migrées */
   --ink: #0A0E1A;
   --blue: #1A4DFF;
   --green: #00C48C;
   --gold: #F5A000;
   --surf: #F2F5FB;
-  --font-display: 'Big Shoulders Display', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, sans-serif;
+  /* Nouveaux tokens direction artistique */
+  --midnight-900: #0f172a;
+  --midnight-800: #1e293b;
+  --midnight-950: #0a0f1c;
+  --brand-emerald: #059669;
+  --brand-emeraldDeep: #047857;
 }
 
 @layer base {
@@ -22,22 +27,36 @@
   }
 
   body {
-    background-color: #0A0E1A;
+    background-color: #0f172a;
     color: #fff;
-    font-family: var(--font-body);
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
-  h1, h2, h3, h4 {
-    font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+  /* Focus visible — exigence RGAA */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid #047857;
+    outline-offset: 2px;
   }
 }
 
 @layer components {
+  /* Typographie display et mono */
+  .display {
+    font-family: 'Source Serif 4', Georgia, serif;
+  }
+
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* Boutons — anciens styles conservés pour pages non migrées */
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-semibold text-sm text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2 focus:ring-offset-ink;
+    @apply inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm text-white transition-all duration-200 focus:outline-none;
     background: linear-gradient(135deg, #1A4DFF 0%, #0D3ACC 100%);
   }
   .btn-primary:hover {
@@ -46,7 +65,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-semibold text-sm text-white border border-white/20 transition-all duration-200;
+    @apply inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm text-white border border-white/20 transition-all duration-200;
     background: rgba(255,255,255,0.05);
   }
   .btn-secondary:hover {
@@ -55,12 +74,20 @@
   }
 
   .btn-green {
-    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-semibold text-sm text-white transition-all duration-200;
+    @apply inline-flex items-center gap-2 px-6 py-3 font-semibold text-sm text-white transition-all duration-200;
     background: linear-gradient(135deg, #00C48C 0%, #009E72 100%);
   }
   .btn-green:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(0, 196, 140, 0.4);
+  }
+
+  /* Bouton midnight — nouveau design system */
+  .btn-midnight {
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-midnight-900 text-white font-semibold text-sm transition-colors;
+  }
+  .btn-midnight:hover {
+    @apply bg-midnight-800;
   }
 
   .card {
@@ -70,7 +97,7 @@
   }
 
   .badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold font-body;
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold;
   }
 
   .section-label {
@@ -80,15 +107,16 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-white leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight;
+    font-family: 'Source Serif 4', Georgia, serif;
   }
 
   .section-sub {
-    @apply text-base md:text-lg text-white/60 font-body leading-relaxed max-w-2xl;
+    @apply text-base md:text-lg text-white/60 leading-relaxed max-w-2xl;
   }
 
   .input-field {
-    @apply w-full px-4 py-3 rounded-xl text-sm font-body text-white placeholder-white/40 border border-white/10 focus:outline-none focus:border-blue/60 focus:ring-1 focus:ring-blue/40 transition-colors;
+    @apply w-full px-4 py-3 text-sm text-white placeholder-white/40 border border-white/10 focus:outline-none focus:border-midnight-900 focus:ring-1 transition-colors;
     background: rgba(255,255,255,0.05);
   }
 

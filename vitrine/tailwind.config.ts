@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Anciens tokens conservés pour les pages non migrées
         ink: "#0A0E1A",
         blue: "#1A4DFF",
         green: "#00C48C",
@@ -17,10 +18,21 @@ const config: Config = {
         muted: "#8B92A5",
         border: "#1E2440",
         card: "#111827",
+        // Nouveaux tokens direction artistique cellule design
+        midnight: {
+          800: "#1e293b",
+          900: "#0f172a",
+          950: "#0a0f1c",
+        },
+        brand: {
+          emerald: "#059669",
+          emeraldDeep: "#047857",
+        },
       },
       fontFamily: {
-        display: ["'Big Shoulders Display'", "system-ui", "sans-serif"],
+        display: ["'Source Serif 4'", "Georgia", "serif"],
         body: ["'Inter'", "system-ui", "sans-serif"],
+        mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
       },
       backgroundImage: {
         "hero-gradient": "linear-gradient(135deg, #0A0E1A 0%, #0D1533 50%, #0A0E1A 100%)",

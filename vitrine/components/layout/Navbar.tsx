@@ -5,98 +5,102 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { href: "/fraicheur-ehpad", label: "EHPAD" },
-  { href: "/collectivites", label: "Collectivités" },
-  { href: "/methode", label: "Notre méthode" },
-  { href: "/contact", label: "Contact" },
+  { href: "#simulateur", label: "Diagnostic d'éligibilité" },
+  { href: "#financements", label: "Guichets mobilisables" },
+  { href: "#methode", label: "Notre méthode" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => setOpen(false), [pathname]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "py-3 bg-ink/95 backdrop-blur-xl border-b border-white/8 shadow-2xl"
-          : "py-5 bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <header className="border-b border-slate-200 sticky top-0 bg-white/95 backdrop-blur-sm z-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group" aria-label="PSGLOBAL-ENERGY — Accueil">
-          <span className="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style={{ background: "linear-gradient(135deg,#1A4DFF,#00C48C)" }}>
-            ⚡
+        <Link
+          href="/"
+          className="flex items-center gap-3 shrink-0"
+          aria-label="PSGLOBAL-ENERGY — Accueil"
+        >
+          <span className="w-10 h-10 bg-midnight-900 text-white flex items-center justify-center font-bold text-sm tracking-tight">
+            PSG
           </span>
-          <span className="font-display font-extrabold text-lg tracking-tight text-white group-hover:text-green transition-colors">
-            PSGLOBAL-ENERGY
+          <span className="leading-none">
+            <span className="display block font-bold text-midnight-900 text-lg tracking-tight">
+              PSGLOBAL-ENERGY
+            </span>
+            <span className="block text-[11px] text-slate-500 font-semibold tracking-widest uppercase mt-1 mono">
+              Assistance à maîtrise d&apos;ouvrage (AMO)
+            </span>
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Navigation principale">
+        <nav
+          className="hidden md:flex gap-8 text-sm font-semibold text-slate-600"
+          aria-label="Navigation principale"
+        >
           {NAV_LINKS.map((l) => (
-            <Link
+            <a
               key={l.href}
               href={l.href}
-              className={`px-4 py-2 rounded-lg text-sm font-body font-medium transition-colors ${
-                pathname === l.href
-                  ? "text-green bg-green/10"
-                  : "text-white/70 hover:text-white hover:bg-white/5"
-              }`}
+              className="hover:text-midnight-900 transition-colors"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
         </nav>
 
         {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <Link href="/eligibilite" className="btn-green text-sm px-5 py-2.5">
-            Tester mon éligibilité →
-          </Link>
-        </div>
+        <a
+          href="#simulateur"
+          className="hidden md:inline-flex bg-midnight-900 text-white text-sm font-bold px-6 py-2.5 hover:bg-midnight-800 transition-colors shrink-0"
+        >
+          Démarrer le diagnostic
+        </a>
 
-        {/* Burger */}
+        {/* Burger mobile */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors"
+          className="md:hidden flex flex-col gap-1.5 p-2 hover:bg-slate-100 transition-colors"
           onClick={() => setOpen(!open)}
           aria-expanded={open}
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
         >
-          <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
-          <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span
+            className={`block w-5 h-0.5 bg-midnight-900 transition-all ${open ? "rotate-45 translate-y-2" : ""}`}
+          />
+          <span
+            className={`block w-5 h-0.5 bg-midnight-900 transition-all ${open ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`block w-5 h-0.5 bg-midnight-900 transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`}
+          />
         </button>
       </div>
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-ink/98 backdrop-blur-xl border-b border-white/8 px-4 py-4 flex flex-col gap-1">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 px-4 py-4 flex flex-col gap-1">
           {NAV_LINKS.map((l) => (
-            <Link
+            <a
               key={l.href}
               href={l.href}
-              className={`px-4 py-3 rounded-xl text-sm font-body font-medium transition-colors ${
-                pathname === l.href ? "text-green bg-green/10" : "text-white/80 hover:text-white hover:bg-white/5"
-              }`}
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 text-sm font-semibold text-slate-600 hover:text-midnight-900 hover:bg-slate-50 transition-colors"
             >
               {l.label}
-            </Link>
+            </a>
           ))}
-          <Link href="/eligibilite" className="btn-green mt-2 justify-center">
-            Tester mon éligibilité →
-          </Link>
+          <a
+            href="#simulateur"
+            onClick={() => setOpen(false)}
+            className="mt-2 bg-midnight-900 text-white text-sm font-bold px-6 py-3 text-center hover:bg-midnight-800 transition-colors"
+          >
+            Démarrer le diagnostic
+          </a>
         </div>
       )}
     </header>
