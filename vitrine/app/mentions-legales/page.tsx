@@ -17,7 +17,7 @@ export default function MentionsLegalesPage() {
           <section>
             <h2 className="font-display font-extrabold text-lg text-white mb-3">Éditeur du site</h2>
             <p>PSGLOBAL Energy — Provider Services Groupe</p>
-            <p>SASU au capital de 1 000 €</p>
+            <p>SAS au capital de 2 000 €</p>
             <p>Immatriculation Jurisociété N°1727182 (SIREN en cours d&apos;attribution)</p>
             <p>Siège social : Île-de-France</p>
             <p>Email : <a href="mailto:contact@psglobal.energy" className="text-blue hover:text-white transition-colors">contact@psglobal.energy</a></p>
