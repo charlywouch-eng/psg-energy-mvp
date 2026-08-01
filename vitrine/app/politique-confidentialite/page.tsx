@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const SECTIONS = [
   {
     titre: "1. Responsable du traitement",
-    contenu: "PSGLOBAL Energy — SASU, immatriculation N°1727182. DPO : dpo@psglobal.energy.",
+    contenu: "PSGLOBAL Energy — SAS, immatriculation N°1727182. DPO : dpo@psglobal.energy.",
   },
   {
     titre: "2. Données collectées",

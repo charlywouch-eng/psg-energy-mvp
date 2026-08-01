@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "À propos — PSGLOBAL Energy, régie commerciale en énergies renouvelables",
   description:
-    "PSGLOBAL Energy (SASU) est une régie commerciale spécialisée en énergies renouvelables, intervenant en Île-de-France et en zone CEMAC.",
+    "PSGLOBAL Energy (SAS) est une régie commerciale spécialisée en énergies renouvelables, intervenant en Île-de-France.",
 };
 
 export default function AProposPage() {
@@ -23,7 +23,7 @@ export default function AProposPage() {
             <span className="gradient-text">la régie de confiance</span>
           </h1>
           <p className="section-sub mx-auto text-center">
-            Provider Services Groupe — SASU spécialisée en commercialisation d&apos;équipements d&apos;énergies renouvelables pour l&apos;Île-de-France et la zone CEMAC.
+            Provider Services Groupe — SAS spécialisée en commercialisation d&apos;équipements d&apos;énergies renouvelables pour l&apos;Île-de-France.
           </p>
         </div>
       </section>
@@ -54,9 +54,6 @@ export default function AProposPage() {
                 </li>
                 <li className="flex items-center gap-2 text-white/70">
                   <span className="text-blue">▸</span> Seine-Saint-Denis (93)
-                </li>
-                <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-gold">▸</span> Congo Brazzaville &amp; zone CEMAC (à venir)
                 </li>
               </ul>
             </div>
