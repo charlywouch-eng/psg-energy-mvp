@@ -34,10 +34,10 @@ export default function Footer() {
               <span className="font-display font-extrabold text-base text-white">PSGLOBAL-ENERGY</span>
             </div>
             <p className="text-sm text-white/50 font-body leading-relaxed mb-4">
-              Régie commerciale spécialisée en énergies renouvelables. Île-de-France et zone CEMAC.
+              Régie commerciale spécialisée en énergies renouvelables. Île-de-France (77 · 91 · 93 · 94).
             </p>
             <div className="flex flex-col gap-1.5 text-xs text-white/40 font-body">
-              <span>SASU — Immatriculation N°1727182</span>
+              <span>SAS — Immatriculation N°1727182</span>
               <a href="mailto:contact@psglobal.energy" className="hover:text-white/70 transition-colors">
                 contact@psglobal.energy
               </a>

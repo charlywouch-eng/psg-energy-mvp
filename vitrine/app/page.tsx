@@ -58,19 +58,6 @@ const ETAPES = [
   { n: "04", titre: "Versement des subventions", desc: "Les subventions sont versées directement à l'installateur. Vous ne payez que le reste à charge maîtrisé." },
 ];
 
-const TEMOIGNAGES = [
-  {
-    nom: "Directrice EHPAD Val-de-Marne",
-    extrait: "En 3 semaines, PSGLOBAL a monté notre dossier Plan Fraîcheur pour 48 chambres. Zéro avance de fonds, tout a été financé via les CEE.",
-    dept: "94",
-  },
-  {
-    nom: "DGS commune Seine-et-Marne",
-    extrait: "La mairie a bénéficié d'une PAC air/eau pour la salle polyvalente sans débourser un centime. Dossier bouclé en un mois.",
-    dept: "77",
-  },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -229,36 +216,6 @@ export default function HomePage() {
             <p className="text-xs text-white/55 font-body leading-relaxed text-center">
               Notre méthode s&apos;inscrit dans la démarche Bâtiments Durables Franciliens et s&apos;appuie sur les enseignements du programme RACINE et la Charte de la rénovation du bâti scolaire (Cerema / CSTB).
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* TÉMOIGNAGES */}
-      <section className="py-20 bg-[#070A14]" aria-labelledby="temoignages-title">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <div className="section-label mx-auto w-fit mb-4">Témoignages</div>
-            <h2 id="temoignages-title" className="section-title">
-              Ils nous ont <span className="gradient-text">fait confiance</span>
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {TEMOIGNAGES.map((t, i) => (
-              <div key={i} className="card">
-                <div className="text-green text-2xl mb-3 font-display">&ldquo;</div>
-                <p className="text-white/80 font-body text-sm leading-relaxed mb-4">{t.extrait}</p>
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold font-body"
-                    style={{ background: "linear-gradient(135deg,#1A4DFF,#00C48C)" }}
-                  >
-                    {t.dept}
-                  </div>
-                  <span className="text-xs text-white/40 font-body">{t.nom}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
