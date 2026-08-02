@@ -1,19 +1,5 @@
 import Link from "next/link";
 
-const LINKS_SOLUTIONS = [
-  { href: "/fraicheur-ehpad", label: "Plan Fraîcheur EHPAD" },
-  { href: "/collectivites", label: "Collectivités & mairies" },
-  { href: "/particuliers", label: "Particuliers" },
-  { href: "/eligibilite", label: "Tester son éligibilité" },
-];
-
-const LINKS_METHODE = [
-  { href: "/methode", label: "Notre méthode" },
-  { href: "/conformite", label: "Conformité & agréments" },
-  { href: "/a-propos", label: "Qui sommes-nous" },
-  { href: "/contact", label: "Contact" },
-];
-
 const LINKS_LEGAL = [
   { href: "/mentions-legales", label: "Mentions légales" },
   { href: "/cgv", label: "CGV / Rétractation" },
@@ -22,80 +8,60 @@ const LINKS_LEGAL = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#070A14] border-t border-white/8 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-8 rounded-lg flex items-center justify-center text-sm" style={{ background: "linear-gradient(135deg,#1A4DFF,#00C48C)" }}>
-                ⚡
-              </span>
-              <span className="font-display font-extrabold text-base text-white">PSGLOBAL-ENERGY</span>
-            </div>
-            <p className="text-sm text-white/50 font-body leading-relaxed mb-4">
-              Régie commerciale spécialisée en énergies renouvelables. Île-de-France (77 · 91 · 93 · 94).
-            </p>
-            <div className="flex flex-col gap-1.5 text-xs text-white/40 font-body">
-              <span>SAS — Immatriculation N°1727182</span>
-              <a href="mailto:contact@psglobal.energy" className="hover:text-white/70 transition-colors">
-                contact@psglobal.energy
-              </a>
-            </div>
-          </div>
-
-          {/* Solutions */}
-          <div>
-            <h3 className="font-body font-semibold text-white/80 text-xs uppercase tracking-widest mb-4">Solutions</h3>
-            <ul className="flex flex-col gap-2.5">
-              {LINKS_SOLUTIONS.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors font-body">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Méthode */}
-          <div>
-            <h3 className="font-body font-semibold text-white/80 text-xs uppercase tracking-widest mb-4">Méthode</h3>
-            <ul className="flex flex-col gap-2.5">
-              {LINKS_METHODE.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="text-sm text-white/50 hover:text-white transition-colors font-body">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter / contact rapide */}
-          <div>
-            <h3 className="font-body font-semibold text-white/80 text-xs uppercase tracking-widest mb-4">Diagnostic d&apos;éligibilité</h3>
-            <p className="text-sm text-white/50 font-body mb-4">
-              Recevez une analyse de vos guichets mobilisables en 48 h.
-            </p>
-            <Link href="/eligibilite" className="btn-green text-sm px-4 py-2.5 w-full justify-center">
-              Démarrer →
-            </Link>
-          </div>
-        </div>
-
-        <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-xs text-white/30 font-body">
-            © {new Date().getFullYear()} PSGLOBAL Energy — psglobal.energy
+    <footer className="bg-midnight-950 text-slate-400 py-12 border-t border-midnight-800 text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Colonne brand — lg:col-span-2 */}
+        <div className="lg:col-span-2">
+          <span className="font-extrabold text-white text-base block mb-3">PSGLOBAL-ENERGY</span>
+          <p className="leading-relaxed max-w-sm">
+            Cabinet indépendant d&apos;assistance à maîtrise d&apos;ouvrage (AMO). Nous structurons la
+            résilience climatique de l&apos;immobilier institutionnel et de santé, sans jamais manier les
+            fonds publics destinés aux travaux.
           </p>
-          <div className="flex flex-wrap gap-4">
-            {LINKS_LEGAL.map((l) => (
-              <Link key={l.href} href={l.href} className="text-xs text-white/30 hover:text-white/60 transition-colors font-body">
-                {l.label}
-              </Link>
-            ))}
+          <div className="mt-4 flex flex-col gap-1 text-xs text-slate-500">
+            <span>SAS — Immatriculation N°1727182</span>
+            <a href="mailto:contact@psglobal.energy" className="hover:text-white transition-colors">
+              contact@psglobal.energy
+            </a>
           </div>
         </div>
+
+        {/* Colonne bureaux */}
+        <div>
+          <span className="font-bold text-white mb-3 block">Bureaux</span>
+          <address className="not-italic leading-relaxed">
+            Pontault-Combault<br />
+            Seine-et-Marne (77)<br />
+            Île-de-France, France
+          </address>
+        </div>
+
+        {/* Colonne légal & contact */}
+        <div>
+          <span className="font-bold text-white mb-3 block">Légal &amp; contact</span>
+          <ul className="space-y-2">
+            {LINKS_LEGAL.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="hover:text-white transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link href="/contact" className="hover:text-white transition-colors">
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-midnight-800 flex flex-col md:flex-row justify-between items-center text-xs gap-2">
+        <p>&copy; 2026 PSG — Provider Services Groupe, SAS. Tous droits réservés.</p>
+        <p className="text-center md:text-right">
+          Déclaration d&apos;accessibilité RGAA — conformité en cours d&apos;audit (dernière
+          revue&nbsp;: juillet 2026). Contrastes AA et navigation clavier vérifiés sur cette page.
+        </p>
       </div>
     </footer>
   );

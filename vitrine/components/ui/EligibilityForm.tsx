@@ -15,8 +15,8 @@ const CATEGORIES: { val: EligibilityCategory; label: string; icon: string }[] = 
 const DEPTS_IDF = ["75", "77", "78", "91", "92", "93", "94", "95"];
 
 const STATUT_CONFIG = {
-  "éligible": { color: "#00C48C", bg: "rgba(0,196,140,0.1)", border: "rgba(0,196,140,0.25)", label: "Éligible" },
-  "à vérifier": { color: "#F5A000", bg: "rgba(245,160,0,0.1)", border: "rgba(245,160,0,0.25)", label: "À vérifier" },
+  "éligible": { color: "#059669", bg: "rgba(5,150,105,0.1)", border: "rgba(5,150,105,0.25)", label: "Éligible" },
+  "à vérifier": { color: "#64748b", bg: "rgba(100,116,139,0.1)", border: "rgba(100,116,139,0.25)", label: "À vérifier" },
   "non éligible": { color: "#8B92A5", bg: "rgba(139,146,165,0.1)", border: "rgba(139,146,165,0.25)", label: "Non éligible" },
 };
 
@@ -103,9 +103,9 @@ export default function EligibilityForm() {
 
   const niveauColor = {
     faible: "#8B92A5",
-    moyen: "#F5A000",
-    fort: "#1A4DFF",
-    excellent: "#00C48C",
+    moyen: "#64748b",
+    fort: "#047857",
+    excellent: "#059669",
   };
 
   return (
@@ -119,7 +119,7 @@ export default function EligibilityForm() {
             <div key={label} className="flex items-center gap-2 flex-1">
               <div
                 className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold font-body shrink-0"
-                style={{ background: active ? "linear-gradient(135deg,#1A4DFF,#00C48C)" : "rgba(255,255,255,0.1)", color: active ? "#fff" : "rgba(255,255,255,0.3)" }}
+                style={{ background: active ? "linear-gradient(135deg,#047857,#059669)" : "rgba(255,255,255,0.1)", color: active ? "#fff" : "rgba(255,255,255,0.3)" }}
               >
                 {i + 1}
               </div>

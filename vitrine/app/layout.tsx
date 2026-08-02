@@ -1,37 +1,23 @@
 import type { Metadata, Viewport } from "next";
-import { Big_Shoulders_Display, Inter } from "next/font/google";
 import PwaRegister from "@/components/PwaRegister";
 import "./globals.css";
-
-const bigShouldersDisplay = Big_Shoulders_Display({
-  subsets: ["latin"],
-  weight: ["700", "800", "900"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://psglobal.energy"),
   title: {
-    default: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités | Fonds Vert 2026",
+    default: "PSGLOBAL-ENERGY — Assistance à maîtrise d'ouvrage | Confort d'été & financements tertiaires",
     template: "%s | PSGLOBAL-ENERGY",
   },
   description:
-    "PSGLOBAL Energy accompagne les EHPAD et collectivités de Seine-et-Marne dans le déploiement du Plan Fraîcheur — confort d'été, pompes à chaleur, PV, isolation — avec 0 € avancé grâce au Fonds Vert et aux CEE tertiaires 2026.",
+    "Cabinet d'assistance à maîtrise d'ouvrage (AMO) indépendant. Montage des dossiers Fonds vert, CEE tertiaire et fonds qualité pour le confort d'été des EHPAD et collectivités d'Île-de-France.",
   keywords: [
     "Plan Fraîcheur EHPAD",
     "rénovation énergétique EHPAD Seine-et-Marne",
     "Fonds Vert collectivités",
-    "pompe à chaleur IDF",
+    "AMO assistance maîtrise d'ouvrage",
     "PSGLOBAL Energy",
     "rénovation énergétique 77",
+    "CEE tertiaire IDF",
   ],
   authors: [{ name: "PSGLOBAL Energy" }],
   creator: "PSGLOBAL Energy",
@@ -56,22 +42,22 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: "https://psglobal.energy",
     siteName: "PSGLOBAL-ENERGY",
-    title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités",
+    title: "PSGLOBAL-ENERGY — Cabinet AMO | Confort d'été EHPAD & Collectivités",
     description:
-      "Fonds Vert, CEE tertiaire, Plan Fraîcheur pour EHPAD et collectivités. Reste à charge minimisé, 0 € avancé.",
+      "Fonds Vert, CEE tertiaire, fonds qualité pour EHPAD et collectivités d'Île-de-France. Cabinet AMO indépendant.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PSGLOBAL-ENERGY Plan Fraîcheur",
+        alt: "PSGLOBAL-ENERGY — Cabinet AMO",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PSGLOBAL-ENERGY — Plan Fraîcheur EHPAD & Collectivités",
-    description: "Fonds Vert, CEE tertiaire, Plan Fraîcheur. 0 € avancé par l'établissement.",
+    title: "PSGLOBAL-ENERGY — Cabinet AMO | Confort d'été EHPAD & Collectivités",
+    description: "Fonds Vert, CEE tertiaire, fonds qualité. Cabinet AMO indépendant.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -79,7 +65,6 @@ export const metadata: Metadata = {
   },
 };
 
-// themeColor must live in viewport export (deprecated inside metadata in Next 14+)
 export const viewport: Viewport = {
   themeColor: "#0f172a",
 };
@@ -90,11 +75,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="fr"
-      className={`${bigShouldersDisplay.variable} ${inter.variable}`}
-    >
-      <body className="bg-ink text-white font-body antialiased">
+    <html lang="fr">
+      <head>
+        {/* Polices auto-hébergées — jamais de fonts.googleapis.com (CNIL 10/02/2022) */}
+        <link rel="stylesheet" href="/fonts/fonts.css" />
+      </head>
+      <body className="bg-midnight-900 text-white antialiased" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {children}
         <PwaRegister />
       </body>
