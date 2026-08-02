@@ -13,7 +13,7 @@ const CERTIFS = [
   { nom: "QualiPAC", desc: "Certification pour l'installation de pompes à chaleur air/eau et air/air.", icon: "✅" },
   { nom: "QualiSOL", desc: "Certification pour les systèmes solaires thermiques et photovoltaïques.", icon: "☀️" },
   { nom: "Qualibat", desc: "Qualification pour les travaux d'isolation thermique par l'extérieur et par l'intérieur.", icon: "🏗️" },
-  { nom: "Fabrication française", desc: "Notre partenaire Kwanthic fabrique ses équipements en France, garantie 5 ans.", icon: "🇫🇷" },
+  { nom: "Fabrication française", desc: "Nos partenaires installateurs RGE certifiés proposent des équipements fabriqués en France, garantie 5 ans.", icon: "🇫🇷" },
   { nom: "Conformité réglementaire 2026", desc: "Dossiers montés selon les barèmes Fonds Vert, CEE et décret tertiaire en vigueur au 1er janvier 2026.", icon: "📋" },
 ];
 

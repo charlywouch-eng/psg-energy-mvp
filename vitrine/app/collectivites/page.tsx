@@ -24,7 +24,7 @@ const ETABLISSEMENTS = [
 const FINANCEMENTS = [
   { nom: "CEE Tertiaire", montant: "variable", desc: "Selon surface et économies d'énergie réalisées — estimé lors du diagnostic." },
   { nom: "DSIL / DETR", montant: "jusqu'à 30 %", desc: "Dotation de soutien à l'investissement local — selon préfecture de département." },
-  { nom: "Plan Fraîcheur", montant: "8 000 €+", desc: "Pour établissements accueillant des publics vulnérables (petite enfance, seniors)." },
+  { nom: "Plan Fraîcheur", montant: "selon dossier", desc: "Pour établissements accueillant des publics vulnérables (petite enfance, seniors) — montant variable selon le profil." },
   { nom: "Fonds Vert", montant: "40 à 80 %", desc: "Rénovation thermique des bâtiments publics — enveloppe annuelle à saisir avant octobre." },
 ];
 

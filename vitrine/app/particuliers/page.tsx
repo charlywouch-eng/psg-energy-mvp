@@ -11,23 +11,23 @@ export const metadata: Metadata = {
 };
 
 const GUICHETS_PART = [
-  { nom: "Prime rénovation globale", montant: "jusqu'à 10 000 €", desc: "Subvention selon revenus et type de travaux — conditions vérifiées lors du diagnostic.", color: "#00C48C" },
-  { nom: "CEE Particuliers", montant: "jusqu'à 3 000 €", desc: "Certificats d'Économie d'Énergie versés par les énergéticiens.", color: "#1A4DFF" },
-  { nom: "Éco-PTZ", montant: "jusqu'à 50 000 €", desc: "Prêt à taux 0 % sans condition de revenus pour rénovation globale.", color: "#F5A000" },
-  { nom: "Prime MAR", montant: "2 000 €", desc: "Prime Mon Accompagnateur Rénov' pour rénovation globale avec AMO.", color: "#00C48C" },
+  { nom: "Prime rénovation globale", montant: "variable selon revenus", desc: "Subvention selon revenus et type de travaux — conditions vérifiées lors du diagnostic.", color: "#059669" },
+  { nom: "CEE Particuliers", montant: "variable selon travaux", desc: "Certificats d'Économie d'Énergie versés par les énergéticiens.", color: "#047857" },
+  { nom: "Éco-PTZ", montant: "prêt à taux 0 %", desc: "Prêt à taux 0 % sans condition de revenus pour rénovation globale — montant selon dossier.", color: "#0f172a" },
+  { nom: "Prime MAR", montant: "selon éligibilité", desc: "Prime Mon Accompagnateur Rénov' pour rénovation globale avec AMO — montant défini par l'organisme instructeur.", color: "#059669" },
   { nom: "TVA travaux RGE", montant: "taux réduit", desc: "Sur tous travaux de rénovation énergétique réalisés par un artisan RGE.", color: "#8B92A5" },
-  { nom: "Chèque énergie", montant: "48 à 277 €", desc: "Pour ménages aux revenus modestes — cumulable avec les autres guichets.", color: "#8B92A5" },
+  { nom: "Chèque énergie", montant: "selon ressources", desc: "Pour ménages aux revenus modestes — montant attribué par l'ADEME, cumulable avec les autres guichets.", color: "#8B92A5" },
 ];
 
 const TRAVAUX = [
-  { icon: "🌡️", nom: "Pompe à chaleur air/eau", aide: "jusqu'à 5 000 €" },
-  { icon: "❄️", nom: "PAC air/air réversible", aide: "jusqu'à 1 500 €" },
-  { icon: "🏠", nom: "Isolation combles perdus", aide: "jusqu'à 2 000 €" },
-  { icon: "🧱", nom: "ITE / isolation murs", aide: "jusqu'à 4 000 €" },
-  { icon: "🪟", nom: "Fenêtres double vitrage", aide: "jusqu'à 800 €/fenêtre" },
+  { icon: "🌡️", nom: "Pompe à chaleur air/eau", aide: "éligible CEE + aides" },
+  { icon: "❄️", nom: "PAC air/air réversible", aide: "éligible CEE selon dossier" },
+  { icon: "🏠", nom: "Isolation combles perdus", aide: "éligible CEE selon dossier" },
+  { icon: "🧱", nom: "ITE / isolation murs", aide: "éligible CEE selon dossier" },
+  { icon: "🪟", nom: "Fenêtres double vitrage", aide: "éligible selon dossier" },
   { icon: "☀️", nom: "Panneaux photovoltaïques", aide: "autoconsommation + prime" },
-  { icon: "💧", nom: "Chauffe-eau thermodynamique", aide: "jusqu'à 1 200 €" },
-  { icon: "🔌", nom: "Borne de recharge VE", aide: "crédit d'impôt 75 %" },
+  { icon: "💧", nom: "Chauffe-eau thermodynamique", aide: "éligible CEE selon dossier" },
+  { icon: "🔌", nom: "Borne de recharge VE", aide: "crédit d'impôt applicable" },
 ];
 
 export default function ParticuliersPage() {
@@ -65,7 +65,7 @@ export default function ParticuliersPage() {
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Guichets 2026</div>
             <h2 id="aides-part-title" className="section-title mb-4">
-              Jusqu&apos;à <span style={{ color: "#00C48C" }}>65 000 €</span> de financements cumulables
+              Guichets mobilisables selon votre profil
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -98,7 +98,7 @@ export default function ParticuliersPage() {
               <div key={t.nom} className="card flex flex-col items-center text-center gap-2 py-5">
                 <div className="text-3xl">{t.icon}</div>
                 <div className="font-display font-extrabold text-sm text-white">{t.nom}</div>
-                <div className="font-body text-xs" style={{ color: "#00C48C" }}>{t.aide}</div>
+                <div className="font-body text-xs text-emerald-500">{t.aide}</div>
               </div>
             ))}
           </div>

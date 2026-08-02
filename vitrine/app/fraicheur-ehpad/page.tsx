@@ -9,14 +9,14 @@ import SymbolesBande from "@/components/ui/SymbolesBande";
 export const metadata: Metadata = {
   title: "Plan Fraîcheur EHPAD — Confort des résidents financé | Seine-et-Marne",
   description:
-    "Rafraîchissement passif, PAC, ventilation et isolation pour vos résidents EHPAD — financement via CEE et Plan Fraîcheur État. PSGLOBAL Energy, Seine-et-Marne & IDF.",
+    "Rafraîchissement passif, PAC, ventilation et isolation pour vos résidents EHPAD — financement via CEE, Fonds Vert et fonds qualité. PSGLOBAL Energy, Seine-et-Marne & IDF.",
 };
 
 const FINANCEMENTS = [
-  { nom: "Plan Fraîcheur État", montant: "jusqu'à 8 000 €", desc: "Subvention directe pour tout établissement accueillant des personnes vulnérables." },
-  { nom: "CEE tertiaire", montant: "jusqu'à 15 000 €", desc: "Certificats d'Économie d'Énergie pour bâtiments construits avant 2010." },
-  { nom: "Prime conversion PAC", montant: "jusqu'à 5 000 €", desc: "Remplacement d'une chaudière fioul ou gaz par une pompe à chaleur air/eau." },
-  { nom: "Fonds qualité", montant: "selon dossier", desc: "Guichet complémentaire mobilisable selon le profil de l'établissement et le département." },
+  { nom: "Fonds qualité EHPAD", statut: "Éligibilité selon profil établissement", desc: "Guichet dédié aux établissements accueillant des personnes vulnérables — montant calculé après diagnostic." },
+  { nom: "CEE tertiaire", statut: "Variable selon surface et économies", desc: "Certificats d'Économie d'Énergie pour bâtiments construits avant 2010 — estimé lors du diagnostic." },
+  { nom: "Fonds Vert", statut: "Selon enveloppe annuelle préfectorale", desc: "Rénovation thermique des établissements médico-sociaux — instruction par la préfecture de département." },
+  { nom: "Fonds qualité complémentaire", statut: "Selon profil et département", desc: "Guichet complémentaire mobilisable selon le profil de l'établissement et le département." },
 ];
 
 const EQUIPEMENTS = [
@@ -31,7 +31,7 @@ const EQUIPEMENTS = [
 const PROCESS = [
   { titre: "Diagnostic d'éligibilité", desc: "Visite sur site ou dossier à distance — bilan thermique, plans, DPE, effectifs." },
   { titre: "Ingénierie financière", desc: "Dossier CEE, Fonds vert et fonds qualité — guichets mobilisables confirmés sous 48 h." },
-  { titre: "Choix de l'équipement", desc: "Sélection des matériels avec nos partenaires Kwanthic — marque française, garantie 5 ans." },
+  { titre: "Choix de l'équipement", desc: "Sélection des matériels avec nos partenaires installateurs RGE certifiés — marque française, garantie 5 ans." },
   { titre: "Installation & réception", desc: "Travaux réalisés par techniciens RGE, hors présence des résidents sur demande." },
   { titre: "Versement des subventions", desc: "Subventions versées à l'installateur. Vous signez la convention de mandat, c'est tout." },
 ];
@@ -97,7 +97,7 @@ export default function FraicheurEhpadPage() {
               Guichets disponibles
             </div>
             <h2 id="financements-title" className="display text-3xl font-bold text-white mb-2">
-              Jusqu&apos;à <span className="text-brand-emeraldDeep">28 000 €</span> de subventions cumulables
+              Guichets mobilisables selon votre profil
             </h2>
             <p className="text-xs text-slate-500">
               Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
@@ -106,7 +106,7 @@ export default function FraicheurEhpadPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {FINANCEMENTS.map((f) => (
               <div key={f.nom} className="bg-midnight-900 border border-midnight-800 p-6">
-                <div className="display font-bold text-2xl text-brand-emeraldDeep mb-1">{f.montant}</div>
+                <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-wide mb-2">{f.statut}</div>
                 <div className="font-semibold text-white text-sm mb-2">{f.nom}</div>
                 <p className="text-xs text-slate-400 leading-relaxed">{f.desc}</p>
               </div>
@@ -280,7 +280,7 @@ export default function FraicheurEhpadPage() {
               Diagnostic EHPAD
             </div>
             <h2 className="display text-3xl font-bold text-white mb-4">
-              Votre EHPAD est-il éligible au Plan Fraîcheur&nbsp;?
+              Votre EHPAD est-il éligible aux guichets de rafraîchissement&nbsp;?
             </h2>
             <p className="text-slate-300 mx-auto mb-6">
               Répondez à 5 questions — nos experts vous envoient une simulation de financement sous 48 h, sans engagement.
