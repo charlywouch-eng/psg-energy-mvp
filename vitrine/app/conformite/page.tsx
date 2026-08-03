@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import DeontoBanner from "@/components/ui/DeontoBanner";
 
 export const metadata: Metadata = {
   title: "Conformité & agréments — RGE, Fonds Vert, CEE | PSGLOBAL-ENERGY",
@@ -9,12 +10,60 @@ export const metadata: Metadata = {
 };
 
 const CERTIFS = [
-  { nom: "Partenaires RGE", desc: "Tous nos installateurs sont certifiés Reconnu Garant de l'Environnement — condition obligatoire pour débloquer les CEE et le Fonds Vert.", icon: "🏅" },
-  { nom: "QualiPAC", desc: "Certification pour l'installation de pompes à chaleur air/eau et air/air.", icon: "✅" },
-  { nom: "QualiSOL", desc: "Certification pour les systèmes solaires thermiques et photovoltaïques.", icon: "☀️" },
-  { nom: "Qualibat", desc: "Qualification pour les travaux d'isolation thermique par l'extérieur et par l'intérieur.", icon: "🏗️" },
-  { nom: "Fabrication française", desc: "Nos partenaires installateurs RGE certifiés proposent des équipements fabriqués en France, garantie 5 ans.", icon: "🇫🇷" },
-  { nom: "Conformité réglementaire 2026", desc: "Dossiers montés selon les barèmes Fonds Vert, CEE et décret tertiaire en vigueur au 1er janvier 2026.", icon: "📋" },
+  {
+    nom: "Partenaires RGE",
+    desc: "Tous nos installateurs sont certifiés Reconnu Garant de l'Environnement — condition obligatoire pour débloquer les CEE et le Fonds Vert.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+      </svg>
+    ),
+  },
+  {
+    nom: "QualiPAC",
+    desc: "Certification pour l'installation de pompes à chaleur air/eau et air/air.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+    ),
+  },
+  {
+    nom: "QualiSOL",
+    desc: "Certification pour les systèmes solaires thermiques et photovoltaïques.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+      </svg>
+    ),
+  },
+  {
+    nom: "Qualibat",
+    desc: "Qualification pour les travaux d'isolation thermique par l'extérieur et par l'intérieur.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+      </svg>
+    ),
+  },
+  {
+    nom: "Équipements partenaires RGE",
+    desc: "Nos partenaires installateurs RGE certifiés proposent des équipements de qualité, garantie 5 ans.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+      </svg>
+    ),
+  },
+  {
+    nom: "Conformité réglementaire 2026",
+    desc: "Dossiers montés selon les barèmes Fonds Vert, CEE et décret tertiaire en vigueur au 1er janvier 2026.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+      </svg>
+    ),
+  },
 ];
 
 const REGLEMENTS = [
@@ -28,36 +77,36 @@ export default function ConformitePage() {
   return (
     <>
       <Navbar />
+      <DeontoBanner />
 
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-hero-gradient" />
+      <section className="pt-32 pb-16 relative overflow-hidden bg-midnight-900">
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="section-label mx-auto w-fit mb-4">Conformité &amp; agréments</div>
-          <h1 className="section-title mb-6">
+          <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-6">
             Des garanties à chaque<br />
-            <span className="gradient-text">étape du projet</span>
+            <span className="text-emerald-500">étape du projet</span>
           </h1>
-          <p className="section-sub mx-auto text-center">
+          <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
             PSGLOBAL Energy sélectionne exclusivement des partenaires certifiés et garantit la conformité de chaque dossier aux réglementations en vigueur.
           </p>
         </div>
       </section>
 
-      <section className="py-16 bg-[#070A14]" aria-labelledby="certifs-title">
+      <section className="py-16 bg-midnight-950" aria-labelledby="certifs-title">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Certifications &amp; labels</div>
-            <h2 id="certifs-title" className="section-title mb-4">
-              Nos <span className="gradient-text">garanties qualité</span>
+            <h2 id="certifs-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+              Nos <span className="text-emerald-500">garanties qualité</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {CERTIFS.map((c) => (
-              <div key={c.nom} className="card flex gap-4">
-                <div className="text-3xl shrink-0">{c.icon}</div>
+              <div key={c.nom} className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl flex gap-4">
+                {c.icon}
                 <div>
-                  <h3 className="font-display font-extrabold text-base text-white mb-1">{c.nom}</h3>
-                  <p className="text-xs text-white/55 font-body leading-relaxed">{c.desc}</p>
+                  <h3 className="display font-extrabold text-base text-white mb-1">{c.nom}</h3>
+                  <p className="text-xs text-white/55 leading-relaxed">{c.desc}</p>
                 </div>
               </div>
             ))}
@@ -65,21 +114,21 @@ export default function ConformitePage() {
         </div>
       </section>
 
-      <section className="py-16" aria-labelledby="regle-title">
+      <section className="py-16 bg-midnight-900" aria-labelledby="regle-title">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Cadre réglementaire</div>
-            <h2 id="regle-title" className="section-title mb-4">
-              Conformité <span className="gradient-text">réglementaire</span>
+            <h2 id="regle-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+              Conformité <span className="text-emerald-500">réglementaire</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4">
             {REGLEMENTS.map((r) => (
-              <div key={r.titre} className="card flex gap-4 items-start">
-                <div className="w-2 h-2 rounded-full bg-green shrink-0 mt-2.5" />
+              <div key={r.titre} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex gap-4 items-start">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-2.5" />
                 <div>
-                  <h3 className="font-display font-extrabold text-base text-white mb-1">{r.titre}</h3>
-                  <p className="text-sm text-white/55 font-body leading-relaxed">{r.desc}</p>
+                  <h3 className="display font-extrabold text-base text-white mb-1">{r.titre}</h3>
+                  <p className="text-sm text-white/55 leading-relaxed">{r.desc}</p>
                 </div>
               </div>
             ))}

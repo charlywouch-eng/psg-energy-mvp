@@ -6,15 +6,15 @@ export default function NotFound() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen flex items-center justify-center px-4">
+      <main className="min-h-screen flex items-center justify-center px-4 bg-midnight-900">
         <div className="text-center max-w-lg">
-          <div className="font-display font-black text-[120px] leading-none gradient-text mb-4">
+          <div className="display font-black text-[120px] leading-none text-emerald-500 mb-4">
             404
           </div>
-          <h1 className="font-display font-extrabold text-2xl text-white mb-4">
+          <h1 className="display font-extrabold text-2xl text-white mb-4">
             Page introuvable
           </h1>
-          <p className="text-white/60 font-body mb-8 leading-relaxed">
+          <p className="text-white/60 mb-8 leading-relaxed">
             Cette page n&apos;existe pas ou a été déplacée. Retournez à l&apos;accueil pour continuer.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
