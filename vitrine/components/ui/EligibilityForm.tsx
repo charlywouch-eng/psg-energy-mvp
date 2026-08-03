@@ -1,15 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { computeEligibility, type EligibilityInput, type EligibilityCategory } from "@/lib/eligibility";
 import { sendLead } from "@/lib/webhook";
 
 type Step = "categorie" | "details" | "contact" | "result";
 
-const CATEGORIES: { val: EligibilityCategory; label: string; icon: string }[] = [
-  { val: "ehpad", label: "EHPAD / ESMS", icon: "🏥" },
-  { val: "collectivite", label: "Collectivité / Mairie", icon: "🏛️" },
-  { val: "entreprise", label: "Bâtiment tertiaire / Entreprise", icon: "🏢" },
+const CATEGORY_ICONS: Record<EligibilityCategory, React.ReactNode> = {
+  ehpad: (
+    <svg className="w-6 h-6 text-brand-emeraldDeep" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2m0 0a2 2 0 110 4 2 2 0 010-4z"/>
+    </svg>
+  ),
+  collectivite: (
+    <svg className="w-6 h-6 text-brand-emeraldDeep" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M3 7l9-4 9 4M4 7v14M20 7v14M9 21V12h6v9"/>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h.01M15 7h.01M9 11h.01M15 11h.01"/>
+    </svg>
+  ),
+  entreprise: (
+    <svg className="w-6 h-6 text-brand-emeraldDeep" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+    </svg>
+  ),
+};
+
+const CATEGORIES: { val: EligibilityCategory; label: string }[] = [
+  { val: "ehpad", label: "EHPAD / ESMS" },
+  { val: "collectivite", label: "Collectivité / Mairie" },
+  { val: "entreprise", label: "Bâtiment tertiaire / Entreprise" },
 ];
 
 const DEPTS_IDF = ["75", "77", "78", "91", "92", "93", "94", "95"];
@@ -142,8 +162,8 @@ export default function EligibilityForm() {
                 onClick={() => handleSelectCategory(c.val)}
                 className="bg-midnight-900 border border-midnight-800 rounded-2xl flex flex-col items-center gap-2 p-5 hover:border-emerald-700/40 hover:bg-emerald-700/5 transition-all duration-200 text-center cursor-pointer"
               >
-                <span className="text-3xl">{c.icon}</span>
-                <span className=" font-semibold text-sm text-white">{c.label}</span>
+                {CATEGORY_ICONS[c.val]}
+                <span className="font-semibold text-sm text-white">{c.label}</span>
               </button>
             ))}
           </div>

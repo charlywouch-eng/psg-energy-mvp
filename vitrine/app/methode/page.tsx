@@ -59,7 +59,7 @@ const ETAPES = [
     n: "05",
     titre: "Réception et formation",
     desc: "Réception des ouvrages avec vos services techniques. Formation des équipes à l'utilisation des nouveaux équipements.",
-    details: ["Réception contradictoire", "Formation utilisateurs", "Documentation technique", "Garantie légale de parfait achèvement (1 an) due par l'installateur RGE exécutant les travaux — PSGLOBAL-ENERGY assure le suivi en tant que maître d'œuvre délégué"],
+    details: ["Réception contradictoire", "Formation utilisateurs", "Documentation technique", "Garantie légale de parfait achèvement (1 an), due par l'installateur RGE exécutant les travaux."],
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
