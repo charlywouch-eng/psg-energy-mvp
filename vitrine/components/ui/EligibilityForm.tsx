@@ -32,7 +32,8 @@ const CATEGORIES: { val: EligibilityCategory; label: string }[] = [
   { val: "entreprise", label: "Bâtiment tertiaire / Entreprise" },
 ];
 
-const DEPTS_IDF = ["75", "77", "78", "91", "92", "93", "94", "95"];
+/** Zone d'intervention PSG : Seine-et-Marne, Essonne, Seine-Saint-Denis, Val-de-Marne */
+const DEPTS_CIBLE = ["77", "91", "93", "94"];
 
 const STATUT_CONFIG = {
   "éligible": { color: "#059669", bg: "rgba(5,150,105,0.1)", border: "rgba(5,150,105,0.25)", label: "Éligible" },
@@ -50,6 +51,7 @@ export default function EligibilityForm() {
     rafraichissementExistant: false,
     travauxEnvisages: [] as string[],
     nbLits: 0,
+    nbEleves: 0,
   });
   const [contact, setContact] = useState({ nom: "", tel: "", email: "" });
   const [result, setResult] = useState<ReturnType<typeof computeEligibility> | null>(null);
@@ -98,6 +100,7 @@ export default function EligibilityForm() {
       rafraichissementExistant: form.rafraichissementExistant,
       travauxEnvisages: form.travauxEnvisages,
       nbLits: form.nbLits || undefined,
+      nbEleves: form.nbEleves || undefined,
     };
 
     const res = computeEligibility(input);
@@ -189,10 +192,10 @@ export default function EligibilityForm() {
                 required
               >
                 <option value="">Sélectionnez...</option>
-                {DEPTS_IDF.map((d) => (
-                  <option key={d} value={d}>{d}</option>
-                ))}
-                <option value="autre">Autre département</option>
+                <option value="77">77 — Seine-et-Marne</option>
+                <option value="91">91 — Essonne</option>
+                <option value="93">93 — Seine-Saint-Denis</option>
+                <option value="94">94 — Val-de-Marne</option>
               </select>
             </div>
 
@@ -227,7 +230,7 @@ export default function EligibilityForm() {
                         : "border-white/10 text-white/55 hover:border-white/25"
                     }`}
                   >
-                    {{ fioul: "🛢️ Fioul", gaz: "🔥 Gaz", electrique: "⚡ Électrique", autre: "♻️ Autre" }[c]}
+                    {{ fioul: "Fioul", gaz: "Gaz", electrique: "Électrique", autre: "Autre" }[c]}
                   </button>
                 ))}
               </div>
@@ -257,7 +260,7 @@ export default function EligibilityForm() {
 
             {category === "ehpad" && (
               <div>
-                <label className="text-xs  font-semibold text-white/60 uppercase tracking-wide mb-1.5 block" htmlFor="lits">
+                <label className="text-xs font-semibold text-white/60 uppercase tracking-wide mb-1.5 block" htmlFor="lits">
                   Nombre de lits / résidents
                 </label>
                 <input
@@ -267,6 +270,23 @@ export default function EligibilityForm() {
                   min={1}
                   value={form.nbLits || ""}
                   onChange={(e) => setForm({ ...form, nbLits: Number(e.target.value) })}
+                />
+              </div>
+            )}
+
+            {category === "collectivite" && (
+              <div>
+                <label className="text-xs font-semibold text-white/60 uppercase tracking-wide mb-1.5 block" htmlFor="eleves">
+                  Nombre d&apos;élèves / usagers (si bâtiment scolaire)
+                </label>
+                <input
+                  id="eleves"
+                  type="number"
+                  className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
+                  min={1}
+                  placeholder="Optionnel"
+                  value={form.nbEleves || ""}
+                  onChange={(e) => setForm({ ...form, nbEleves: Number(e.target.value) })}
                 />
               </div>
             )}

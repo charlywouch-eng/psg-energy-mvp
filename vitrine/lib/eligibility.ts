@@ -4,6 +4,7 @@ export interface EligibilityInput {
   category: EligibilityCategory;
   departement: string;
   nbLits?: number;
+  nbEleves?: number;
   anneeConstruction: number;
   chauffageActuel: "fioul" | "gaz" | "electrique" | "autre";
   /** true si le bâtiment dispose déjà d'un système de rafraîchissement actif */
@@ -25,22 +26,25 @@ export interface AideDetail {
 }
 
 const SCORE_WEIGHTS = {
-  departementIdf: 20,
+  departementCible: 20,
   ancienBatiment: 15,
   chauffageFossile: 20,
   sansRafraichissement: 15,
   multitravaux: 10,
   grandEhpad: 10,
+  grandEcole: 10,
 };
+
+/** Zone d'intervention PSG : 77, 91, 93, 94 uniquement */
+const DEPTS_CIBLE = ["77", "91", "93", "94"];
 
 export function computeEligibility(input: EligibilityInput): EligibilityResult {
   let score = 0;
   const aides: AideDetail[] = [];
 
-  const DEPTS_IDF = ["77", "94", "91", "93", "75", "78", "92", "95"];
-  const isIdf = DEPTS_IDF.includes(input.departement);
+  const isZoneCible = DEPTS_CIBLE.includes(input.departement);
 
-  if (isIdf) score += SCORE_WEIGHTS.departementIdf;
+  if (isZoneCible) score += SCORE_WEIGHTS.departementCible;
   if (input.anneeConstruction < 1980) score += SCORE_WEIGHTS.ancienBatiment;
   if (input.chauffageActuel === "fioul" || input.chauffageActuel === "gaz") {
     score += SCORE_WEIGHTS.chauffageFossile;
@@ -49,6 +53,9 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
   if (input.travauxEnvisages.length >= 2) score += SCORE_WEIGHTS.multitravaux;
   if (input.category === "ehpad" && (input.nbLits ?? 0) >= 50) {
     score += SCORE_WEIGHTS.grandEhpad;
+  }
+  if (input.category === "collectivite" && (input.nbEleves ?? 0) >= 100) {
+    score += SCORE_WEIGHTS.grandEcole;
   }
 
   score = Math.min(100, score);
@@ -59,31 +66,32 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
   else if (score >= 40) niveau = "moyen";
   else niveau = "faible";
 
+  // CEE : fiches BAT-TH-113 et BAT-TH-116 uniquement — jamais 162/163/164
   aides.push({
-    nom: "CEE Rénovation énergétique tertiaire",
+    nom: "CEE tertiaire — BAT-TH-113 / BAT-TH-116",
     statut: input.anneeConstruction < 2010 ? "éligible" : "à vérifier",
-    condition: "Bâtiment tertiaire construit avant 2010",
+    condition: "Pompe à chaleur réversible déclarée chauffage (BAT-TH-113) et/ou GTB régulation (BAT-TH-116) — bâtiment tertiaire construit avant 2010",
   });
 
   if (input.category === "ehpad") {
     aides.push({
-      nom: "Plan Fraîcheur — subvention ARS / État",
-      statut: "éligible",
-      condition: "EHPAD ou établissement accueillant des publics vulnérables",
+      nom: "Fonds qualité EHPAD / PAI CNSA",
+      statut: "à vérifier",
+      condition: "EHPAD ou ESMS — enveloppe qualité de vie des résidents, instruction par l'ARS selon dossier",
     });
   }
 
   aides.push({
-    nom: "Fonds Vert",
+    nom: "Fonds vert",
     statut: input.category === "collectivite" ? "éligible" : "à vérifier",
-    condition: "Collectivités territoriales et EPCI — appel à projets annuel DREAL",
+    condition: "Collectivités territoriales et EPCI — appel à projets annuel DREAL Île-de-France",
   });
 
-  if (input.chauffageActuel !== "electrique") {
+  if (input.category === "collectivite") {
     aides.push({
-      nom: "Prime conversion chaudière fossile → PAC",
+      nom: "ACTEE · EduRénov",
       statut: "à vérifier",
-      condition: "Remplacement d'une chaudière fioul ou gaz — dossier CEE associé",
+      condition: "Bâtiments scolaires — programme dédié aux collectivités locales",
     });
   }
 
