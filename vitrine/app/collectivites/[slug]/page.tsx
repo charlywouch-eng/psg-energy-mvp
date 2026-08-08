@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import DeontoBanner from "@/components/ui/DeontoBanner";
 import CommuneContactForm from "@/components/ui/CommuneContactForm";
 import { COMMUNES, getCommuneBySlug } from "@/data/communes";
 import { getGuichetsByDep, type Guichet } from "@/data/guichets";
@@ -32,9 +33,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const BADGE_COLOR: Record<string, string> = {
-  "plan-fraicheur": "#F5A000",
-  "fond-vert": "#00C48C",
-  "cee": "#1A4DFF",
+  "plan-fraicheur": "#64748b",
+  "fond-vert": "#059669",
+  "cee": "#047857",
   "dsil-detr": "#8B92A5",
   "prefecture": "#8B92A5",
   "actee": "#9B59B6",
@@ -42,18 +43,66 @@ const BADGE_COLOR: Record<string, string> = {
 };
 
 const EQUIPEMENTS = [
-  { icon: "❄️", titre: "Rafraîchissement passif", desc: "Protections solaires extérieures, surventilation nocturne, végétalisation — bouquet de gestes passif d'abord pour réduire les degrés-heures d'inconfort estival." },
-  { icon: "🌡️", titre: "Pompe à chaleur air/eau", desc: "Remplacement de chaudière fioul/gaz pour bâtiments tertiaires et logements sociaux." },
-  { icon: "🔄", titre: "VMC double-flux", desc: "Renouvellement d'air sans déperdition thermique — obligatoire RE2020 pour travaux lourds." },
-  { icon: "☀️", titre: "Panneaux photovoltaïques", desc: "Autoconsommation et revente — réduction durable de la facture énergétique municipale." },
-  { icon: "🏠", titre: "Isolation thermique (ITE)", desc: "Isolation par l'extérieur des murs et combles — financement CEE tertiaire." },
-  { icon: "💡", titre: "Éclairage LED connecté", desc: "Remplacement de l'éclairage intérieur et extérieur — déclencheur CEE à faible coût." },
+  {
+    titre: "Rafraîchissement passif",
+    desc: "Protections solaires extérieures, surventilation nocturne, végétalisation — bouquet de gestes passif d'abord pour réduire les degrés-heures d'inconfort estival.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+      </svg>
+    ),
+  },
+  {
+    titre: "Pompe à chaleur air/eau",
+    desc: "Remplacement de chaudière fioul/gaz pour bâtiments tertiaires et logements sociaux.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.343 3.94c.09.542-.56 1.102-.99.68L7.64 3.72a.678.678 0 00-.96 0l-1.06 1.06a.678.678 0 000 .96l.92.92c.42.43-.14 1.08-.68.99l-1.26-.28A1 1 0 003 7.5v1.5a1 1 0 00.667.943l1.26.28c.54.09 1.1.56.68.99l-.92.92a.678.678 0 000 .96l1.06 1.06c.267.267.683.267.95 0l.87-.87 1.122 4.482a1 1 0 00.97.755h1.06a1 1 0 00.97-.755l1.122-4.482.87.87c.267.267.683.267.95 0l1.06-1.06a.678.678 0 000-.96l-.92-.92c-.42-.43.14-1.08.68-.99l1.26.28A1 1 0 0021 9v-1.5a1 1 0 00-.667-.943l-1.26-.28c-.54-.09-1.1-.56-.68-.99l.92-.92a.678.678 0 000-.96L18.25 3.25a.678.678 0 00-.96 0l-.92.92c-.43.42-1.08-.14-.99-.68l.28-1.26A1 1 0 0014.715 1h-1.5a1 1 0 00-.943.667l-.28 1.26z"/>
+      </svg>
+    ),
+  },
+  {
+    titre: "VMC double-flux",
+    desc: "Renouvellement d'air sans déperdition thermique — obligatoire RE2020 pour travaux lourds.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+      </svg>
+    ),
+  },
+  {
+    titre: "Panneaux photovoltaïques",
+    desc: "Autoconsommation et revente — réduction durable de la facture énergétique municipale.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+      </svg>
+    ),
+  },
+  {
+    titre: "Isolation thermique (ITE)",
+    desc: "Isolation par l'extérieur des murs et combles — financement CEE tertiaire.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+      </svg>
+    ),
+  },
+  {
+    titre: "Éclairage LED connecté",
+    desc: "Remplacement de l'éclairage intérieur et extérieur — déclencheur CEE à faible coût.",
+    icon: (
+      <svg className="w-6 h-6 shrink-0" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
+      </svg>
+    ),
+  },
 ];
 
 function GuichetCard({ g }: { g: Guichet }) {
   const color = BADGE_COLOR[g.type] ?? "#8B92A5";
   return (
-    <div className="card flex flex-col gap-3">
+    <div className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl flex flex-col gap-3">
       <div className="flex items-start gap-3">
         <div
           className="shrink-0 w-2 h-2 rounded-full mt-2"
@@ -61,18 +110,18 @@ function GuichetCard({ g }: { g: Guichet }) {
           aria-hidden="true"
         />
         <div className="flex-1 min-w-0">
-          <div className="font-display font-black text-xl mb-0.5" style={{ color }}>
+          <div className="display font-black text-xl mb-0.5" style={{ color }}>
             {g.montant}
           </div>
-          <div className="font-body font-semibold text-white text-sm">{g.nom}</div>
+          <div className="font-semibold text-white text-sm">{g.nom}</div>
         </div>
       </div>
-      <p className="text-xs text-white/55 font-body leading-relaxed">{g.description}</p>
-      <div className="text-xs text-white/35 font-body">
+      <p className="text-xs text-white/55 leading-relaxed">{g.description}</p>
+      <div className="text-xs text-white/35">
         Instructeur : <span className="text-white/55">{g.instructeur}</span>
       </div>
       {g.echeance && (
-        <div className="text-xs text-white/35 font-body">
+        <div className="text-xs text-white/35">
           Échéance : <span className="text-white/55">{g.echeance}</span>
         </div>
       )}
@@ -81,7 +130,7 @@ function GuichetCard({ g }: { g: Guichet }) {
           href={g.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs font-body transition-colors"
+          className="text-xs transition-colors"
           style={{ color }}
         >
           Accéder au guichet →
@@ -95,10 +144,9 @@ export default async function CommunePage({ params }: Props) {
   const commune = getCommuneBySlug(params.slug);
   if (!commune) notFound();
 
-  // Phase A : données geo (sans clé API — mode dégradé si indisponible)
   const [geo, aidesTerritoires] = await Promise.all([
     getCommuneGeo(commune.codeInsee),
-    getAidesTerritoires(commune.codeInsee), // Phase B : [] si clé absente
+    getAidesTerritoires(commune.codeInsee),
   ]);
 
   const guichets = getGuichetsByDep(commune.codeDep);
@@ -120,6 +168,7 @@ export default async function CommunePage({ params }: Props) {
   return (
     <>
       <Navbar />
+      <DeontoBanner />
 
       <script
         type="application/ld+json"
@@ -127,20 +176,15 @@ export default async function CommunePage({ params }: Props) {
       />
 
       {/* HERO */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-midnight-950">
         <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(135deg, #0A0E1A 0%, #0A1030 100%)" }}
-          aria-hidden="true"
-        />
-        <div
-          className="absolute top-20 right-0 w-96 h-96 rounded-full opacity-8 blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #1A4DFF, transparent)" }}
+          className="absolute top-20 right-0 w-96 h-96 rounded-full opacity-5 blur-3xl pointer-events-none"
+          style={{ background: "radial-gradient(circle, #047857, transparent)" }}
           aria-hidden="true"
         />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-3xl">
-            <nav aria-label="Fil d'Ariane" className="flex items-center gap-2 text-xs text-white/40 font-body mb-6">
+            <nav aria-label="Fil d'Ariane" className="flex items-center gap-2 text-xs text-white/40 mb-6">
               <a href="/collectivites" className="hover:text-white/70 transition-colors">Collectivités</a>
               <span aria-hidden="true">›</span>
               <span className="text-white/70">{commune.nom}</span>
@@ -148,28 +192,31 @@ export default async function CommunePage({ params }: Props) {
 
             <div
               className="badge mb-4"
-              style={{ color: "#1A4DFF", background: "rgba(26,77,255,0.12)", border: "1px solid rgba(26,77,255,0.25)" }}
+              style={{ color: "#047857", background: "rgba(4,120,87,0.12)", border: "1px solid rgba(4,120,87,0.25)" }}
             >
-              🏛️ {commune.nomDep} ({commune.codeDep})
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+              </svg>
+              {commune.nomDep} ({commune.codeDep})
             </div>
 
-            <h1 className="section-title mb-4">
+            <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
               Rénovation énergétique<br />
-              <span className="gradient-text">à {commune.nom}</span>
+              <span className="text-emerald-500">à {commune.nom}</span>
             </h1>
 
             {population && (
-              <p className="text-xs text-white/40 font-body mb-4">
+              <p className="text-xs text-white/40 mb-4">
                 {commune.nom} — {population.toLocaleString("fr-FR")} habitants · INSEE {commune.codeInsee}
               </p>
             )}
 
-            <p className="section-sub mb-8">
+            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl">
               PSGLOBAL Energy monte votre dossier Fonds Vert, CEE tertiaire et Plan Fraîcheur pour
               les bâtiments publics de {commune.nom} — écoles, mairie, gymnases, EHPAD.
               0 € avancé sur la trésorerie de la collectivité.
             </p>
-            <p className="text-xs text-white/40 font-body mb-8">
+            <p className="text-xs text-white/40 mb-8">
               0 € de subvention ne transite par PSGLOBAL Energy. Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
             </p>
 
@@ -186,15 +233,15 @@ export default async function CommunePage({ params }: Props) {
       </section>
 
       {/* GUICHETS */}
-      <section className="py-16 bg-[#070A14]" aria-labelledby="guichets-title">
+      <section className="py-16 bg-midnight-900" aria-labelledby="guichets-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Financements disponibles</div>
-            <h2 id="guichets-title" className="section-title mb-4">
+            <h2 id="guichets-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
               Dispositifs accessibles<br />
-              <span className="gradient-text">depuis {commune.nom}</span>
+              <span className="text-emerald-500">depuis {commune.nom}</span>
             </h2>
-            <p className="section-sub mx-auto text-center max-w-2xl">
+            <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
               Ces guichets sont ouverts aux communes et EPCI du {commune.nomDep}. Les montants sont indicatifs — le détail est confirmé lors de l&apos;audit.
             </p>
           </div>
@@ -204,13 +251,15 @@ export default async function CommunePage({ params }: Props) {
             ))}
           </div>
 
-          {/* Preuve RACINE (ACTEE) — résultats mesurés en rafraîchissement passif */}
+          {/* Preuve RACINE (ACTEE) */}
           <div
             className="mt-8 rounded-2xl p-4 flex gap-3 items-start"
             style={{ background: "rgba(155,89,182,0.08)", border: "1px solid rgba(155,89,182,0.2)" }}
           >
-            <div className="text-xl shrink-0">🌡️</div>
-            <p className="text-xs text-white/65 font-body leading-relaxed">
+            <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="#9B59B6" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+            </svg>
+            <p className="text-xs text-white/65 leading-relaxed">
               <span className="font-semibold text-white/85">Programme RACINE (ACTEE) :</span>{" "}
               gains mesurés de 5 à 10 °C de confort en classe par rafraîchissement passif — ex. +7 °C de confort
               pour 23 000 € de travaux (Grabels). Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
@@ -220,22 +269,22 @@ export default async function CommunePage({ params }: Props) {
       </section>
 
       {/* ÉQUIPEMENTS */}
-      <section className="py-16" aria-labelledby="equipements-title">
+      <section className="py-16 bg-midnight-950" aria-labelledby="equipements-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Équipements éligibles</div>
-            <h2 id="equipements-title" className="section-title mb-4">
+            <h2 id="equipements-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
               Tous vos bâtiments<br />
-              <span className="gradient-text">sont concernés</span>
+              <span className="text-emerald-500">sont concernés</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {EQUIPEMENTS.map((e) => (
-              <div key={e.titre} className="card flex gap-4">
-                <div className="text-2xl shrink-0">{e.icon}</div>
+              <div key={e.titre} className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl flex gap-4">
+                {e.icon}
                 <div>
-                  <h3 className="font-display font-extrabold text-base text-white mb-1">{e.titre}</h3>
-                  <p className="text-xs text-white/55 font-body leading-relaxed">{e.desc}</p>
+                  <h3 className="display font-extrabold text-base text-white mb-1">{e.titre}</h3>
+                  <p className="text-xs text-white/55 leading-relaxed">{e.desc}</p>
                 </div>
               </div>
             ))}
@@ -243,28 +292,28 @@ export default async function CommunePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Phase B : Aides-territoires (visible uniquement si API key présente) */}
+      {/* Phase B : Aides-territoires */}
       {aidesTerritoires.length > 0 && (
-        <section className="py-16 bg-[#070A14]" aria-labelledby="aides-nat-title">
+        <section className="py-16 bg-midnight-900" aria-labelledby="aides-nat-title">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-10">
               <div className="section-label mx-auto w-fit mb-4">Aides nationales complémentaires</div>
-              <h2 id="aides-nat-title" className="section-title mb-4">
-                Dispositifs <span className="gradient-text">Aides-territoires</span>
+              <h2 id="aides-nat-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+                Dispositifs <span className="text-emerald-500">Aides-territoires</span>
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {aidesTerritoires.map((a: AideTerritoire) => (
-                <div key={a.url} className="card flex flex-col gap-2">
-                  <div className="font-display font-extrabold text-sm text-white">{a.nom}</div>
-                  <div className="text-xs text-white/40 font-body">{a.financeur}</div>
-                  <p className="text-xs text-white/55 font-body leading-relaxed">{a.description}</p>
+                <div key={a.url} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex flex-col gap-2">
+                  <div className="display font-extrabold text-sm text-white">{a.nom}</div>
+                  <div className="text-xs text-white/40">{a.financeur}</div>
+                  <p className="text-xs text-white/55 leading-relaxed">{a.description}</p>
                   {a.url && (
                     <a
                       href={a.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-blue hover:text-white transition-colors font-body"
+                      className="text-xs text-emerald-500 hover:text-white transition-colors"
                     >
                       Voir le dispositif →
                     </a>
@@ -277,13 +326,13 @@ export default async function CommunePage({ params }: Props) {
       )}
 
       {/* PROCESSUS */}
-      <section className="py-16 bg-[#070A14]" aria-labelledby="process-title">
+      <section className="py-16 bg-midnight-900" aria-labelledby="process-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Notre accompagnement</div>
-            <h2 id="process-title" className="section-title mb-4">
+            <h2 id="process-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
               De l&apos;audit à la livraison,<br />
-              <span className="gradient-text">nous gérons tout</span>
+              <span className="text-emerald-500">nous gérons tout</span>
             </h2>
           </div>
           <div className="relative">
@@ -295,15 +344,14 @@ export default async function CommunePage({ params }: Props) {
                 { titre: "Coordination travaux", desc: "Sélection entreprises RGE, planning, suivi chantier et réception des ouvrages." },
                 { titre: "Clôture dossier", desc: "Transmission des pièces justificatives aux organismes instructeurs. 0 € ne transite par PSG." },
               ].map((p, i) => (
-                <div key={p.titre} className="card text-center lg:text-left">
+                <div key={p.titre} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl text-center lg:text-left">
                   <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold font-body mb-3 mx-auto lg:mx-0"
-                    style={{ background: "linear-gradient(135deg, #1A4DFF, #00C48C)" }}
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold mb-3 mx-auto lg:mx-0 bg-brand-emeraldDeep text-white"
                   >
                     {i + 1}
                   </div>
-                  <h3 className="font-display font-extrabold text-sm text-white mb-1">{p.titre}</h3>
-                  <p className="text-xs text-white/55 font-body leading-relaxed">{p.desc}</p>
+                  <h3 className="display font-extrabold text-sm text-white mb-1">{p.titre}</h3>
+                  <p className="text-xs text-white/55 leading-relaxed">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -312,16 +360,16 @@ export default async function CommunePage({ params }: Props) {
       </section>
 
       {/* CTA + FORMULAIRE */}
-      <section id="audit" className="py-16">
+      <section id="audit" className="py-16 bg-midnight-950">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div>
               <div className="section-label mb-4">Diagnostic collectivité</div>
-              <h2 className="section-title mb-4">
+              <h2 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
                 {commune.nom} est-elle<br />
-                <span className="gradient-text">éligible au Fonds Vert ?</span>
+                <span className="text-emerald-500">éligible au Fonds Vert ?</span>
               </h2>
-              <p className="section-sub mb-6">
+              <p className="text-slate-300 leading-relaxed mb-6">
                 Transmettez vos coordonnées — nos experts reviennent sous 48 h avec une estimation de financements disponibles pour vos bâtiments.
               </p>
               <ul className="flex flex-col gap-3">
@@ -331,8 +379,8 @@ export default async function CommunePage({ params }: Props) {
                   "0 € de subvention transitant par PSG",
                   "Seul l'organisme instructeur fait foi",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm font-body text-white/70">
-                    <span className="text-green" aria-hidden="true">✓</span>
+                  <li key={item} className="flex items-center gap-2 text-sm text-white/70">
+                    <span className="text-emerald-500" aria-hidden="true">✓</span>
                     {item}
                   </li>
                 ))}

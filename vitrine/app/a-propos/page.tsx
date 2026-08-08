@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import DeontoBanner from "@/components/ui/DeontoBanner";
 
 export const metadata: Metadata = {
   title: "À propos — PSGLOBAL Energy, régie commerciale en énergies renouvelables",
@@ -13,55 +14,55 @@ export default function AProposPage() {
   return (
     <>
       <Navbar />
+      <DeontoBanner />
 
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-hero-gradient" />
+      <section className="pt-32 pb-16 relative overflow-hidden bg-midnight-900">
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="section-label mx-auto w-fit mb-4">À propos</div>
-          <h1 className="section-title mb-6">
+          <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-6">
             PSGLOBAL Energy,<br />
-            <span className="gradient-text">la régie de confiance</span>
+            <span className="text-emerald-500">la régie de confiance</span>
           </h1>
-          <p className="section-sub mx-auto text-center">
+          <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
             Provider Services Groupe — SAS spécialisée en commercialisation d&apos;équipements d&apos;énergies renouvelables pour l&apos;Île-de-France.
           </p>
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-16 bg-midnight-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="card">
-              <h2 className="font-display font-extrabold text-xl text-white mb-4">Notre rôle</h2>
-              <p className="text-sm text-white/65 font-body leading-relaxed mb-3">
+            <div className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl">
+              <h2 className="display font-extrabold text-xl text-white mb-4">Notre rôle</h2>
+              <p className="text-sm text-white/65 leading-relaxed mb-3">
                 PSGLOBAL Energy est une <strong className="text-white">régie commerciale</strong> : nous commercialisons les équipements au nom d&apos;installateurs RGE certifiés, sans réaliser les installations nous-mêmes.
               </p>
-              <p className="text-sm text-white/65 font-body leading-relaxed">
+              <p className="text-sm text-white/65 leading-relaxed">
                 Ce modèle garantit à nos clients la meilleure sélection d&apos;équipements disponibles sur le marché, tout en s&apos;appuyant sur des installateurs de confiance, locaux et certifiés.
               </p>
             </div>
-            <div className="card">
-              <h2 className="font-display font-extrabold text-xl text-white mb-4">Nos zones d&apos;intervention</h2>
-              <ul className="flex flex-col gap-2.5 text-sm font-body">
+            <div className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl">
+              <h2 className="display font-extrabold text-xl text-white mb-4">Nos zones d&apos;intervention</h2>
+              <ul className="flex flex-col gap-2.5 text-sm">
                 <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-blue">▸</span> Seine-et-Marne (77) — priorité Plan Fraîcheur
+                  <span className="text-emerald-500">▸</span> Seine-et-Marne (77) — priorité Plan Fraîcheur
                 </li>
                 <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-blue">▸</span> Val-de-Marne (94)
+                  <span className="text-emerald-500">▸</span> Val-de-Marne (94)
                 </li>
                 <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-blue">▸</span> Essonne (91)
+                  <span className="text-emerald-500">▸</span> Essonne (91)
                 </li>
                 <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-blue">▸</span> Seine-Saint-Denis (93)
+                  <span className="text-emerald-500">▸</span> Seine-Saint-Denis (93)
                 </li>
               </ul>
             </div>
           </div>
 
-          <div className="card p-8 text-center">
-            <h2 className="font-display font-extrabold text-2xl text-white mb-4">
-              Prêt à <span className="gradient-text">démarrer votre projet</span> ?
+          <div className="bg-midnight-950 border border-midnight-800 p-8 rounded-2xl text-center">
+            <h2 className="display font-extrabold text-2xl text-white mb-4">
+              Prêt à <span className="text-emerald-500">démarrer votre projet</span> ?
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/eligibilite" className="btn-green">Tester mon éligibilité →</Link>

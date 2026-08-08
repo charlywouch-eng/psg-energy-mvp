@@ -32,10 +32,12 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
 
   if (status === "ok") {
     return (
-      <div className="card p-8 text-center">
-        <div className="text-4xl mb-4">✅</div>
-        <h3 className="font-display font-extrabold text-xl text-white mb-2">Demande enregistrée</h3>
-        <p className="text-sm text-white/60 font-body leading-relaxed">
+      <div className="bg-midnight-950 border border-midnight-800 p-8 rounded-2xl text-center">
+        <svg className="w-10 h-10 mx-auto mb-4" fill="none" stroke="#059669" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 className="display font-extrabold text-xl text-white mb-2">Demande enregistrée</h3>
+        <p className="text-sm text-white/60  leading-relaxed">
           Nos experts reviennent vers vous sous 48 h avec une estimation des financements disponibles pour {communeNom}.
         </p>
       </div>
@@ -43,22 +45,22 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 flex flex-col gap-4">
-      <h3 className="font-display font-extrabold text-xl text-white">
+    <form onSubmit={handleSubmit} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex flex-col gap-4">
+      <h3 className="display font-extrabold text-xl text-white">
         Diagnostic d&apos;éligibilité — {communeNom}
       </h3>
-      <p className="text-xs text-white/55 font-body leading-relaxed -mt-2">
+      <p className="text-xs text-white/55  leading-relaxed -mt-2">
         0 € de subvention transitant par PSG. Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
       </p>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-nom">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-nom">
           Nom complet *
         </label>
         <input
           id="cc-nom"
           type="text"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           required
           placeholder="Marie Martin"
           value={form.nom}
@@ -67,13 +69,13 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-tel">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-tel">
           Téléphone *
         </label>
         <input
           id="cc-tel"
           type="tel"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           required
           placeholder="06 12 34 56 78"
           value={form.tel}
@@ -82,13 +84,13 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-cp">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-cp">
           Code postal de votre établissement
         </label>
         <input
           id="cc-cp"
           type="text"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           placeholder="77340"
           value={form.cp}
           onChange={(e) => setForm({ ...form, cp: e.target.value })}
@@ -96,12 +98,12 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-projet">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="cc-projet">
           Type d&apos;établissement
         </label>
         <select
           id="cc-projet"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           value={form.projet}
           onChange={(e) => setForm({ ...form, projet: e.target.value })}
         >
@@ -115,7 +117,7 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
         </select>
       </div>
 
-      <p className="text-xs text-white/35 font-body leading-relaxed">
+      <p className="text-xs text-white/35  leading-relaxed">
         Données traitées par PSGLOBAL Energy (RGPD art. 13). Pas de partage tiers.{" "}
         <a href="/politique-confidentialite" className="underline hover:text-white/55" target="_blank">
           Politique de confidentialité
@@ -124,7 +126,7 @@ export default function CommuneContactForm({ communeNom, communeSlug }: Props) {
       </p>
 
       {status === "err" && (
-        <p className="text-xs text-red-400 font-body">
+        <p className="text-xs text-red-400 ">
           Erreur d&apos;envoi. Contactez-nous : contact@psglobal.energy
         </p>
       )}

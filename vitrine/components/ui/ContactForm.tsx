@@ -26,10 +26,12 @@ export default function ContactForm() {
 
   if (status === "ok") {
     return (
-      <div className="card p-8 text-center">
-        <div className="text-4xl mb-4">✅</div>
-        <h3 className="font-display font-extrabold text-xl text-white mb-2">Message envoyé !</h3>
-        <p className="text-sm text-white/60 font-body">
+      <div className="bg-midnight-950 border border-midnight-800 p-8 rounded-2xl text-center">
+        <svg className="w-10 h-10 mx-auto mb-4" fill="none" stroke="#059669" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <h3 className="display font-extrabold text-xl text-white mb-2">Message envoyé !</h3>
+        <p className="text-sm text-white/60 ">
           Nos experts reviendront vers vous sous 48 h. Vérifiez votre boîte email et vos SMS.
         </p>
       </div>
@@ -37,17 +39,17 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 flex flex-col gap-4">
-      <h2 className="font-display font-extrabold text-xl text-white">Demande de diagnostic d&apos;éligibilité</h2>
+    <form onSubmit={handleSubmit} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex flex-col gap-4">
+      <h2 className="display font-extrabold text-xl text-white">Demande de diagnostic d&apos;éligibilité</h2>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-nom">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-nom">
           Nom complet *
         </label>
         <input
           id="c-nom"
           type="text"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           required
           placeholder="Marie Martin"
           value={form.nom}
@@ -56,13 +58,13 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-tel">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-tel">
           Téléphone *
         </label>
         <input
           id="c-tel"
           type="tel"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           required
           placeholder="06 12 34 56 78"
           value={form.tel}
@@ -71,13 +73,13 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-cp">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-cp">
           Code postal
         </label>
         <input
           id="c-cp"
           type="text"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           placeholder="77000"
           value={form.cp}
           onChange={(e) => setForm({ ...form, cp: e.target.value })}
@@ -85,12 +87,12 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-projet">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-projet">
           Type de projet
         </label>
         <select
           id="c-projet"
-          className="input-field"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded"
           value={form.projet}
           onChange={(e) => setForm({ ...form, projet: e.target.value })}
         >
@@ -105,12 +107,12 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label className="text-xs font-body font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-msg">
+        <label className="text-xs  font-semibold text-white/55 uppercase tracking-wide mb-1.5 block" htmlFor="c-msg">
           Message (optionnel)
         </label>
         <textarea
           id="c-msg"
-          className="input-field resize-none"
+          className="w-full border-2 border-slate-700 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-emeraldDeep outline-none transition-colors rounded resize-none"
           rows={3}
           placeholder="Décrivez brièvement votre situation..."
           value={form.message}
@@ -118,7 +120,7 @@ export default function ContactForm() {
         />
       </div>
 
-      <p className="text-xs text-white/35 font-body leading-relaxed">
+      <p className="text-xs text-white/35  leading-relaxed">
         Données traitées par PSGLOBAL Energy (RGPD art. 13). Pas de partage tiers. Accès :{" "}
         <a href="/politique-confidentialite" className="underline hover:text-white/55" target="_blank">
           politique de confidentialité
@@ -127,7 +129,7 @@ export default function ContactForm() {
       </p>
 
       {status === "err" && (
-        <p className="text-xs text-red-400 font-body">
+        <p className="text-xs text-red-400 ">
           Erreur d&apos;envoi. Contactez-nous directement : contact@psglobal.energy
         </p>
       )}
