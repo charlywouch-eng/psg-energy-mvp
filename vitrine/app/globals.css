@@ -21,8 +21,8 @@
   }
 
   body {
-    background-color: #0f172a;
-    color: #fff;
+    background-color: #f8fafc;
+    color: #0f172a;
     font-family: 'Inter', system-ui, sans-serif;
   }
 
@@ -54,7 +54,7 @@
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-sm border-2 border-white/30 text-white hover:border-white hover:bg-white/10 transition-colors duration-200;
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-sm border-2 border-midnight-900/30 text-midnight-900 hover:border-midnight-900 hover:bg-midnight-900/5 transition-colors duration-200;
   }
 
   .btn-green {
@@ -87,12 +87,12 @@
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-midnight-900 leading-tight;
     font-family: 'Source Serif 4', Georgia, serif;
   }
 
   .section-sub {
-    @apply text-base md:text-lg text-white/60 leading-relaxed max-w-2xl;
+    @apply text-base md:text-lg text-slate-600 leading-relaxed max-w-2xl;
   }
 
   .input-field {
@@ -100,9 +100,9 @@
     background: rgba(255,255,255,0.05);
   }
 
-  /* gradient-text migré vers couleur unie emerald */
+  /* gradient-text — emeraldDeep pour contraste RGAA AA sur fond clair */
   .gradient-text {
-    color: #059669;
+    color: #047857;
   }
 
   /* Hero section */

@@ -16,17 +16,17 @@ export default function ContactPage() {
       <Navbar />
       <DeontoBanner />
 
-      <section className="pt-32 pb-20 bg-midnight-900">
+      <section className="pt-32 pb-20 bg-slate-50 border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Infos */}
             <div>
               <div className="section-label mb-4">Parlons de votre projet</div>
-              <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-6">
+              <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-6">
                 Un expert vous répond<br />
-                <span className="text-emerald-500">sous 48 heures</span>
+                <span className="text-brand-emeraldDeep">sous 48 heures</span>
               </h1>
-              <p className="text-slate-300 leading-relaxed mb-8">
+              <p className="text-slate-600 leading-relaxed mb-8">
                 Diagnostic d&apos;éligibilité, sans engagement — nos conseillers analysent votre situation et identifient les guichets de financement mobilisables.
               </p>
 
@@ -67,13 +67,13 @@ export default function ContactPage() {
                   <div key={c.label} className="flex items-start gap-3">
                     <span className="shrink-0 mt-0.5">{c.icon}</span>
                     <div>
-                      <div className="text-xs font-semibold text-white/40 uppercase tracking-wide mb-0.5">{c.label}</div>
+                      <div className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-0.5">{c.label}</div>
                       {c.href ? (
-                        <a href={c.href} className="text-sm text-white/80 hover:text-white transition-colors">
+                        <a href={c.href} className="text-sm text-slate-700 hover:text-brand-emeraldDeep transition-colors">
                           {c.val}
                         </a>
                       ) : (
-                        <div className="text-sm text-white/80">{c.val}</div>
+                        <div className="text-sm text-slate-700">{c.val}</div>
                       )}
                     </div>
                   </div>

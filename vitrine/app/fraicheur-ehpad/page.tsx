@@ -43,29 +43,29 @@ export default function FraicheurEhpadPage() {
       <Navbar />
 
       {/* HERO */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-midnight-900">
+      <section className="relative pt-32 pb-20 overflow-hidden bg-slate-50 border-b border-slate-200">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Colonne texte */}
             <div>
               <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
-                Plan Fraîcheur 2026 — EHPAD & ESMS
+                Confort d&apos;été 2026 — EHPAD &amp; ESMS
               </div>
-              <h1 className="display text-4xl sm:text-5xl font-bold text-white leading-[1.12] mb-6">
+              <h1 className="display text-4xl sm:text-5xl font-bold text-midnight-900 leading-[1.12] mb-6">
                 Vos résidents au frais,{" "}
                 <span className="text-brand-emeraldDeep">financements sécurisés.</span>
               </h1>
-              <p className="text-lg text-slate-300 leading-relaxed mb-3 font-medium">
+              <p className="text-lg text-slate-600 leading-relaxed mb-3 font-medium">
                 Fonds vert, CEE tertiaire, fonds qualité — PSGLOBAL Energy monte et pilote votre dossier de financement pour le rafraîchissement (confort d&apos;été) de vos chambres, salons et espaces de vie.
               </p>
-              <p className="text-xs text-slate-500 mb-8">
+              <p className="text-xs text-slate-400 mb-8">
                 Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href="/eligibilite" className="inline-flex items-center gap-2 bg-brand-emeraldDeep text-white font-bold text-base px-7 py-4 hover:bg-emerald-800 transition-colors">
                   Tester l&apos;éligibilité de mon EHPAD
                 </Link>
-                <Link href="/contact" className="inline-flex items-center gap-2 border-2 border-slate-600 text-white font-semibold text-base px-7 py-4 hover:border-slate-400 transition-colors">
+                <Link href="/contact" className="inline-flex items-center gap-2 border-2 border-midnight-900/30 text-midnight-900 font-semibold text-base px-7 py-4 hover:border-midnight-900 transition-colors">
                   Demander un diagnostic
                 </Link>
               </div>
@@ -90,25 +90,25 @@ export default function FraicheurEhpadPage() {
       <SymbolesBande variante="ehpad" />
 
       {/* FINANCEMENTS */}
-      <section className="py-16 bg-midnight-950" aria-labelledby="financements-title">
+      <section className="py-16 bg-white border-b border-slate-200" aria-labelledby="financements-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
               Guichets disponibles
             </div>
-            <h2 id="financements-title" className="display text-3xl font-bold text-white mb-2">
+            <h2 id="financements-title" className="display text-3xl font-bold text-midnight-900 mb-2">
               Guichets mobilisables selon votre profil
             </h2>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-400">
               Estimations indicatives — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {FINANCEMENTS.map((f) => (
-              <div key={f.nom} className="bg-midnight-900 border border-midnight-800 p-6">
+              <div key={f.nom} className="bg-slate-50 border border-slate-200 p-6">
                 <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-wide mb-2">{f.statut}</div>
-                <div className="font-semibold text-white text-sm mb-2">{f.nom}</div>
-                <p className="text-xs text-slate-400 leading-relaxed">{f.desc}</p>
+                <div className="font-semibold text-midnight-900 text-sm mb-2">{f.nom}</div>
+                <p className="text-xs text-slate-500 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -116,7 +116,7 @@ export default function FraicheurEhpadPage() {
       </section>
 
       {/* SECTION BÉNÉFICE RÉSIDENT */}
-      <section className="py-16 bg-midnight-900" aria-label="Confort et sérénité des résidents">
+      <section className="py-16 bg-white border-b border-slate-200" aria-label="Confort et sérénité des résidents">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative aspect-[4/3] overflow-hidden">
@@ -136,12 +136,12 @@ export default function FraicheurEhpadPage() {
             </div>
             <div>
               <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
-                Confort & sérénité
+                Confort &amp; sérénité
               </div>
-              <h2 className="display text-3xl font-bold text-white mb-4">
+              <h2 className="display text-3xl font-bold text-midnight-900 mb-4">
                 Des résidents sereins toute l&apos;année
               </h2>
-              <p className="text-slate-300 leading-relaxed mb-6">
+              <p className="text-slate-600 leading-relaxed mb-6">
                 La chaleur estivale est un enjeu de sécurité pour les personnes âgées. PSGLOBAL Energy mobilise les guichets Fonds vert, fonds qualité et CEE pour le rafraîchissement de vos chambres, salons et espaces de vie.
               </p>
               <ul className="flex flex-col gap-2">
@@ -150,7 +150,7 @@ export default function FraicheurEhpadPage() {
                   "Travaux hors présence des résidents sur demande",
                   "Installateurs RGE certifiés, garantie 5 ans",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
+                  <li key={item} className="flex items-start gap-2 text-sm text-slate-600">
                     <svg className="w-4 h-4 text-brand-emeraldDeep mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -164,26 +164,26 @@ export default function FraicheurEhpadPage() {
       </section>
 
       {/* ÉQUIPEMENTS */}
-      <section className="py-16 bg-midnight-950" aria-labelledby="equipements-title">
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="equipements-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
               Équipements éligibles
             </div>
-            <h2 id="equipements-title" className="display text-3xl font-bold text-white mb-4">
+            <h2 id="equipements-title" className="display text-3xl font-bold text-midnight-900 mb-4">
               Tout ce qui protège vos résidents de la chaleur
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {EQUIPEMENTS.map((e) => (
-              <div key={e.titre} className="bg-midnight-900 border border-midnight-800 p-6">
+              <div key={e.titre} className="bg-white border border-slate-200 p-6">
                 <div className="w-8 h-8 bg-brand-emeraldDeep/10 border border-brand-emeraldDeep/30 flex items-center justify-center mb-3">
                   <svg className="w-4 h-4 text-brand-emeraldDeep" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-bold text-base text-white mb-1">{e.titre}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">{e.desc}</p>
+                <h3 className="font-bold text-base text-midnight-900 mb-1">{e.titre}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{e.desc}</p>
               </div>
             ))}
           </div>
@@ -191,17 +191,17 @@ export default function FraicheurEhpadPage() {
       </section>
 
       {/* SECTION ACCOMPAGNEMENT ÉQUIPES */}
-      <section className="py-16 bg-midnight-900" aria-label="Accompagnement des équipes soignantes">
+      <section className="py-16 bg-white border-b border-slate-200" aria-label="Accompagnement des équipes soignantes">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="order-2 md:order-1">
               <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
                 Notre accompagnement
               </div>
-              <h2 className="display text-3xl font-bold text-white mb-4">
+              <h2 className="display text-3xl font-bold text-midnight-900 mb-4">
                 Vos équipes se concentrent sur les soins
               </h2>
-              <p className="text-slate-300 leading-relaxed mb-6">
+              <p className="text-slate-600 leading-relaxed mb-6">
                 PSGLOBAL Energy prend en charge l&apos;intégralité du montage administratif et financier. Vos soignants n&apos;ont aucun dossier à constituer — nous coordonnons tout jusqu&apos;à la réception des travaux.
               </p>
               <ul className="flex flex-col gap-2">
@@ -210,7 +210,7 @@ export default function FraicheurEhpadPage() {
                   "Coordination avec les installateurs RGE",
                   "Transmission des justificatifs aux organismes instructeurs",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-slate-300">
+                  <li key={item} className="flex items-start gap-2 text-sm text-slate-600">
                     <svg className="w-4 h-4 text-brand-emeraldDeep mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
@@ -239,40 +239,40 @@ export default function FraicheurEhpadPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-16 bg-midnight-950" aria-labelledby="process-title">
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="process-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
               Notre méthode
             </div>
-            <h2 id="process-title" className="display text-3xl font-bold text-white mb-4">
+            <h2 id="process-title" className="display text-3xl font-bold text-midnight-900 mb-4">
               De l&apos;audit à la livraison, nous gérons tout
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
             {PROCESS.map((p, i) => (
-              <div key={p.titre} className="bg-midnight-900 border border-midnight-800 p-6 border-t-2 border-t-emerald-500">
-                <span className="mono text-emerald-400 text-xs">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="font-bold text-sm text-white mt-2 mb-1">{p.titre}</h3>
-                <p className="text-xs text-slate-400 leading-relaxed">{p.desc}</p>
+              <div key={p.titre} className="bg-white border border-slate-200 p-6 border-t-2 border-t-brand-emeraldDeep">
+                <span className="mono text-brand-emeraldDeep text-xs">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="font-bold text-sm text-midnight-900 mt-2 mb-1">{p.titre}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 bg-midnight-900 border border-midnight-800 p-4 flex gap-3 items-start">
+          <div className="mt-10 bg-white border border-slate-200 p-4 flex gap-3 items-start">
             <svg className="w-5 h-5 text-brand-emeraldDeep shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <p className="text-xs text-slate-400 leading-relaxed">
+            <p className="text-xs text-slate-500 leading-relaxed">
               Notre méthode s&apos;inscrit dans la démarche{" "}
-              <span className="text-white font-semibold">Bâtiments Durables Franciliens</span>{" "}
+              <span className="text-midnight-900 font-semibold">Bâtiments Durables Franciliens</span>{" "}
               et s&apos;appuie sur les enseignements du programme RACINE et la Charte de la rénovation du bâti scolaire (Cerema&nbsp;/&nbsp;CSTB).
             </p>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — bloc d'ancrage sombre unique */}
       <section className="py-16 bg-midnight-900">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
           <div className="bg-midnight-950 border border-midnight-800 p-8">

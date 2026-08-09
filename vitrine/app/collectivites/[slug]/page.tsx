@@ -102,7 +102,7 @@ const EQUIPEMENTS = [
 function GuichetCard({ g }: { g: Guichet }) {
   const color = BADGE_COLOR[g.type] ?? "#8B92A5";
   return (
-    <div className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl flex flex-col gap-3">
+    <div className="bg-white border border-slate-200 p-6 rounded-2xl flex flex-col gap-3">
       <div className="flex items-start gap-3">
         <div
           className="shrink-0 w-2 h-2 rounded-full mt-2"
@@ -113,16 +113,16 @@ function GuichetCard({ g }: { g: Guichet }) {
           <div className="display font-black text-xl mb-0.5" style={{ color }}>
             {g.montant}
           </div>
-          <div className="font-semibold text-white text-sm">{g.nom}</div>
+          <div className="font-semibold text-midnight-900 text-sm">{g.nom}</div>
         </div>
       </div>
-      <p className="text-xs text-white/55 leading-relaxed">{g.description}</p>
-      <div className="text-xs text-white/35">
-        Instructeur : <span className="text-white/55">{g.instructeur}</span>
+      <p className="text-xs text-slate-500 leading-relaxed">{g.description}</p>
+      <div className="text-xs text-slate-400">
+        Instructeur : <span className="text-slate-600">{g.instructeur}</span>
       </div>
       {g.echeance && (
-        <div className="text-xs text-white/35">
-          Échéance : <span className="text-white/55">{g.echeance}</span>
+        <div className="text-xs text-slate-400">
+          Échéance : <span className="text-slate-600">{g.echeance}</span>
         </div>
       )}
       {g.url && (
@@ -176,23 +176,18 @@ export default async function CommunePage({ params }: Props) {
       />
 
       {/* HERO */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-midnight-950">
-        <div
-          className="absolute top-20 right-0 w-96 h-96 rounded-full opacity-5 blur-3xl pointer-events-none"
-          style={{ background: "radial-gradient(circle, #047857, transparent)" }}
-          aria-hidden="true"
-        />
+      <section className="relative pt-32 pb-20 overflow-hidden bg-slate-50 border-b border-slate-200">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div className="max-w-3xl">
-            <nav aria-label="Fil d'Ariane" className="flex items-center gap-2 text-xs text-white/40 mb-6">
-              <a href="/collectivites" className="hover:text-white/70 transition-colors">Collectivités</a>
+            <nav aria-label="Fil d'Ariane" className="flex items-center gap-2 text-xs text-slate-400 mb-6">
+              <a href="/collectivites" className="hover:text-slate-600 transition-colors">Collectivités</a>
               <span aria-hidden="true">›</span>
-              <span className="text-white/70">{commune.nom}</span>
+              <span className="text-slate-600">{commune.nom}</span>
             </nav>
 
             <div
               className="badge mb-4"
-              style={{ color: "#047857", background: "rgba(4,120,87,0.12)", border: "1px solid rgba(4,120,87,0.25)" }}
+              style={{ color: "#047857", background: "rgba(4,120,87,0.08)", border: "1px solid rgba(4,120,87,0.2)" }}
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
@@ -200,23 +195,23 @@ export default async function CommunePage({ params }: Props) {
               {commune.nomDep} ({commune.codeDep})
             </div>
 
-            <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+            <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
               Rénovation énergétique<br />
-              <span className="text-emerald-500">à {commune.nom}</span>
+              <span className="text-brand-emeraldDeep">à {commune.nom}</span>
             </h1>
 
             {population && (
-              <p className="text-xs text-white/40 mb-4">
+              <p className="text-xs text-slate-400 mb-4">
                 {commune.nom} — {population.toLocaleString("fr-FR")} habitants · INSEE {commune.codeInsee}
               </p>
             )}
 
-            <p className="text-slate-300 leading-relaxed mb-4 max-w-2xl">
-              PSGLOBAL Energy monte votre dossier Fonds Vert, CEE tertiaire et Plan Fraîcheur pour
+            <p className="text-slate-600 leading-relaxed mb-4 max-w-2xl">
+              PSGLOBAL Energy monte votre dossier Fonds Vert, CEE tertiaire et financements disponibles pour
               les bâtiments publics de {commune.nom} — écoles, mairie, gymnases, EHPAD.
               0 € avancé sur la trésorerie de la collectivité.
             </p>
-            <p className="text-xs text-white/40 mb-8">
+            <p className="text-xs text-slate-400 mb-8">
               0 € de subvention ne transite par PSGLOBAL Energy. Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
             </p>
 
@@ -224,7 +219,7 @@ export default async function CommunePage({ params }: Props) {
               <a href="#audit" className="btn-green text-base px-7 py-4">
                 Demander un diagnostic d&apos;éligibilité →
               </a>
-              <a href="/collectivites" className="btn-secondary text-base px-7 py-4">
+              <a href="/collectivites" className="inline-flex items-center justify-center gap-2 px-7 py-4 font-bold text-sm border-2 border-midnight-900/30 text-midnight-900 hover:border-midnight-900 hover:bg-midnight-900/5 transition-colors duration-200">
                 Voir tous les dispositifs
               </a>
             </div>
@@ -233,15 +228,15 @@ export default async function CommunePage({ params }: Props) {
       </section>
 
       {/* GUICHETS */}
-      <section className="py-16 bg-midnight-900" aria-labelledby="guichets-title">
+      <section className="py-16 bg-white border-b border-slate-200" aria-labelledby="guichets-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Financements disponibles</div>
-            <h2 id="guichets-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+            <h2 id="guichets-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
               Dispositifs accessibles<br />
-              <span className="text-emerald-500">depuis {commune.nom}</span>
+              <span className="text-brand-emeraldDeep">depuis {commune.nom}</span>
             </h2>
-            <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
+            <p className="text-slate-600 leading-relaxed mx-auto text-center max-w-2xl">
               Ces guichets sont ouverts aux communes et EPCI du {commune.nomDep}. Les montants sont indicatifs — le détail est confirmé lors de l&apos;audit.
             </p>
           </div>
@@ -254,13 +249,13 @@ export default async function CommunePage({ params }: Props) {
           {/* Preuve RACINE (ACTEE) */}
           <div
             className="mt-8 rounded-2xl p-4 flex gap-3 items-start"
-            style={{ background: "rgba(155,89,182,0.08)", border: "1px solid rgba(155,89,182,0.2)" }}
+            style={{ background: "rgba(155,89,182,0.06)", border: "1px solid rgba(155,89,182,0.15)" }}
           >
             <svg className="w-5 h-5 shrink-0 mt-0.5" fill="none" stroke="#9B59B6" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
             </svg>
-            <p className="text-xs text-white/65 leading-relaxed">
-              <span className="font-semibold text-white/85">Programme RACINE (ACTEE) :</span>{" "}
+            <p className="text-xs text-slate-500 leading-relaxed">
+              <span className="font-semibold text-slate-700">Programme RACINE (ACTEE) :</span>{" "}
               gains mesurés de 5 à 10 °C de confort en classe par rafraîchissement passif — ex. +7 °C de confort
               pour 23 000 € de travaux (Grabels). Seul l&apos;organisme instructeur fait foi pour les montants définitifs.
             </p>
@@ -269,22 +264,22 @@ export default async function CommunePage({ params }: Props) {
       </section>
 
       {/* ÉQUIPEMENTS */}
-      <section className="py-16 bg-midnight-950" aria-labelledby="equipements-title">
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="equipements-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Équipements éligibles</div>
-            <h2 id="equipements-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+            <h2 id="equipements-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
               Tous vos bâtiments<br />
-              <span className="text-emerald-500">sont concernés</span>
+              <span className="text-brand-emeraldDeep">sont concernés</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {EQUIPEMENTS.map((e) => (
-              <div key={e.titre} className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl flex gap-4">
+              <div key={e.titre} className="bg-white border border-slate-200 p-6 rounded-2xl flex gap-4">
                 {e.icon}
                 <div>
-                  <h3 className="display font-extrabold text-base text-white mb-1">{e.titre}</h3>
-                  <p className="text-xs text-white/55 leading-relaxed">{e.desc}</p>
+                  <h3 className="display font-extrabold text-base text-midnight-900 mb-1">{e.titre}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{e.desc}</p>
                 </div>
               </div>
             ))}
@@ -294,26 +289,26 @@ export default async function CommunePage({ params }: Props) {
 
       {/* Phase B : Aides-territoires */}
       {aidesTerritoires.length > 0 && (
-        <section className="py-16 bg-midnight-900" aria-labelledby="aides-nat-title">
+        <section className="py-16 bg-white border-b border-slate-200" aria-labelledby="aides-nat-title">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-10">
               <div className="section-label mx-auto w-fit mb-4">Aides nationales complémentaires</div>
-              <h2 id="aides-nat-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
-                Dispositifs <span className="text-emerald-500">Aides-territoires</span>
+              <h2 id="aides-nat-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
+                Dispositifs <span className="text-brand-emeraldDeep">Aides-territoires</span>
               </h2>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {aidesTerritoires.map((a: AideTerritoire) => (
-                <div key={a.url} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex flex-col gap-2">
-                  <div className="display font-extrabold text-sm text-white">{a.nom}</div>
-                  <div className="text-xs text-white/40">{a.financeur}</div>
-                  <p className="text-xs text-white/55 leading-relaxed">{a.description}</p>
+                <div key={a.url} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex flex-col gap-2">
+                  <div className="display font-extrabold text-sm text-midnight-900">{a.nom}</div>
+                  <div className="text-xs text-slate-400">{a.financeur}</div>
+                  <p className="text-xs text-slate-500 leading-relaxed">{a.description}</p>
                   {a.url && (
                     <a
                       href={a.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-emerald-500 hover:text-white transition-colors"
+                      className="text-xs text-brand-emeraldDeep hover:text-midnight-900 transition-colors"
                     >
                       Voir le dispositif →
                     </a>
@@ -326,17 +321,17 @@ export default async function CommunePage({ params }: Props) {
       )}
 
       {/* PROCESSUS */}
-      <section className="py-16 bg-midnight-900" aria-labelledby="process-title">
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="process-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Notre accompagnement</div>
-            <h2 id="process-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
+            <h2 id="process-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
               De l&apos;audit à la livraison,<br />
-              <span className="text-emerald-500">nous gérons tout</span>
+              <span className="text-brand-emeraldDeep">nous gérons tout</span>
             </h2>
           </div>
           <div className="relative">
-            <div className="hidden lg:block absolute left-0 top-8 right-0 h-0.5 bg-white/8" aria-hidden="true" />
+            <div className="hidden lg:block absolute left-0 top-8 right-0 h-0.5 bg-slate-200" aria-hidden="true" />
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {[
                 { titre: "Audit technique", desc: "Visite ou dossier à distance — bilan thermique, DPE, plans, effectifs." },
@@ -344,14 +339,14 @@ export default async function CommunePage({ params }: Props) {
                 { titre: "Coordination travaux", desc: "Sélection entreprises RGE, planning, suivi chantier et réception des ouvrages." },
                 { titre: "Clôture dossier", desc: "Transmission des pièces justificatives aux organismes instructeurs. 0 € ne transite par PSG." },
               ].map((p, i) => (
-                <div key={p.titre} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl text-center lg:text-left">
+                <div key={p.titre} className="bg-white border border-slate-200 p-6 rounded-2xl text-center lg:text-left">
                   <div
                     className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold mb-3 mx-auto lg:mx-0 bg-brand-emeraldDeep text-white"
                   >
                     {i + 1}
                   </div>
-                  <h3 className="display font-extrabold text-sm text-white mb-1">{p.titre}</h3>
-                  <p className="text-xs text-white/55 leading-relaxed">{p.desc}</p>
+                  <h3 className="display font-extrabold text-sm text-midnight-900 mb-1">{p.titre}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -359,15 +354,15 @@ export default async function CommunePage({ params }: Props) {
         </div>
       </section>
 
-      {/* CTA + FORMULAIRE */}
-      <section id="audit" className="py-16 bg-midnight-950">
+      {/* CTA + FORMULAIRE — bloc d'ancrage sombre unique */}
+      <section id="audit" className="py-16 bg-midnight-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 items-start">
             <div>
               <div className="section-label mb-4">Diagnostic collectivité</div>
               <h2 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
                 {commune.nom} est-elle<br />
-                <span className="text-emerald-500">éligible au Fonds Vert ?</span>
+                <span className="text-brand-emeraldDeep">éligible au Fonds Vert ?</span>
               </h2>
               <p className="text-slate-300 leading-relaxed mb-6">
                 Transmettez vos coordonnées — nos experts reviennent sous 48 h avec une estimation de financements disponibles pour vos bâtiments.
@@ -380,7 +375,7 @@ export default async function CommunePage({ params }: Props) {
                   "Seul l'organisme instructeur fait foi",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2 text-sm text-white/70">
-                    <span className="text-emerald-500" aria-hidden="true">✓</span>
+                    <span className="text-brand-emeraldDeep" aria-hidden="true">✓</span>
                     {item}
                   </li>
                 ))}

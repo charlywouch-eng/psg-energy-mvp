@@ -96,24 +96,24 @@ export default function ParticuliersPage() {
       </section>
 
       {/* GUICHETS */}
-      <section className="py-16 bg-midnight-900" aria-labelledby="aides-part-title">
+      <section className="py-16 bg-white border-b border-slate-200" aria-labelledby="aides-part-title">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <p className="mono text-[11px] font-semibold text-emerald-400 uppercase tracking-widest mb-4">Guichets 2026</p>
-            <h2 id="aides-part-title" className="display text-3xl font-bold text-white mb-4">
+            <p className="mono text-[11px] font-semibold text-brand-emeraldDeep uppercase tracking-widest mb-4">Guichets 2026</p>
+            <h2 id="aides-part-title" className="display text-3xl font-bold text-midnight-900 mb-4">
               Guichets mobilisables selon votre profil
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {GUICHETS_PART.map((a) => (
-              <div key={a.nom} className="bg-midnight-950 border border-midnight-800 p-6 flex flex-col">
-                <div className="mono text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">{a.statut}</div>
-                <div className="font-bold text-white text-sm mb-2">{a.nom}</div>
-                <p className="text-xs text-slate-400 leading-relaxed">{a.desc}</p>
+              <div key={a.nom} className="bg-slate-50 border border-slate-200 p-6 flex flex-col">
+                <div className="mono text-xs font-bold text-brand-emeraldDeep uppercase tracking-wider mb-1">{a.statut}</div>
+                <div className="font-bold text-midnight-900 text-sm mb-2">{a.nom}</div>
+                <p className="text-xs text-slate-500 leading-relaxed">{a.desc}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-slate-500 text-center mt-6">
+          <p className="text-xs text-slate-400 text-center mt-6">
             Montants indicatifs — seul l&apos;organisme instructeur fait foi à la date de dépôt du dossier.
           </p>
         </div>

@@ -16,57 +16,62 @@ export default function AProposPage() {
       <Navbar />
       <DeontoBanner />
 
-      <section className="pt-32 pb-16 relative overflow-hidden bg-midnight-900">
+      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-50 border-b border-slate-200">
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="section-label mx-auto w-fit mb-4">À propos</div>
-          <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-6">
+          <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-6">
             PSGLOBAL Energy,<br />
-            <span className="text-emerald-500">la régie de confiance</span>
+            <span className="text-brand-emeraldDeep">la régie de confiance</span>
           </h1>
-          <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
+          <p className="text-slate-600 leading-relaxed mx-auto text-center max-w-2xl">
             Provider Services Groupe — SAS spécialisée en commercialisation d&apos;équipements d&apos;énergies renouvelables pour l&apos;Île-de-France.
           </p>
         </div>
       </section>
 
-      <section className="py-16 bg-midnight-900">
+      <section className="py-16 bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl">
-              <h2 className="display font-extrabold text-xl text-white mb-4">Notre rôle</h2>
-              <p className="text-sm text-white/65 leading-relaxed mb-3">
-                PSGLOBAL Energy est une <strong className="text-white">régie commerciale</strong> : nous commercialisons les équipements au nom d&apos;installateurs RGE certifiés, sans réaliser les installations nous-mêmes.
+            <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl">
+              <h2 className="display font-extrabold text-xl text-midnight-900 mb-4">Notre rôle</h2>
+              <p className="text-sm text-slate-600 leading-relaxed mb-3">
+                PSGLOBAL Energy est une <strong className="text-midnight-900">régie commerciale</strong> : nous commercialisons les équipements au nom d&apos;installateurs RGE certifiés, sans réaliser les installations nous-mêmes.
               </p>
-              <p className="text-sm text-white/65 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 Ce modèle garantit à nos clients la meilleure sélection d&apos;équipements disponibles sur le marché, tout en s&apos;appuyant sur des installateurs de confiance, locaux et certifiés.
               </p>
             </div>
-            <div className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl">
-              <h2 className="display font-extrabold text-xl text-white mb-4">Nos zones d&apos;intervention</h2>
+            <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl">
+              <h2 className="display font-extrabold text-xl text-midnight-900 mb-4">Nos zones d&apos;intervention</h2>
               <ul className="flex flex-col gap-2.5 text-sm">
-                <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-emerald-500">▸</span> Seine-et-Marne (77) — priorité Plan Fraîcheur
+                <li className="flex items-center gap-2 text-slate-600">
+                  <span className="text-brand-emeraldDeep">▸</span> Seine-et-Marne (77) — priorité confort d&apos;été
                 </li>
-                <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-emerald-500">▸</span> Val-de-Marne (94)
+                <li className="flex items-center gap-2 text-slate-600">
+                  <span className="text-brand-emeraldDeep">▸</span> Val-de-Marne (94)
                 </li>
-                <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-emerald-500">▸</span> Essonne (91)
+                <li className="flex items-center gap-2 text-slate-600">
+                  <span className="text-brand-emeraldDeep">▸</span> Essonne (91)
                 </li>
-                <li className="flex items-center gap-2 text-white/70">
-                  <span className="text-emerald-500">▸</span> Seine-Saint-Denis (93)
+                <li className="flex items-center gap-2 text-slate-600">
+                  <span className="text-brand-emeraldDeep">▸</span> Seine-Saint-Denis (93)
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="bg-midnight-950 border border-midnight-800 p-8 rounded-2xl text-center">
+      {/* CTA — bloc d'ancrage sombre unique */}
+      <section className="py-16 bg-midnight-900">
+        <div className="max-w-xl mx-auto px-4 sm:px-6 text-center">
+          <div className="bg-midnight-950 border border-midnight-800 p-8 rounded-2xl">
             <h2 className="display font-extrabold text-2xl text-white mb-4">
-              Prêt à <span className="text-emerald-500">démarrer votre projet</span> ?
+              Prêt à <span className="text-brand-emeraldDeep">démarrer votre projet</span> ?
             </h2>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link href="/eligibilite" className="btn-green">Tester mon éligibilité →</Link>
-              <Link href="/contact" className="btn-secondary">Nous contacter</Link>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-sm border-2 border-white/30 text-white hover:border-white hover:bg-white/10 transition-colors duration-200">Nous contacter</Link>
             </div>
           </div>
         </div>

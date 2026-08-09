@@ -79,34 +79,34 @@ export default function ConformitePage() {
       <Navbar />
       <DeontoBanner />
 
-      <section className="pt-32 pb-16 relative overflow-hidden bg-midnight-900">
+      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-50 border-b border-slate-200">
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="section-label mx-auto w-fit mb-4">Conformité &amp; agréments</div>
-          <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-6">
+          <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-6">
             Des garanties à chaque<br />
-            <span className="text-emerald-500">étape du projet</span>
+            <span className="text-brand-emeraldDeep">étape du projet</span>
           </h1>
-          <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
+          <p className="text-slate-600 leading-relaxed mx-auto text-center max-w-2xl">
             PSGLOBAL Energy sélectionne exclusivement des partenaires certifiés et garantit la conformité de chaque dossier aux réglementations en vigueur.
           </p>
         </div>
       </section>
 
-      <section className="py-16 bg-midnight-950" aria-labelledby="certifs-title">
+      <section className="py-16 bg-white border-b border-slate-200" aria-labelledby="certifs-title">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Certifications &amp; labels</div>
-            <h2 id="certifs-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
-              Nos <span className="text-emerald-500">garanties qualité</span>
+            <h2 id="certifs-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
+              Nos <span className="text-brand-emeraldDeep">garanties qualité</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {CERTIFS.map((c) => (
-              <div key={c.nom} className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl flex gap-4">
+              <div key={c.nom} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex gap-4">
                 {c.icon}
                 <div>
-                  <h3 className="display font-extrabold text-base text-white mb-1">{c.nom}</h3>
-                  <p className="text-xs text-white/55 leading-relaxed">{c.desc}</p>
+                  <h3 className="display font-extrabold text-base text-midnight-900 mb-1">{c.nom}</h3>
+                  <p className="text-xs text-slate-500 leading-relaxed">{c.desc}</p>
                 </div>
               </div>
             ))}
@@ -114,21 +114,21 @@ export default function ConformitePage() {
         </div>
       </section>
 
-      <section className="py-16 bg-midnight-900" aria-labelledby="regle-title">
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="regle-title">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Cadre réglementaire</div>
-            <h2 id="regle-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">
-              Conformité <span className="text-emerald-500">réglementaire</span>
+            <h2 id="regle-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
+              Conformité <span className="text-brand-emeraldDeep">réglementaire</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4">
             {REGLEMENTS.map((r) => (
-              <div key={r.titre} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex gap-4 items-start">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 shrink-0 mt-2.5" />
+              <div key={r.titre} className="bg-white border border-slate-200 p-6 rounded-2xl flex gap-4 items-start">
+                <div className="w-2 h-2 rounded-full bg-brand-emeraldDeep shrink-0 mt-2.5" />
                 <div>
-                  <h3 className="display font-extrabold text-base text-white mb-1">{r.titre}</h3>
-                  <p className="text-sm text-white/55 leading-relaxed">{r.desc}</p>
+                  <h3 className="display font-extrabold text-base text-midnight-900 mb-1">{r.titre}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{r.desc}</p>
                 </div>
               </div>
             ))}
