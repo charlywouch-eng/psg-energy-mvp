@@ -23,6 +23,8 @@ export interface AideDetail {
   nom: string;
   statut: "éligible" | "à vérifier" | "non éligible";
   condition: string;
+  /** Échéance réelle sourcée — uniquement si connue et vérifiable */
+  echeance?: string;
 }
 
 const SCORE_WEIGHTS = {
@@ -92,6 +94,7 @@ export function computeEligibility(input: EligibilityInput): EligibilityResult {
       nom: "ACTEE · EduRénov",
       statut: "à vérifier",
       condition: "Bâtiments scolaires — programme dédié aux collectivités locales",
+      echeance: "Printemps 2027",
     });
   }
 

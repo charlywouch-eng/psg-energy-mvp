@@ -5,20 +5,20 @@ import EligibilityForm from "@/components/ui/EligibilityForm";
 import DeontoBanner from "@/components/ui/DeontoBanner";
 
 export const metadata: Metadata = {
-  title: "Simulateur d'éligibilité — Plan Fraîcheur 2026 & CEE tertiaire",
+  title: "Simulateur d'éligibilité — Confort d'été & CEE tertiaire 2026 | PSGLOBAL-ENERGY",
   description:
-    "Estimez en 2 minutes vos financements disponibles : Plan Fraîcheur, Fonds Vert, CEE tertiaire. Sans engagement — réponse de nos experts sous 48 h.",
+    "Estimez en 2 minutes vos guichets de financement : Fonds Vert, CEE tertiaire BAT-TH-113/116, Fonds qualité EHPAD. Sans engagement — réponse de nos experts sous 48 h.",
 };
 
 export default function EligibilitePage() {
   return (
     <>
-      <Navbar />
-      <DeontoBanner />
+      <div className="print:hidden"><Navbar /></div>
+      <div className="print:hidden"><DeontoBanner /></div>
 
-      <section className="relative pt-32 pb-20 bg-slate-50 border-b border-slate-200">
+      <section className="relative pt-32 pb-20 bg-slate-50 border-b border-slate-200 print:pt-4 print:pb-4 print:bg-white print:border-0">
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10">
+          <div className="text-center mb-10 print:hidden">
             <div className="section-label mx-auto w-fit mb-4">Simulateur d&apos;éligibilité</div>
             <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
               Êtes-vous éligible aux<br />
@@ -32,7 +32,7 @@ export default function EligibilitePage() {
         </div>
       </section>
 
-      <Footer />
+      <div className="print:hidden"><Footer /></div>
     </>
   );
 }
