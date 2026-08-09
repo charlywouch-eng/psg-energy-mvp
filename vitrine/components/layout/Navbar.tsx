@@ -5,9 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
-  { href: "#simulateur", label: "Diagnostic d'éligibilité" },
+  { href: "#simulateur",   label: "Diagnostic d'éligibilité" },
   { href: "#financements", label: "Guichets mobilisables" },
-  { href: "#methode", label: "Notre méthode" },
+  { href: "#methode",      label: "Notre méthode" },
+  { href: "/dossier-type", label: "Dossier type" },
 ];
 
 export default function Navbar() {
@@ -43,15 +44,17 @@ export default function Navbar() {
           className="hidden md:flex gap-8 text-sm font-semibold text-slate-600"
           aria-label="Navigation principale"
         >
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="hover:text-midnight-900 transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((l) =>
+            l.href.startsWith("/") ? (
+              <Link key={l.href} href={l.href} className="hover:text-midnight-900 transition-colors">
+                {l.label}
+              </Link>
+            ) : (
+              <a key={l.href} href={l.href} className="hover:text-midnight-900 transition-colors">
+                {l.label}
+              </a>
+            )
+          )}
         </nav>
 
         {/* CTA */}
@@ -84,16 +87,27 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 px-4 py-4 flex flex-col gap-1">
-          {NAV_LINKS.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="px-4 py-3 text-sm font-semibold text-slate-600 hover:text-midnight-900 hover:bg-slate-50 transition-colors"
-            >
-              {l.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((l) =>
+            l.href.startsWith("/") ? (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-sm font-semibold text-slate-600 hover:text-midnight-900 hover:bg-slate-50 transition-colors"
+              >
+                {l.label}
+              </Link>
+            ) : (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="px-4 py-3 text-sm font-semibold text-slate-600 hover:text-midnight-900 hover:bg-slate-50 transition-colors"
+              >
+                {l.label}
+              </a>
+            )
+          )}
           <a
             href="#simulateur"
             onClick={() => setOpen(false)}
