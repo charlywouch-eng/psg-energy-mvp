@@ -80,7 +80,7 @@ export default function RootLayout({
         {/* Polices auto-hébergées — jamais de fonts.googleapis.com (CNIL 10/02/2022) */}
         <link rel="stylesheet" href="/fonts/fonts.css" />
       </head>
-      <body className="bg-midnight-900 text-white antialiased" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <body className="bg-slate-50 text-midnight-900 antialiased" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {children}
         <PwaRegister />
       </body>

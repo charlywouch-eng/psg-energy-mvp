@@ -54,7 +54,7 @@ export default function HomePage() {
               {/* Colonne gauche */}
               <div className="max-w-xl">
                 <p className="mono text-[11px] font-semibold text-brand-emeraldDeep uppercase tracking-widest mb-4">
-                  Plan Fraîcheur · EHPAD &amp; collectivités · Île-de-France
+                  Confort d&apos;été · EHPAD &amp; collectivités · Île-de-France
                 </p>
                 <h1 className="display text-4xl sm:text-5xl font-bold text-midnight-900 leading-[1.12] mb-6">
                   Planifiez le confort d&apos;été de vos bâtiments avec une{" "}

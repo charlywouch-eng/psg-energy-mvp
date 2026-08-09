@@ -26,7 +26,7 @@ const ETAPES = [
     n: "02",
     titre: "Montage des dossiers de financement",
     desc: "Notre équipe constitue l'intégralité des dossiers Fonds Vert, CEE, Plan Fraîcheur, DSIL/DETR — vous ne signez qu'en bout de chaîne.",
-    details: ["Dossier Fonds Vert / CEE", "Convention Plan Fraîcheur", "Demandes DSIL / DETR pour collectivités", "Suivi administratif complet"],
+    details: ["Dossier Fonds Vert / CEE", "Convention de financement fonds qualité EHPAD", "Demandes DSIL / DETR pour collectivités", "Suivi administratif complet"],
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
@@ -92,46 +92,46 @@ export default function MethodePage() {
       <Navbar />
       <DeontoBanner />
 
-      <section className="pt-32 pb-16 relative overflow-hidden bg-midnight-900">
+      <section className="pt-32 pb-16 relative overflow-hidden bg-slate-50 border-b border-slate-200">
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 text-center">
           <div className="section-label mx-auto w-fit mb-4">Notre méthode</div>
-          <h1 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-6">
+          <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-6">
             Du premier contact à la livraison,<br />
-            <span className="text-emerald-500">nous gérons tout</span>
+            <span className="text-brand-emeraldDeep">nous gérons tout</span>
           </h1>
-          <p className="text-slate-300 leading-relaxed mx-auto text-center max-w-2xl">
+          <p className="text-slate-600 leading-relaxed mx-auto text-center max-w-2xl">
             PSGLOBAL Energy est votre interlocuteur unique : audit, financement, travaux, réception. Vous gardez le contrôle, nous gérons la complexité.
           </p>
         </div>
       </section>
 
       {/* ÉTAPES */}
-      <section className="py-16 bg-midnight-900" aria-labelledby="process-title">
+      <section className="py-16 bg-white border-b border-slate-200" aria-labelledby="process-title">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <h2 id="process-title" className="sr-only">Les 6 étapes de notre méthode</h2>
           <div className="flex flex-col gap-6">
             {ETAPES.map((e) => (
-              <div key={e.n} className="bg-midnight-950 border border-midnight-800 p-6 rounded-2xl flex gap-6">
+              <div key={e.n} className="bg-slate-50 border border-slate-200 p-6 rounded-2xl flex gap-6">
                 <div className="shrink-0">
                   <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{ background: "rgba(4,120,87,0.12)", border: "1px solid rgba(4,120,87,0.2)" }}
+                    style={{ background: "rgba(4,120,87,0.08)", border: "1px solid rgba(4,120,87,0.2)" }}
                   >
                     {e.icon}
                   </div>
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="display font-black text-3xl text-emerald-900/50 leading-none">{e.n}</span>
-                    <h3 className="display font-extrabold text-lg text-white">{e.titre}</h3>
+                    <span className="display font-black text-3xl text-slate-200 leading-none">{e.n}</span>
+                    <h3 className="display font-extrabold text-lg text-midnight-900">{e.titre}</h3>
                   </div>
-                  <p className="text-sm text-white/60 leading-relaxed mb-3">{e.desc}</p>
+                  <p className="text-sm text-slate-500 leading-relaxed mb-3">{e.desc}</p>
                   <ul className="flex flex-wrap gap-2">
                     {e.details.map((d) => (
                       <li
                         key={d}
                         className="text-xs px-2.5 py-1 rounded-lg"
-                        style={{ background: "rgba(5,150,105,0.08)", color: "rgba(5,150,105,0.8)", border: "1px solid rgba(5,150,105,0.15)" }}
+                        style={{ background: "rgba(4,120,87,0.06)", color: "#047857", border: "1px solid rgba(4,120,87,0.15)" }}
                       >
                         ✓ {d}
                       </li>
@@ -145,31 +145,32 @@ export default function MethodePage() {
       </section>
 
       {/* ENGAGEMENTS */}
-      <section className="py-16 bg-midnight-950" aria-labelledby="engage-title">
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="engage-title">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
             <div className="section-label mx-auto w-fit mb-4">Nos engagements</div>
-            <h2 id="engage-title" className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12]">
+            <h2 id="engage-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12]">
               Ce que vous pouvez<br />
-              <span className="text-emerald-500">compter de nous</span>
+              <span className="text-brand-emeraldDeep">compter de nous</span>
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {ENGAGEMENTS.map((e) => (
-              <div key={e.titre} className="bg-midnight-900 border border-midnight-800 p-6 rounded-2xl text-center">
+              <div key={e.titre} className="bg-white border border-slate-200 p-6 rounded-2xl text-center">
                 <div className="w-10 h-10 rounded-full mx-auto mb-3 flex items-center justify-center bg-brand-emeraldDeep">
                   <svg className="w-5 h-5" fill="none" stroke="white" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                   </svg>
                 </div>
-                <h3 className="display font-extrabold text-base text-white mb-2">{e.titre}</h3>
-                <p className="text-xs text-white/55 leading-relaxed">{e.desc}</p>
+                <h3 className="display font-extrabold text-base text-midnight-900 mb-2">{e.titre}</h3>
+                <p className="text-xs text-slate-500 leading-relaxed">{e.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      {/* CTA — bloc d'ancrage sombre unique */}
       <section className="py-16 text-center bg-midnight-900">
         <div className="max-w-xl mx-auto px-4 sm:px-6">
           <h2 className="display text-3xl sm:text-4xl font-bold text-white leading-[1.12] mb-4">Prêt à démarrer ?</h2>
