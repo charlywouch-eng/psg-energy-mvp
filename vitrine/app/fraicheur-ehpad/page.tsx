@@ -115,6 +115,71 @@ export default function FraicheurEhpadPage() {
         </div>
       </section>
 
+      {/* RESTE À CHARGE */}
+      <section className="py-16 bg-slate-50 border-b border-slate-200" aria-labelledby="rac-title">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="mb-8">
+            <div className="mono text-[11px] font-bold text-brand-emeraldDeep uppercase tracking-widest mb-4">
+              Ingénierie financière
+            </div>
+            <h2 id="rac-title" className="display text-3xl font-bold text-midnight-900 mb-4">
+              Et le reste à charge&nbsp;?
+            </h2>
+            <p className="text-slate-600 leading-relaxed mb-4">
+              C&apos;est la première question d&apos;un décideur, et elle est légitime. Une fois les guichets mobilisés — CEE tertiaires (BAT-TH-113&nbsp;/&nbsp;BAT-TH-116), Fonds qualité EHPAD&nbsp;/&nbsp;PAI CNSA, Fonds vert — une part de l&apos;investissement peut rester à financer. Cette part n&apos;est pas une impasse&nbsp;: c&apos;est un montage.
+            </p>
+            <p className="text-slate-600 leading-relaxed">
+              Selon le statut de votre établissement (public, associatif ou privé), des dispositifs dédiés au secteur tertiaire et public permettent d&apos;étaler ce reste à charge sur le long terme&nbsp;:
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            {[
+              {
+                titre: "L'intracting",
+                desc: "Des avances remboursables à taux privilégié (de l'ordre de 0,25 %), dont le remboursement est calé sur les économies d'énergie générées par les travaux.",
+              },
+              {
+                titre: "Prêt Transformation écologique · Prêt au Secteur Public Local",
+                desc: "Financements de long terme pour les maîtres d'ouvrage publics.",
+              },
+              {
+                titre: "L'Édu-Prêt",
+                desc: "Pour les bâtiments scolaires des collectivités.",
+              },
+              {
+                titre: "Le tiers-financement régional",
+                desc: "Un opérateur avance les fonds, remboursé sur les économies.",
+              },
+            ].map((d) => (
+              <div key={d.titre} className="bg-white border border-slate-200 p-5 flex gap-4 items-start">
+                <span className="shrink-0 mt-1 w-2 h-2 rounded-full bg-brand-emeraldDeep" aria-hidden="true" />
+                <div>
+                  <div className="font-bold text-sm text-midnight-900 mb-1">{d.titre}</div>
+                  <p className="text-xs text-slate-500 leading-relaxed">{d.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bloc Ethos + Pathos */}
+          <div className="bg-white border border-slate-200 p-6 mb-4" style={{ borderLeft: "4px solid #047857" }}>
+            <p className="text-sm text-slate-700 leading-relaxed mb-3">
+              Ces outils sont opérés par la{" "}
+              <span className="font-semibold text-midnight-900">Banque des Territoires (Caisse des Dépôts)</span>{" "}
+              — le bras financier de l&apos;État. Notre rôle d&apos;assistance à maîtrise d&apos;ouvrage&nbsp;: identifier le bon dispositif, l&apos;articuler avec les subventions dans un plan de financement cohérent, et sécuriser le montage — sans jamais manier vos fonds.
+            </p>
+            <p className="text-sm font-semibold text-midnight-900 leading-relaxed">
+              L&apos;objectif&nbsp;: que vos résidents passent enfin l&apos;été en sécurité, pas en souffrance.
+            </p>
+          </div>
+
+          <p className="text-xs text-slate-500 leading-relaxed">
+            Dispositifs et éligibilité indicatifs, établis au cas par cas selon votre établissement. Seul l&apos;organisme prêteur ou instructeur fait foi à la date de dépôt du dossier.
+          </p>
+        </div>
+      </section>
+
       {/* SECTION BÉNÉFICE RÉSIDENT */}
       <section className="py-16 bg-white border-b border-slate-200" aria-label="Confort et sérénité des résidents">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
