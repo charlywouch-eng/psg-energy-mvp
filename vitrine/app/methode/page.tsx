@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import DeontoBanner from "@/components/ui/DeontoBanner";
 
 export const metadata: Metadata = {
-  title: "Notre méthode — De l'audit à la livraison clé en main | PSGLOBAL-ENERGY",
+  title: "Notre méthode — De l'audit au suivi des travaux, coordonnés de A à Z | PSGLOBAL-ENERGY",
   description:
     "PSGLOBAL Energy gère l'intégralité de votre projet : audit, dossiers de financement, coordination travaux, réception. Découvrez notre méthode.",
 };
@@ -37,7 +37,7 @@ const ETAPES = [
     n: "03",
     titre: "Sélection des équipements",
     desc: "Nous sélectionnons les matériels parmi notre réseau d'installateurs RGE certifiés et indépendants — garanties constructeur incluses.",
-    details: ["Équipements de nos partenaires installateurs RGE certifiés", "Garantie 5 ans minimum", "Matériels éligibles CEE/Fonds Vert", "Délai d'approvisionnement 7–18 j"],
+    details: ["Équipements de nos partenaires installateurs RGE certifiés", "Garantie constructeur installateur RGE", "Matériels éligibles CEE/Fonds Vert", "Délai d'approvisionnement 7–18 j"],
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="#047857" viewBox="0 0 24 24" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.343 3.94c.09.542-.56 1.102-.99.68L7.64 3.72a.678.678 0 00-.96 0l-1.06 1.06a.678.678 0 000 .96l.92.92c.42.43-.14 1.08-.68.99l-1.26-.28A1 1 0 003 7.5v1.5a1 1 0 00.667.943l1.26.28c.54.09 1.1.56.68.99l-.92.92a.678.678 0 000 .96l1.06 1.06c.267.267.683.267.95 0l.87-.87 1.122 4.482a1 1 0 00.97.755h1.06a1 1 0 00.97-.755l1.122-4.482.87.87c.267.267.683.267.95 0l1.06-1.06a.678.678 0 000-.96l-.92-.92c-.42-.43.14-1.08.68-.99l1.26.28A1 1 0 0021 9v-1.5a1 1 0 00-.667-.943l-1.26-.28c-.54-.09-1.1-.56-.68-.99l.92-.92a.678.678 0 000-.96L18.25 3.25a.678.678 0 00-.96 0l-.92.92c-.43.42-1.08-.14-.99-.68l.28-1.26A1 1 0 0014.715 1h-1.5a1 1 0 00-.943.667l-.28 1.26z"/>
@@ -97,10 +97,10 @@ export default function MethodePage() {
           <div className="section-label mx-auto w-fit mb-4">Notre méthode</div>
           <h1 className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-6">
             Du premier contact à la livraison,<br />
-            <span className="text-brand-emeraldDeep">nous gérons tout</span>
+            <span className="text-brand-emeraldDeep">nous coordonnons tout</span>
           </h1>
           <p className="text-slate-600 leading-relaxed mx-auto text-center max-w-2xl">
-            PSGLOBAL Energy est votre interlocuteur unique : audit, financement, travaux, réception. Vous gardez le contrôle, nous gérons la complexité.
+            PSGLOBAL Energy est votre interlocuteur unique : audit, financement, coordination, réception. Vous gardez le contrôle, nous gérons la complexité.
           </p>
         </div>
       </section>

@@ -22,10 +22,8 @@ const FINANCEMENTS = [
 const EQUIPEMENTS = [
   { titre: "Rafraîchissement passif", desc: "Protections solaires extérieures motorisées, stores, surventilation nocturne — efficaces sans aucun équipement actif." },
   { titre: "VMC double-flux", desc: "Ventilation mécanique contrôlée pour renouveler l'air sans déperdition thermique." },
-  { titre: "Pompe à chaleur air/eau", desc: "Remplacement de chaudière fossile par une PAC réversible pour le chauffage et le confort d'été." },
-  { titre: "Panneaux photovoltaïques", desc: "Autoconsommation pour réduire la facture d'énergie de l'établissement." },
-  { titre: "Isolation thermique (ITE)", desc: "Isolation par l'extérieur des murs et combles — réduit les degrés-heures d'inconfort estival." },
-  { titre: "Régulation intelligente", desc: "Thermostat connecté par zone, pilotage depuis la direction, suivi de la performance énergétique." },
+  { titre: "Pompe à chaleur air/eau réversible", desc: "PAC réversible pour le chauffage et le confort d'été — fiche BAT-TH-113." },
+  { titre: "Régulation intelligente (GTB)", desc: "Thermostat connecté par zone, pilotage depuis la direction, suivi de la performance énergétique — fiche BAT-TH-116." },
 ];
 
 const PROCESS = [
@@ -186,8 +184,8 @@ export default function FraicheurEhpadPage() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80&fm=jpg"
-                alt="Soignante attentive auprès d'une résidente âgée sereine"
+                src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=900&q=80&fm=jpg"
+                alt="Personne âgée assise dans un espace clair et lumineux, confort d'été en EHPAD"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
