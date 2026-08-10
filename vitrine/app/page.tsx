@@ -62,7 +62,7 @@ export default function HomePage() {
                 </h1>
                 <p className="text-lg text-slate-600 leading-relaxed mb-8 font-medium">
                   Nous accompagnons les directions d&apos;EHPAD et les collectivités locales d&apos;Île-de-France.
-                  Du diagnostic jusqu&apos;à la réception des travaux, nous montons vos dossiers de financement
+                  Du diagnostic jusqu&apos;à la mise en service, nous montons vos dossiers de financement
                   et coordonnons les entreprises RGE — sans jamais nous substituer à vous.
                 </p>
 
