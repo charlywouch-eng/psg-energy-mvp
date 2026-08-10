@@ -7,17 +7,16 @@ import DeontoBanner from "@/components/ui/DeontoBanner";
 export const metadata: Metadata = {
   title: "Particuliers — CEE · Éco-PTZ · Rénovation énergétique | PSGLOBAL-ENERGY",
   description:
-    "PAC, isolation, PV, chauffe-eau thermodynamique — PSGLOBAL Energy optimise vos guichets CEE et Éco-PTZ en Île-de-France. Diagnostic d'éligibilité sans engagement.",
+    "PAC, isolation, chauffe-eau thermodynamique — PSGLOBAL Energy identifie les guichets CEE et Éco-PTZ mobilisables en Île-de-France et vous oriente vers les bons interlocuteurs.",
   robots: { index: false, follow: false },
 };
 
 const GUICHETS_PART = [
-  { nom: "Prime rénovation globale", statut: "variable selon revenus", desc: "Subvention selon revenus et type de travaux — conditions vérifiées lors du diagnostic." },
-  { nom: "CEE Particuliers", statut: "variable selon travaux", desc: "Certificats d'Économie d'Énergie versés par les énergéticiens." },
-  { nom: "Éco-PTZ", statut: "prêt à taux 0 %", desc: "Prêt à taux 0 % sans condition de revenus pour rénovation globale — montant selon dossier." },
-  { nom: "Prime MAR", statut: "selon éligibilité", desc: "Prime Mon Accompagnateur Rénov' pour rénovation globale avec AMO — montant défini par l'organisme instructeur." },
-  { nom: "TVA travaux RGE", statut: "taux réduit applicable", desc: "Sur tous travaux de rénovation énergétique réalisés par un artisan RGE." },
-  { nom: "Chèque énergie", statut: "selon ressources", desc: "Pour ménages aux revenus modestes — montant attribué par l'ADEME, cumulable avec les autres guichets." },
+  { nom: "Prime rénovation", statut: "variable selon revenus", desc: "Subvention selon revenus et nature des travaux — à instruire auprès de l'organisme agréé compétent." },
+  { nom: "CEE Particuliers", statut: "variable selon travaux", desc: "Certificats d'Économie d'Énergie versés par les énergéticiens — nous vous orientons vers les obligés CEE adaptés à votre projet." },
+  { nom: "Éco-PTZ", statut: "prêt à taux 0 %", desc: "Prêt à taux 0 % sans condition de revenus pour rénovation globale — à solliciter auprès d'un établissement bancaire partenaire." },
+  { nom: "TVA travaux RGE", statut: "taux réduit applicable", desc: "Sur tous travaux de rénovation énergétique réalisés par un artisan RGE — applicable de plein droit, sans démarche spécifique PSG." },
+  { nom: "Chèque énergie", statut: "selon ressources", desc: "Pour ménages aux revenus modestes — attribué automatiquement par l'ADEME, cumulable avec les autres guichets." },
 ];
 
 const TRAVAUX = [
@@ -81,7 +80,7 @@ export default function ParticuliersPage() {
               <span className="text-brand-emeraldDeep">ingénierie financière sécurisée.</span>
             </h1>
             <p className="text-lg text-slate-600 leading-relaxed mb-8 font-medium">
-              CEE, Éco-PTZ, prime rénovation — nos conseillers identifient l&apos;ensemble des guichets mobilisables et constituent votre dossier de A à Z, sans avance de fonds de votre part.
+              CEE, Éco-PTZ, prime rénovation — nos conseillers identifient les guichets mobilisables pour votre situation et vous orientent vers les bons interlocuteurs. PSGLOBAL Energy n&apos;est pas Mon Accompagnateur Rénov&apos; agréé Anah.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Link href="/eligibilite" className="inline-flex items-center justify-center bg-brand-emeraldDeep hover:bg-emerald-800 text-white font-bold text-base px-7 py-4 transition-colors">
