@@ -23,8 +23,6 @@ const EQUIPEMENTS = [
   { titre: "Rafraîchissement passif", desc: "Protections solaires extérieures motorisées, stores, surventilation nocturne — efficaces sans aucun équipement actif." },
   { titre: "VMC double-flux", desc: "Ventilation mécanique contrôlée pour renouveler l'air sans déperdition thermique." },
   { titre: "Pompe à chaleur air/eau", desc: "Remplacement de chaudière fossile par une PAC réversible pour le chauffage et le confort d'été." },
-  { titre: "Panneaux photovoltaïques", desc: "Autoconsommation pour réduire la facture d'énergie de l'établissement." },
-  { titre: "Isolation thermique (ITE)", desc: "Isolation par l'extérieur des murs et combles — réduit les degrés-heures d'inconfort estival." },
   { titre: "Régulation intelligente", desc: "Thermostat connecté par zone, pilotage depuis la direction, suivi de la performance énergétique." },
 ];
 
