@@ -327,7 +327,7 @@ export default async function CommunePage({ params }: Props) {
             <div className="section-label mx-auto w-fit mb-4">Notre accompagnement</div>
             <h2 id="process-title" className="display text-3xl sm:text-4xl font-bold text-midnight-900 leading-[1.12] mb-4">
               De l&apos;audit à la livraison,<br />
-              <span className="text-brand-emeraldDeep">nous gérons tout</span>
+              <span className="text-brand-emeraldDeep">nous coordonnons tout</span>
             </h2>
           </div>
           <div className="relative">
@@ -336,7 +336,7 @@ export default async function CommunePage({ params }: Props) {
               {[
                 { titre: "Audit technique", desc: "Visite ou dossier à distance — bilan thermique, DPE, plans, effectifs." },
                 { titre: "Ingénierie financière", desc: "Constitution des dossiers Fonds Vert, DSIL, CEE — aucune ressource RH à mobiliser." },
-                { titre: "Coordination travaux", desc: "Sélection entreprises RGE, planning, suivi chantier et réception des ouvrages." },
+                { titre: "Coordination travaux", desc: "Sélection entreprises RGE, planning, suivi de chantier — vous conduisez la réception en qualité de maître d'ouvrage, nous vous y accompagnons." },
                 { titre: "Clôture dossier", desc: "Transmission des pièces justificatives aux organismes instructeurs. 0 € ne transite par PSG." },
               ].map((p, i) => (
                 <div key={p.titre} className="bg-white border border-slate-200 p-6 rounded-2xl text-center lg:text-left">

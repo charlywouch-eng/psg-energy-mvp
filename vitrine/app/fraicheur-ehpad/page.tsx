@@ -22,17 +22,15 @@ const FINANCEMENTS = [
 const EQUIPEMENTS = [
   { titre: "Rafraîchissement passif", desc: "Protections solaires extérieures motorisées, stores, surventilation nocturne — efficaces sans aucun équipement actif." },
   { titre: "VMC double-flux", desc: "Ventilation mécanique contrôlée pour renouveler l'air sans déperdition thermique." },
-  { titre: "Pompe à chaleur air/eau", desc: "Remplacement de chaudière fossile par une PAC réversible pour le chauffage et le confort d'été." },
-  { titre: "Panneaux photovoltaïques", desc: "Autoconsommation pour réduire la facture d'énergie de l'établissement." },
-  { titre: "Isolation thermique (ITE)", desc: "Isolation par l'extérieur des murs et combles — réduit les degrés-heures d'inconfort estival." },
-  { titre: "Régulation intelligente", desc: "Thermostat connecté par zone, pilotage depuis la direction, suivi de la performance énergétique." },
+  { titre: "Pompe à chaleur air/eau réversible", desc: "PAC réversible pour le chauffage et le confort d'été — fiche BAT-TH-113." },
+  { titre: "Régulation intelligente (GTB)", desc: "Thermostat connecté par zone, pilotage depuis la direction, suivi de la performance énergétique — fiche BAT-TH-116." },
 ];
 
 const PROCESS = [
   { titre: "Diagnostic d'éligibilité", desc: "Visite sur site ou dossier à distance — bilan thermique, plans, DPE, effectifs." },
   { titre: "Ingénierie financière", desc: "Dossier CEE, Fonds vert et fonds qualité — guichets mobilisables confirmés sous 48 h." },
-  { titre: "Choix de l'équipement", desc: "Sélection des matériels avec nos partenaires installateurs RGE certifiés — marque française, garantie 5 ans." },
-  { titre: "Installation & réception", desc: "Travaux réalisés par techniciens RGE, hors présence des résidents sur demande." },
+  { titre: "Choix de l'équipement", desc: "Sélection des matériels avec nos partenaires installateurs RGE certifiés — garantie constructeur installateur RGE." },
+  { titre: "Suivi de l'installation & réception", desc: "Travaux réalisés par les techniciens RGE — PSGLOBAL Energy assure le suivi de chantier et vous accompagne lors de la réception que vous conduisez en qualité de maître d'ouvrage." },
   { titre: "Versement des subventions", desc: "Subventions versées à l'installateur. Vous signez la convention de mandat, c'est tout." },
 ];
 
@@ -186,8 +184,8 @@ export default function FraicheurEhpadPage() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=900&q=80&fm=jpg"
-                alt="Soignante attentive auprès d'une résidente âgée sereine"
+                src="https://images.unsplash.com/photo-1586105251261-72a756497a11?w=900&q=80&fm=jpg"
+                alt="Personne âgée assise dans un espace clair et lumineux, confort d'été en EHPAD"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
@@ -213,7 +211,7 @@ export default function FraicheurEhpadPage() {
                 {[
                   "Chambres, unités Alzheimer, espaces communs",
                   "Travaux hors présence des résidents sur demande",
-                  "Installateurs RGE certifiés, garantie 5 ans",
+                  "Installateurs RGE certifiés, garantie constructeur",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2 text-sm text-slate-600">
                     <svg className="w-4 h-4 text-brand-emeraldDeep mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -267,7 +265,7 @@ export default function FraicheurEhpadPage() {
                 Vos équipes se concentrent sur les soins
               </h2>
               <p className="text-slate-600 leading-relaxed mb-6">
-                PSGLOBAL Energy prend en charge l&apos;intégralité du montage administratif et financier. Vos soignants n&apos;ont aucun dossier à constituer — nous coordonnons tout jusqu&apos;à la réception des travaux.
+                PSGLOBAL Energy prend en charge l&apos;intégralité du montage administratif et financier. Vos soignants n&apos;ont aucun dossier à constituer — nous coordonnons les étapes et vous accompagnons jusqu&apos;à la mise en service.
               </p>
               <ul className="flex flex-col gap-2">
                 {[
@@ -311,7 +309,7 @@ export default function FraicheurEhpadPage() {
               Notre méthode
             </div>
             <h2 id="process-title" className="display text-3xl font-bold text-midnight-900 mb-4">
-              De l&apos;audit à la livraison, nous gérons tout
+              De l&apos;audit au suivi des travaux, nous coordonnons tout
             </h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">

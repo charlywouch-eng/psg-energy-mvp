@@ -62,7 +62,7 @@ export default function HomePage() {
                 </h1>
                 <p className="text-lg text-slate-600 leading-relaxed mb-8 font-medium">
                   Nous accompagnons les directions d&apos;EHPAD et les collectivités locales d&apos;Île-de-France.
-                  Du diagnostic jusqu&apos;à la réception des travaux, nous montons vos dossiers de financement
+                  Du diagnostic jusqu&apos;à la mise en service, nous montons vos dossiers de financement
                   et coordonnons les entreprises RGE — sans jamais nous substituer à vous.
                 </p>
 
@@ -110,7 +110,7 @@ export default function HomePage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                     </svg>
                     <div className="text-sm">
-                      <span className="font-bold text-midnight-900 block">Maîtrise CEE &amp; Fonds vert</span>
+                      <span className="font-bold text-midnight-900 block">Montage CEE &amp; Fonds vert</span>
                       <span className="text-slate-600">Montage conforme aux fiches BAT-TH-113 et BAT-TH-116.</span>
                     </div>
                   </div>
@@ -129,7 +129,7 @@ export default function HomePage() {
                 <a
                   href="/PSGLOBAL-ENERGY_Plaquette.pdf"
                   download
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-midnight-900 border-b-2 border-brand-emeraldDeep hover:text-brand-emeraldDeep transition-colors"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-midnight-900 border-2 border-midnight-900 px-5 py-2.5 hover:bg-midnight-900 hover:text-white transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H8a2 2 0 01-2-2V5a2 2 0 012-2h6l6 6v11a2 2 0 01-2 2z" />
@@ -308,45 +308,43 @@ export default function HomePage() {
         {/* FINANCEMENTS */}
         <section id="financements" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-14 mb-16">
-              <div className="flex-1">
-                <h2 className="display text-3xl font-bold text-midnight-900 mb-4">
-                  L&apos;ingénierie qui démêle le complexe
-                </h2>
-                <p className="text-slate-600 max-w-2xl">
-                  Nous sécurisons juridiquement et financièrement chaque volet de votre projet
-                  de rafraîchissement, sans que vous ayez à naviguer dans les méandres réglementaires.
-                </p>
-              </div>
+            <div className="max-w-2xl mx-auto text-center mb-12">
+              <h2 className="display text-3xl font-bold text-midnight-900 mb-4">
+                L&apos;ingénierie qui démêle le complexe
+              </h2>
+              <p className="text-slate-600">
+                Nous sécurisons juridiquement et financièrement chaque volet de votre projet
+                de rafraîchissement, sans que vous ayez à naviguer dans les méandres réglementaires.
+              </p>
+            </div>
 
-              {/* Diagramme radial SVG zones d'intervention */}
-              <div className="bg-slate-50 border border-slate-200 p-6 w-full lg:w-72 shrink-0">
-                <svg viewBox="0 0 220 200" className="w-full h-auto" role="img" aria-labelledby="zoneTitle">
-                  <title id="zoneTitle">Zone d&apos;intervention PSGLOBAL-ENERGY en Île-de-France</title>
-                  <line x1="110" y1="100" x2="60" y2="50" stroke="#cbd5e1" strokeWidth="2"/>
-                  <line x1="110" y1="100" x2="160" y2="50" stroke="#cbd5e1" strokeWidth="2"/>
-                  <line x1="110" y1="100" x2="60" y2="150" stroke="#cbd5e1" strokeWidth="2"/>
-                  <line x1="110" y1="100" x2="160" y2="150" stroke="#cbd5e1" strokeWidth="2"/>
-                  <circle cx="110" cy="100" r="22" fill="#0f172a"/>
-                  <text x="110" y="104" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="700" fontFamily="Inter, sans-serif">PSG</text>
-                  <g fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#0f172a">
-                    <circle cx="60" cy="50" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
-                    <text x="60" y="54" textAnchor="middle">77</text>
-                    <circle cx="160" cy="50" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
-                    <text x="160" y="54" textAnchor="middle">91</text>
-                    <circle cx="60" cy="150" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
-                    <text x="60" y="154" textAnchor="middle">93</text>
-                    <circle cx="160" cy="150" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
-                    <text x="160" y="154" textAnchor="middle">94</text>
-                  </g>
-                </svg>
-                <p className="text-xs text-slate-500 mt-3 leading-relaxed">
-                  Zone d&apos;intervention&nbsp;: Seine-et-Marne, Essonne, Seine-Saint-Denis, Val-de-Marne.
-                </p>
-                <p className="mono text-[11px] text-brand-emeraldDeep font-bold mt-2">
-                  116 EHPAD identifiés (77)
-                </p>
-              </div>
+            {/* Diagramme radial SVG zones d'intervention */}
+            <div className="bg-slate-50 border border-slate-200 p-6 max-w-xs mx-auto mb-12">
+              <svg viewBox="0 0 220 200" className="w-full h-auto" role="img" aria-labelledby="zoneTitle">
+                <title id="zoneTitle">Zone d&apos;intervention PSGLOBAL-ENERGY en Île-de-France</title>
+                <line x1="110" y1="100" x2="60" y2="50" stroke="#cbd5e1" strokeWidth="2"/>
+                <line x1="110" y1="100" x2="160" y2="50" stroke="#cbd5e1" strokeWidth="2"/>
+                <line x1="110" y1="100" x2="60" y2="150" stroke="#cbd5e1" strokeWidth="2"/>
+                <line x1="110" y1="100" x2="160" y2="150" stroke="#cbd5e1" strokeWidth="2"/>
+                <circle cx="110" cy="100" r="22" fill="#0f172a"/>
+                <text x="110" y="104" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="700" fontFamily="Inter, sans-serif">PSG</text>
+                <g fontFamily="Inter, sans-serif" fontSize="11" fontWeight="700" fill="#0f172a">
+                  <circle cx="60" cy="50" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
+                  <text x="60" y="54" textAnchor="middle">77</text>
+                  <circle cx="160" cy="50" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
+                  <text x="160" y="54" textAnchor="middle">91</text>
+                  <circle cx="60" cy="150" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
+                  <text x="60" y="154" textAnchor="middle">93</text>
+                  <circle cx="160" cy="150" r="16" fill="#ecfdf5" stroke="#059669" strokeWidth="1.5"/>
+                  <text x="160" y="154" textAnchor="middle">94</text>
+                </g>
+              </svg>
+              <p className="text-xs text-slate-500 mt-3 leading-relaxed text-center">
+                Zone d&apos;intervention&nbsp;: Seine-et-Marne, Essonne, Seine-Saint-Denis, Val-de-Marne.
+              </p>
+              <p className="mono text-[11px] text-brand-emeraldDeep font-bold mt-2 text-center">
+                116 EHPAD identifiés (77)
+              </p>
             </div>
 
             {/* Cards financements */}

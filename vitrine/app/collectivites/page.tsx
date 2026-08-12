@@ -17,7 +17,7 @@ const ETABLISSEMENTS = [
   { titre: "Mairie & hôtel de ville", desc: "Mise aux normes thermiques — bouquet de gestes passif d'abord, PAC, panneaux solaires — réduisez la facture d'énergie municipale." },
   { titre: "Gymnases & piscines", desc: "Pompes à chaleur, chauffage solaire, VMC haute performance pour équipements sportifs." },
   { titre: "Espaces publics", desc: "Éclairage LED solaire, bornes de recharge VE, îlots de fraîcheur pour les zones piétonnes." },
-  { titre: "Logements sociaux", desc: "Partenariat bailleur social — Fonds Vert, CEE, Éco-PTZ collectif." },
+  { titre: "Logements sociaux", desc: "Partenariat bailleur social — Fonds Vert, CEE tertiaire." },
   { titre: "CCAS & structures d'accueil", desc: "Confort d'été pour centres d'accueil de jour, SAAD, résidences autonomie." },
 ];
 
@@ -130,13 +130,13 @@ export default function CollectivitesPage() {
             Pourquoi PSGLOBAL Energy
           </div>
           <h2 id="why-title" className="display text-3xl font-bold text-midnight-900 mb-8">
-            Vous n&apos;avancez rien, nous gérons tout
+            Vous pilotez, nous orchestrons le montage
           </h2>
           <div className="grid sm:grid-cols-3 gap-5 text-left">
             {[
               { titre: "Ingénierie financière", desc: "Constitution complète des dossiers DSIL, DETR, CEE, Fonds Vert — aucune ressource RH à mobiliser." },
-              { titre: "Coordination travaux", desc: "Sélection des entreprises RGE, planning, suivi de chantier, réception des ouvrages." },
-              { titre: "Conformité garantie", desc: "Montage de dossiers aux normes décret tertiaire, Fonds Vert 2026, accessibilité." },
+              { titre: "Coordination travaux", desc: "Sélection des entreprises RGE, planning, suivi de chantier — vous conduisez la réception en qualité de maître d'ouvrage, nous vous y accompagnons." },
+              { titre: "Conformité réglementaire", desc: "Montage de dossiers aux normes décret tertiaire, Fonds Vert 2026, accessibilité." },
             ].map((item) => (
               <div key={item.titre} className="bg-slate-50 border border-slate-200 p-6 border-t-2 border-t-brand-emeraldDeep">
                 <h3 className="font-bold text-base text-midnight-900 mb-2">{item.titre}</h3>
