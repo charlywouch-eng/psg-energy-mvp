@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
+  { href: "/",             label: "Accueil" },
   { href: "#simulateur",   label: "Diagnostic d'éligibilité" },
   { href: "#financements", label: "Guichets mobilisables" },
   { href: "#methode",      label: "Notre méthode" },
