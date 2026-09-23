@@ -4,125 +4,80 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Contexte métier
 
-**PSGLOBAL Energy** (Provider Services Groupe) est une régie commerciale française (SASU) spécialisée en énergies renouvelables. Elle **vend** des équipements au nom d'installateurs RGE certifiés sans réaliser d'installations. Marges : Kwanthic 28,5% / Le Solariste 37,5%. Deux axes : France IDF (77, 94, 91, 93) + Congo Brazzaville / zone CEMAC.
+**PSGLOBAL Energy** (Provider Services Groupe) est un cabinet d'**AMO** (assistance à maîtrise d'ouvrage) — SAS au capital de 5 000 €. PSG ne vend ni n'installe aucun équipement : elle orchestre des prestataires RGE certifiés, sécurise les subventions et gère le planning pour le compte de ses clients. Rémunération à double flux : honoraires d'AMO facturés aux établissements (liés aux jalons d'octroi des aides) + commission d'apport d'affaires (8–12 %) facturée aux installateurs RGE et fabricants partenaires.
 
-**Domaine unique** : `psglobal.energy` — hébergé sur Vercel (projet `psg-energy-mvp`, team `charly-wouches-projects`). Ne jamais réintroduire `psg-energy.fr` dans le code (domaine abandonné).
+Cible : établissements publics et parapublics (EHPAD, écoles, collectivités) en Île-de-France (77, 91, 93, 94), démarche B2G/B2B. Guichets de financement mobilisés : Fonds vert (rafraîchissement), Fonds qualité ARS, CEE tertiaires (fiches BAT-TH), ACTEE/EduRénov, Plan Fraîcheur État — **jamais MaPrimeRénov'** (réservé aux particuliers, hors doctrine PSG).
 
-**Webhook leads** : `https://hook.eu1.make.com/tab3g6y46xzwi86rp0tycecdgagtf18c` → Make.com → Zoho CRM EU
+**Domaine unique** : `psglobal.energy` — hébergé sur Vercel (projet `psg-energy-mvp`, team `charly-wouches-projects`, alias production `psglobal.energy` + `www.psglobal.energy`). Ne jamais réintroduire `psg-energy.fr` dans le code (domaine abandonné).
 
-## Architecture
+## Architecture — IMPORTANT
 
-Projet 100% front-end statique — zéro framework, zéro build step. Chaque page HTML est autonome (CSS + JS inline). Ressources partagées dans `shared/` et `fonts/`.
+Le repo contient **deux générations de code qui coexistent** :
 
-### Pages actives (servies sur psglobal.energy)
+1. **`vitrine/`** — l'application réellement déployée en production sur `psglobal.energy`. Next.js 14 (App Router) + TypeScript + Tailwind CSS. Le Root Directory Vercel du projet pointe sur ce dossier (réglage dans le dashboard Vercel, pas dans un fichier du repo) — c'est cette app, et uniquement elle, qui sert le trafic. **Toute modification du site en production se fait dans `vitrine/`.**
+2. **Fichiers HTML statiques à la racine** (`index.html`, `en/`, `ar/`, `pt/`, `psg-chatbot-elia.html`, `psg-commercial-signature.html`, `psg-africa-intelligence.html`, `psg-energy-site.html`, `vitrine-fr.html`, `mentions-legales.html`, `cgv.html`, `politique-confidentialite.html`, `shared/`, `fonts/`, `simulateur/`, `admin/`, `vercel.json`, `.htaccess`) — **génération précédente du site, non déployée** (aucune référence croisée depuis `vitrine/`, confirmé par audit du 23/09/2026). À conserver comme archive tant qu'aucune décision explicite de suppression n'est prise, mais ne pas les modifier en pensant affecter le site en ligne : elles ne sont pas servies.
 
-| Fichier | URL | Rôle | Accès |
-|---------|-----|------|-------|
-| `index.html` | `/` | Vitrine FR multilingue (6 langues via i18n JS) | Public |
-| `en/index.html` | `/en/` | Page statique EN — ciblage SEO Île-de-France | Public |
-| `ar/index.html` | `/ar/` | Page statique AR RTL — ciblage SEO zone 93+75 | Public |
-| `pt/index.html` | `/pt/` | Page statique PT européen — ciblage SEO zone 77+91 | Public |
-| `psg-chatbot-elia.html` | — | Chatbot IA Élia (nécessite proxy API Claude) | Public |
-| `psg-commercial-signature.html` | — | Tunnel devis + signature YouSign | Public |
-| `psg-africa-intelligence.html` | — | Dashboard Intelligence Afrique (noindex) | Semi-privé |
-| `mentions-legales.html` | — | Mentions légales LCEN | Public |
-| `cgv.html` | — | CGV loi Hamon, rétractation 14j, médiateur MEDICYS | Public |
-| `politique-confidentialite.html` | — | Politique RGPD (10 sections) | Public |
+### Structure de `vitrine/`
 
-### Fichiers hérités (à ne pas supprimer sans décision explicite)
-
-| Fichier | Statut |
-|---------|--------|
-| `psg-energy-site.html` | Ancienne vitrine — contenu dupliqué, à noindexer ou rediriger vers `/` |
-| `psg-energy-v5-mvp.html` | Ancienne app mobile — remplacée par `index.html` + `/en/` `/ar/` `/pt/` |
-| `psg-dashboard-admin.html` | Dashboard CRM interne — **GITIGNORED, NE JAMAIS COMMITTER** |
-
-### Ressources partagées
-
-| Fichier | Rôle |
-|---------|------|
-| `shared/design-system.css` | Tokens CSS, composants nav/footer/btn communs à toutes les pages |
-| `shared/engine.js` | Moteur de calcul ANAH 2026 (`window.PSGEngine`) — barèmes MPR, CEE, TVA 5,5%, Éco-PTZ, MAR |
-| `fonts/fonts.css` + `fonts/*.woff2` | Outfit + Inter auto-hébergées (RGPD — jamais de Google Fonts) |
-| `sitemap.xml` | 5 URLs : `/`, `/en/`, `/ar/`, `/pt/`, `/simulateur/` |
-| `robots.txt` | `Allow: /` + `Sitemap: https://psglobal.energy/sitemap.xml` |
-| `.htaccess` | Rewrites Apache pour déploiement OVH (si besoin fallback) |
-| `vercel.json` | Rewrites Vercel pour `/en`, `/ar`, `/pt`, `/simulateur`, `/admin` |
+| Dossier/fichier | Rôle |
+|---|---|
+| `app/` | Pages App Router : `/`, `/eligibilite`, `/fraicheur-ehpad`, `/collectivites/[slug]`, `/dossier-type`, `/methode`, `/conformite`, `/particuliers`, `/a-propos`, `/contact`, `/mentions-legales`, `/cgv`, `/politique-confidentialite` |
+| `app/api/lead/route.ts` | Proxy serveur pour l'envoi des leads (voir section Formulaire / Leads) |
+| `components/layout/` | `Navbar.tsx`, `Footer.tsx` |
+| `components/ui/` | `DeontoBanner.tsx`, `EligibilityForm.tsx`, `CommuneContactForm.tsx` |
+| `data/communes.ts` | Référentiel communes ciblées (77/91/93/94) |
+| `data/guichets.ts` | Catalogue des guichets de financement B2G réels (Fonds vert, ACTEE/EduRénov, Plan Fraîcheur État, PENSÉE+/ARS) avec dates de vérification — **source de vérité pour les montants/dispositifs**, à jour au 28/07/2026 |
+| `lib/eligibility.ts` | Logique de scoring/éligibilité |
+| `lib/geo.ts` | Utilitaires géographiques (communes, départements) |
+| `lib/webhook.ts` | Types et envoi du payload lead vers `/api/lead` |
 
 ## Règles absolues
 
+- Toute intervention sur le **site en production** se fait dans `vitrine/` — pas à la racine du repo
 - `psg-dashboard-admin.html` est dans `.gitignore` — **ne jamais l'ajouter au repo** (contient marges, leads, données commerciales)
 - Le dossier `memory/` est dans `.gitignore` — **ne jamais le committer** (profil Charly, décisions internes)
-- Ne jamais exposer de clé API Anthropic côté client — utiliser un proxy Vercel serverless function
+- Ne jamais exposer de clé API (Anthropic, webhook Make.com, etc.) côté client — toujours via route API serveur (`vitrine/app/api/*`) avec variable d'env **non préfixée `NEXT_PUBLIC_`**
 - Toujours répondre et commenter en **français**
 - **Ne jamais réintroduire `psg-energy.fr`** — le domaine est abandonné, tout doit pointer sur `psglobal.energy`
 - **Ne jamais introduire `fonts.googleapis.com`** — interdit RGPD, décision CNIL 10/02/2022
-
-## SEO multilingue
-
-Architecture hreflang complète sur 4 langues :
-```html
-<link rel="canonical" href="https://psglobal.energy/[lang]/">
-<link rel="alternate" hreflang="fr" href="https://psglobal.energy/">
-<link rel="alternate" hreflang="en" href="https://psglobal.energy/en/">
-<link rel="alternate" hreflang="ar" href="https://psglobal.energy/ar/">
-<link rel="alternate" hreflang="pt" href="https://psglobal.energy/pt/">
-<link rel="alternate" hreflang="x-default" href="https://psglobal.energy/">
-```
-
-- `/ar/index.html` : `<html lang="ar" dir="rtl">` + CSS RTL complet
-- TR et ZH : i18n JS uniquement dans `index.html` (pas de pages dédiées)
-- Sitemap soumis à Google Search Console (action manuelle à refaire si domaine changé)
+- **Doctrine AMO** : ne jamais rédiger de contenu laissant penser que PSG installe ou vend des équipements — PSG orchestre, sécurise les subventions, ne construit pas
+- **Jamais de MaPrimeRénov'** dans l'argumentaire ou le code — dispositif particuliers hors cible PSG (B2G/B2B uniquement)
 
 ## Formulaire / Leads
 
-Toutes les pages envoient un payload JSON `{nom, tel, cp, projet, date, source, lang}` vers `LEAD_WEBHOOK` :
-```js
-const LEAD_WEBHOOK = 'https://hook.eu1.make.com/tab3g6y46xzwi86rp0tycecdgagtf18c';
+`vitrine/components/ui/EligibilityForm.tsx` et `CommuneContactForm.tsx` envoient un payload JSON (`LeadPayload` — voir `lib/webhook.ts`) vers `POST /api/lead`, qui relaie côté serveur vers Make.com :
+
 ```
-Fallback si vide : `mailto:contact@psglobal.energy`. Make.com → Zoho CRM EU (connexion OAuth à finaliser).
-
-## Chatbot Élia
-
-`psg-chatbot-elia.html` : appel `https://api.anthropic.com/v1/messages` sans clé exposée → nécessite une **Vercel Edge Function** proxy avec la clé côté serveur. Non fonctionnel sans ce proxy.
-
-## Simulateur d'aides ANAH 2026
-
-`shared/engine.js` expose `window.PSGEngine` : barèmes MPR par tranche fiscale, CEE, TVA 5,5%, Éco-PTZ, prime MAR 2 000€, plafond 32 000€. Montants codés en dur — à mettre à jour à chaque révision ANAH.
-
-## Variables CSS communes (`shared/design-system.css`)
-
-```css
---blue:#1A4DFF  --green:#00C48C  --gold:#F5A000
---ink:#08091A   --surf:#F2F5FB   --ff:'Outfit'   --fb:'Inter'
+process.env.MAKE_WEBHOOK_URL  // variable d'env Vercel, jamais NEXT_PUBLIC_, jamais exposée côté client
 ```
-Toute modification de charte doit être appliquée dans `shared/design-system.css` (propagation automatique).
+
+Make.com → Zoho CRM EU. L'URL du webhook n'apparaît nulle part dans le code client (amélioration par rapport à la génération précédente du site, qui la hardcodait en JS).
+
+## Simulateur / guichets d'aides
+
+`vitrine/data/guichets.ts` recense les guichets B2G réellement mobilisables (Fonds vert, ACTEE/EduRénov écoles, Plan Fraîcheur État, PENSÉE+ santé/ARS), avec sources et date de dernière vérification. **À mettre à jour à chaque évolution réglementaire** — ne pas réintroduire les barèmes ANAH/MaPrimeRénov' de l'ancienne génération (`shared/engine.js`, non utilisé par `vitrine/`).
 
 ## Déploiement
 
-- **Production** : Vercel → `psglobal.energy` (auto-deploy sur push `main`, team `charly-wouches-projects`, projet `psg-energy-mvp`)
-- **Fallback OVH** : `.htaccess` présent pour déploiement Apache si besoin
+- **Production** : Vercel → `psglobal.energy` (auto-deploy sur push `main`, team `charly-wouches-projects`, projet `psg-energy-mvp`, Root Directory = `vitrine/`)
 - `psg-africa-intelligence.html` et `psg-dashboard-admin.html` ne doivent jamais être servis publiquement
 
 ## Conformité CNIL / RGPD
 
 ### En place (ne pas régresser)
-- Fonts auto-hébergées (`shared/design-system.css` + `fonts/`)
 - Aucun cookie tiers (pas de GA, Meta Pixel, Hotjar) → pas de bandeau requis
-- Pas de clé API client
-- `politique-confidentialite.html` (10 obligations RGPD art. 13/14)
-- `mentions-legales.html` (LCEN art. 6)
-- `cgv.html` (loi Hamon)
+- Pas de clé API ni de webhook exposés côté client
+- Pages légales dans `vitrine/app/` : `mentions-legales`, `cgv`, `politique-confidentialite`
+- En-têtes de sécurité définis dans `vitrine/next.config.mjs` (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
 
 ### Règles à respecter
 1. Jamais de ressource externe sans vérification RGPD
 2. Tout nouveau formulaire → mention RGPD art. 13 au point de collecte
 3. Cookies → bandeau consentement CNIL 2022 obligatoire avant dépôt
-4. Nouveaux sous-traitants → ajouter section 4 de `politique-confidentialite.html`
+4. Nouveaux sous-traitants → ajouter section dédiée dans `vitrine/app/politique-confidentialite`
 5. Durées de conservation définies avant toute collecte
 
-### Points légaux en attente
-- SIREN non disponible (immatriculation Jurisociété N°1727182) — mentionné dans `mentions-legales.html` et footer
-- Email `dpo@psglobal.energy` à créer dans Zoho Mail **avant mise en production**
-- Connexion Zoho CRM dans Make.com (OAuth, UI Make.com) à finaliser
-- `psg-energy-site.html` → ajouter `<meta name="robots" content="noindex">` ou redirection 301 vers `/`
+### Points en attente (au 23/09/2026)
+- SIREN non disponible (immatriculation Jurisociété N°1727182) — mentionné dans `vitrine/app/mentions-legales/page.tsx`
+- Décision explicite à prendre sur le sort des fichiers HTML hérités à la racine (suppression, archivage, ou redirection 301 vers l'app `vitrine/`)
+- 3 branches non fusionnées à trancher : `feat/reste-a-charge-ehpad`, `claude/webhook-hardening`, `claude/update-guichets-juillet2026`
